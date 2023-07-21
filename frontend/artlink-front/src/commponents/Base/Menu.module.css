@@ -1,0 +1,8 @@
+.menuBtn {
+  height: 50px !important;
+  width: 20px !important;
+  color: rgb(255, 255, 255);
+  border: none;
+  background-color: black;
+  margin: auto;
+}
