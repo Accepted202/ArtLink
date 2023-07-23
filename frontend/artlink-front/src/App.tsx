@@ -1,5 +1,7 @@
 // import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import Header from "./layout/Header/Header";
+import Footer from "./layout/Footer/Footer";
 
 // Common
 import Homepage from "./pages/Common/Home";
@@ -16,7 +18,7 @@ import SignupGallery from "./pages/Entrance/SignupGallery";
 import ArtMemory from "./pages/User/ArtMemory";
 import ArtMemoryDetail from "./pages/User/ArtMemoryDetail";
 import ArtMemoryEdit from "./pages/User/ArtMemoryEdit";
-// import ThreeTest from "./pages/ThreeMain";
+import ThreeTest from "./pages/ThreeMain";
 // Gallery
 import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
@@ -41,12 +43,15 @@ import Contact from "./pages/Other/Contact";
 import AboutUs from "./pages/Other/AboutUs";
 // Only Developer (*** Del After release ***)
 import PageManager from "./pages/PageManager";
+import ThreeTestt from "./Threejs/Test/App/ThreeTest"
 
 function App() {
   // const [count, setCount] = useState(0);
 
   return (
     <div className="App">
+      <Header />
+
       <Routes>
         {/* Common */}
         <Route path="/home" element={<Homepage />} />
@@ -66,7 +71,7 @@ function App() {
         <Route path="/art-memory" element={<ArtMemory />} />
         <Route path="/art-memory/:pk" element={<ArtMemoryDetail />} />
         <Route path="/art-memory/:pk/edit" element={<ArtMemoryEdit />} />
-        {/* <Route path="/art-memory/:pk/3d" element={<ThreeTest />} /> */}
+        <Route path="/art-memory/:pk/3d" element={<ThreeTest />} />
 
         {/* Gallery Routes */}
         <Route path="/works-board" element={<WorksBoard />} />
@@ -78,8 +83,8 @@ function App() {
 
         {/* Manager Routes */}
         <Route path="/user-board" element={<UserBoard />} />
-        <Route path="/user-board/:pk" element={<UserManage />} />
-        <Route path="/gallery-manage" element={<GalleryBoard />} />
+        <Route path="/user-manage/:pk" element={<UserManage />} />
+        <Route path="/gallery-board" element={<GalleryBoard />} />
         <Route path="/gallery-manage/:pk" element={<GalleryManage />} />
 
         {/* Kiosk Routes */}
@@ -95,9 +100,12 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
 
         {/* Only Developer */}
-        {/* <Route path="/3d" element={<ThreeTest />} /> */}
+        <Route path="/3d" element={<ThreeTest />} />
+        <Route path="/3dd" element={<ThreeTestt />} />
         <Route path="/PM" element={<PageManager />} />
       </Routes>
+
+      <Footer />
     </div>
   );
 }

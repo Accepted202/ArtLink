@@ -1,56 +1,67 @@
-import { useState, createContext, useContext } from "react";
-import { useAuth } from "../../pages/Common/Home";
+import { Link } from "react-router-dom";
+import { useState } from 'react';
 
-const MenuContext = createContext<{
-  menuselect: string;
-} | null>(null);
-// eslint-disable-next-line react-refresh/only-export-components
-export function useMenu() {
-  return useContext(MenuContext);
+interface MenuItem {
+  label: string;
+  path: string;
 }
 
 function Menu() {
-  const fromHome = useAuth();
-  console.log(fromHome, fromHome?.isLoggedIn);
-  const menu_user = ["Your Record", "My Page"];
-  const menu_gallery = ["Artwork Manager", "My Page"];
-  const menu_manager = ["Manage User", "Manage Gallery"];
-
-  const [menuselect, setMenuselect] = useState("null");
-  function handleMenu(index: number) {
-    setMenuselect((index + 1).toString());
+  // 
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [whoareyou, setWhoAreYou] = useState("user");
+  function handleLog() {
+    setIsLoggedIn(!isLoggedIn);
   }
-  const value = {
-    menuselect,
+  function handleUser() {
+    setWhoAreYou("user");
+  }
+  function handleGallery() {
+    setWhoAreYou("gallery");
+  }
+  function handleManager() {
+    setWhoAreYou("manager");
+  }
+
+  const menus: { [key: string]: MenuItem[] } = {
+    user: [
+      { label: "Your Record", path: "/art-memory" },
+      { label: "My Page", path: "/mypage" },
+    ],
+    gallery: [
+      { label: "Artwork Manager", path: "/works-board" },
+      { label: "My Page", path: "/mypage" },
+    ],
+    manager: [
+      { label: "Manage User", path: "/user-board" },
+      { label: "Manage Gallery", path: "/gallery-board" },
+    ],
   };
-  console.log(menuselect, value);
+
+  const menuItems = isLoggedIn ? menus[whoareyou] : [];
 
   return (
     <>
-      <MenuContext.Provider value={value}>
-        <h1>Menu</h1>
-        {fromHome?.isLoggedIn &&
-          fromHome?.whoareyou === "user" &&
-          menu_user.map((menuItem, index: number) => (
-            <div key={index}>
-              <button onClick={() => handleMenu(index)}>{menuItem}</button>
-            </div>
-          ))}
-        {fromHome?.isLoggedIn &&
-          fromHome?.whoareyou === "gallery" &&
-          menu_gallery.map((menuItem, index) => (
-            <div key={index}>
-              <button onClick={() => handleMenu(index)}>{menuItem}</button>
-            </div>
-          ))}
-        {fromHome?.isLoggedIn &&
-          fromHome?.whoareyou === "manager" &&
-          menu_manager.map((menuItem, index) => (
-            <div key={index}>
-              <button onClick={() => handleMenu(index)}>{menuItem}</button>
-            </div>
-          ))}
-      </MenuContext.Provider>
+      {/* <h1>Menu</h1> */}
+      <div>
+      <button onClick={handleLog}>
+        {isLoggedIn ? "로그아웃" : "로그인"}
+      </button>
+      </div>
+      {isLoggedIn && ( // isLoggedIn이 true일 때에만 버튼 렌더링
+        <div>
+          |<button onClick={handleUser}>유저</button>
+          <button onClick={handleGallery}>갤러리</button>
+          <button onClick={handleManager}>매니저</button>
+        </div>
+      )}
+      {menuItems.map((menuItem, index) => (
+        <div key={index}>
+          <Link to={menuItem.path}>
+            <button>{menuItem.label}</button>
+          </Link>
+        </div>
+      ))}
     </>
   );
 }

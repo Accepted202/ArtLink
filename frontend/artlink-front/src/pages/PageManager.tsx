@@ -27,8 +27,8 @@ function PageManager() {
     IotRemove: "/gallery/removeiot",
     // Manager
     UserBoard: "/user-board",
-    UserManage: "/user-board/1", // Example with parameter (replace '1' with an actual ID)
-    GalleryBoard: "/gallery-manage",
+    UserManage: "/user-manage/1", // Example with parameter (replace '1' with an actual ID)
+    GalleryBoard: "/gallery-board",
     GalleryManage: "/gallery-manage/1", // Example with parameter (replace '1' with an actual ID)
     // Kiosk
     Kiosk: "/kiosk/home",

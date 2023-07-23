@@ -4,8 +4,6 @@ import { Euler, Vector3 } from "three";
 import { useSphere } from "@react-three/cannon";
 
 const euler = new Euler(0, 0, 0, "YXZ");
-const cameraDirection = new Vector3();
-const cameraUp = new Vector3(0, 1, 0);
 const vec = new Vector3();
 
 const useCodes = () => {
@@ -53,7 +51,7 @@ export default function LookControls() {
       const direction = new Vector3();
       camera.getWorldDirection(direction);
 
-      if (deltaY < 0) {
+      if (deltaY <= 0) {
         // Zoom In
         state.zoom += zoomSpeed;
         camera.position.addScaledVector(direction, zoomSpeed);
@@ -87,29 +85,28 @@ export default function LookControls() {
     };
 
     const onMouseMove = (e) => {
-      
       if (state.drag) {
-        if (e.buttons === 1){
-        const dx = e.screenX - state.prev.screenX;
-        const dy = e.screenY - state.prev.screenY;
+        if (e.buttons === 1) {
+          console.log("왼쪽");
+          const dx = e.screenX - state.prev.screenX;
+          const dy = e.screenY - state.prev.screenY;
 
-        euler.setFromQuaternion(camera.quaternion);
-        euler.y -= dx * 0.002;
-        euler.x -= dy * 0.002;
-        camera.quaternion.setFromEuler(euler);
-        state.prev.screenX = e.screenX;
-        state.prev.screenY = e.screenY;
-        } else
-        {
-        const dx = e.screenX - state.prev.screenX;
-        const dy = e.screenY - state.prev.screenY;
+          euler.setFromQuaternion(camera.quaternion);
+          euler.y -= dx * 0.002;
+          euler.x -= dy * 0.002;
+          camera.quaternion.setFromEuler(euler);
+          state.prev.screenX = e.screenX;
+          state.prev.screenY = e.screenY;
+        } else {
+          const dx = e.screenX - state.prev.screenX;
+          const dy = e.screenY - state.prev.screenY;
 
-        camera.position.x -= dx * 0.01;
-        camera.position.y += dy * 0.01;
-        state.prev.screenX = e.screenX;
-        state.prev.screenY = e.screenY;
+          camera.position.x -= dx * 0.01;
+          camera.position.y += dy * 0.01;
+          state.prev.screenX = e.screenX;
+          state.prev.screenY = e.screenY;
         }
-      };
+      }
     };
     gl.domElement.addEventListener("contextmenu", onContextMenu);
     gl.domElement.addEventListener("wheel", onWheel);
@@ -117,8 +114,6 @@ export default function LookControls() {
     gl.domElement.addEventListener("mousedown", onMouseDown);
     gl.domElement.addEventListener("mouseup", onMouseUp);
 
-    
-    
     return () => {
       gl.domElement.removeEventListener("contextmenu", onContextMenu);
       gl.domElement.removeEventListener("wheel", onWheel);
@@ -127,7 +122,7 @@ export default function LookControls() {
       gl.domElement.removeEventListener("mouseup", onMouseUp);
     };
   }, [camera, gl]);
-  
+
   /////////////////////// 아래는 키보드 컨트롤러입니다.
   const code = useCodes();
   const moveForward = (distance) => {
@@ -179,9 +174,6 @@ export default function LookControls() {
     if (code.current.has("KeyE")) camera.position.y -= delta * speed; // E를 누르면 아래로 이동
     if (code.current.has("Space")) jump(); // Spacebar를 누르면 점프
   });
-  
-
-
 
   return null;
 }

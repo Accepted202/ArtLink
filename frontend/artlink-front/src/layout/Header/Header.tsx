@@ -1,12 +1,26 @@
 // import React from 'react';
+import { useLocation } from "react-router-dom";
+import MainLogo from "../../commponents/Base/MainLogo";
+import Menu from "../../commponents/Base/Menu";
 import headercss from "./Header.module.css";
 
+
+const excludePaths = ["/home", "/", "/login", "/signup", "/login-gallery", "/signup-gallery", "/login-admin",]; // 여기에 메뉴를 렌더링하고 싶지 않은 경로를 추가
 function Header() {
+  const location = useLocation();
+  const isExcludedPath = excludePaths.includes(location.pathname);
+  const isKiosk = location.pathname.includes("kiosk"); 
+  const is3D = location.pathname.includes("3d");
+  
   return (
     <>
-      <div className={headercss.header}>
-        <h1>Header</h1>
-      </div>
+      {!isKiosk && !is3D && (
+        <div className={headercss.header}>
+          <MainLogo />
+          {/* <h1>Header</h1> */}
+          {!isExcludedPath && <Menu />}
+        </div>
+      )}
     </>
   );
 }

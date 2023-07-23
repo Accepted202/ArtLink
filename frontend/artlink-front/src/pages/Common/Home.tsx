@@ -1,7 +1,5 @@
-import { useState, createContext, useContext } from "react";
-// import { Link } from "react-router-dom";
-import Header from "../../layout/Header/Header";
-import Footer from "../../layout/Footer/Footer";
+import { useState, useEffect } from "react";
+import { useNavigate} from "react-router-dom";
 
 import "./Home.css";
 
@@ -9,17 +7,10 @@ import HomeUser from "../../commponents/HomeWho/HomeUser";
 import HomeGallery from "../../commponents/HomeWho/HomeGallery";
 import HomeManager from "../../commponents/HomeWho/HomeManager";
 
-const AuthContext = createContext<{
-  isLoggedIn: boolean;
-  whoareyou: string;
-} | null>(null);
-// eslint-disable-next-line react-refresh/only-export-components
-export function useAuth() {
-  return useContext(AuthContext);
-}
 
 function Homepage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // (시작) 로그인 여부, 로그인 주체 판단용 임시 코드
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [whoareyou, setWhoAreYou] = useState("user");
   function handleLog() {
     setIsLoggedIn(!isLoggedIn);
@@ -34,10 +25,16 @@ function Homepage() {
     setWhoAreYou("manager");
   }
 
-  const value = {
-    isLoggedIn,
-    whoareyou,
-  };
+  // (시작) 로그인 여부, 로그인 주체 판단용 임시 코드
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // 컴포넌트가 마운트된 후에 isLoggedIn 상태를 체크하고, 로그인 상태가 아니라면 내비게이션을 수행합니다.
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   let render_component;
   if (isLoggedIn) {
@@ -54,10 +51,8 @@ function Homepage() {
 
   return (
     <>
-      <AuthContext.Provider value={value}>
-        {/* Header */}
-        <Header />
         {/* Body */}
+        {/* (시작) 서비스 제작용 툴입니다 추후 삭제 예정  */}
         <div>
           <button onClick={handleLog}>
             {isLoggedIn ? "로그아웃" : "로그인"}
@@ -66,10 +61,8 @@ function Homepage() {
           <button onClick={handleGallery}>갤러리</button>
           <button onClick={handleManager}>매니저</button>
         </div>
+        {/* (끝) 서비스 제작용 툴입니다 추후 삭제 예정  */}
         {render_component}
-        {/* Footer */}
-        <Footer />
-      </AuthContext.Provider>
     </>
   );
 }
