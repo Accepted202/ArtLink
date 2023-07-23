@@ -43,7 +43,6 @@ import Contact from "./pages/Other/Contact";
 import AboutUs from "./pages/Other/AboutUs";
 // Only Developer (*** Del After release ***)
 import PageManager from "./pages/PageManager";
-import ThreeTestt from "./Threejs/Test/App/ThreeTest"
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -101,7 +100,6 @@ function App() {
 
         {/* Only Developer */}
         <Route path="/3d" element={<ThreeTest />} />
-        <Route path="/3dd" element={<ThreeTestt />} />
         <Route path="/PM" element={<PageManager />} />
       </Routes>
 
