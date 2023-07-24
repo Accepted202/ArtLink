@@ -1,6 +1,7 @@
 // import React from 'react';
 import styles from "./ExhibitionBox.module.css";
 import poster from "../../assets/전시회.jpg";
+import { Link } from "react-router-dom";
 
 // 전시회 정보를 보여주는 컴포넌트
 function ExhibitionBox() {
@@ -8,7 +9,6 @@ function ExhibitionBox() {
     <>
       <div className={styles.container}>
         <div className={styles.header}>
-          <button>◀</button>
           <h1>Exhibition</h1>
         </div>
         <div className={styles["info-wrapper"]}>
