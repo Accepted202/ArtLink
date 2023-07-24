@@ -2,22 +2,20 @@
 import { Link } from "react-router-dom";
 import BigButton from "../../commponents/Base/BigButton";
 import MainLogo from "../../commponents/Base/MainLogo";
+import LinkStyle from "./Link.module.css";
 
 function HomeGallery() {
-
   return (
     <>
       <MainLogo />
-      <h3>HomeGallery</h3>
-        <div className="BigBtnBox2">
-          <Link to="/works-board">
-            <BigButton tabName={"Artwork Manager"} />
-          </Link>
-          <Link to="/mypage">
-            <BigButton tabName={"My Page"} />
-          </Link>
-        </div>
-
+      <div className="BigBtnBox2">
+        <Link to="/works-board" className={LinkStyle.LinkNone}>
+          <BigButton tabName={"Artwork Manager"} />
+        </Link>
+        <Link to="/mypage" className={LinkStyle.LinkNone}>
+          <BigButton tabName={"My Page"} />
+        </Link>
+      </div>
     </>
   );
 }

@@ -42,6 +42,7 @@ function PageManager() {
     AboutUs: "/about",
     // Only Developer
     ThreeTestPage: "/3d",
+    ApiTest: "/api",
     PageManage: "/PM",
   };
 
@@ -74,7 +75,7 @@ function PageManager() {
       "KioskResult",
     ],
     Other: ["Contact", "AboutUs"],
-    OnlyDeveloper: ["ThreeTestPage", "PageManage"],
+    OnlyDeveloper: ["ThreeTestPage", "ApiTest", "PageManage"],
   };
 
   return (

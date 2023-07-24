@@ -3,20 +3,21 @@ import { Link } from "react-router-dom";
 import BigButton from "../../commponents/Base/BigButton";
 import MainLogo from "../../commponents/Base/MainLogo";
 
+import LinkStyle from "./Link.module.css";
+
 function HomeUser() {
   return (
     <>
       <MainLogo />
-      <h3>HomeUser</h3>
-        <div className="BigBtnBox3">
-          {/* 메뉴 버튼 */}
-            <Link to="/art-memory">
-              <BigButton tabName={"Menu 1"} />
-            </Link>
-            <Link to="/mypage">
-              <BigButton tabName={"My Page"} />
-            </Link>
-        </div>
+      <div className="BigBtnBox2">
+        {/* 메뉴 버튼 */}
+        <Link to="/art-memory" className={LinkStyle.LinkNone}>
+          <BigButton tabName={"Menu 1"} />
+        </Link>
+        <Link to="/mypage" className={LinkStyle.LinkNone}>
+          <BigButton tabName={"My Page"} />
+        </Link>
+      </div>
     </>
   );
 }

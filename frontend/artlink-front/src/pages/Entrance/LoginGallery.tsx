@@ -1,11 +1,13 @@
 // import React from 'react';
-import LogIn from '../../commponents/Entrance/LogIn';
+import LogIn from "../../commponents/Entrance/LogIn";
 
 function LoginGallery() {
   return (
     <>
       <h1>LoginGallery</h1>
-      <LogIn />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <LogIn />
+      </div>
     </>
   );
 }

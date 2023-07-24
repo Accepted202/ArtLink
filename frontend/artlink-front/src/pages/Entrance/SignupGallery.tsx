@@ -1,11 +1,13 @@
 // import React from 'react';
-import SignUp from '../../commponents/Entrance/SignUp';
+import SignUp from "../../commponents/Entrance/SignUp";
 
 function SignupGallery() {
   return (
     <>
       <h1>SignupGallery</h1>
-      <SignUp />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <SignUp />
+      </div>
     </>
   );
 }

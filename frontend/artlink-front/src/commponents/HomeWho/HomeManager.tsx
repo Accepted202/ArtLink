@@ -2,21 +2,20 @@
 import { Link } from "react-router-dom";
 import BigButton from "../../commponents/Base/BigButton";
 import MainLogo from "../../commponents/Base/MainLogo";
+import LinkStyle from "./Link.module.css";
 
 function HomeManager() {
   return (
     <>
       <MainLogo />
-      <h3>HomeManager</h3>
-        <div className="BigBtnBox2">
-          <Link to="/user-board">
-            <BigButton tabName={"User Manage"} />
-          </Link>
-          <Link to="/gallery-board">
-            <BigButton tabName={"Gallery Manage"} />
-          </Link>
-
-        </div>
+      <div className="BigBtnBox2">
+        <Link to="/user-board" className={LinkStyle.LinkNone}>
+          <BigButton tabName={"User Manage"} />
+        </Link>
+        <Link to="/gallery-board" className={LinkStyle.LinkNone}>
+          <BigButton tabName={"Gallery Manage"} />
+        </Link>
+      </div>
     </>
   );
 }

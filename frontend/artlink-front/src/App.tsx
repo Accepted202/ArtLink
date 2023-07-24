@@ -1,7 +1,8 @@
 // import React, { useState } from "react";
+import "./index.css";
 import { Route, Routes } from "react-router-dom";
 import Header from "./layout/Header/Header";
-import Footer from "./layout/Footer/Footer";
+// import Footer from "./layout/Footer/Footer";
 
 // Common
 import Homepage from "./pages/Common/Home";
@@ -43,6 +44,7 @@ import Contact from "./pages/Other/Contact";
 import AboutUs from "./pages/Other/AboutUs";
 // Only Developer (*** Del After release ***)
 import PageManager from "./pages/PageManager";
+import Apitest from "./api/Apitest";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -101,9 +103,10 @@ function App() {
         {/* Only Developer */}
         <Route path="/3d" element={<ThreeTest />} />
         <Route path="/PM" element={<PageManager />} />
+        <Route path="/api" element={<Apitest />} />
       </Routes>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
