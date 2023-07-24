@@ -1,6 +1,6 @@
 // import React from 'react';
-import MIR from "./InfoRow.tsx";
-import "./InfoTable.css";
+import MIR from "./MyInfoRow.tsx";
+import "./style/InfoTable.css";
 
 /*
 API로 내 정보 가져오는 코드 삽입
@@ -14,9 +14,9 @@ function MyInfoTable() {
       <div>
         <table>
           <tbody>
-            <MIR type="mypage" infoTitle="이름" infoDetail="OOO" />
-            <MIR type="mypage" infoTitle="아이디" infoDetail="XXXXX" />
-            <MIR type="mypage" infoTitle="비밀번호" infoDetail="****" />
+            <MIR infoTitle="이름" infoDetail="OOO" />
+            <MIR infoTitle="아이디" infoDetail="XXXXX" />
+            <MIR infoTitle="비밀번호" infoDetail="****" />
           </tbody>
         </table>
       </div>

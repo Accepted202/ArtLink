@@ -2,3 +2,7 @@ tr,
 td {
   border: 1px solid black;
 }
+
+span {
+  margin: 10px;
+}

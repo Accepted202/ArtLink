@@ -1,6 +1,6 @@
 // import React from 'react';
-import MIR from "./InfoRow.tsx";
-import "./InfoTable.css";
+import UIR from "./UserInfoRow.tsx";
+import "./style/InfoTable.css";
 
 // 일반 유저, 갤러리 관리자의 개인정보들을 보여주는 테이블
 
@@ -20,9 +20,9 @@ function InfoTable() {
             <th>ID</th>
           </tr>
           <tbody>
-            <MIR type="user" name="이름" phone="010-OOOO-OOOO" id="XXXX" />
-            <MIR type="user" name="이름" phone="010-OOOO-OOOO" id="XXXX" />
-            <MIR type="user" name="이름" phone="010-OOOO-OOOO" id="XXXX" />
+            <UIR name="이름" phone="010-OOOO-OOOO" id="XXXX" />
+            <UIR name="이름" phone="010-OOOO-OOOO" id="XXXX" />
+            <UIR name="이름" phone="010-OOOO-OOOO" id="XXXX" />
           </tbody>
         </table>
       </div>
