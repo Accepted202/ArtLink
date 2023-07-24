@@ -1,5 +1,5 @@
-import ProfileBox from "../../commponents/MyPage/ProfileBox";
-import MyInfoBox from "../../commponents/MyPage/MyInfoBox";
+import ProfileBox from "../../commponents/Base/ProfileBox";
+import MyInfoBox from "../../commponents/InfoTable/MyInfoTable";
 
 import Styles from "./Mypage.module.css";
 

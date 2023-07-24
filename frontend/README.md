@@ -13,7 +13,7 @@
 | Tech       | Version | Description           |
 | ---------- | ------- | --------------------- |
 | TypeScript | 5.0.2   | JavaScript Superset   |
-| Three.js   |         | JavaScript 3D Library |
+| Three.js   | 0.154.0 | JavaScript 3D Library |
 | React      | 18.2.0  | JavaScript Framework  |
 | ESLint     | 8.44.0  |                       |
 | Vite       | 4.4.0   |                       |
@@ -31,89 +31,97 @@
 2. frontend 폴더로 이동
 
    ```
-   cd <folder-name>/frontend/artlink-front
+   cd frontend
+   cd artlink-front
    ```
 
 3. 패키지 설치
 
+   **주의: Node.js LTS 버전이 설치되어 있어야 함!**
+
    ```
    npm install
+   npm i -g pnpm
+   pnpm i
    ```
+
+   pnpm은 npm보다 패키지 관리가 효율적이기 때문에 패키지 관리 시 pnpm을 설치해 사용하는 것을 권장함.
 
 4. 프로젝트 실행
    ```
-   npm run dev
+   pnpm run dev
    ```
 
-## 컴포넌트 구조(기능 기준)
+## 컴포넌트 구조
 
 ```
 .
+├── Base
+│   ├── BigButton
+│   ├── MainLogo
+│   ├── Menu
+│   └── ProfileBox
 ├── Entrance
 │   ├── EntranceLogo
 │   ├── LogIn
 │   └── SignUp
-├── Base
-│   ├── MainLogo
-│   ├── Menu
-│   └── BigButton
-├── ViewExhibition
-│   ├── ExhibitionTable
-│   ├── View3D
-│   ├── ExhibitionBox
-│   └── MyRecordBox
-│       └── ArtworkBox
-├── MyPage
-│   ├── ProfileBox
-│   └── MyInfoTable
-│       └── MyInfoRow
-├── Manage
-│   ├── InfoTable
-│   └── InfoRow
-└── ArtworkCRUD
-    ├── InputImage
-    ├── InputInfo
-    │   └── InputInfoRow
-    └── UpdateButton
+├── HomeWho
+│   ├── HomeGallery
+│   ├── HomeManager
+│   └── HomeUser
+├── InfoTable
+│   ├── ArtworkInfoRow
+│   ├── ArtworkInfoTable
+│   ├── InputInfoRow
+│   ├── InputInfoTable
+│   ├── MyInfoRow
+│   ├── MyInfoTable
+│   ├── UserInfoRow
+│   └── UserInfoTable
+└── ViewExhibition
+    ├── ArtworkBox
+    ├── ExhibitionBox
+    ├── ExhibitionTable
+    ├── MyRecordBox
+    └── Vuew3D
 ```
 
 <!--
+# Base
+## BigButton
+## MainLogo
+## Menu
+## ProfileBox
+
 # Entrance
 ## EntranceLogo
 ## LogIn
 ## SignUp
 
-# Base
-## MainLogo
-## Menu
-## BigButton
+# HomeWho
+## HomeGallery
+## HomeManager
+## HomeUser
+
+# InfoTable
+## ArtworkInfoRow
+## ArtworkInfoTable
+## InputInfoRow
+## InputInfoTable
+## MyInfoRow
+## MyInfoTable
+## UserInfoRow
+## UserInfoTable
 
 # ViewExhibition
-## ExhibitionTable
-## View3D
+## ArtworkBox
 ## ExhibitionBox
+## ExhibitionTable
 ## MyRecordBox
-### ArtworkBox
-
-# MyPage
-## ProfileBox
-## MyInfoTable
-### MyInfoRow
-
-# Manage
-## InfoTable
-## InfoRow
-
-# ArtworkCRUD
-## InputImage
-## InputInfo
-### InputInfoRow
-## UpdateButton
+## Vuew3D
 -->
 
-## 디렉토리 구조
-
-## URL 설계 (Page 구조와 동일)
+## 라우터 구조(Page 디렉토리 구조)
 
 <Service start>
 / : 로고와 이동화살
