@@ -1,4 +1,5 @@
 import { useState, ChangeEvent } from "react";
+import EmptyProfile from "../../assets/EmptyProfile.png";
 import styles from "./ProfileBox.module.css";
 
 const ProfileBox: React.FC = () => {
@@ -27,7 +28,7 @@ const ProfileBox: React.FC = () => {
             style={{ width: "200px", height: "200px" }}
           />
         ) : (
-          <div>No Image</div>
+          <img src={EmptyProfile} alt="빈 프로필" />
         )}
       </div>
       <input

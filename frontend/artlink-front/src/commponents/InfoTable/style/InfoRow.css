@@ -1,8 +1,17 @@
 tr,
 td {
   border: 1px solid black;
+  width: 25vw;
+  text-align: left;
+  border-left: none; /* 각 행의 위에만 경계선 없음 */
+  border-right: none; /* 각 행의 위에만 경계선 없음 */
+  padding: 8px;
 }
 
 span {
   margin: 10px;
+}
+
+input {
+  width: 50%;
 }

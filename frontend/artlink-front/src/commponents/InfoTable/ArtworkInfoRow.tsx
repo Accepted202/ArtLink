@@ -1,5 +1,6 @@
 // import React from 'react';
 import "./style/InfoRow.css";
+import { Link } from "react-router-dom";
 
 // InfoTable 컴포넌트들에 들어갈 세부 정보
 
@@ -9,7 +10,7 @@ interface Props {
   작가명, 작품명, 재료, 크기, 제작연도, 소장처
   추후 추가할 것
   */
-  id: string;
+  id: number;
   title: string;
   location: string;
   description: string;
@@ -20,6 +21,9 @@ function ArtworkInfoRow({ id, title, location, description }: Props) {
     <>
       <tr>
         <td>{id}</td>
+        <td>
+          <Link to={`${id}`}>편집</Link>
+        </td>
         <td>{title}</td>
         <td>{location}</td>
         <td>{description}</td>

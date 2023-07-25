@@ -1,17 +1,29 @@
 // import React from 'react';
 import IIR from "./InputInfoRow.tsx";
 
+interface Props {
+  /*
+  기본적으로 들어가는 작품 정보들
+  작가명, 작품명, 재료, 크기, 제작연도, 소장처
+  추후 추가할 것
+  */
+  id?: number;
+  title?: string;
+  location?: string;
+  description?: string;
+}
+
 // 작품 세부 사항
-function InputInfoTable() {
+function InputInfoTable({ id, title, location, description }: Props) {
   return (
     <>
-      <h1>InputInfoTable</h1>
       <div>
         <table>
           <tbody>
-            <IIR infoTitle="작품명" infoDetail="OOO" />
-            <IIR infoTitle="작가명" infoDetail="XXX" />
-            <IIR infoTitle="제작연도" infoDetail="2000" />
+            <IIR infoTitle="ID" infoDetail={id} />
+            <IIR infoTitle="작품명" infoDetail={title} />
+            <IIR infoTitle="위치" infoDetail={location} />
+            <IIR infoTitle="작품 설명" infoDetail={description} />
           </tbody>
         </table>
       </div>

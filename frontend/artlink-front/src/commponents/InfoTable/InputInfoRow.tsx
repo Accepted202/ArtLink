@@ -5,7 +5,7 @@ import "./style/InfoRow.css";
 
 interface Props {
   infoTitle: string;
-  infoDetail: string;
+  infoDetail: number | string | undefined;
 }
 
 function InputInfoRow({ infoTitle, infoDetail }: Props) {
@@ -16,7 +16,7 @@ function InputInfoRow({ infoTitle, infoDetail }: Props) {
         <td>
           <span>{infoDetail}</span>
           <span>
-            변경: <input type="text" />
+            편집: <input type="text" />
           </span>
         </td>
       </tr>
