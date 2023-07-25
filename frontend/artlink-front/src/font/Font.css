@@ -74,3 +74,27 @@
   font-family: "ArtLink";
   src: url("./BarokahSignatureRegular.ttf") format("woff2");
 }
+
+@font-face {
+  font-family: "IAMAPLAYER";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/IAMAPLAYER.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TheJamsil5";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}

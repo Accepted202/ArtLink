@@ -4,9 +4,9 @@ import Styles from "./MainLogo.module.css";
 
 function MainLogo() {
   return (
-    < >
+    <>
       <Link to="/home" className={Styles.MainLogo}>
-        <h1>MainLogo</h1>
+        <p className={Styles.MainLogotxt}>ArtLink</p>
       </Link>
     </>
   );

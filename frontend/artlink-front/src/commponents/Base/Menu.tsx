@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useState } from "react";
+import "./Menu.module.css";
 
 interface MenuItem {
   label: string;
@@ -7,7 +8,7 @@ interface MenuItem {
 }
 
 function Menu() {
-  // 
+  //
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [whoareyou, setWhoAreYou] = useState("user");
   function handleLog() {
@@ -42,26 +43,23 @@ function Menu() {
 
   return (
     <>
-      {/* <h1>Menu</h1> */}
       <div>
-      <button onClick={handleLog}>
-        {isLoggedIn ? "로그아웃" : "로그인"}
-      </button>
+        <button onClick={handleUser}>유저</button>
+        <button onClick={handleGallery}>갤러리</button>
+        <button onClick={handleManager}>매니저</button>
       </div>
-      {isLoggedIn && ( // isLoggedIn이 true일 때에만 버튼 렌더링
-        <div>
-          |<button onClick={handleUser}>유저</button>
-          <button onClick={handleGallery}>갤러리</button>
-          <button onClick={handleManager}>매니저</button>
-        </div>
-      )}
-      {menuItems.map((menuItem, index) => (
-        <div key={index}>
-          <Link to={menuItem.path}>
-            <button>{menuItem.label}</button>
-          </Link>
-        </div>
-      ))}
+      {/* 움직이는 메뉴바 */}
+      <div className="container">
+        <nav>
+          <ul>
+            {menuItems.map((menuItem, index) => (
+              <Link to={menuItem.path} key={index}>
+                <li>{menuItem.label}</li>
+              </Link>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }

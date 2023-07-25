@@ -45,6 +45,8 @@ import AboutUs from "./pages/Other/AboutUs";
 // Only Developer (*** Del After release ***)
 import PageManager from "./pages/PageManager";
 import Apitest from "./api/Apitest";
+import TestSignup from "./api/testSignup";
+import TestLogin from "./api/testLogin";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -104,6 +106,8 @@ function App() {
         <Route path="/3d" element={<ThreeTest />} />
         <Route path="/PM" element={<PageManager />} />
         <Route path="/api" element={<Apitest />} />
+        <Route path="/api_signup" element={<TestSignup />} />
+        <Route path="/api_login" element={<TestLogin />} />
       </Routes>
 
       {/* <Footer /> */}

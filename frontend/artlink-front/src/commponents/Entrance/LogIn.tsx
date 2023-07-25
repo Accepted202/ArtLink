@@ -3,18 +3,22 @@ import { Link, useLocation } from "react-router-dom";
 
 function LogIn() {
   const location = useLocation();
-  const signUpLink = location.pathname.includes('login-gallery') ? '/signup-gallery' : '/signup';
-  const anotherLoginLink = location.pathname.includes('login-gallery') ? '/login' : '/login-gallery';
-  const anotherLogintxt= location.pathname.includes('login-gallery') ? '유저 로그인' : '갤러리 로그인';
+  const signUpLink = location.pathname.includes("login-gallery")
+    ? "/signup-gallery"
+    : "/signup";
+  const anotherLoginLink = location.pathname.includes("login-gallery")
+    ? "/login"
+    : "/login-gallery";
+  const anotherLogintxt = location.pathname.includes("login-gallery")
+    ? "유저 로그인"
+    : "갤러리 로그인";
 
   // location.pathname.includes('login-admin')가 true인 경우에는 링크들을 비활성화
-  const isLoginAdmin = location.pathname.includes('login-admin');
+  const isLoginAdmin = location.pathname.includes("login-admin");
 
   return (
     <div className={styles.container}>
-      {!isLoginAdmin && (
-        <Link to ={anotherLoginLink}>{anotherLogintxt}</Link>
-      )}
+      {!isLoginAdmin && <Link to={anotherLoginLink}>{anotherLogintxt}</Link>}
       <h1>Log In</h1>
       <input type="text" placeholder="아이디" />
       <input type="password" placeholder="비밀번호" />

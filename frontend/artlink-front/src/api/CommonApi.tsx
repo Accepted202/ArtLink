@@ -3,15 +3,20 @@ import axios, { AxiosResponse } from "axios";
 
 // 로그인 API
 export interface LoginRes {
-  username: string;
-  password: string;
+  accessToken: string;
+  refreshToken: string;
 }
 export interface LoginReq {
-  Sample: string;
+  username: string;
+  password: string;
+  role: string;
 }
 export const LoginApi = async (dataToSend: LoginReq): Promise<LoginReq[]> => {
   try {
-    const response: AxiosResponse<LoginReq[]> = await axios.post("/auth/login");
+    const response: AxiosResponse<LoginReq[]> = await axios.post(
+      "http://70.12.246.124:8080/auth/login",
+      dataToSend
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching LoginApi:", error);
@@ -31,7 +36,8 @@ export const LogoutApi = async (
 ): Promise<LogoutRes[]> => {
   try {
     const response: AxiosResponse<LogoutRes[]> = await axios.post(
-      "/auth/logout"
+      "http://70.12.246.124:8080/auth/logout",
+      dataToSend
     );
     return response.data;
   } catch (error) {
@@ -53,7 +59,8 @@ export const RefreshToken = async (
 ): Promise<RefreshRes[]> => {
   try {
     const response: AxiosResponse<RefreshRes[]> = await axios.post(
-      "/auth/refresh"
+      "http://70.12.246.124:8080/auth/refresh",
+      dataToSend
     );
     return response.data;
   } catch (error) {
@@ -75,14 +82,15 @@ export interface SignupRes {
 export interface SignupReq {
   username: string;
   password: string;
-  phoneNumber: bigint;
+  phoneNumber: number;
 }
 export const SignupApi = async (
   dataToSend: SignupReq
 ): Promise<SignupRes[]> => {
   try {
     const response: AxiosResponse<SignupRes[]> = await axios.post(
-      "/auth/signup"
+      "http://70.12.246.124:8080/auth/signup",
+      dataToSend
     );
     return response.data;
   } catch (error) {
@@ -102,7 +110,8 @@ export const WithdrawalApi = async (
 ): Promise<WithdrawalRes[]> => {
   try {
     const response: AxiosResponse<WithdrawalRes[]> = await axios.delete(
-      "/api/Withdrawal"
+      "http://70.12.246.124:8080/api/Withdrawal",
+      dataToSend
     );
     return response.data;
   } catch (error) {
