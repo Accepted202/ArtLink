@@ -1,4 +1,4 @@
-import Styles from "./ArtMemory.module.css"
+import Styles from "./ArtMemory.module.css";
 import { Link } from "react-router-dom";
 import ExhibitionTable from "../../commponents/ViewExhibition/ExhibitionTable";
 
@@ -19,6 +19,12 @@ function ArtMemory() {
           <ExhibitionTable />
         </Link>
         <Link to="3">
+          <ExhibitionTable />
+        </Link>
+        <Link to="4">
+          <ExhibitionTable />
+        </Link>
+        <Link to="5">
           <ExhibitionTable />
         </Link>
       </div>
