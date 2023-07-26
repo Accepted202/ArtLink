@@ -10,7 +10,6 @@ API로 내 정보 가져오는 코드 삽입
 function MyInfoTable() {
   return (
     <>
-      <h1>MyInfoTable</h1>
       <div>
         <table>
           <tbody>

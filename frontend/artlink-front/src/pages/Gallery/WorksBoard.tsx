@@ -1,4 +1,4 @@
-import AIT from "../../commponents/InfoTable/ArtworkInfoTable";
+import UserInfoTable from "../../commponents/InfoTable/UserInfoTable";
 import { Link } from "react-router-dom";
 import styles from "./WorksBoard.module.css";
 
@@ -17,7 +17,7 @@ function WorksBoard() {
         </div>
       </div>
       <div className={styles["component-wrapper"]}>
-        <AIT />
+        <UserInfoTable />
       </div>
     </div>
   );

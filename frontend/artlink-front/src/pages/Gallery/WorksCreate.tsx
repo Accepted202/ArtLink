@@ -1,13 +1,13 @@
 // import React from 'react';
 import ProfileBox from "../../commponents/Base/ProfileBox";
-import InputInfoTable from "../../commponents/InfoTable/InputInfoTable.tsx";
-import styles from "./WorksCreate.module.css";
+import ArtworkInputInfoTable from "../../commponents/InfoTable/ArtworkInputInfoTable.tsx";
+import "./Detail.css";
 
 function WorksCreate() {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <ProfileBox></ProfileBox>
-      <InputInfoTable></InputInfoTable>
+      <ArtworkInputInfoTable></ArtworkInputInfoTable>
     </div>
   );
 }

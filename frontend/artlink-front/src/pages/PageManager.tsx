@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 function PageManager() {
-  const PM = {
+  const PM: Record<string, string> = {
     // Add more components and their URLs as needed...
     Home: "/home",
     Mypage: "/mypage",
@@ -22,14 +22,13 @@ function PageManager() {
     WorksBoard: "/works-board",
     WorksCreate: "/works-board/create",
     WorksDetail: "/works-board/1", // Example with parameter (replace '1' with an actual ID)
-    WorksEdit: "/works-board/1/edit", // Example with parameter (replace '1' with an actual ID)
-    IotAdd: "/gallery/addiot",
-    IotRemove: "/gallery/removeiot",
+    IotAdd: "/gallery/add-iot",
+    IotRemove: "/gallery/remove-iot",
     // Manager
     UserBoard: "/user-board",
-    UserManage: "/user-manage/1", // Example with parameter (replace '1' with an actual ID)
+    UserDetail: "/user-board/1", // Example with parameter (replace '1' with an actual ID)
     GalleryBoard: "/gallery-board",
-    GalleryManage: "/gallery-manage/1", // Example with parameter (replace '1' with an actual ID)
+    GalleryDetail: "/gallery-board/1", // Example with parameter (replace '1' with an actual ID)
     // Kiosk
     Kiosk: "/kiosk/home",
     KioskDetail: "/kiosk/1", // Example with parameter (replace '1' with an actual ID)
@@ -63,11 +62,10 @@ function PageManager() {
       "WorksBoard",
       "WorksCreate",
       "WorksDetail",
-      "WorksEdit",
       "IotAdd",
       "IotRemove",
     ],
-    Manager: ["UserBoard", "UserManage", "GalleryBoard", "GalleryManage"],
+    Manager: ["UserBoard", "UserDetail", "GalleryBoard", "GalleryDetail"],
     Kiosk: [
       "Kiosk",
       "KioskDetail",

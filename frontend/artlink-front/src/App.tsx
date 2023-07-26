@@ -24,14 +24,13 @@ import ThreeTest from "./pages/ThreeMain";
 import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
-import WorksEdit from "./pages/Gallery/WorksEdit";
 import IotAdd from "./pages/Gallery/IotAdd";
 import IotRemove from "./pages/Gallery/IotRemove";
 // Manager
 import UserBoard from "./pages/Manager/UserBoard";
-import UserManage from "./pages/Manager/UserManage";
+import UserDetail from "./pages/Manager/UserDetail";
 import GalleryBoard from "./pages/Manager/GalleryBoard";
-import GalleryManage from "./pages/Manager/GalleryManage";
+import GalleryDetail from "./pages/Manager/GalleryDetail";
 // Kiosk
 import Kiosk from "./pages/Kiosk/KioskHome";
 import KioskDetail from "./pages/Kiosk/KioskDetail";
@@ -80,15 +79,14 @@ function App() {
         <Route path="/works-board" element={<WorksBoard />} />
         <Route path="/works-board/create" element={<WorksCreate />} />
         <Route path="/works-board/:pk" element={<WorksDetail />} />
-        <Route path="/works-board/:pk/edit" element={<WorksEdit />} />
-        <Route path="/gallery/addiot" element={<IotAdd />} />
-        <Route path="/gallery/removeiot" element={<IotRemove />} />
+        <Route path="/gallery/add-iot" element={<IotAdd />} />
+        <Route path="/gallery/remove-iot" element={<IotRemove />} />
 
         {/* Manager Routes */}
         <Route path="/user-board" element={<UserBoard />} />
-        <Route path="/user-manage/:pk" element={<UserManage />} />
+        <Route path="/user-board/:pk" element={<UserDetail />} />
         <Route path="/gallery-board" element={<GalleryBoard />} />
-        <Route path="/gallery-manage/:pk" element={<GalleryManage />} />
+        <Route path="/gallery-board/:pk" element={<GalleryDetail />} />
 
         {/* Kiosk Routes */}
         <Route path="/kiosk/home" element={<Kiosk />} />

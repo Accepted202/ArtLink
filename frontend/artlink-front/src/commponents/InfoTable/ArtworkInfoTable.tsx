@@ -1,5 +1,5 @@
 // import React from 'react';
-import AIR from "./ArtworkInfoRow.tsx";
+import ArtworkInfoRow from "./ArtworkInfoRow.tsx";
 import "./style/InfoTable.css";
 
 // 관리 중인 작품들의 정보를 보여주는 테이블
@@ -23,8 +23,18 @@ function ArtworkInfoTable() {
             </tr>
           </thead>
           <tbody>
-            <AIR id={1} title="제목" location="위치" description="설명" />
-            <AIR id={2} title="제목" location="위치" description="설명" />
+            <ArtworkInfoRow
+              id={1}
+              title="제목"
+              location="위치"
+              description="설명"
+            />
+            <ArtworkInfoRow
+              id={2}
+              title="제목"
+              location="위치"
+              description="설명"
+            />
           </tbody>
         </table>
       </div>

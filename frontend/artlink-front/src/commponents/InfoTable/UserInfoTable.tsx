@@ -8,25 +8,27 @@ import "./style/InfoTable.css";
 API로 개인정보 가져오는 함수
 */
 
-function InfoTable() {
+function UserInfoTable() {
   return (
     <>
-      <h1>UserInfoTable</h1>
       <div>
         <table>
-          <tr>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>ID</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Phone Number</th>
+              <th>자세히</th>
+            </tr>
+          </thead>
           <tbody>
-            <UIR name="이름" phone="010-OOOO-OOOO" id="XXXX" />
-            <UIR name="이름" phone="010-OOOO-OOOO" id="XXXX" />
-            <UIR name="이름" phone="010-OOOO-OOOO" id="XXXX" />
+            <UIR id={1} name="이름" phone="010-OOOO-OOOO" />
+            <UIR id={2} name="이름" phone="010-OOOO-OOOO" />
+            <UIR id={3} name="이름" phone="010-OOOO-OOOO" />
           </tbody>
         </table>
       </div>
     </>
   );
 }
-export default InfoTable;
+export default UserInfoTable;

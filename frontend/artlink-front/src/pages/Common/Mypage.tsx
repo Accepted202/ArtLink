@@ -7,8 +7,7 @@ import Styles from "./Mypage.module.css";
 function Mypage() {
   return (
     <>
-      <h1>Mypage</h1>
-      <div className={Styles.Mypage}>
+      <div className={Styles.container}>
         <ProfileBox />
         <MyInfoBox />
       </div>
