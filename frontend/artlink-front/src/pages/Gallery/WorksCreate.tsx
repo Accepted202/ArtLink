@@ -5,7 +5,7 @@ import "./Detail.css";
 
 function WorksCreate() {
   return (
-    <div className="container">
+    <div className="detail-container">
       <ProfileBox></ProfileBox>
       <ArtworkInputInfoTable></ArtworkInputInfoTable>
     </div>
