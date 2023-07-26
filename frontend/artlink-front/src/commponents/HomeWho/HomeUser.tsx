@@ -12,10 +12,10 @@ function HomeUser() {
       <div className="BigBtnBox2">
         {/* 메뉴 버튼 */}
         <Link to="/art-memory" className={LinkStyle.LinkNone}>
-          <BigButton tabName={"Menu 1"} />
+          <BigButton tabName={"Your Memory"} mini={"Exhibition Journey"} />
         </Link>
         <Link to="/mypage" className={LinkStyle.LinkNone}>
-          <BigButton tabName={"My Page"} />
+          <BigButton tabName={"My Page"} mini={"Read and Change Your Info"} />
         </Link>
       </div>
     </>

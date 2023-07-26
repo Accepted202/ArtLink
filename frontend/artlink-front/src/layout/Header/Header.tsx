@@ -4,25 +4,28 @@ import MainLogo from "../../commponents/Base/MainLogo";
 import Menu from "../../commponents/Base/Menu";
 import headercss from "./Header.module.css";
 
-const excludePaths = [
-  "/home",
+// 메뉴바 비활성화 주소
+const excludePaths = ["/home"];
+// 헤더 비활성화 주소
+const excludeHeaderPaths = [
   "/",
+  "/kiosk",
+  "/3d",
+  "/home",
   "/login",
   "/signup",
   "/login-gallery",
   "/signup-gallery",
   "/login-admin",
-]; // 여기에 메뉴를 렌더링하고 싶지 않은 경로를 추가
+];
 function Header() {
   const location = useLocation();
   const isExcludedPath = excludePaths.includes(location.pathname);
-  const isKiosk = location.pathname.includes("kiosk");
-  const is3D = location.pathname.includes("3d");
-  const isHome = location.pathname.includes("home");
+  const isExcludedHeaderPath = excludeHeaderPaths.includes(location.pathname);
 
   return (
     <>
-      {!isKiosk && !is3D && !isHome && (
+      {!isExcludedHeaderPath && (
         <div className={headercss.header}>
           <div style={{ marginRight: "auto", marginLeft: "5%" }}>
             <MainLogo />

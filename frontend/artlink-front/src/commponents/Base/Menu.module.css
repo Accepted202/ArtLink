@@ -18,18 +18,20 @@ nav ul li {
   list-style: none;
   font-size: 17px;
   color: #454545;
-  font-family: TheJamsil5;
+  font-family: SUITE-Regular;
   padding: 0 10px;
+  height: 40px;
+  line-height: 40px;
   /* margin: 0 20px; */
   cursor: pointer;
   position: relative;
-  color: #454545;
+  color: #666666;
   /* width: 30px; */
 }
 nav ul li:after {
   content: "";
   width: 0;
-  height: 1px;
+  height: 1.2px;
   background: #000000;
   position: absolute;
   left: 0;
@@ -38,6 +40,9 @@ nav ul li:after {
 }
 nav ul li:hover::after {
   width: 100%;
+}
+nav ul li:hover {
+  color: #454545;
 }
 
 .menuBtn {

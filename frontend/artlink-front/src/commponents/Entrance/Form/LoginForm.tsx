@@ -62,25 +62,19 @@ function LoginForm() {
     ? "/login"
     : "/login-gallery";
   const anotherLogintxt = location.pathname.includes("login-gallery")
-    ? "유저 로그인"
-    : "갤러리 로그인";
+    ? "Go to User Login"
+    : "Go to Gallery Login";
+  const loginTitle = location.pathname.includes("login-admin")
+    ? "Admin Login"
+    : location.pathname.includes("login-gallery")
+    ? "Gallery Login"
+    : "User Login";
 
   // location.pathname.includes('login-admin')가 true인 경우에는 링크들을 비활성화
   const isLoginAdmin = location.pathname.includes("login-admin");
   return (
     <>
-      {!isLoginAdmin && (
-        <Link
-          to={anotherLoginLink}
-          style={{
-            margin: "0px",
-            marginBottom: "100px",
-            textDecorationLine: "underline",
-          }}
-        >
-          {anotherLogintxt}
-        </Link>
-      )}
+      <h2>{loginTitle}</h2>
       <div className="box">
         <label>ID</label>
         <br />
@@ -136,6 +130,21 @@ function LoginForm() {
           )}
         </div>
       </div>
+      {!isLoginAdmin && (
+        <Link
+          to={anotherLoginLink}
+          style={{
+            margin: "0px",
+            marginBottom: "100px",
+            textDecorationLine: "underline",
+          }}
+          className="anotherLogin"
+        >
+          <p>
+            {">"} {anotherLogintxt}
+          </p>
+        </Link>
+      )}
     </>
   );
 }

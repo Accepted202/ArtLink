@@ -43,6 +43,8 @@ function PageManager() {
     // Only Developer
     ThreeTestPage: "/3d",
     ApiTest: "/api",
+    ApiTest_Login: "/api_login",
+    ApiTest_Signup: "/api_signup",
     PageManage: "/PM",
   };
 
@@ -75,7 +77,13 @@ function PageManager() {
       "KioskResult",
     ],
     Other: ["Contact", "AboutUs"],
-    OnlyDeveloper: ["ThreeTestPage", "ApiTest", "PageManage"],
+    OnlyDeveloper: [
+      "ThreeTestPage",
+      "ApiTest",
+      "ApiTest_Login",
+      "ApiTest_Signup",
+      "PageManage",
+    ],
   };
 
   return (

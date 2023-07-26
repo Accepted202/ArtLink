@@ -181,3 +181,14 @@
 .smallbutton {
   width: 47%;
 }
+
+.anotherLogin {
+  text-decoration-line: none !important;
+  text-decoration: none !important;
+  color: rgb(89, 89, 89);
+}
+
+.anotherLogin:hover {
+  text-decoration: underline;
+  color: rgb(0, 0, 0);
+}

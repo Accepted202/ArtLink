@@ -1,5 +1,5 @@
 // import React from 'react'
-import styles from "./SignUp.module.css";
+// import styles from "./SignUp.module.css";
 import SignUpForm from "./Form/SignUpForm";
 
 // 회원 가입 화면

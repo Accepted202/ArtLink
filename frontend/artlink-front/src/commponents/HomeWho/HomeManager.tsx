@@ -10,10 +10,10 @@ function HomeManager() {
       <MainLogo />
       <div className="BigBtnBox2">
         <Link to="/user-board" className={LinkStyle.LinkNone}>
-          <BigButton tabName={"User Manage"} />
+          <BigButton tabName={"User Manage"} mini={"Manage your users"} />
         </Link>
         <Link to="/gallery-board" className={LinkStyle.LinkNone}>
-          <BigButton tabName={"Gallery Manage"} />
+          <BigButton tabName={"Gallery Manage"} mini={"Manage your gallerys"} />
         </Link>
       </div>
     </>

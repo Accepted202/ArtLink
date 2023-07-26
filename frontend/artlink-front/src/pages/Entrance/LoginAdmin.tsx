@@ -1,10 +1,13 @@
 // import React from 'react';
 import LoginForm from "../../commponents/Entrance/Form/LoginForm";
+import MainLogo from "../../commponents/Base/MainLogo";
+import MarginTop200 from "../../commponents/EditCss/MarginTop200";
 
 function LoginAdmin() {
   return (
     <>
-      <h1>LoginAdmin</h1>
+      <MarginTop200 />
+      <MainLogo />
       <LoginForm />
     </>
   );

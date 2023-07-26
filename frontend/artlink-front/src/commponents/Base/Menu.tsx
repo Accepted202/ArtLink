@@ -52,6 +52,9 @@ function Menu() {
       <div className="container">
         <nav>
           <ul>
+            <Link to="/about">
+              <li>About</li>
+            </Link>
             {menuItems.map((menuItem, index) => (
               <Link to={menuItem.path} key={index}>
                 <li>{menuItem.label}</li>

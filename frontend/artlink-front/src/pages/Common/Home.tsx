@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./Home.css";
 
 import HomeUser from "../../commponents/HomeWho/HomeUser";
 import HomeGallery from "../../commponents/HomeWho/HomeGallery";
 import HomeManager from "../../commponents/HomeWho/HomeManager";
-
 
 function Homepage() {
   // (시작) 로그인 여부, 로그인 주체 판단용 임시 코드
@@ -51,18 +50,18 @@ function Homepage() {
 
   return (
     <>
-        {/* Body */}
-        {/* (시작) 서비스 제작용 툴입니다 추후 삭제 예정  */}
-        <div>
-          <button onClick={handleLog}>
-            {isLoggedIn ? "로그아웃" : "로그인"}
-          </button>
-          |<button onClick={handleUser}>유저</button>
-          <button onClick={handleGallery}>갤러리</button>
-          <button onClick={handleManager}>매니저</button>
-        </div>
-        {/* (끝) 서비스 제작용 툴입니다 추후 삭제 예정  */}
-        {render_component}
+      {/* Body */}
+      {/* (시작) 서비스 제작용 툴입니다 추후 삭제 예정  */}
+      {/* (끝) 서비스 제작용 툴입니다 추후 삭제 예정  */}
+      <div style={{ marginTop: "100px" }}>{render_component}</div>
+      <div>
+        <button onClick={handleLog}>
+          {isLoggedIn ? "로그아웃" : "로그인"}
+        </button>
+        |<button onClick={handleUser}>유저</button>
+        <button onClick={handleGallery}>갤러리</button>
+        <button onClick={handleManager}>매니저</button>
+      </div>
     </>
   );
 }

@@ -1,6 +1,14 @@
 import axios, { AxiosResponse } from "axios";
 // 아래의 API들은 요청&반환 값에 대한 타입지정, Api함수 로직으로 구성되어있습니다.
 
+// 디폴트 백엔드 URL
+const defaultBackendUrl = "http://70.12.246.124:8080";
+
+// URL을 디폴트 백엔드 URL과 합치는 함수
+const createUrl = (endpoint: string): string => {
+  return `${defaultBackendUrl}${endpoint}`;
+};
+
 // 로그인 API
 export interface LoginRes {
   accessToken: string;
@@ -14,7 +22,7 @@ export interface LoginReq {
 export const LoginApi = async (dataToSend: LoginReq): Promise<LoginReq[]> => {
   try {
     const response: AxiosResponse<LoginReq[]> = await axios.post(
-      "http://70.12.246.124:8080/auth/login",
+      createUrl("/auth/login"),
       dataToSend
     );
     return response.data;
@@ -36,7 +44,7 @@ export const LogoutApi = async (
 ): Promise<LogoutRes[]> => {
   try {
     const response: AxiosResponse<LogoutRes[]> = await axios.post(
-      "http://70.12.246.124:8080/auth/logout",
+      createUrl("/auth/logout"),
       dataToSend
     );
     return response.data;
@@ -59,7 +67,7 @@ export const RefreshToken = async (
 ): Promise<RefreshRes[]> => {
   try {
     const response: AxiosResponse<RefreshRes[]> = await axios.post(
-      "http://70.12.246.124:8080/auth/refresh",
+      createUrl("/auth/refresh"),
       dataToSend
     );
     return response.data;
@@ -89,7 +97,7 @@ export const SignupApi = async (
 ): Promise<SignupRes[]> => {
   try {
     const response: AxiosResponse<SignupRes[]> = await axios.post(
-      "http://70.12.246.124:8080/auth/signup",
+      createUrl("/auth/signup"),
       dataToSend
     );
     return response.data;
@@ -105,13 +113,10 @@ export interface WithdrawalRes {
 export interface WithdrawalReq {
   Sample: string;
 }
-export const WithdrawalApi = async (
-  dataToSend: WithdrawalReq
-): Promise<WithdrawalRes[]> => {
+export const WithdrawalApi = async (): Promise<WithdrawalRes[]> => {
   try {
     const response: AxiosResponse<WithdrawalRes[]> = await axios.delete(
-      "http://70.12.246.124:8080/api/Withdrawal",
-      dataToSend
+      createUrl("/api/Withdrawal")
     );
     return response.data;
   } catch (error) {
