@@ -16,7 +16,7 @@ const description = "설명";
 
 function WorksDetail() {
   return (
-    <div className="container">
+    <div className="detail-container">
       <ProfileBox></ProfileBox>
       <ArtworkInputInfoTable
         id={id}

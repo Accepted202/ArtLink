@@ -9,7 +9,7 @@ const phone = "010-0000-0000";
 
 function UserDetail() {
   return (
-    <div className="container">
+    <div className="detail-container">
       <ProfileBox></ProfileBox>
       <UserInputInfoTable
         id={id}

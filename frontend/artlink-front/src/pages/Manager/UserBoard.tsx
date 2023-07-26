@@ -4,7 +4,7 @@ import UserInfoTable from "../../commponents/InfoTable/UserInfoTable";
 
 function UserBoard() {
   return (
-    <div className="container">
+    <div className="board-container">
       <div className="component-wrapper">
         <UserInfoTable></UserInfoTable>
       </div>
