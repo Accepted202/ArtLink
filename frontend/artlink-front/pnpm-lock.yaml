@@ -26,15 +26,24 @@ dependencies:
   axios:
     specifier: ^1.4.0
     version: 1.4.0
+  keen-slider:
+    specifier: ^6.8.6
+    version: 6.8.6
   react:
     specifier: ^18.2.0
     version: 18.2.0
+  react-carousel:
+    specifier: ^4.3.0
+    version: 4.3.0
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-router-dom:
     specifier: ^6.14.2
     version: 6.14.2(react-dom@18.2.0)(react@18.2.0)
+  react-styled-carousel:
+    specifier: ^0.5.1
+    version: 0.5.1(react@18.2.0)(styled-components@6.0.5)
   styled-components:
     specifier: ^6.0.5
     version: 6.0.5(react-dom@18.2.0)(react@18.2.0)
@@ -3108,6 +3117,10 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
+  /keen-slider@6.8.6:
+    resolution: {integrity: sha512-dcEQ7GDBpCjUQA8XZeWh3oBBLLmyn8aoeIQFGL/NTVkoEOsmlnXqA4QykUm/SncolAZYGsEk/PfUhLZ7mwMM2w==}
+    dev: false
+
   /ktx-parse@0.4.5:
     resolution: {integrity: sha512-MK3FOody4TXbFf8Yqv7EBbySw7aPvEcPX++Ipt6Sox+/YMFvR5xaTyhfNSk1AEmMy+RYIw81ctN4IMxCB8OAlg==}
     dev: false
@@ -3153,6 +3166,10 @@ packages:
 
   /lodash.pick@4.4.0:
     resolution: {integrity: sha512-hXt6Ul/5yWjfklSGvLQl8vM//l3FtyHZeuelpzK6mm99pNvN9yTDruNZPEJZD1oWrqo+izBmB7oUfWgcCX7s4Q==}
+    dev: false
+
+  /lodash.sortby@4.7.0:
+    resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
     dev: false
 
   /lodash@4.17.21:
@@ -3402,6 +3419,19 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
+  /range@0.0.3:
+    resolution: {integrity: sha512-OxK2nY2bmeEB4NxoBraQIBOOeOIxoBvm6yt8MA1kLappgkG3SyLf173iOtT5woWycrtESDD2g0Nl2yt8YPoUnw==}
+    engines: {node: '>=0.8'}
+    dev: false
+
+  /react-carousel@4.3.0:
+    resolution: {integrity: sha512-t8MfCK877KuOaQFAsO6NwzkWdhcJG8hxSN5zYR7/cSfTNI6DnM/HswvgvdfajtiETuoLZRMXXLZv6QRLGETKjw==}
+    engines: {node: '>4'}
+    dependencies:
+      debounce: 1.2.1
+      range: 0.0.3
+    dev: false
+
   /react-composer@5.0.3(react@18.2.0):
     resolution: {integrity: sha512-1uWd07EME6XZvMfapwZmc7NgCZqDemcvicRi3wMJzXsQLvZ3L7fTHVyPy1bZdnWXM4iPjYuNE+uJ41MLKeTtnA==}
     peerDependencies:
@@ -3466,6 +3496,17 @@ packages:
     dependencies:
       '@remix-run/router': 1.7.2
       react: 18.2.0
+    dev: false
+
+  /react-styled-carousel@0.5.1(react@18.2.0)(styled-components@6.0.5):
+    resolution: {integrity: sha512-9Ihlkwjz4UgTh54strIpVKUlL+sHoZ3N+yVP3WQbip44KoRgsbS17iGH7WoHNQMze8J0VDFDTfhfnmoJxNpYew==}
+    peerDependencies:
+      react: ^16.2.0
+      styled-components: ^3.1.6
+    dependencies:
+      lodash.sortby: 4.7.0
+      react: 18.2.0
+      styled-components: 6.0.5(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /react-use-measure@2.1.1(react-dom@18.2.0)(react@18.2.0):
