@@ -1,18 +1,13 @@
 .header {
   background-color: #e0e0e0;
-  /* box-shadow: 8px 8px 8px #161b1d2f, -8px -8px 8px #f5f5f5;
-  color: rgb(255, 255, 255);
-  border-radius: 20px; */
-
   display: flex;
   justify-content: center;
   text-align: center;
   font-family: ArtLink;
 
-  min-height: 50px;
-  max-height: 100px;
+  /* min-height: 50px;
+  max-height: 100px; */
+  height: 16vh;
 
-  margin-top: 5%;
-  /* margin-left: 5%;
-  margin-right: 5%; */
+  margin-top: 4vh;
 }

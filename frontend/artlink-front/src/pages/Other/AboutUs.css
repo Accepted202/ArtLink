@@ -1,10 +1,10 @@
-body {
+.aboutBody {
   margin: 0;
   overflow-y: hidden;
 }
 
 .outer {
-  height: 100vh;
+  height: 80vh;
   overflow-y: auto;
 }
 
@@ -14,7 +14,7 @@ body {
 }
 
 .inner {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;

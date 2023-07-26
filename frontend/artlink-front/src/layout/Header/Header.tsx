@@ -1,13 +1,11 @@
-// import React from 'react';
+import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import MainLogo from "../../commponents/Base/MainLogo";
 import Menu from "../../commponents/Base/Menu";
 import headercss from "./Header.module.css";
 
-// 메뉴바 비활성화 주소
-const excludePaths = ["/home"];
-// 헤더 비활성화 주소
-const excludeHeaderPaths = [
+const excludePaths: string[] = ["/home"];
+const excludeHeaderPaths: string[] = [
   "/",
   "/kiosk",
   "/3d",
@@ -17,25 +15,30 @@ const excludeHeaderPaths = [
   "/login-gallery",
   "/signup-gallery",
   "/login-admin",
-  "/about",
 ];
-function Header() {
+
+function Header(): JSX.Element {
   const location = useLocation();
-  const isExcludedPath = excludePaths.includes(location.pathname);
-  const isExcludedHeaderPath = excludeHeaderPaths.includes(location.pathname);
+  const isExcludedPath: boolean = excludePaths.includes(location.pathname);
+  const isExcludedHeaderPath: boolean = excludeHeaderPaths.includes(
+    location.pathname
+  );
+
+  const headerRef = useRef<HTMLDivElement>(null); // Ref to get the header element
 
   return (
     <>
       {!isExcludedHeaderPath && (
-        <div className={headercss.header}>
+        <div ref={headerRef} className={headercss.header}>
           <div style={{ marginRight: "auto", marginLeft: "5%" }}>
             <MainLogo />
           </div>
-          {/* <h1>Header</h1> */}
           {!isExcludedPath && <Menu />}
         </div>
       )}
+      {/* Now you can use 'headerHeight' state wherever you need the height value */}
     </>
   );
 }
+
 export default Header;
