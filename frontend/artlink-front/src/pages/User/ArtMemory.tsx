@@ -1,32 +1,54 @@
-import Styles from "./ArtMemory.module.css";
+import "./ArtMemory.css";
 import { Link } from "react-router-dom";
-import ExhibitionTable from "../../commponents/ViewExhibition/ExhibitionTable";
-
-// import React from 'react';
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 
 function ArtMemory() {
+  // 슬라이더 세팅
+  const [sliderRef] = useKeenSlider({
+    loop: true,
+    slides: {
+      perView: 3,
+      spacing: 50,
+    },
+  });
+  //받아온 전시관람 정보
+  const slides = [
+    { title: "2" },
+    { title: "3" },
+    { title: "4" },
+    { title: "5" },
+  ];
+
   return (
     <>
-      <h1>ArtMemory</h1>
-      {/* 과거 전시를 전부 담은 태그 */}
-      {/* 전시회 PK, 유저정보를 전송해야함 */}
-      {/* 실제 코드는 api통신을 통해받은 데이터를 map으로 구현 */}
-      <div className={Styles.ExhibitionCollectBox}>
-        <Link to="1">
-          <ExhibitionTable />
+      <MarginTopInput value={80} />
+      <div ref={sliderRef} className="keen-slider sliderbox">
+        <Link to="#" className="linkbox">
+          <div className="keen-slider__slide number-slide">
+            <div className="introBox ">
+              <div>
+                <p className="introtxt">Your Memory</p>
+                <p className="introtxt2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
+                  maiores corporis amet eius assumenda nesciunt consequuntur
+                  explicabo at aliquam ipsa sunt voluptate earum vitae magni,
+                  beatae, nobis veniam eveniet aut ea incidunt! Id vitae cumque
+                  officia aliquam iste culpa natus hic et magni vero placeat
+                  libero, iusto beatae atque rem non adipisci quas veritatis
+                </p>
+              </div>
+            </div>
+          </div>
         </Link>
-        <Link to="2">
-          <ExhibitionTable />
-        </Link>
-        <Link to="3">
-          <ExhibitionTable />
-        </Link>
-        <Link to="4">
-          <ExhibitionTable />
-        </Link>
-        <Link to="5">
-          <ExhibitionTable />
-        </Link>
+        {slides.map((slide, index) => (
+          <Link to="#" className="linkbox" key={index}>
+            <div className="keen-slider__slide number-slide">
+              <div className="innerSlideBox">{slide.title}</div>
+            </div>
+          </Link>
+        ))}
       </div>
     </>
   );

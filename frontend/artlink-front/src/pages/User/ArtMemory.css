@@ -1,0 +1,57 @@
+/* 슬라이더 */
+
+[class^="number-slide"],
+[class*="number-slide"] {
+  /* background: #a84848; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #ffffff;
+  font-weight: 500;
+  height: 450px;
+  max-height: 100vh;
+}
+
+.innerSlideBox {
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+  box-shadow: 10px 10px 20px rgba(37, 37, 37, 0.2),
+    -10px -10px 20px rgba(255, 255, 255, 0.7);
+  transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.innerSlideBox:hover {
+  box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
+    -5px -5px 10px rgba(255, 255, 255, 0.7);
+  width: 95%;
+  height: 95%;
+}
+
+.linkbox {
+  text-decoration: none;
+}
+
+.introBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 90%;
+  color: black;
+  text-align: left;
+  text-shadow: 3px 2px 1px rgba(255, 255, 255, 0.2),
+    -3px 1px 3px rgba(70, 70, 70, 0.7);
+}
+.introtxt {
+  font-size: 60px;
+  font-weight: 500;
+  margin: 0;
+}
+.introtxt2 {
+  font-size: 20px;
+}

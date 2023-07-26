@@ -17,6 +17,7 @@ const excludeHeaderPaths = [
   "/login-gallery",
   "/signup-gallery",
   "/login-admin",
+  "/about",
 ];
 function Header() {
   const location = useLocation();

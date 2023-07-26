@@ -49,7 +49,7 @@ function Menu() {
         <button onClick={handleManager}>매니저</button>
       </div>
       {/* 움직이는 메뉴바 */}
-      <div className="container">
+      <div className="menuContainer">
         <nav>
           <ul>
             <Link to="/about">

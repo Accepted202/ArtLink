@@ -3,11 +3,12 @@
   flex-direction: column;
   justify-content: center;
   min-height: 400px;
-  margin-top: 100px;
+  margin-top: 80px;
 
   box-shadow: 10px 10px 20px rgba(37, 37, 37, 0.2),
     -10px -10px 20px rgba(255, 255, 255, 0.7);
   animation: fadeIn 3s;
+  transition: box-shadow 0.3s ease;
 }
 .BigBtn:hover {
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2),
