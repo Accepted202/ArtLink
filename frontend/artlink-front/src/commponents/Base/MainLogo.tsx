@@ -2,23 +2,12 @@
 import { Link } from "react-router-dom";
 import Styles from "./MainLogo.module.css";
 
-interface Props {
-  mode: string;
-}
-
-function MainLogo({ mode }: Props) {
+function MainLogo() {
   return (
     <>
-      {mode == "kiosk" && (
-        <div className={Styles.MainLogo}>
-          <p className={Styles.MainLogotxt}>ArtLink</p>
-        </div>
-      )}
-      {mode == "web" && (
-        <Link to="/home" className={Styles.MainLogo}>
-          <p className={Styles.MainLogotxt}>ArtLink</p>
-        </Link>
-      )}
+      <Link to="/home" className={Styles.MainLogo}>
+        <p className={Styles.MainLogotxt}>ArtLink</p>
+      </Link>
     </>
   );
 }

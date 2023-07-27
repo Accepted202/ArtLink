@@ -32,7 +32,7 @@ function KioskDetail() {
 
   return (
     <>
-      <MainLogo mode="kiosk" />
+      <MainLogo />
       <div className={styles["container-wrapper"]}>
         {artworks.map((artwork, index) => (
           <div className={styles["artwork-container"]}>

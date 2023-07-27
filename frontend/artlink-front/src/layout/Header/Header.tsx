@@ -30,7 +30,7 @@ function Header(): JSX.Element {
       {!isExcludedHeaderPath && (
         <div ref={headerRef} className={headercss.header}>
           <div style={{ marginRight: "auto", marginLeft: "5%" }}>
-            <MainLogo mode="web" />
+            <MainLogo />
           </div>
           {!isExcludedPath && <Menu />}
         </div>

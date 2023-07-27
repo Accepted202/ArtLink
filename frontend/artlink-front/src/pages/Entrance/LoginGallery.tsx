@@ -7,7 +7,7 @@ function LoginGallery() {
   return (
     <>
       <MarginTop100 />
-      <MainLogo mode="web" />
+      <MainLogo />
       <LoginForm />
     </>
   );
