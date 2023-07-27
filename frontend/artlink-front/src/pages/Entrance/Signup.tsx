@@ -6,16 +6,8 @@ function Signup() {
   return (
     <>
       <MarginTop100 />
-<<<<<<< HEAD
       <MainLogo />
       <SignUp />
-=======
-      <MainLogo mode="web" />
-      <h1>Signup</h1>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <SignUp />
-      </div>
->>>>>>> e91db655883fcee81980490ede8b213593668e40
     </>
   );
 }
