@@ -34,7 +34,6 @@ import GalleryDetail from "./pages/Manager/GalleryDetail";
 // Kiosk
 import Kiosk from "./pages/Kiosk/KioskHome";
 import KioskDetail from "./pages/Kiosk/KioskDetail";
-import KioskEdit from "./pages/Kiosk/KioskEdit";
 import KioskPrint from "./pages/Kiosk/KioskPrint";
 import KioskExit from "./pages/Kiosk/KioskExit";
 import KioskResult from "./pages/Kiosk/KioskResult";
@@ -91,7 +90,6 @@ function App() {
         {/* Kiosk Routes */}
         <Route path="/kiosk/home" element={<Kiosk />} />
         <Route path="/kiosk/:pk" element={<KioskDetail />} />
-        <Route path="/kiosk/:pk/edit" element={<KioskEdit />} />
         <Route path="/kiosk/print" element={<KioskPrint />} />
         <Route path="/kiosk/exit" element={<KioskExit />} />
         <Route path="/kiosk/result/:pk" element={<KioskResult />} />

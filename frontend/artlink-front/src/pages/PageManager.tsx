@@ -32,7 +32,6 @@ function PageManager() {
     // Kiosk
     Kiosk: "/kiosk/home",
     KioskDetail: "/kiosk/1", // Example with parameter (replace '1' with an actual ID)
-    KioskEdit: "/kiosk/1/edit", // Example with parameter (replace '1' with an actual ID)
     KioskPrint: "/kiosk/print",
     KioskExit: "/kiosk/exit",
     KioskResult: "/kiosk/result/1", // Example with parameter (replace '1' with an actual ID)
@@ -66,14 +65,7 @@ function PageManager() {
       "IotRemove",
     ],
     Manager: ["UserBoard", "UserDetail", "GalleryBoard", "GalleryDetail"],
-    Kiosk: [
-      "Kiosk",
-      "KioskDetail",
-      "KioskEdit",
-      "KioskPrint",
-      "KioskExit",
-      "KioskResult",
-    ],
+    Kiosk: ["Kiosk", "KioskDetail", "KioskPrint", "KioskExit", "KioskResult"],
     Other: ["Contact", "AboutUs"],
     OnlyDeveloper: [
       "ThreeTestPage",
