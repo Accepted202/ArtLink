@@ -12,7 +12,7 @@ body {
   color: black;
 
   /*스크롤바 커스텀*/
-  overflow-y: scroll;
+  overflow-y: scroll !important;
   scrollbar-width: thin; /* 스크롤바 굵기 */
   scrollbar-color: #888 #f1f1f1; /* 스크롤 바의 색*/
 }
