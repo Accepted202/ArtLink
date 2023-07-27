@@ -6,8 +6,8 @@ import poster from "../../assets/전시회.jpg";
 function ExhibitionBox() {
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.header}>
+      <div className={styles["exhibition-container"]}>
+        <div className={styles["exhibition-header"]}>
           <h1>Exhibition</h1>
         </div>
         <div className={styles["info-wrapper"]}>
