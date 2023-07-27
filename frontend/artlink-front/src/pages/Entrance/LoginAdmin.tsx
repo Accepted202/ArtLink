@@ -6,7 +6,7 @@ function LoginAdmin() {
   return (
     <>
       <MarginTop100 />
-      <MainLogo />
+      <MainLogo mode="web" />
       <LoginForm />
     </>
   );

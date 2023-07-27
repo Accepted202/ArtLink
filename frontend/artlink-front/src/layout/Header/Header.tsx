@@ -7,7 +7,6 @@ import headercss from "./Header.module.css";
 const excludePaths: string[] = ["/home"];
 const excludeHeaderPaths: string[] = [
   "/",
-  "/kiosk",
   "/3d",
   "/home",
   "/login",
@@ -20,9 +19,9 @@ const excludeHeaderPaths: string[] = [
 function Header(): JSX.Element {
   const location = useLocation();
   const isExcludedPath: boolean = excludePaths.includes(location.pathname);
-  const isExcludedHeaderPath: boolean = excludeHeaderPaths.includes(
-    location.pathname
-  );
+  const isExcludedHeaderPath: boolean =
+    excludeHeaderPaths.includes(location.pathname) ||
+    location.pathname.includes("kiosk");
 
   const headerRef = useRef<HTMLDivElement>(null); // Ref to get the header element
 

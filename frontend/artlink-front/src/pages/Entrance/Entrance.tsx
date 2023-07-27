@@ -1,14 +1,14 @@
 // import React from 'react';
 import MainLogo from "../../commponents/Base/MainLogo";
 import { Link } from "react-router-dom";
-import Styles from "./Entrace.module.css";
+import Styles from "./Entrance.module.css";
 import MarginTop200 from "../../commponents/EditCss/MarginTop200";
 
 function Entrance() {
   return (
     <>
       <MarginTop200 />
-      <MainLogo />
+      <MainLogo mode="web" />
       <Link to="/login" style={{ textDecoration: "none" }}>
         <div className={Styles.startbtnBody}>
           <div className={Styles.startbtn}>

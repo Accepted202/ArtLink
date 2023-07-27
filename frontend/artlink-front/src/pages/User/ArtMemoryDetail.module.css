@@ -1,4 +1,4 @@
-.ExhibitionInfo {
-    display: flex;
-    justify-content: space-between;
+.artmemory-container {
+  display: flex;
+  justify-content: space-between;
 }
