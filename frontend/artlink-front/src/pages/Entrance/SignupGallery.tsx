@@ -7,7 +7,7 @@ function SignupGallery() {
   return (
     <>
       <MarginTop100 />
-      <MainLogo />
+      <MainLogo mode="web" />
       <h1>SignupGallery</h1>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <SignUp />

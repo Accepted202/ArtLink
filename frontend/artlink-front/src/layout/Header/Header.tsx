@@ -7,7 +7,6 @@ import headercss from "./Header.module.css";
 const excludePaths: string[] = ["/home"];
 const excludeHeaderPaths: string[] = [
   "/",
-  "/kiosk/",
   "/3d",
   "/home",
   "/login",
@@ -31,7 +30,7 @@ function Header(): JSX.Element {
       {!isExcludedHeaderPath && (
         <div ref={headerRef} className={headercss.header}>
           <div style={{ marginRight: "auto", marginLeft: "5%" }}>
-            <MainLogo />
+            <MainLogo mode="web" />
           </div>
           {!isExcludedPath && <Menu />}
         </div>
