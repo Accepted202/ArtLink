@@ -7,7 +7,7 @@ import LinkStyle from "./Link.module.css";
 function HomeManager() {
   return (
     <>
-      <MainLogo mode="web" />
+      <MainLogo />
       <div className="BigBtnBox2">
         <Link to="/user-board" className={LinkStyle.LinkNone}>
           <BigButton tabName={"User Manage"} mini={"Manage your users"} />

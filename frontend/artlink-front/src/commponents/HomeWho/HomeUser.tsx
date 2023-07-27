@@ -8,7 +8,7 @@ import LinkStyle from "./Link.module.css";
 function HomeUser() {
   return (
     <>
-      <MainLogo mode="web" />
+      <MainLogo />
       <div className="BigBtnBox2">
         {/* 메뉴 버튼 */}
         <Link to="/art-memory" className={LinkStyle.LinkNone}>
