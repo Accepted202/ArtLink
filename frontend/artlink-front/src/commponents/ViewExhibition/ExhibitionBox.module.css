@@ -6,7 +6,7 @@
 }
 
 .exhibition-container {
-  height: 70vh;
+  height: 50vw;
   width: 70vw;
   flex-direction: column;
   border: 1px solid black;
