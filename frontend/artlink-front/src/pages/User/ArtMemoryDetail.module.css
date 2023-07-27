@@ -1,4 +1,38 @@
 .artmemory-container {
   display: flex;
   justify-content: space-between;
+  width: 90vw;
+  height: 70vh;
+  border: 5px solid black;
+  margin: auto;
+}
+
+.artdetailLeft {
+  /* Styles for the left side (50% width) */
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid rgb(245, 10, 10);
+}
+
+.artdetailRight {
+  /* Styles for the right side (50% width) */
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid rgb(81, 10, 245);
+}
+
+@media (min-width: 768px) {
+  .artdetailLeft {
+    /* Styles for the left side (70% width) */
+    width: 70%;
+  }
+
+  .artdetailRight {
+    /* Styles for the right side (30% width) */
+    width: 30%;
+  }
 }

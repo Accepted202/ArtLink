@@ -41,7 +41,7 @@ function ArtMemory() {
           </div>
         </Link>
         {slides.map((slide, index) => (
-          <Link to="#" className="linkbox" key={index}>
+          <Link to={`/art-memory/${index}`} className="linkbox" key={index}>
             <div className="keen-slider__slide number-slide">
               <div className="innerSlideBox">{slide.title}</div>
             </div>
