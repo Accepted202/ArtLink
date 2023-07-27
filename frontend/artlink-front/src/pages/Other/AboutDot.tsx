@@ -9,9 +9,9 @@ const Dot: React.FC<DotProps> = ({ num, scrollIndex }) => {
   return (
     <div
       style={{
-        width: 10,
-        height: 10,
-        border: "1px solid black",
+        width: 8,
+        height: 8,
+        border: "1px solid gray",
         borderRadius: 999,
         backgroundColor: scrollIndex === num ? "black" : "transparent",
         transitionDuration: "1000ms",

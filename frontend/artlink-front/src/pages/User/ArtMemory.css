@@ -12,6 +12,9 @@
   height: 450px;
   max-height: 100vh;
 }
+.minwid {
+  min-width: 1000px;
+}
 
 .innerSlideBox {
   background-color: #e0e0e0;

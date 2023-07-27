@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from "react";
-import EmptyProfile from "../../assets/EmptyProfile.png";
+import EmptyProfile from "../../assets/EmptyProfile2.svg";
 import styles from "./ProfileBox.module.css";
 
 const ProfileBox: React.FC = () => {
@@ -19,8 +19,8 @@ const ProfileBox: React.FC = () => {
   };
 
   return (
-    <div>
-      <div>
+    <>
+      <div style={{ width: "200px" }}>
         {image ? (
           <img
             src={image}
@@ -39,7 +39,7 @@ const ProfileBox: React.FC = () => {
         style={{ display: "none" }}
       />
       <label htmlFor="file">파일 업로드</label>
-    </div>
+    </>
   );
 };
 

@@ -3,6 +3,8 @@ import "./Form.css";
 import React, { useState } from "react";
 import Modal from "../../Base/Form/SignupModal/Modal";
 import { SignupReq, SignupApi } from "../../../api/CommonApi";
+import BackBtn from "../../Base/BackBtn";
+import MarginTopInput from "../../EditCss/MaginTopInput";
 
 function SignupForm() {
   // 인풋 필드 useState
@@ -34,6 +36,8 @@ function SignupForm() {
 
   return (
     <>
+      <BackBtn />
+      <MarginTopInput value={20} />
       <div className="box">
         <label>Username</label>
         <br />

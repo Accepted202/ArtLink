@@ -12,7 +12,7 @@ function HomeGallery() {
         <Link to="/works-board" className={LinkStyle.LinkNone}>
           <BigButton tabName={"Artwork Manager"} mini={"Register your work"} />
         </Link>
-        <Link to="/mypage" className={LinkStyle.LinkNone}>
+        <Link to="/mypage/gallery" className={LinkStyle.LinkNone}>
           <BigButton tabName={"My Page"} mini={"Manage your gallery info"} />
         </Link>
       </div>

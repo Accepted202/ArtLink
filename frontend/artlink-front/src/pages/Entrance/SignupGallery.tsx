@@ -1,5 +1,4 @@
-// import React from 'react';
-import SignUp from "../../commponents/Entrance/SignUp";
+import SignUp from "../../commponents/Entrance/Form/SignUpForm";
 import MainLogo from "../../commponents/Base/MainLogo";
 import MarginTop100 from "../../commponents/EditCss/MarginTop100";
 
@@ -8,10 +7,7 @@ function SignupGallery() {
     <>
       <MarginTop100 />
       <MainLogo />
-      <h1>SignupGallery</h1>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <SignUp />
-      </div>
+      <SignUp />
     </>
   );
 }

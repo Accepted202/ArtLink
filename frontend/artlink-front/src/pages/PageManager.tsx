@@ -5,8 +5,6 @@ function PageManager() {
   const PM: Record<string, string> = {
     // Add more components and their URLs as needed...
     Home: "/home",
-    Mypage: "/mypage",
-    MypageEdit: "/mypage/edit",
     Entrance: "/",
     Login: "/login",
     Signup: "/signup",
@@ -15,15 +13,17 @@ function PageManager() {
     SignupGallery: "/signup-gallery",
     // User
     ArtMemory: "/art-memory",
-    ArtMemoryDetail: "/art-memory/1", // Example with parameter (replace '1' with an actual ID)
-    ArtMemoryEdit: "/art-memory/1/edit", // Example with parameter (replace '1' with an actual ID)
-    ThreeTest: "/art-memory/1/3d", // Example with parameter (replace '1' with an actual ID)
+    ArtMemoryDetail: "/art-memory/1",
+    ArtMemoryEdit: "/art-memory/1/edit",
+    ThreeTest: "/art-memory/1/3d",
+    MypageUser: "/mypage/user",
     // Gallery
     WorksBoard: "/works-board",
     WorksCreate: "/works-board/create",
     WorksDetail: "/works-board/1", // Example with parameter (replace '1' with an actual ID)
     IotAdd: "/gallery/add-iot",
     IotRemove: "/gallery/remove-iot",
+    MypageGallery: "/mypage/gallery",
     // Manager
     UserBoard: "/user-board",
     UserDetail: "/user-board/1", // Example with parameter (replace '1' with an actual ID)
@@ -44,11 +44,12 @@ function PageManager() {
     ApiTest: "/api",
     ApiTest_Login: "/api_login",
     ApiTest_Signup: "/api_signup",
+    ApiTest_UserInfo: "/api_userinfo",
     PageManage: "/PM",
   };
 
   const sections = {
-    Common: ["Home", "Mypage", "MypageEdit"],
+    Common: ["Home", "MypageEdit"],
     Entrance: [
       "Entrance",
       "Login",
@@ -57,13 +58,20 @@ function PageManager() {
       "LoginAdmin",
       "SignupGallery",
     ],
-    User: ["ArtMemory", "ArtMemoryDetail", "ArtMemoryEdit", "ThreeTest"],
+    User: [
+      "ArtMemory",
+      "ArtMemoryDetail",
+      "ArtMemoryEdit",
+      "ThreeTest",
+      "MypageUser",
+    ],
     Gallery: [
       "WorksBoard",
       "WorksCreate",
       "WorksDetail",
       "IotAdd",
       "IotRemove",
+      "MypageGallery",
     ],
     Manager: ["UserBoard", "UserDetail", "GalleryBoard", "GalleryDetail"],
     Kiosk: [
@@ -80,6 +88,7 @@ function PageManager() {
       "ApiTest",
       "ApiTest_Login",
       "ApiTest_Signup",
+      "ApiTest_UserInfo",
       "PageManage",
     ],
   };

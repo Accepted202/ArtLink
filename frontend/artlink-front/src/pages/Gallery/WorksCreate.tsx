@@ -1,5 +1,5 @@
 // import React from 'react';
-import ProfileBox from "../../commponents/Base/ProfileBox";
+import ProfileBox from "../../commponents/Mypage/ProfileBox.tsx";
 import ArtworkInputInfoTable from "../../commponents/InfoTable/ArtworkInputInfoTable.tsx";
 import "./Detail.css";
 

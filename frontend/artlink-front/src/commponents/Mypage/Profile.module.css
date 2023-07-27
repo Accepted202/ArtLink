@@ -1,0 +1,39 @@
+.infoOuterBoxLeft {
+  margin: auto;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+.infoOuterBoxRight {
+  width: 70%;
+}
+.infoInnerBoxLeft {
+  margin: auto;
+}
+
+.infoInnerBoxRight {
+  margin: auto;
+  text-align: left;
+  min-width: 400px;
+}
+
+.profileInput {
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  padding-left: 10px;
+  font-family: HealthsetGothicLight;
+}
+
+.changeBtn {
+  margin: auto;
+  font-size: large;
+  color: rgb(89, 89, 89);
+  transition: text-shadow 1s ease-in-out, color 1s ease-in-out,
+    font-weight 1s ease-in-out;
+}
+
+.changeBtn:hover {
+  text-shadow: 1px 1px 2px rgb(124, 124, 124);
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+}

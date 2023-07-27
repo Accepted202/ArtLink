@@ -14,7 +14,7 @@ function HomeUser() {
         <Link to="/art-memory" className={LinkStyle.LinkNone}>
           <BigButton tabName={"Your Memory"} mini={"Exhibition Journey"} />
         </Link>
-        <Link to="/mypage" className={LinkStyle.LinkNone}>
+        <Link to="/mypage/user" className={LinkStyle.LinkNone}>
           <BigButton tabName={"My Page"} mini={"Read and Change Your Info"} />
         </Link>
       </div>

@@ -7,7 +7,6 @@ import Header from "./layout/Header/Header";
 // Common
 import Homepage from "./pages/Common/Home";
 import Mypage from "./pages/Common/Mypage";
-import MypageEdit from "./pages/Common/MypageEdit";
 // Entrance
 import Entrance from "./pages/Entrance/Entrance";
 import Login from "./pages/Entrance/Login";
@@ -46,6 +45,7 @@ import PageManager from "./pages/PageManager";
 import Apitest from "./api/Apitest";
 import TestSignup from "./api/testSignup";
 import TestLogin from "./api/testLogin";
+import TestUserInfo from "./api/testUserInfo";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -57,8 +57,8 @@ function App() {
       <Routes>
         {/* Common */}
         <Route path="/home" element={<Homepage />} />
-        <Route path="/mypage" element={<Mypage />} />
-        <Route path="/mypage/edit" element={<MypageEdit />} />
+        <Route path="/mypage/user" element={<Mypage />} />
+        <Route path="/mypage/gallery" element={<Mypage />} />
 
         {/* Entrance Routes */}
         <Route path="/" element={<Entrance />} />
@@ -106,6 +106,7 @@ function App() {
         <Route path="/api" element={<Apitest />} />
         <Route path="/api_signup" element={<TestSignup />} />
         <Route path="/api_login" element={<TestLogin />} />
+        <Route path="/api_userinfo" element={<TestUserInfo />} />
       </Routes>
 
       {/* <Footer /> */}

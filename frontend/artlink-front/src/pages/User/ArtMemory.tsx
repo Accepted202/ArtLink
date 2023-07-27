@@ -24,7 +24,7 @@ function ArtMemory() {
   return (
     <>
       <MarginTopInput value={80} />
-      <div ref={sliderRef} className="keen-slider sliderbox">
+      <div ref={sliderRef} className="keen-slider sliderbox minwid">
         <Link to="#" className="linkbox">
           <div className="keen-slider__slide number-slide">
             <div className="introBox ">
@@ -35,8 +35,6 @@ function ArtMemory() {
                   maiores corporis amet eius assumenda nesciunt consequuntur
                   explicabo at aliquam ipsa sunt voluptate earum vitae magni,
                   beatae, nobis veniam eveniet aut ea incidunt! Id vitae cumque
-                  officia aliquam iste culpa natus hic et magni vero placeat
-                  libero, iusto beatae atque rem non adipisci quas veritatis
                 </p>
               </div>
             </div>

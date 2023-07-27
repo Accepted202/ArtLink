@@ -27,11 +27,11 @@ function Menu() {
   const menus: { [key: string]: MenuItem[] } = {
     user: [
       { label: "Your Record", path: "/art-memory" },
-      { label: "My Page", path: "/mypage" },
+      { label: "My Page", path: "/mypage/user" },
     ],
     gallery: [
       { label: "Artwork Manager", path: "/works-board" },
-      { label: "My Page", path: "/mypage" },
+      { label: "My Page", path: "/mypage/gallery" },
     ],
     manager: [
       { label: "Manage User", path: "/user-board" },
