@@ -6,7 +6,7 @@ function KioskHome() {
   return (
     <>
       <MarginTop200 />
-      <MainLogo mode="kiosk" />
+      <MainLogo />
       <div className={styles.startbtnBody}>
         <div className={styles.startbtn}>
           <div className={styles.innerText}>{"Please Tag"}</div>

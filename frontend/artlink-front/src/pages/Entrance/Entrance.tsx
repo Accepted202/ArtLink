@@ -8,7 +8,7 @@ function Entrance() {
   return (
     <>
       <MarginTop200 />
-      <MainLogo mode="web" />
+      <MainLogo />
       <Link to="/login" style={{ textDecoration: "none" }}>
         <div className={Styles.startbtnBody}>
           <div className={Styles.startbtn}>

@@ -7,7 +7,7 @@ import LinkStyle from "./Link.module.css";
 function HomeGallery() {
   return (
     <>
-      <MainLogo mode="web" />
+      <MainLogo />
       <div className="BigBtnBox2">
         <Link to="/works-board" className={LinkStyle.LinkNone}>
           <BigButton tabName={"Artwork Manager"} mini={"Register your work"} />
