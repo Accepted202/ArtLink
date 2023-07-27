@@ -7,7 +7,7 @@ function Login() {
   return (
     <>
       <MarginTop100 />
-      <MainLogo />
+      <MainLogo mode="we" />
       <LoginForm />
     </>
   );
