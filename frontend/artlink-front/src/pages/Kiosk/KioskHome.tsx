@@ -7,9 +7,9 @@ function KioskHome() {
     <>
       <MarginTop200 />
       <MainLogo />
-      <div className={styles.startbtnBody}>
-        <div className={styles.startbtn}>
-          <div className={styles.innerText}>{"Please Tag"}</div>
+      <div className={styles["notice-container"]}>
+        <div className={styles["notice-box"]}>
+          <div className={styles["notice-text"]}>{"Please Tag"}</div>
         </div>
       </div>
     </>
