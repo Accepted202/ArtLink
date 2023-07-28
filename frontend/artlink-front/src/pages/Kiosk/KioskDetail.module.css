@@ -1,56 +1,8 @@
 .container-wrapper {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  justify-items: center;
-  align-items: center;
+  display: flex;
 
   width: 100%;
   margin-top: 40px;
-}
 
-.artwork-container {
-  margin: 10vw;
-}
-
-.artwork {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 30vw;
-  width: 30vw;
-  border-radius: 10%;
-}
-
-.button-wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.button-wrapper button {
-  width: 30%;
-  height: 5vw;
-  border: none;
-  border-radius: 10%;
-  background: var(--main-color);
-  font-family: SUITE-Regular;
-}
-
-.edit:active {
-  box-shadow: inset 7px 7px 15px var(--shadow-color),
-    inset -7px -7px 20px #94e300, 0px 0px 4px rgba(255, 255, 255, 0.2),
-    5px 5px 22px #94e300;
-  transform: scale(0.9);
-}
-
-.delete:active {
-  box-shadow: inset 7px 7px 15px var(--shadow-color),
-    inset -7px -7px 20px #ff0000, 0px 0px 4px rgba(255, 255, 255, 0.2),
-    5px 5px 22px #ff0000;
-  transform: scale(0.9);
-}
-
-.neu {
-  box-shadow: 10px 10px 20px rgba(37, 37, 37, 0.2),
-    -10px -10px 20px rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s ease;
 }

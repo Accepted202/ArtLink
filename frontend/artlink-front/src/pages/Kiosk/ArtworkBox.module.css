@@ -1,0 +1,39 @@
+.artwork-box {
+  margin: 10vw;
+}
+
+.artwork {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30vw;
+  width: 30vw;
+  border-radius: 10%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+}
+
+.button-wrapper button {
+  width: 30%;
+  height: 5vw;
+  border: none;
+  border-radius: 10%;
+  background: var(--main-color);
+  font-family: SUITE-Regular;
+}
+
+.button-wrapper button:active {
+  box-shadow: inset 7px 7px 15px var(--shadow-color),
+    inset -7px -7px 20px #ff0000, 0px 0px 4px rgba(255, 255, 255, 0.2),
+    5px 5px 22px #ff0000;
+  transform: scale(0.9);
+}
+
+.neu {
+  box-shadow: 10px 10px 20px rgba(37, 37, 37, 0.2),
+    -10px -10px 20px rgba(255, 255, 255, 0.7);
+}
