@@ -9,9 +9,11 @@ function HomeManager() {
     <>
       <MainLogo />
       <div className="BigBtnBox2">
+        {/* Menu : User Manage */}
         <Link to="/user-board" className={LinkStyle.LinkNone}>
           <BigButton tabName={"User Manage"} mini={"Manage your users"} />
         </Link>
+        {/* Menu : Gallery Manage */}
         <Link to="/gallery-board" className={LinkStyle.LinkNone}>
           <BigButton tabName={"Gallery Manage"} mini={"Manage your gallerys"} />
         </Link>

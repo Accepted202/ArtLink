@@ -2,6 +2,9 @@
   margin: 0;
   overflow-y: hidden;
 }
+.aboutBodyMobile {
+  display: none;
+}
 
 .outer {
   height: 80vh;
@@ -31,4 +34,13 @@
 
 .bg-pink {
   background-color: #e0e0e0;
+}
+
+@media (max-width: 767px) {
+  .aboutBody {
+    display: none;
+  }
+  .aboutBodyMobile {
+    display: block;
+  }
 }

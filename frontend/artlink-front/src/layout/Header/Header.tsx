@@ -29,13 +29,14 @@ function Header(): JSX.Element {
     <>
       {!isExcludedHeaderPath && (
         <div ref={headerRef} className={headercss.header}>
-          <div style={{ marginRight: "auto", marginLeft: "5%" }}>
+          <div className={headercss.headerMainLogo}>
             <MainLogo />
           </div>
-          {!isExcludedPath && <Menu />}
+          <div className={headercss.headerMenu}>
+            {!isExcludedPath && <Menu />}
+          </div>
         </div>
       )}
-      {/* Now you can use 'headerHeight' state wherever you need the height value */}
     </>
   );
 }

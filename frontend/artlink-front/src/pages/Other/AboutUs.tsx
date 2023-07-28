@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import "./AboutUs.css";
 import Dots from "./AboutDot";
+import UpBtn from "../../commponents/Base/UpBtn";
 
 function AboutUs() {
   const outerDivRef = useRef<HTMLDivElement>(null);
@@ -15,16 +16,16 @@ function AboutUs() {
       const pageHeight = window.innerHeight * 0.8;
 
       if (deltaY > 0) {
-        if (scrollTop >= 0 && scrollTop < pageHeight) {
-          console.log("현재 1페이지, down");
+        if (scrollTop >= 0 && scrollTop + 1 < pageHeight) {
+          console.log("현재 1페이지, down", scrollTop, pageHeight);
           setScrollIndex(2);
           outerDivRef.current!.scrollTo({
             top: pageHeight,
             left: 0,
             behavior: "smooth",
           });
-        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
-          console.log("현재 2페이지, down");
+        } else if (scrollTop >= pageHeight && scrollTop + 1 < pageHeight * 2) {
+          console.log("현재 2페이지, down", scrollTop, pageHeight);
           setScrollIndex(3);
           outerDivRef.current!.scrollTo({
             top: pageHeight * 2,
@@ -32,7 +33,8 @@ function AboutUs() {
             behavior: "smooth",
           });
         } else {
-          console.log("현재 3페이지, down");
+          console.log("현재 3페이지, down", scrollTop, pageHeight);
+          setScrollIndex(3);
           outerDivRef.current!.scrollTo({
             top: pageHeight * 2,
             left: 0,
@@ -42,6 +44,7 @@ function AboutUs() {
       } else {
         if (scrollTop >= 0 && scrollTop < pageHeight) {
           console.log("현재 1페이지, up");
+          setScrollIndex(1);
           outerDivRef.current!.scrollTo({
             top: 0,
             left: 0,
@@ -87,11 +90,17 @@ function AboutUs() {
       <div className="aboutBody">
         <div ref={outerDivRef} className="outer">
           <Dots scrollIndex={scrollIndex} />
-          <div className="inner bg-yellow">1</div>
-          <div className="inner bg-blue">2</div>
-          <div className="inner bg-pink">3</div>
+          <div className="inner">1</div>
+          <div className="inner">2</div>
+          <div className="inner">3</div>
         </div>
       </div>
+      <div className="aboutBodyMobile">
+        <div className="inner">1</div>
+        <div className="inner">2</div>
+        <div className="inner">3</div>
+      </div>
+      <UpBtn />
     </>
   );
 }

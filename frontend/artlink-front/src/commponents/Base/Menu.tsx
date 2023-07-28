@@ -8,12 +8,9 @@ interface MenuItem {
 }
 
 function Menu() {
-  //
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // 권한에 따라 다른 메뉴창 보이기
+  const [isLoggedIn] = useState(true);
   const [whoareyou, setWhoAreYou] = useState("user");
-  function handleLog() {
-    setIsLoggedIn(!isLoggedIn);
-  }
   function handleUser() {
     setWhoAreYou("user");
   }
@@ -43,11 +40,17 @@ function Menu() {
 
   return (
     <>
-      <div>
-        <button onClick={handleUser}>유저</button>
-        <button onClick={handleGallery}>갤러리</button>
-        <button onClick={handleManager}>매니저</button>
-      </div>
+      {/* <div style={{ display: "flex", flexDirection: "column", margin: "auto" }}>
+        <button onClick={handleUser} style={{ fontSize: "10px" }}>
+          유저
+        </button>
+        <button onClick={handleGallery} style={{ fontSize: "10px" }}>
+          갤러리
+        </button>
+        <button onClick={handleManager} style={{ fontSize: "10px" }}>
+          매니저
+        </button>
+      </div> */}
       {/* 움직이는 메뉴바 */}
       <div className="menuContainer">
         <nav>

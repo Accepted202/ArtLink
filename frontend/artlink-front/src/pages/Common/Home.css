@@ -7,3 +7,9 @@
   display: flex;
   justify-content: space-around;
 }
+
+@media (max-width: 1024px) {
+  .BigBtnBox2 {
+    display: block;
+  }
+}

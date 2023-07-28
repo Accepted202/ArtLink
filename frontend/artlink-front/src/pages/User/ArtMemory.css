@@ -13,7 +13,7 @@
   max-height: 100vh;
 }
 .minwid {
-  min-width: 1000px;
+  /* min-width: 1000px; */
 }
 
 .innerSlideBox {
@@ -57,4 +57,16 @@
 }
 .introtxt2 {
   font-size: 20px;
+}
+
+@media (max-width: 1024px) {
+  .innerSlideBox {
+    width: 70%;
+  }
+  .innerSlideBox:hover {
+    box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
+      -5px -5px 10px rgba(255, 255, 255, 0.7);
+    width: 75%;
+    /* height: 75%; */
+  }
 }

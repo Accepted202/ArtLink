@@ -1,0 +1,35 @@
+.AMDFrame {
+  display: flex;
+}
+.AMBRightBox {
+  width: 100%;
+}
+
+.AMDimageBox {
+  width: 100%;
+  border: 1px solid rgb(200, 104, 173);
+}
+.AMDimage {
+  width: 90%;
+  padding: 5%;
+}
+.AMDtxtBox {
+  border: 1px solid rgb(104, 200, 125);
+  padding: 5%;
+}
+.AMDbtnBox {
+  border: 1px solid rgb(136, 104, 200);
+  padding: 5%;
+}
+
+@media (max-width: 767px) {
+  .AMDFrame {
+    display: block;
+  }
+  .AMDimageBox {
+    width: 100%;
+  }
+  .AMBRightBox {
+    width: 100%;
+  }
+}
