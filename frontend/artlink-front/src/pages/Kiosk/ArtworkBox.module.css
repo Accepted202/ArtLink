@@ -1,5 +1,9 @@
 .artwork-box {
   margin: 10vw;
+  /* margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 5vw;
+  margin-bottom: 5vw; */
 }
 
 .artwork {
@@ -28,8 +32,7 @@
 
 .button-wrapper button:active {
   box-shadow: inset 7px 7px 15px var(--shadow-color),
-    inset -7px -7px 20px #ff0000, 0px 0px 4px rgba(255, 255, 255, 0.2),
-    5px 5px 22px #ff0000;
+    inset -7px -7px 40px #ff0000, 0px 0px 4px rgba(255, 255, 255, 0.2);
   transform: scale(0.9);
 }
 
