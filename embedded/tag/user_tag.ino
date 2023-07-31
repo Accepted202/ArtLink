@@ -1,110 +1,162 @@
-#include <FunctionalInterrupt.h>
-#include <WiFi.h>
-#include <ArduinoJson.h>
+#include <functional>
+#include <SPI.h>
+#include "DW1000Ranging.h"
 #include "EspMQTTClient.h"
+#include "link.h"
 
-// LED configuration
-uint8_t ledG = 26;
-uint8_t ledB = 25;
-uint8_t ledR = 27; 
-uint8_t ledArray[3] = {1, 2, 3}; // three led channels
-const boolean invert = true; // set true if common anode, false if common cathode
+#define TAG_ADD "7D:00:22:EA:82:60:3B:9C"
 
-// BUTTON configuration
-uint8_t BUTTON1 = 34;
-uint8_t BUTTON2 = 35;
+#define SPI_SCK 18
+#define SPI_MISO 19
+#define SPI_MOSI 23
+#define DW_CS 4
 
-EspMQTTClient client(
+// SPI connection pins
+const uint8_t PIN_RST = 27;  // reset pin
+const uint8_t PIN_IRQ = 34;  // irq pin
+const uint8_t PIN_SS = 4;    // spi select pin
+
+// LED pin config
+const uint8_t ledR = 12;
+const uint8_t ledG = 13;
+const uint8_t ledB = 14;
+const uint8_t ledArray[3] = { 1, 2, 3 };  // three led channels
+const boolean invert = true;              // set true if common anode, false if common cathode
+
+// BTN pin config
+const uint8_t REG_BUTTON = 21;
+const uint8_t DEL_BUTTON = 22;
+
+// mqtt publish data
+struct MyLink *uwb_data;
+int index_num = 0;
+long runtime = 0;
+String all_json = "";
+
+// button status
+volatile boolean regBtnState = false;
+volatile boolean delBtnState = false;
+
+EspMQTTClient mqttClient(
   "A202",
   "ssafy13579",
-  "192.168.137.1",  // MQTT Broker server ip
+  "192.168.137.1",   // MQTT Broker server ip
   "UserDevice1",     // Client name that uniquely identify your device
-  1883              // The MQTT port, default to 1883. this line can be omitted
+  1883               // The MQTT port, default to 1883. this line can be omitted
 );
 
-StaticJsonDocument<100> doc;
-String serializer;
-
-class Button
-{
-public:
-	Button(uint8_t reqPin) : PIN(reqPin){
-		pinMode(PIN, INPUT_PULLUP);
-		attachInterrupt(PIN, std::bind(&Button::isr,this), FALLING);
-	};
-	~Button() {
-		detachInterrupt(PIN);
-	}
-
-	void IRAM_ATTR isr() {
-		pressed = true;
-	}
-
-	void checkPressed() {
-		if (pressed) {
-      ledcWrite(1, 255);
-      serializeJson(doc, serializer);
-      client.publish("userIoT", serializer);
-      delay(10);
-      ledcWrite(1, 0);
-      serializer = "";
-			pressed = false;
-		}
-	}
-
-private:
-	const uint8_t PIN;
-    volatile bool pressed;
-};
+// interrupt IRAM_ATTR for btns
+// ESP32 watchdog 때문에 flag만 설정
+void IRAM_ATTR regBtn() {
+  regBtnState = true;
+}
+void IRAM_ATTR delBtn() {
+  delBtnState = true;
+}
 
 void onConnectionEstablished() {
-  client.subscribe("mytopic/test", [] (const String &payload)  {
+  mqttClient.subscribe("mytopic/test", [] (const String &payload)  {
     Serial.println(payload);
   });
 }
 
-// 2 button configuration
-Button button1(BUTTON1);
-Button button2(BUTTON2);
 
-// the setup routine runs once when you press reset:
-void setup() 
-{
-  // json setup
+void setup() {
   Serial.begin(115200);
-  const char* anchor1 = "abcdefegtt";
-  const char* anchor2 = "asidonfaiunf";
-  const char* anchor3 = "lsdoifjjsjoei";
-  int d1 = 9;
-  int d2 = 12;
-  int d3 = 15;
-  Serial.println("Check status : json setup");
-  doc["device_id"] = 1;
-  doc["anchor_num"] = 3;
-  doc["anchors"][anchor1] = d1;
-  doc["anchors"][anchor2] = d2;
-  doc["anchors"][anchor3] = d3;
   delay(1000);
 
-  Serial.println("Check status : LEDsetup");
-  // led setup
-  ledcAttachPin(ledR, 1);
-  ledcAttachPin(ledG, 2);
-  ledcAttachPin(ledB, 3);
+  pinMode(REG_BUTTON, INPUT);
+  pinMode(DEL_BUTTON, INPUT);
+  attachInterrupt(digitalPinToInterrupt(REG_BUTTON), regBtn, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DEL_BUTTON), delBtn, FALLING);
+
   ledcSetup(1, 12000, 8);
   ledcSetup(2, 12000, 8);
   ledcSetup(3, 12000, 8);
+  ledcAttachPin(ledR, 1);
+  ledcAttachPin(ledG, 2);
+  ledcAttachPin(ledB, 3);
 
-  Serial.println("Check status : setup complete");
-  // setup complete led blink 
-  ledcWrite(1, 255);
-  delay(1000);
-  ledcWrite(1, 0);
+  //init the configuration
+  SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI);
+  DW1000Ranging.initCommunication(PIN_RST, PIN_SS, PIN_IRQ);
+
+  DW1000Ranging.attachNewRange(newRange);
+  DW1000Ranging.attachNewDevice(newDevice);
+  DW1000Ranging.attachInactiveDevice(inactiveDevice);
+
+  //Enable the filter to smooth the distance
+  //DW1000Ranging.useRangeFilter(true);
+
+  DW1000Ranging.startAsTag(TAG_ADD, DW1000.MODE_LONGDATA_RANGE_LOWPOWER);
 }
 
-void loop() 
+
+void loop() {
+  if (regBtnState) {
+    regBtnState = false;
+    make_link_json(uwb_data, &all_json);
+    // mqttClient.publish("test", "REGISTERED HIHI");
+    send_udp(&all_json);
+    Serial.println("REGISTERED HIHI");
+    // DW1000Ranging.loop();
+    ledcWrite(1, 255);
+    ledcWrite(2, 255);
+    ledcWrite(3, 255);
+    delay(50);
+    ledcWrite(1, 0);
+    ledcWrite(2, 0);
+    ledcWrite(3, 0);
+    delay(500);
+  }
+
+  if (delBtnState) {
+    delBtnState = false;
+    mqttClient.publish("test", "{\"tag_addr\":\"1780\",\"event\":\"DELETE\"}");
+
+    Serial.println("DELETED BYEBYE");
+    ledcWrite(1, 255);
+    ledcWrite(2, 255);
+    ledcWrite(3, 255);
+    delay(50);
+    ledcWrite(1, 0);
+    ledcWrite(2, 0);
+    ledcWrite(3, 0);
+    delay(500);
+  }
+
+  mqttClient.loop();
+  DW1000Ranging.loop();
+}
+
+void newRange() {
+  Serial.print("from: ");
+  Serial.print(DW1000Ranging.getDistantDevice()->getShortAddress(), HEX);
+  Serial.print("\t Range: ");
+  Serial.print(DW1000Ranging.getDistantDevice()->getRange());
+  Serial.print(" m");
+  Serial.print("\t RX power: ");
+  Serial.print(DW1000Ranging.getDistantDevice()->getRXPower());
+  Serial.println(" dBm");
+}
+
+void newDevice(DW1000Device *device) {
+  Serial.print("ranging init; 1 device added ! -> ");
+  Serial.print(" short:");
+  Serial.println(device->getShortAddress(), HEX);
+}
+
+void inactiveDevice(DW1000Device *device) {
+  Serial.print("delete inactive device: ");
+  Serial.println(device->getShortAddress(), HEX);
+}
+
+
+void send_udp(String *msg_json)
 {
-	button1.checkPressed();
-	button2.checkPressed();
-  client.loop();
+    if (mqttClient.isConnected())
+    {
+        mqttClient.publish("test", *msg_json);
+        Serial.println("UDP send");
+    }
 }
