@@ -1,10 +1,16 @@
+.MypageinnerBox {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5%;
+}
+
 .infoOuterBoxLeft {
   margin: auto;
   margin-right: 5%;
   margin-left: 5%;
 }
 .infoOuterBoxRight {
-  width: 70%;
+  width: 80%;
 }
 .infoInnerBoxLeft {
   margin: auto;
@@ -25,15 +31,48 @@
 }
 
 .changeBtn {
-  margin: auto;
-  font-size: large;
-  color: rgb(89, 89, 89);
-  transition: text-shadow 1s ease-in-out, color 1s ease-in-out,
-    font-weight 1s ease-in-out;
+  border: none;
+  background-color: transparent;
+  box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2),
+    -3px -3px 3px rgba(255, 255, 255, 0.7);
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  color: rgb(138, 138, 138);
+  font-size: 14px;
+  transition: color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .changeBtn:hover {
-  text-shadow: 1px 1px 2px rgb(124, 124, 124);
-  color: rgb(0, 0, 0);
-  font-weight: 500;
+  color: rgb(58, 58, 58);
+  box-shadow: 2px 2px 1px rgba(37, 37, 37, 0.2),
+    -1px -1px 2px rgba(255, 255, 255, 0.7);
+}
+.changeBtn:active {
+  box-shadow: inset 2px 2px 1px rgba(37, 37, 37, 0.2),
+    inset -5px -5px 3px rgba(255, 254, 254, 0.2),
+    2px 2px 1px rgba(163, 162, 162, 0.2);
+}
+
+@media (max-width: 767px) {
+  .MypageinnerBox {
+    display: block;
+  }
+  .infoOuterBoxLeft {
+    display: flex;
+  }
+  .infoOuterBoxRight {
+    margin: auto;
+    width: unset;
+    margin-top: 5%;
+  }
+
+  .infoInnerBoxRight {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: unset;
+  }
 }

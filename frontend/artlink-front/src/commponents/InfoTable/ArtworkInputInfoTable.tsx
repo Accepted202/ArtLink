@@ -1,5 +1,6 @@
 // import React from 'react';
 import IIR from "./InputInfoRow.tsx";
+import Styles from "./style/Artwork.module.css";
 
 interface Props {
   /*
@@ -17,7 +18,7 @@ interface Props {
 function InputInfoTable({ id, title, location, description }: Props) {
   return (
     <>
-      <div>
+      <div className={Styles.ArtworkTable}>
         <table>
           <tbody>
             <IIR infoTitle="ID" infoDetail={id} />

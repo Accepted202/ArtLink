@@ -10,23 +10,27 @@ interface Props {
   작가명, 작품명, 재료, 크기, 제작연도, 소장처
   추후 추가할 것
   */
+  key: number;
   id: number;
   title: string;
   location: string;
   description: string;
 }
 
-function ArtworkInfoRow({ id, title, location, description }: Props) {
+function ArtworkInfoRow({ key, id, title, location, description }: Props) {
+  function trClick() {
+    console.log("클릭", key, title, id, location);
+  }
   return (
     <>
-      <tr>
+      <tr onClick={trClick}>
         <td>{id}</td>
+        <td>{title}</td>
+        <td>{location}</td>
+        {/* <td>{description}</td> */}
         <td>
           <Link to={`${id}`}>편집</Link>
         </td>
-        <td>{title}</td>
-        <td>{location}</td>
-        <td>{description}</td>
       </tr>
     </>
   );

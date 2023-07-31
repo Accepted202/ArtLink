@@ -1,6 +1,6 @@
 // import React, { useState } from "react";
 import "./index.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Header from "./layout/Header/Header";
 // import Footer from "./layout/Footer/Footer";
 
@@ -47,14 +47,22 @@ import TestLogin from "./api/testLogin";
 import TestUserInfo from "./api/testUserInfo";
 
 function App() {
-  // const [count, setCount] = useState(0);
-
+  // 로그인 여부 판단
+  const isLoggedIn = () => {
+    const accessToken = localStorage.getItem("access_token");
+    return !!accessToken; // access_token이 있으면 로그인 상태로 간주합니다.
+  };
   return (
     <div className="App">
       <Header />
 
       <Routes>
         {/* Common */}
+        {/* 로그인 여부로 리다이렉트 예시 */}
+        {/* <Route
+          path="/home"
+          element={isLoggedIn() ? <Homepage /> : <Navigate to="/login" />}
+        /> */}
         <Route path="/home" element={<Homepage />} />
         <Route path="/mypage/user" element={<Mypage />} />
         <Route path="/mypage/gallery" element={<Mypage />} />

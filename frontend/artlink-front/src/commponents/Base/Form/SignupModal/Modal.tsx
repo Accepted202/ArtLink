@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalBase from "./ModalBase";
 import CardModal from "./CardModal";
 import { useNavigate } from "react-router-dom";
 
-export const Modal = () => {
+interface ModalProps {
+  sendActive: boolean;
+}
+export const Modal = ({ sendActive }: ModalProps) => {
   const [isActive, setIsActive] = useState(false);
+  useEffect(() => {
+    setIsActive(sendActive);
+  }, [sendActive]);
   const navigate = useNavigate();
-
-  const onClickModalOn = () => {
-    setIsActive(true);
-  };
 
   const onClickModalOff = () => {
     setIsActive(false);
@@ -22,7 +24,7 @@ export const Modal = () => {
 
   return (
     <>
-      <button onClick={onClickModalOn}>모달창 띄우기 버튼</button>
+      {/* <button onClick={onClickModalOn}>모달창 띄우기 버튼</button> */}
       <ModalBase active={isActive} closeEvent={onClickModalOff}>
         <CardModal
           closeEvent={onClickModalOff}

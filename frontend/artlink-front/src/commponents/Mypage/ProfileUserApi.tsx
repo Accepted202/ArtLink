@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { UserInfoRes, UserInfoReq, UserInfo } from "../../api/UserApi";
+import { UserInfoRes, UserInfo } from "../../api/UserApi";
+import axios from "axios";
 
 interface ApitestUserInfoProps {
   onUserDataChange: (data: UserInfoRes) => void;
@@ -11,13 +12,12 @@ const ApitestUserInfo: React.FC<ApitestUserInfoProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const sendData: UserInfoReq = {
-          headers: {
-            Authorization:
-              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsInJvbGUiOiJST0xFX1VTRVIiLCJpZCI6MSwiZXhwIjoxNjkwNDQ1OTMzLCJ1c2VybmFtZSI6InVzZXIxIn0.fMZBvQW__aGIFT2uWSrx2mAuhHOcAE-FyWv7niNPTbZen0EEO5JNs3UNCkj4miu3OwuFZSpE9s8g9ghX7mRVeA", // 여기에 발급받은 AccessToken을 넣어주세요
-          },
-        };
-        const data = await UserInfo(sendData);
+        const accessToken = localStorage.getItem("access_token");
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+
+        const data = await UserInfo();
         console.log(data);
 
         // 부모 컴포넌트로 데이터 전달

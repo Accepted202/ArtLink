@@ -4,6 +4,7 @@ import Styles from "./ArtMemoryDetail.module.css";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 import AMDExhibition from "../../commponents/ViewExhibition/AMDExhibition";
 import AMDMyrecord from "../../commponents/ViewExhibition/AMDMyrecord";
+import BackBtn from "../../commponents/Base/BackBtn";
 
 function ArtMemoryDetail() {
   const [isLeftVisible, setIsLeftVisible] = useState(true); // State variable for left div visibility
@@ -19,7 +20,8 @@ function ArtMemoryDetail() {
 
   return (
     <>
-      <MarginTopInput value={50} />
+      <BackBtn />
+      <MarginTopInput value={10} />
       <div className={Styles["artmemory-container"]}>
         {/* Left div with the button */}
         <div

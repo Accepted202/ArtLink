@@ -1,8 +1,7 @@
-// import React from 'react';
-import ProfileBox from "../../commponents/Mypage/ProfileBox.tsx";
+import ArtworkProfileBox from "../../commponents/InfoTable/ArtworkProfileBox.tsx";
 import ArtworkInputInfoTable from "../../commponents/InfoTable/ArtworkInputInfoTable.tsx";
 import "./Detail.css";
-// import { useParams } from "react-router-dom";
+import BackBtn from "../../commponents/Base/BackBtn.tsx";
 
 /*
 api로 해당 아이디의 작품 정보 가져오는 코드
@@ -16,15 +15,27 @@ const description = "설명";
 
 function WorksDetail() {
   return (
-    <div className="detail-container">
-      <ProfileBox></ProfileBox>
-      <ArtworkInputInfoTable
-        id={id}
-        title={title}
-        location={location}
-        description={description}
-      ></ArtworkInputInfoTable>
-    </div>
+    <>
+      {/* 작품 정보 타이틀 */}
+      <div className="worksBackBtn">
+        <BackBtn />
+        <h2>작품 정보</h2>
+      </div>
+      {/* 작품 정보 박스 */}
+      <div className="detail-container">
+        <ArtworkProfileBox />
+        <ArtworkInputInfoTable
+          id={id}
+          title={title}
+          location={location}
+          description={description}
+        />
+      </div>
+      {/* 작품 정보 업데이트 버튼 */}
+      <div>
+        <button className="detail-updateBtn">UPDATE</button>
+      </div>
+    </>
   );
 }
 export default WorksDetail;
