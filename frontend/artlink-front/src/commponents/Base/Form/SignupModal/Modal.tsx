@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
+=======
+import { useState } from "react";
+>>>>>>> 1c1a8d68b3e83fffa8e23a62407eb6d8cc3cfbb0
 import ModalBase from "./ModalBase";
 import CardModal from "./CardModal";
 import { useNavigate } from "react-router-dom";

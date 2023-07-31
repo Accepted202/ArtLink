@@ -28,7 +28,7 @@ body {
 
 /* body에 스크롤 바 커스텀 스타일 적용 */
 body::-webkit-scrollbar {
-  width: 8px; /* 스크롤 바의 너비를 조절합니다. */
+  width: 8px; /* 스크롤 바의 너비를 조절 */
 }
 
 /* 스크롤 바의 색상 지정 */

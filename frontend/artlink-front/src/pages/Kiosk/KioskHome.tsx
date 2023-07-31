@@ -2,6 +2,10 @@ import MainLogo from "../../commponents/Base/MainLogo";
 import styles from "./KioskHome.module.css";
 import MarginTop200 from "../../commponents/EditCss/MarginTop200";
 
+/*
+  디스플레이 사양: 1024*600 7인치
+*/
+
 function KioskHome() {
   return (
     <>
