@@ -2,6 +2,7 @@ import { useState } from "react";
 import MainLogo from "../../commponents/Base/MainLogo";
 import styles from "./KioskDetail.module.css";
 import BoxContainer from "./BoxContainer";
+import { Link } from "react-router-dom";
 
 // 작품 조회 페이지
 
@@ -70,7 +71,9 @@ function KioskDetail() {
         ))}
       </div>
       <div className={styles["button-wrapper"]}>
-        <button className={styles["next-button"]}>Print</button>
+        <Link to="/kiosk/print">
+          <button className={styles["next-button"]}>Print</button>
+        </Link>
       </div>
     </>
   );
