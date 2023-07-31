@@ -13,7 +13,7 @@ const ModalBase = ({ active, closeEvent, children }: ModalBaseProps) => {
   useEffect(() => {
     document.body.style.overflowY = active ? "hidden" : "initial";
 
-    let timeoutId: any;
+    let timeoutId: number | undefined;
     if (active) {
       setClosed(false);
     } else {

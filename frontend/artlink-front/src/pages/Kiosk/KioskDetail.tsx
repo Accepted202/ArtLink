@@ -8,7 +8,8 @@ import BoxContainer from "./BoxContainer";
 /*
   [v] Artwork 배분
   [v] Artwork 삭제
-  [ ] 요소 삭제 시 모달 창 띄우기
+  [v] 요소 삭제 시 모달 창 띄우기
+  [ ] 상속 문제 해결
   [ ] 요소 삭제 시 삭제 애니메이션
   [ ] 페이지 별로 구분하는 애니메이션
 */

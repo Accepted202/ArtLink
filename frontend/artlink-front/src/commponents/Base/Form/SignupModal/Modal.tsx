@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ModalBase from "./ModalBase";
 import CardModal from "./CardModal";
 import { useNavigate } from "react-router-dom";
