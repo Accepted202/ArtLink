@@ -10,15 +10,15 @@ function Mypage() {
   const pathname = window.location.pathname;
   return (
     <>
-      <div style={{ display: "flex", marginLeft: "7%", marginTop: "20px" }}>
+      <div className={Styles.BackBtn}>
         <BackBtn />
       </div>
 
       <div className={Styles.Mypagecontainer}>
-        <div className={Styles.MypageinnerBox}>
-          {pathname.includes("user") && <ProfileUser />}
-          {pathname.includes("gallery") && <ProfileGallery />}
-        </div>
+        {/* <div className={Styles.MypageinnerBox}> */}
+        {pathname.includes("user") && <ProfileUser />}
+        {pathname.includes("gallery") && <ProfileGallery />}
+        {/* </div> */}
       </div>
     </>
   );

@@ -7,11 +7,13 @@ import BackBtn from "../../Base/BackBtn";
 import MarginTopInput from "../../EditCss/MaginTopInput";
 
 function SignupForm() {
+  const [isActive, setisActive] = useState(false);
   // 인풋 필드 useState
   const [formData, setFormData] = useState<SignupReq>({
     username: "",
     password: "",
     phoneNumber: 0,
+    nickname: "",
   });
   // 인풋 필드 저장
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +29,7 @@ function SignupForm() {
       // 회원가입 API를 호출하여 데이터를 서버로 보냅니다.
       const response = await SignupApi(formData);
       console.log(response);
+      setisActive(true);
       // 회원가입 성공 시, 화면에 알림 메시지 또는 다른 처리를 수행할 수 있습니다.
     } catch (error) {
       console.error("Error signing up:", error);
@@ -39,7 +42,7 @@ function SignupForm() {
       <BackBtn />
       <MarginTopInput value={20} />
       <div className="box">
-        <label>Username</label>
+        <label>ID</label>
         <br />
         <input
           type="text"
@@ -62,20 +65,32 @@ function SignupForm() {
           onChange={handleChange}
         />
         <br />
-        <div className="forget">
+        <br />
+        <label>Nickname</label>
+        <br />
+        <input
+          type="nickname"
+          name="nickname"
+          id="nickname"
+          placeholder="Enter nickname"
+          className="input-box"
+          onChange={handleChange}
+        />
+        <br />
+        {/* <div className="forget">
           <label className="checkbox-label">
-            <input type="checkbox" />
-            <span className="checkbox-custom "></span>
-            <span className="label-text">Remember me</span>
+          <input type="checkbox" />
+          <span className="checkbox-custom "></span>
+          <span className="label-text">Remember me</span>
           </label>
           <span className="fg">
-            <a href=""> Forget password?</a>
+          <a href=""> Forget password?</a>
           </span>
-        </div>
+        </div> */}
         <button type="submit" className="btn" onClick={reqSignup}>
           <p>Sign Up</p>
         </button>
-        <Modal />
+        <Modal sendActive={isActive} />
 
         <span className="option">or sign in with</span>
         <div className="social">
@@ -108,6 +123,7 @@ function SignupForm() {
           </div>
         </div>
       </div>
+      <MarginTopInput value={40} />
     </>
   );
 }

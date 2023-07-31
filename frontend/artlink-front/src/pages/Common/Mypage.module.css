@@ -1,14 +1,11 @@
 .Mypagecontainer {
-  display: flex;
+  /* display: flex; */
   justify-content: space-around;
   margin: auto;
   padding: 5vh;
   border-radius: 50px;
 
   width: 80vw;
-  min-width: 700px;
-  /* height: 50vh; */
-  /* min-height: 300px; */
   margin-top: 50px;
   box-shadow: 10px 10px 10px rgba(37, 37, 37, 0.2),
     -10px -10px 10px rgba(255, 255, 255, 0.7);
@@ -19,4 +16,19 @@
   display: flex;
   justify-content: space-around;
   margin: auto;
+}
+.BackBtn {
+  display: flex;
+  margin-left: 7%;
+  margin-top: 20px;
+}
+
+@media (max-width: 767px) {
+  .Mypagecontainer {
+    width: 60vw;
+  }
+  .BackBtn {
+    margin-left: auto !important;
+    display: block;
+  }
 }

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./Form.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LoginApi } from "../../../api/CommonApi";
+import axios from "axios";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -47,8 +48,15 @@ function LoginForm() {
     try {
       // 로그인 API를 호출하여 데이터를 서버로 보냅니다.
       const response = await LoginApi(formData);
-      console.log(response);
+      console.log(response, response.accessToken);
       // 로그인 성공시 (Header에 저장, Home으로 이동)
+      const accessToken = response.accessToken;
+      const refreshToken = response.refreshToken;
+      localStorage.setItem("access_token", accessToken);
+      localStorage.setItem("refresh_token", refreshToken);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      console.log(axios.defaults.headers.common["Authorization"]);
+      // 홈으로 이동
       navigate("/home");
     } catch (error) {
       console.error("Error Log in:", error);

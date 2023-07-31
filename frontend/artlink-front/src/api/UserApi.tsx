@@ -12,18 +12,10 @@ export interface UserInfoRes {
   username: string;
   phoneNumber: number;
 }
-export interface UserInfoReq {
-  headers: {
-    Authorization: string;
-  };
-}
-export const UserInfo = async (
-  userInfoReq: UserInfoReq
-): Promise<UserInfoRes[]> => {
+export const UserInfo = async (): Promise<UserInfoRes[]> => {
   try {
     const response: AxiosResponse<UserInfoRes[]> = await axios.get(
-      createUrl("/users/me"),
-      userInfoReq
+      createUrl("/users/me")
     );
     return response.data;
   } catch (error) {

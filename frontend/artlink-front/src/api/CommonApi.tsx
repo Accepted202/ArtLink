@@ -81,8 +81,8 @@ export interface SignupRes {
   message: string;
   data: {
     user: {
-      id: number;
-      username: number;
+      username: string;
+      nickname: number;
       phoneNumber: number;
     };
   };
@@ -91,6 +91,7 @@ export interface SignupReq {
   username: string;
   password: string;
   phoneNumber: number;
+  nickname: string;
 }
 export const SignupApi = async (
   dataToSend: SignupReq
