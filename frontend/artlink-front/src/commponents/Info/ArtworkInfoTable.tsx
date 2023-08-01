@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ArtworkInfoRow from "./ArtworkInfoRow.tsx";
 import "./style/InfoTable.css";
-import Pagination from "./Pagenation.tsx";
+import Pagination from "./Pagination.tsx";
 
 // 타입지정
 interface ArtworkData {
