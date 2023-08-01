@@ -15,6 +15,7 @@ function SignupForm() {
     phoneNumber: 0,
     nickname: "",
   });
+  const [isPassCheck, setisPassCheck] = useState("");
   // 인풋 필드 저장
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,6 +24,11 @@ function SignupForm() {
       [name]: value,
     }));
   };
+  const handlePass2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setisPassCheck(value);
+  };
+
   // 회원가입 API 요청
   const reqSignup = async () => {
     try {
@@ -36,23 +42,31 @@ function SignupForm() {
       // 회원가입 실패 시, 화면에 알림 메시지 또는 다른 처리를 수행할 수 있습니다.
     }
   };
-
+  // Handle form submission on Enter key press
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      void reqSignup();
+      console.log("enter key pressed");
+    }
+  };
   return (
     <>
       <BackBtn />
       <MarginTopInput value={20} />
+      <p className="loginTitle">{"Sign Up"}</p>
       <div className="box">
         <label>ID</label>
-        <br />
         <input
           type="text"
           name="username"
           id="username"
-          placeholder="Enter Username"
+          placeholder="Enter ID"
           className="input-box"
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
         />
-        <br />
+        {/* 아이디 중복체크 */}
+        <div className="idCheck">{}</div>
         <br />
         <label>Password</label>
         <br />
@@ -63,8 +77,20 @@ function SignupForm() {
           placeholder="Enter Password"
           className="input-box"
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Confirm Password"
+          className="input-box"
+          onChange={handlePass2}
+          onKeyPress={handleKeyPress}
         />
         <br />
+        {/* 패스워드 다를시 로직 */}
+        <div className="passwordCheck">{}</div>
         <br />
         <label>Nickname</label>
         <br />
@@ -75,18 +101,10 @@ function SignupForm() {
           placeholder="Enter nickname"
           className="input-box"
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
         />
-        <br />
-        {/* <div className="forget">
-          <label className="checkbox-label">
-          <input type="checkbox" />
-          <span className="checkbox-custom "></span>
-          <span className="label-text">Remember me</span>
-          </label>
-          <span className="fg">
-          <a href=""> Forget password?</a>
-          </span>
-        </div> */}
+        {/* 에러메세지 띄우기 */}
+        <div className="errorMsg">{}</div>
         <button type="submit" className="btn" onClick={reqSignup}>
           <p>Sign Up</p>
         </button>
