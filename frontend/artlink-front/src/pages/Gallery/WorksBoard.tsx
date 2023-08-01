@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./WorksBoard.module.css";
-import ArtworkInfoTable from "../../commponents/InfoTable/ArtworkInfoTable";
+import ArtworkInfoTable from "../../commponents/Info/ArtworkInfoTable";
 
 // import React from 'react';
 

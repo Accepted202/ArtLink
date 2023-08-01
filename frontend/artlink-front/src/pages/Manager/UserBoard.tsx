@@ -1,6 +1,6 @@
 // import React from 'react';
 import "./style/Board.css";
-import UserInfoTable from "../../commponents/InfoTable/UserInfoTable";
+import UserInfoTable from "../../commponents/Info/UserInfoTable";
 
 function UserBoard() {
   return (
