@@ -1,5 +1,5 @@
 import ReactPaginate from "react-paginate";
-import "./style/Pagenation.css";
+import "./style/Pagination.css";
 
 interface SelectedPage {
   selected: number;
@@ -10,7 +10,7 @@ interface Props {
   handlePageChange: (selectedPage: SelectedPage) => void;
 }
 
-function Pagenation({ pageCount, handlePageChange }: Props) {
+function Pagination({ pageCount, handlePageChange }: Props) {
   return (
     <div>
       <ReactPaginate
@@ -28,4 +28,4 @@ function Pagenation({ pageCount, handlePageChange }: Props) {
   );
 }
 
-export default Pagenation;
+export default Pagination;
