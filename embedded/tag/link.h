@@ -3,7 +3,7 @@
 struct MyLink
 {
     uint16_t anchor_addr;
-    float range[3];
+    float range;
     float dbm;
     struct MyLink *next;
 };

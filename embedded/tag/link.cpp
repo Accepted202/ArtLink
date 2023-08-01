@@ -10,10 +10,7 @@ struct MyLink *init_link()
     struct MyLink *p = (struct MyLink *)malloc(sizeof(struct MyLink));
     p->next = NULL;
     p->anchor_addr = 0;
-    p->range[0] = 0.0;
-    p->range[1] = 0.0;
-    p->range[2] = 0.0;
-
+    p->range = 0.0;
     return p;
 }
 
@@ -33,9 +30,7 @@ void add_link(struct MyLink *p, uint16_t addr)
     //Create a anchor
     struct MyLink *a = (struct MyLink *)malloc(sizeof(struct MyLink));
     a->anchor_addr = addr;
-    a->range[0] = 0.0;
-    a->range[1] = 0.0;
-    a->range[2] = 0.0;
+    a->range = 0.0;
     a->dbm = 0.0;
     a->next = NULL;
 
@@ -86,10 +81,7 @@ void fresh_link(struct MyLink *p, uint16_t addr, float range, float dbm)
     struct MyLink *temp = find_link(p, addr);
     if (temp != NULL)
     {
-        temp->range[2] = temp->range[1];
-        temp->range[1] = temp->range[0];
-
-        temp->range[0] = (range + temp->range[1] + temp->range[2]) / 3;
+        temp->range = range;
         temp->dbm = dbm;
         return;
     }
@@ -111,7 +103,7 @@ void print_link(struct MyLink *p)
     {
         //Serial.println("Dev %d:%d m", temp->next->anchor_addr, temp->next->range);
         Serial.println(temp->next->anchor_addr, HEX);
-        Serial.println(temp->next->range[0]);
+        Serial.println(temp->next->range);
         Serial.println(temp->next->dbm);
         temp = temp->next;
     }
@@ -147,20 +139,26 @@ void make_link_json(struct MyLink *p, String *s)
 #ifdef SERIAL_DEBUG
     Serial.println("make_link_json");
 #endif
-    *s = "{\"links\":[";
+    *s = "\"anchors\":[";
     struct MyLink *temp = p;
-
+    int tmp_num = 0; 
     while (temp->next != NULL)
     {
         temp = temp->next;
-        char link_json[50];
-        sprintf(link_json, "{\"A\":\"%X\",\"R\":\"%.1f\"}", temp->anchor_addr, temp->range[0]);
+
+        char link_json[100];
+        sprintf(link_json, "{\"anc_add\":\"%X\",\"rng\":\"%.1f\"}", temp->anchor_addr, temp->range);
         *s += link_json;
+        tmp_num++;
+
         if (temp->next != NULL)
         {
             *s += ",";
         }
     }
+    char header[50];
+    sprintf(header, ",\"anc_num\":\"%d\",\"ancs\":[", tmp_num);
+    *s = header + *s;
     *s += "]}";
     Serial.println(*s);
 }
