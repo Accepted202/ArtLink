@@ -1,7 +1,8 @@
 import { useState } from "react";
-import MainLogo from "../../commponents/Base/MainLogo";
+import KioskMainLogo from "./KioskMainLogo";
 import styles from "./KioskDetail.module.css";
 import BoxContainer from "./BoxContainer";
+import { Link } from "react-router-dom";
 
 // 작품 조회 페이지
 
@@ -59,7 +60,7 @@ function KioskDetail() {
 
   return (
     <>
-      <MainLogo />
+      <KioskMainLogo />
       <div className={styles["container-wrapper"]}>
         {chunkedData.map((chunk, index) => (
           <BoxContainer
@@ -70,7 +71,9 @@ function KioskDetail() {
         ))}
       </div>
       <div className={styles["button-wrapper"]}>
-        <button className={styles["next-button"]}>Print</button>
+        <Link to="/kiosk/print">
+          <button className={styles["next-button"]}>Print</button>
+        </Link>
       </div>
     </>
   );
