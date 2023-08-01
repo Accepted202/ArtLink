@@ -3,8 +3,6 @@ code from: https://codepen.io/qrx357/pen/VwKwzYv
 */
 
 .wrapper {
-  background-color: #e0e0e0;
-
   display: flex;
   justify-content: center;
   align-items: center;
