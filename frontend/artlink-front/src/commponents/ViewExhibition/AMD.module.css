@@ -1,27 +1,77 @@
 .AMDFrame {
   display: flex;
+  padding: 20px;
 }
 .AMBRightBox {
   width: 100%;
+  margin-top: auto;
+}
+.AMDTitleTxt {
+  margin-top: 5%;
+  font-size: 24px;
+  font-weight: 600;
+  /* text-decoration-line: underline;
+  text-underline-offset: 10px; */
+  border-bottom: 1px groove black;
+  display: flex;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .AMDimageBox {
-  width: 100%;
+  width: 70%;
   /* border: 1px solid rgb(200, 104, 173); */
+  margin: auto;
 }
 .AMDimage {
   width: 90%;
-  padding: 5%;
+  padding: 6%;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 3px 3px 5px rgb(80, 80, 80), -2px -2px 3px white;
 }
 .AMDtxtBox {
   /* border: 1px solid rgb(104, 200, 125); */
-  text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.2),
-    -1px 1px 3px rgba(70, 70, 70, 0.7);
-  padding: 5%;
+  /* text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.2),
+    -1px 1px 3px rgba(70, 70, 70, 0.7); */
+  padding: 6%;
+  padding-right: 0%;
+  text-align: start;
 }
 .AMDbtnBox {
   /* border: 1px solid rgb(136, 104, 200); */
-  padding: 5%;
+  padding-left: 5%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.AMDLinkBtn {
+  width: 40%;
+}
+.AMDMyrecordBtn {
+  width: 50%;
+}
+
+.AMDMyrecordBtn,
+.AMDLinkBtn {
+  padding: 10px;
+  border: none;
+  color: rgb(138, 138, 138);
+  /* background-color: transparent; */
+  box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2);
+  transition: color 0.5s ease, box-shadow 0.5s ease;
+  font-family: SUITE-Regular;
+}
+.AMDMyrecordBtn:hover,
+.AMDLinkBtn:hover {
+  box-shadow: 1px 1px 1px rgba(37, 37, 37, 0.2),
+    -1px -1px 2px rgba(255, 255, 255, 0.7);
+  color: rgb(58, 58, 58);
+}
+.AMDMyrecordBtn:active,
+.AMDLinkBtn:active {
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+  color: rgb(58, 58, 58);
 }
 
 @media (max-width: 767px) {
@@ -29,9 +79,13 @@
     display: block;
   }
   .AMDimageBox {
-    width: 100%;
+    width: 90%;
+    margin: auto;
   }
   .AMBRightBox {
     width: 100%;
+  }
+  .AMDtxtBox {
+    padding-right: 6%;
   }
 }

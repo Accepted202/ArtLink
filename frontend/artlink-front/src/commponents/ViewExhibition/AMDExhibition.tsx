@@ -7,14 +7,16 @@ interface AMDExhibitionProps {
 }
 function AMDExhibition({ onButtonClick }: AMDExhibitionProps) {
   const [isFrameEnabled, setIsFrameVisible] = useState(true);
+
   const handleButtonClick = () => {
     setIsFrameVisible(!isFrameEnabled);
     onButtonClick();
   };
+
   return (
     <>
       {/* 갤러리의 특정 전시회를 불러와서 정보를 보여줌 */}
-      <h1>Exhibition Title</h1>
+      <p className={`${Styles.AMDTitleTxt}`}>Exhibition Title</p>
       <div className={`${isFrameEnabled ? Styles.AMDFrame : ""}`}>
         <div className={`${Styles.AMDimageBox}`}>
           <img
@@ -37,8 +39,13 @@ function AMDExhibition({ onButtonClick }: AMDExhibitionProps) {
             laborum?
           </div>
           <div className={`${Styles.AMDbtnBox}`}>
-            <button>About Page</button>
-            <button onClick={handleButtonClick}>Your Record</button>
+            <button className={`${Styles.AMDLinkBtn}`}>About Page</button>
+            <button
+              className={`${Styles.AMDMyrecordBtn}`}
+              onClick={handleButtonClick}
+            >
+              Your Record &nbsp; &nbsp; {isFrameEnabled ? "▶" : "◀"}
+            </button>
           </div>
         </div>
       </div>

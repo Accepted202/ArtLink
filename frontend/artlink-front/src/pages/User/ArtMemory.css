@@ -47,8 +47,8 @@
   height: 90%;
   color: black;
   text-align: left;
-  text-shadow: 3px 2px 1px rgba(255, 255, 255, 0.2),
-    -3px 1px 3px rgba(70, 70, 70, 0.7);
+  text-shadow: 1px 2px 1px rgba(255, 255, 255, 0.2),
+    2px 1px 4px rgba(0, 0, 0, 0.7);
 }
 .introtxt {
   font-size: 60px;

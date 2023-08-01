@@ -31,7 +31,7 @@ function ArtMemoryDetail() {
             display: isLeftVisible ? "block" : "none",
           }}
         >
-          <div>
+          <div style={{ fontFamily: "SUITE-Regular" }}>
             {/* <button onClick={toggleVisibility}>좌버튼</button> */}
             <AMDExhibition onButtonClick={toggleVisibility} />
           </div>
