@@ -54,7 +54,7 @@ code from: https://codepen.io/qrx357/pen/VwKwzYv
   height: 100%;
   filter: blur(20px);
   border-radius: 50%;
-  background: linear-gradient(#fffc48, #b478ff, #4affe2);
+  background: linear-gradient(#fafafa, #656565, #d6d6d6);
   animation: spin 2.5s linear infinite;
 }
 
