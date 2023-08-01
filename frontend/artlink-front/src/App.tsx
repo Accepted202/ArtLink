@@ -35,7 +35,7 @@ import Kiosk from "./pages/Kiosk/KioskHome";
 import KioskDetail from "./pages/Kiosk/KioskDetail";
 import KioskPrint from "./pages/Kiosk/KioskPrint";
 import KioskExit from "./pages/Kiosk/KioskExit";
-import KioskResult from "./pages/Kiosk/KioskResult";
+import ComponentTest from "./ComponentTest";
 // Other
 import Contact from "./pages/Other/Contact";
 import AboutUs from "./pages/Other/AboutUs";
@@ -100,7 +100,7 @@ function App() {
         <Route path="/kiosk/:pk" element={<KioskDetail />} />
         <Route path="/kiosk/print" element={<KioskPrint />} />
         <Route path="/kiosk/exit" element={<KioskExit />} />
-        <Route path="/kiosk/result/:pk" element={<KioskResult />} />
+        <Route path="/component-test" element={<ComponentTest />} />
 
         {/* Other Routes */}
         <Route path="/contact" element={<Contact />} />
