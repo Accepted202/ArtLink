@@ -4,13 +4,12 @@ code from: https://codepen.io/qrx357/pen/VwKwzYv
 
 .wrapper {
   background-color: #e0e0e0;
-  height: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  margin-top: 10vh;
+  margin-top: 20vh;
 }
 
 .loading-spinner {

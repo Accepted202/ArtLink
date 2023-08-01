@@ -1,12 +1,10 @@
-import MainLogo from "../../commponents/Base/MainLogo";
+import KioskMainLogo from "./KioskMainLogo";
 import styles from "./KioskPrint.module.css";
-import MarginTop200 from "../../commponents/EditCss/MarginTop200";
 
 function KioskPrint() {
   return (
     <>
-      <MarginTop200 />
-      <MainLogo />
+      <KioskMainLogo />
       <div className={styles["wrapper"]}>
         <div className={styles["loading-spinner"]}>
           <div className={styles["loading-spinner__ring"]}>
