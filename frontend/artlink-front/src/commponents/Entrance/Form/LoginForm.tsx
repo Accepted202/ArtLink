@@ -63,6 +63,11 @@ function LoginForm() {
       window.alert(error);
     }
   };
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      void reqLogin();
+    }
+  };
   const signUpLink = location.pathname.includes("login-gallery")
     ? "/signup-gallery"
     : "/signup";
@@ -82,7 +87,7 @@ function LoginForm() {
   const isLoginAdmin = location.pathname.includes("login-admin");
   return (
     <>
-      <h2>{loginTitle}</h2>
+      <p className="loginTitle">{loginTitle}</p>
       <div className="box">
         <label>ID</label>
         <br />
@@ -93,6 +98,7 @@ function LoginForm() {
           placeholder="Enter ID"
           className="input-box"
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
         />
         <br />
         <br />
@@ -105,6 +111,7 @@ function LoginForm() {
           placeholder="Enter Password"
           className="input-box"
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
         />
         <br />
         <div className="forget">
@@ -117,6 +124,7 @@ function LoginForm() {
             <a href="#"> Forget password?</a>
           </span>
         </div>
+        <div className="errorMsg">{}</div>
         <div className="btnBox">
           {!isLoginAdmin ? (
             <>

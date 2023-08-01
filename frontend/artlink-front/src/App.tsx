@@ -2,7 +2,7 @@
 import "./index.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Header from "./layout/Header/Header";
-// import Footer from "./layout/Footer/Footer";
+import Footer from "./layout/Footer/Footer";
 
 // Common
 import Homepage from "./pages/Common/Home";
@@ -115,7 +115,7 @@ function App() {
         <Route path="/api_userinfo" element={<TestUserInfo />} />
       </Routes>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

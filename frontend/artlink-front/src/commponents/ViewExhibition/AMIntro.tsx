@@ -5,10 +5,11 @@ function AMIntro() {
       <div>
         <p className="introtxt">Your Memory</p>
         <p className="introtxt2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut maiores
-          corporis amet eius assumenda nesciunt consequuntur explicabo at
-          aliquam ipsa sunt voluptate earum vitae magni, beatae, nobis veniam
-          eveniet aut ea incidunt! Id vitae cumque
+          Explore and preserve the art pieces that left a lasting impression on
+          you. Relive the moments of admiration as you curate your personal
+          collection. Manage your cherished artworks with ease, creating lasting
+          memories of artistic wonders. Enjoy the delightful journey of shared
+          artistry.
         </p>
       </div>
     </>
