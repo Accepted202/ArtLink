@@ -26,4 +26,9 @@ public class GalleryService {
         gallery.setPassword(bCryptPasswordEncoder.encode(gallery.getPassword()));
         galleryRepository.save(gallery);
     }
+
+    public Gallery findByUsername(String username) {
+        return galleryRepository.findByUsername(username);
+    }
+
 }
