@@ -1,16 +1,5 @@
 # KIOSK Implementation
 
-## Set up
-
-Rpi4 로 KIOSK를 구현하며, RFID 에서 읽어온 데이터로 웹 브라우저를 제어해야 합니다.
-
-### 1. RFID Setting
-
-### 2. Web browser Setting(Chromedriver, Selenium)
-
-## Code
-
-```python
 import time
 import threading
 import RPi.GPIO as GPIO
@@ -18,9 +7,6 @@ from mfrc522 import SimpleMFRC522
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-
-# 핀 번호 설정
-# reset_pin = 22
 
 # 글로벌 웹 드라이버 설정
 driver = None
@@ -111,4 +97,3 @@ if __name__ == "__main__":
     rfid_thread.join()
 
     print("모든 작업이 종료되었습니다.")
-```
