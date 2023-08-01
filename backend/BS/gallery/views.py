@@ -22,7 +22,11 @@ class GalleryView(View):
     def get(self, request):
         try:
             galleries = Gallery.objects.all()
-            return HttpResponse(status=200, content=json.dumps(galleries))
+            res = {}
+            res['galleryList'] = []
+            for gallery in galleries:
+                res['galleryList'].append(gallery.galleryid)
+            return HttpResponse(status=200, content=json.dumps(res))
         except:
             return HttpResponse(status=404, content='There is no gallery.')
 
