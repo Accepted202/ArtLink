@@ -1,8 +1,7 @@
 import { useState } from "react";
 import ArtworkInfoRow from "./ArtworkInfoRow.tsx";
 import "./style/InfoTable.css";
-import "./style/Pagenation.css";
-import ReactPaginate from "react-paginate";
+import Pagination from "./Pagenation.tsx";
 
 // 타입지정
 interface ArtworkData {
@@ -74,19 +73,7 @@ function ArtworkInfoTable() {
       </div>
 
       {/* 페이지네이션 컴포넌트 추가 */}
-      <div>
-        <ReactPaginate
-          previousLabel={"이전"}
-          nextLabel={"다음"}
-          breakLabel={"..."}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageChange}
-          containerClassName={"pagination"}
-          activeClassName={"active"}
-        />
-      </div>
+      <Pagination pageCount={pageCount} handlePageChange={handlePageChange} />
     </>
   );
 }
