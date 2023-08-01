@@ -5,7 +5,7 @@ interface TableRow {
 interface Props {
   columnHeaders: string[];
   data: TableRow[];
-  columnWidths: number[];
+  columnWidths: string[];
 }
 
 function InfoTable({ columnHeaders, data, columnWidths }: Props) {
