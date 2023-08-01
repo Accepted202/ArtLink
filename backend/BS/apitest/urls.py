@@ -16,13 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+
+from apitest.views import TestView
+
+app_name = 'apitest'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('device/', include('device.urls')),
-    path('gallery/', include('gallery.urls')),
-    path('artwork/', include('artwork.urls')),
-    path('test/', include('apitest.urls'))
-
+    path('', TestView.as_view(), name='testview'),
 ]

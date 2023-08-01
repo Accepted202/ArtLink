@@ -15,8 +15,10 @@ class MqttConfig(AppConfig):
 
     # TODO: on_message 함수 수정.
     request_url = getattr(settings, 'DJANGO_REQUEST_PATH', 'none') #이것이 에러날 수도 있음 (장고 로딩 순서 이슈) 에러날 경우 밑의 url사용.
-    #request_url = 'http://localhost:8080/device/click/'
+    #request_url = 'http://localhost:8080/test/'
 
+    # 테스트용 api 확인
+    # 반드시 data를 data = { "num" : 3 } 형태의 json 파일로 보낼것.
     def on_message(self, client, userdata, message):
         payload = message.payload.decode()
         # TODO: data에 넣을 것 수정. 아마 json.loads를 사용하는 것이 나을듯. 아니라면 오류 뜰 수도 있음.
