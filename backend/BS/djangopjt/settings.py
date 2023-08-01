@@ -78,6 +78,15 @@ WSGI_APPLICATION = 'djangopjt.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# TODO: Django 기본 DB로 바꾸기
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -131,3 +140,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SPRING_SERVER_PATH = 'http://localhost:8080'
+#DJANGO_REQUEST_PATH = 'http://localhost:8000/device/click/'
+DJANGO_REQUEST_PATH = 'http://localhost:8000/test/'
