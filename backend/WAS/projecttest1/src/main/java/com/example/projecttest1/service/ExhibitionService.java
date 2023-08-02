@@ -28,8 +28,8 @@ public class ExhibitionService {
         Exhibition exhibition = new Exhibition();
         exhibition.setExhibitionName(requestDto.getExhibitionName());
         exhibition.setGallery(gallery);
-        exhibition.setExhibitionExplanation(exhibition.getExhibitionExplanation());
-        exhibition.setPosterUrl(exhibition.getPosterUrl());
+        exhibition.setExhibitionExplanation(requestDto.getExhibitionExplanation());
+        exhibition.setPosterUrl(requestDto.getPosterUrl());
         exhibition.setCreatedAt(LocalDate.now());
         return exhibitionRepository.save(exhibition);
     }
@@ -44,11 +44,18 @@ public class ExhibitionService {
     }
 
     public Exhibition modifyExhibition(ExhibitionRequestDto requestDto, Integer id) {
-
         Exhibition exhibition = findById(id);
-        exhibition.setExhibitionName(requestDto.getExhibitionName());
-        exhibition.setExhibitionExplanation(requestDto.getExhibitionExplanation());
-        exhibition.setPosterUrl(requestDto.getPosterUrl());
+        if (requestDto.getExhibitionName() != null) {
+            exhibition.setExhibitionName(requestDto.getExhibitionName());
+        }
+
+        if (requestDto.getExhibitionExplanation() != null) {
+            exhibition.setExhibitionExplanation(requestDto.getExhibitionExplanation());
+        }
+
+        if (requestDto.getPosterUrl() != null) {
+            exhibition.setPosterUrl(requestDto.getPosterUrl());
+        }
         return exhibitionRepository.save(exhibition);
     }
 
