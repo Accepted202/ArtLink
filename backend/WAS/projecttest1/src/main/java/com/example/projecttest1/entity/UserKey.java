@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
+import com.example.projecttest1.entity.User;
 @Getter
 @Setter
 @Entity
@@ -16,9 +18,31 @@ public class UserKey {
     @Column(name = "userkey_pk")
     private Long id;
 
+    @Column
     private String hashKey;
 
     @Column
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_pk")
+    private User user;
+
+    @Column
+    private LocalDate visitDate;
+
+    @Column
+    private Long phoneNumber;
+
+    @Column
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gallery_pk")
+    private Gallery gallery;
+
+    @Column
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_pk")
+    private Exhibition exhibition;
+
+    @Column
     @OneToMany(mappedBy = "userKey", cascade = CascadeType.ALL)
-    private List<PostEvent> postEvents;
+    public List<PostEvent> postEvents;
 }

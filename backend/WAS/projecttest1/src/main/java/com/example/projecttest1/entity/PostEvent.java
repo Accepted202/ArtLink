@@ -20,7 +20,15 @@ public class PostEvent {
     @JoinColumn(name = "userkey_pk")
     private UserKey userKey;
 
-    private Date timeStamp;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artWork_pk")
+    private ArtWork artWork;
 
-    private Long artWorkId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gallery_pk")
+    private Gallery gallery;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_pk")
+    private Exhibition exhibition;
 }

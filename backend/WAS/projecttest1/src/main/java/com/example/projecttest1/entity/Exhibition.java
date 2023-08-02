@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 public class Exhibition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "exhibition_pk")
     private Integer id;
 
     @Setter
@@ -31,6 +33,12 @@ public class Exhibition {
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     private Gallery gallery;
+
+    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.ALL)
+    private List<UserKey> userkeys;
+
+    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.ALL)
+    private List<ArtWork> artWorks;
 
     public Exhibition(String exhibitionName, Gallery gallery) {
         this.exhibitionName = exhibitionName;
