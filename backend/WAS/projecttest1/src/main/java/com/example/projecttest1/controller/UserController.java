@@ -1,5 +1,6 @@
 package com.example.projecttest1.controller;
 
+import com.example.projecttest1.config.auth.PrincipalDetails;
 import com.example.projecttest1.dto.UserResponseDto;
 import com.example.projecttest1.entity.User;
 import com.example.projecttest1.exception.user.UserAuthorizationException;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +30,8 @@ public class UserController {
     private ImageService imageService;
 
     @GetMapping("/me")
-    public ResponseEntity<UserResponseDto> me(HttpServletRequest request) {
+    public ResponseEntity<UserResponseDto> me(HttpServletRequest request, Authentication authentication) {
+        System.out.println(((PrincipalDetails)authentication.getPrincipal()).getUsername());
         String username = (String) request.getAttribute("username");
         User user = userRepository.findByUsername(username);
         return ResponseEntity.ok(new UserResponseDto(user.getUsername(), user.getNickname(), user.getPhoneNumber()));

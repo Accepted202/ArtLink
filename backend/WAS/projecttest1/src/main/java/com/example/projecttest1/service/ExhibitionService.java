@@ -34,7 +34,7 @@ public class ExhibitionService {
     }
 
     public Exhibition findById(Integer id) {
-        return exhibitionRepository.findById(id).orElseThrow(()->new ExhibitionNotFoundException());
+        return exhibitionRepository.findById(id).orElseThrow(()->new ExhibitionNotFoundException("Exhibition with id " + id + " not found"));
     }
 
     public List<Exhibition> selectAllExhibitions(String galleryName) {
