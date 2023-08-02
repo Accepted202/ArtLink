@@ -33,6 +33,9 @@ public class Gallery implements Principal {
     @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
     private List<UserKey> userkeys;
 
+    @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
+    private List<Device> devices;
+
     public Gallery(String username, String password, String galleryName) {
         this.username = username;
         this.galleryName = galleryName;

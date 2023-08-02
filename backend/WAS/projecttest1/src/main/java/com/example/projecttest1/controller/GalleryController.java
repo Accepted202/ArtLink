@@ -3,10 +3,12 @@ package com.example.projecttest1.controller;
 import com.example.projecttest1.config.auth.PrincipalDetails;
 import com.example.projecttest1.dto.*;
 import com.example.projecttest1.entity.ArtWork;
+import com.example.projecttest1.entity.Device;
 import com.example.projecttest1.entity.Exhibition;
 import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.exception.django.DjangoFailedException;
 import com.example.projecttest1.helper.Helper;
+import com.example.projecttest1.repository.GalleryRepository;
 import com.example.projecttest1.service.ArtWorkService;
 import com.example.projecttest1.service.ExhibitionService;
 import com.example.projecttest1.service.GalleryService;
@@ -17,10 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/galleries")
@@ -28,6 +27,9 @@ public class GalleryController {
 
     @Autowired
     private GalleryService galleryService;
+
+    @Autowired
+    private GalleryRepository galleryRepository;
 
     @Autowired
     private ExhibitionService exhibitionService;
@@ -156,6 +158,28 @@ public class GalleryController {
         catch(Exception e){
             e.printStackTrace();
             return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto("Post Drawing Failed", 400), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //갤러리 별 관람 중 기기 띄우기
+    @GetMapping("/{galleryId}/devices")
+    public ResponseEntity<?> getGalleryDevices(@PathVariable Integer galleryId) throws Exception{
+        try{
+            Optional<Gallery> gallery = galleryRepository.findById(galleryId);
+            if(gallery.get()==null){
+                throw new NoSuchElementException("Could not find gallery");
+            }
+            List<Device> deviceList = gallery.get().getDevices();
+
+            List<GalleryDeviceDto> response = new ArrayList<GalleryDeviceDto>();
+            for(Device device: deviceList){
+                response.add(new GalleryDeviceDto(device.getDeviceId(), device.getPhoneNumber()));
+            }
+            return new ResponseEntity<List<GalleryDeviceDto>>(response, HttpStatus.OK);
+
+        }catch(Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto(e.getMessage(), 400), HttpStatus.BAD_REQUEST);
         }
     }
 }

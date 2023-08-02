@@ -20,6 +20,7 @@ public class SelectionController {
     private final SelectionService selectionService;
 
 
+    //TODO: 그림은 하나씩만!
     @PostMapping("/devices/{deviceId}")
     public ResponseEntity pickPainting(@PathVariable Long deviceId, @RequestBody Map<String, Object> mp){
         try{

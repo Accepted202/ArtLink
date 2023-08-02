@@ -41,10 +41,11 @@ public class DeviceService {
         }
     }
 
-    public void save(Long deviceId, Long phoneNumber){
+    public void save(Long deviceId, Long phoneNumber, Gallery gallery){
         Device device = new Device();
         device.setDeviceId(deviceId);
         device.setPhoneNumber(phoneNumber);
+        device.setGallery(gallery);
 
         save(device);
     }
