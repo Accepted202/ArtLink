@@ -30,8 +30,7 @@ public class UserController {
     private ImageService imageService;
 
     @GetMapping("/me")
-    public ResponseEntity<UserResponseDto> me(HttpServletRequest request, Authentication authentication) {
-        System.out.println(((PrincipalDetails)authentication.getPrincipal()).getUsername());
+    public ResponseEntity<UserResponseDto> me(HttpServletRequest request) {
         String username = (String) request.getAttribute("username");
         User user = userRepository.findByUsername(username);
         return ResponseEntity.ok(new UserResponseDto(user.getUsername(), user.getNickname(), user.getPhoneNumber()));
