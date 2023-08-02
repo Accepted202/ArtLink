@@ -1,7 +1,7 @@
 // import React from 'react';
 import "./style/Detail.css";
 import ProfileBox from "../../commponents/Mypage/ProfileBox.tsx";
-import UserInputInfoTable from "../../commponents/InfoTable/UserInputInfoTable.tsx";
+import UserInputInfoTable from "../../commponents/Info/UserInputInfoTable.tsx";
 
 const id = 1;
 const name = "이름";

@@ -34,7 +34,7 @@ function PageManager() {
     KioskDetail: "/kiosk/1", // Example with parameter (replace '1' with an actual ID)
     KioskPrint: "/kiosk/print",
     KioskExit: "/kiosk/exit",
-    KioskResult: "/kiosk/result/1", // Example with parameter (replace '1' with an actual ID)
+    ComponentTest: "/component-test", // Example with parameter (replace '1' with an actual ID)
     // Other
     Contact: "/contact",
     AboutUs: "/about",
@@ -73,7 +73,7 @@ function PageManager() {
       "MypageGallery",
     ],
     Manager: ["UserBoard", "UserDetail", "GalleryBoard", "GalleryDetail"],
-    Kiosk: ["Kiosk", "KioskDetail", "KioskPrint", "KioskExit", "KioskResult"],
+    Kiosk: ["Kiosk", "KioskDetail", "KioskPrint", "KioskExit", "ComponentTest"],
     Other: ["Contact", "AboutUs"],
     OnlyDeveloper: [
       "ThreeTestPage",

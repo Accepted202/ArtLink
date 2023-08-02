@@ -11,6 +11,7 @@
 }
 .infoOuterBoxRight {
   width: 80%;
+  font-family: SUITE-Regular;
 }
 .infoInnerBoxLeft {
   margin: auto;
@@ -27,7 +28,7 @@
   border-radius: 10px;
   padding: 5px;
   padding-left: 10px;
-  font-family: HealthsetGothicLight;
+  font-family: SUITE-Regular;
 }
 
 .changeBtn {
@@ -35,14 +36,15 @@
   background-color: transparent;
   box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2),
     -3px -3px 3px rgba(255, 255, 255, 0.7);
-  width: 200px;
+  width: 160px;
   height: 50px;
   border-radius: 25px;
   margin-bottom: 10px;
   margin-top: 30px;
   color: rgb(138, 138, 138);
-  font-size: 14px;
+  font-size: 18px;
   transition: color 0.5s ease, box-shadow 0.5s ease;
+  font-family: SUITE-Regular;
 }
 
 .changeBtn:hover {

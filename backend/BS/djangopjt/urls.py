@@ -23,5 +23,6 @@ urlpatterns = [
     path('device/', include('device.urls')),
     path('gallery/', include('gallery.urls')),
     path('artwork/', include('artwork.urls')),
+    path('test/', include('apitest.urls'))
 
 ]

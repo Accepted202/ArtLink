@@ -1,5 +1,5 @@
-import ArtworkProfileBox from "../../commponents/InfoTable/ArtworkProfileBox.tsx";
-import ArtworkInputInfoTable from "../../commponents/InfoTable/ArtworkInputInfoTable.tsx";
+import ArtworkProfileBox from "../../commponents/Info/ArtworkProfileBox.tsx";
+import ArtworkInputInfoTable from "../../commponents/Info/ArtworkInputInfoTable.tsx";
 import "./Detail.css";
 import BackBtn from "../../commponents/Base/BackBtn.tsx";
 

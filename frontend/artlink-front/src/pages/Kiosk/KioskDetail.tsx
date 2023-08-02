@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MainLogo from "../../commponents/Base/MainLogo";
+import KioskMainLogo from "./KioskMainLogo";
 import styles from "./KioskDetail.module.css";
 import BoxContainer from "./BoxContainer";
 import { Link } from "react-router-dom";
@@ -60,7 +60,7 @@ function KioskDetail() {
 
   return (
     <>
-      <MainLogo />
+      <KioskMainLogo />
       <div className={styles["container-wrapper"]}>
         {chunkedData.map((chunk, index) => (
           <BoxContainer

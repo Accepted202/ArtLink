@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: SUITE-Regular;
 }
 
 .wrapper {
@@ -32,6 +33,12 @@
   color: rgb(138, 138, 138);
   font-size: 30px;
   transition: color 0.5s ease, box-shadow 0.5s ease;
+  font-family: SUITE-Regular;
+}
+.addbutton:hover {
+  color: rgb(58, 58, 58);
+  box-shadow: 1px 1px 1px rgba(37, 37, 37, 0.2),
+    -1px -1px 2px rgba(255, 255, 255, 0.7);
 }
 .searchOuter {
   display: flex;
@@ -47,6 +54,7 @@
   box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2),
     -3px -3px 3px rgba(255, 255, 255, 0.7);
   transition: color 0.5s ease, box-shadow 0.5s ease;
+  font-family: SUITE-Regular;
 }
 .searchbutton:hover {
   box-shadow: 1px 1px 1px rgba(37, 37, 37, 0.2),
@@ -66,10 +74,4 @@
   border: none;
   box-shadow: inset 3px 3px 2px rgba(37, 37, 37, 0.2);
   margin-right: 10px;
-}
-
-.addbutton:hover {
-  color: rgb(58, 58, 58);
-  box-shadow: 1px 1px 1px rgba(37, 37, 37, 0.2),
-    -1px -1px 2px rgba(255, 255, 255, 0.7);
 }

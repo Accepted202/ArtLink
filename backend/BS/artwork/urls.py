@@ -18,11 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from artwork.views import ArtworkView, getVoronoi
+from artwork.views import ArtworkView, getVoronoi, getNearbyArtwork
 
 app_name = 'artwork'
 
 urlpatterns = [
     path('', ArtworkView.as_view(), name='artwork'),
-    path('<int:galleryid>/', getVoronoi.as_view(), name = 'getvoronoi'),
+    path('getvoronoi/gallery/<int:galleryid>/', getVoronoi.as_view(), name = 'getvoronoi'),
+    path('getnearby/artwork/<int:artworkid>/', getNearbyArtwork.as_view(), name = 'getnearby')
 ]
