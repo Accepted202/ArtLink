@@ -2,12 +2,14 @@ package com.example.projecttest1.controller;
 
 import com.example.projecttest1.dto.UserKeyResponseDto;
 import com.example.projecttest1.dto.UserResponseDto;
+import com.example.projecttest1.dto.UserUpdateDto;
 import com.example.projecttest1.entity.User;
 import com.example.projecttest1.entity.UserKey;
 import com.example.projecttest1.exception.user.UserAuthorizationException;
 import com.example.projecttest1.repository.UserKeyRepository;
 import com.example.projecttest1.repository.UserRepository;
 import com.example.projecttest1.service.ImageService;
+import com.example.projecttest1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,9 @@ public class UserController {
     private UserRepository userRepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private ImageService imageService;
 
     @Autowired
@@ -44,11 +49,12 @@ public class UserController {
     }
 
     @PutMapping("/me")
-    public ResponseEntity<UserResponseDto> updateMe(@RequestBody User user, HttpServletRequest request) {
+    public ResponseEntity<UserResponseDto> updateMe(@RequestBody UserUpdateDto userUpdateDto, HttpServletRequest request) {
         String username = (String) request.getAttribute("username");
-        if (!user.getUsername().equals(username)) {
+        if (!userUpdateDto.getUsername().equals(username)) {
             throw new UserAuthorizationException("권한없음");
         }
+        User user = userService.updateUser(userUpdateDto);
         return ResponseEntity.ok(new UserResponseDto(user.getUsername(), user.getNickname(), user.getPhoneNumber()));
     }
 
