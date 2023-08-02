@@ -12,18 +12,18 @@ from artwork.models import Voronoipoint, Voronoiresult
 from device.models import Anchor
 from device.serializers import AnchorSerializer
 
-from gallery.models import Gallery
+from exhibition.models import Exhibition
 from helper.helper import rotation, get_coord, dist
 
 # Create your views here.
 # POST Request form:
 # {
-#     "galleryId": 2,
+#     "exhibitionId": 2,
 #     "anchorId": 3,
 # }
 # GET Response form:
-# [{"anchorid": 3, "coorx": 120.32, "coory": 1.3, "gallery": 3},
-# {"anchorid": 4, "coorx": 120.32, "coory": 1.3, "gallery": 3}]
+# [{"anchorid": 3, "coorx": 120.32, "coory": 1.3, "exhibition": 3},
+# {"anchorid": 4, "coorx": 120.32, "coory": 1.3, "exhibition": 3}]
 # PUT Response form:
 # Same as POST
 @method_decorator(csrf_exempt, name = 'dispatch')
@@ -36,7 +36,7 @@ class AnchorView(View):
             return HttpResponse(status=201, content = "Well Created")
         except Exception as e:
             print(e)
-            return HttpResponse(status=404, content = "No valid gallery")
+            return HttpResponse(status=404, content = "No valid exhibition")
 
     def get(self, request):
         content = AnchorSerializer(Anchor.objects.all(), many = True)
@@ -50,10 +50,10 @@ class AnchorDetailView(View):
             anchor = Anchor.objects.get(anchorid=anchorid)
             data = json.loads(request.body)
             n_anchorid = data['anchorid']
-            n_gallery = Gallery.objects.get(galleryid = data['galleryid'])
+            n_exhibition = Exhibition.objects.get(exhibitionid = data['exhibitionid'])
             coorx, coory = data['coorx'], data['coory']
             anchor.anchorid = n_anchorid
-            anchor.gallery = n_gallery
+            anchor.exhibition = n_exhibition
             anchor.coorx = coorx
             anchor.coory = coory
             anchor.save()
@@ -79,15 +79,15 @@ class ClickEvent(View):
             anchorid1, anchorid2, anchorid3 = data['anchorid1'], data['anchorid2'], data['anchorid3']
             anchor1, anchor2, anchor3 = Anchor.objects.get(anchorid = anchorid1), Anchor.objects.get(anchorid = anchorid2), Anchor.objects.get(anchorid = anchorid3)
 
-            gallery = anchor1.gallery
+            exhibition = anchor1.exhibition
 
             x1, y1, x2, y2, x3, y3 = anchor1.coorx, anchor1.coory, anchor2.coorx, anchor2.coory, anchor3.coorx, anchor3.coory
             coor = get_coord(d1, d2, d3, [x1, y1], [x2, y2], [x3, y3]) # device의 현재 좌표
 
             #랜덤 기울기를 가진 직선
             slope = math.tan((random.random() - 0.5) * math.pi)
-            intersections = Voronoipoint.objects.filter(gallery = gallery)
-            edges = Voronoiresult.objects.filter(gallery = gallery)
+            intersections = Voronoipoint.objects.filter(exhibition = exhibition)
+            edges = Voronoiresult.objects.filter(exhibition = exhibition)
 
             points = {}
 

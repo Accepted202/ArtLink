@@ -4,36 +4,36 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import json
-from gallery.models import Gallery
+from exhibition.models import Exhibition
 
 # Create your views here.
 @method_decorator(csrf_exempt, name = 'dispatch')
-class GalleryView(View):
+class ExhibitionView(View):
     @method_decorator(csrf_exempt)
     def post(self, request):
         data = json.loads(request.body)
         print(data)
         try:
-            Gallery.objects.create(galleryid = data['galleryId'])
-            return HttpResponse(status=201, content = 'Gallery created successfully')
+            Exhibition.objects.create(exhibitionid = data['exhibitionId'])
+            return HttpResponse(status=201, content = 'Exhibition created successfully')
         except:
             return HttpResponse(status=404, content='It is already created.')
 
     def get(self, request):
         try:
-            galleries = Gallery.objects.all()
+            exhibitions = Exhibition.objects.all()
             res = {}
-            res['galleryList'] = []
-            for gallery in galleries:
-                res['galleryList'].append(gallery.galleryid)
+            res['exhibitionList'] = []
+            for exhibition in exhibitions:
+                res['exhibitionList'].append(exhibition.exhibitionid)
             return HttpResponse(status=200, content=json.dumps(res))
         except:
-            return HttpResponse(status=404, content='There is no gallery.')
+            return HttpResponse(status=404, content='There is no exhibition.')
 
 
 @method_decorator(csrf_exempt, name = 'dispatch')
-class GalleryDetailView(View):
+class ExhibitionDetailView(View):
     @method_decorator(csrf_exempt)
-    def delete(self, request, galleryid):
-        Gallery.objects.delete(galleryid = galleryid)
-        return HttpResponse(status=200, content = 'Gallery deleted successfully')
+    def delete(self, request, exhibitionid):
+        Exhibition.objects.delete(exhibitionid = exhibitionid)
+        return HttpResponse(status=200, content = 'Exhibition deleted successfully')

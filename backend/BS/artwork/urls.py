@@ -24,6 +24,6 @@ app_name = 'artwork'
 
 urlpatterns = [
     path('', ArtworkView.as_view(), name='artwork'),
-    path('getvoronoi/gallery/<int:galleryid>/', getVoronoi.as_view(), name = 'getvoronoi'),
+    path('getvoronoi/exhibition/<int:exhibitionid>/', getVoronoi.as_view(), name = 'getvoronoi'),
     path('getnearby/artwork/<int:artworkid>/', getNearbyArtwork.as_view(), name = 'getnearby')
 ]

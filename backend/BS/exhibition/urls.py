@@ -18,11 +18,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from gallery.views import GalleryView, GalleryDetailView
+from exhibition.views import ExhibitionView, ExhibitionDetailView
 
-app_name = 'gallery'
+app_name = 'exhibition'
 
 urlpatterns = [
-    path('', GalleryView.as_view(), name='gallery_view'),
-    path('<int:galleryid>/', GalleryDetailView.as_view(), name='gallerydetail_view'),
+    path('', ExhibitionView.as_view(), name='exhibitionview'),
+    path('<int:exhibitionid>/', ExhibitionDetailView.as_view(), name='exhibitiondetailview'),
 ]

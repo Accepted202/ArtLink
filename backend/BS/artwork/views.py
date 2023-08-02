@@ -11,7 +11,7 @@ from django.db.models import Q
 
 from artwork.models import Artwork, Voronoipoint, Voronoiresult
 from artwork.serializers import ArtworkSerializer
-from gallery.models import Gallery
+from exhibition.models import Exhibition
 
 
 # Create your views here.
@@ -27,9 +27,9 @@ class ArtworkView(View):
 
             #Voronoi diagram을 뽑는 과정
             reverse_url = reverse('getvoronoi')
-            galleryid = data['galleryid']
-            gallery = Gallery.objects.get(galleryid=galleryid)
-            artworks = Artwork.objects.filter(gallery = gallery)
+            exhibitionid = data['exhibitionid']
+            exhibition = Exhibition.objects.get(exhibitionid=exhibitionid)
+            artworks = Artwork.objects.filter(exhibition = exhibition)
 
 
             txt = str(len(artworks))
@@ -59,9 +59,9 @@ class ArtworkView(View):
 
             # 보로노이 돌리기
             reverse_url = reverse('getvoronoi')
-            galleryid = data['galleryid']
-            gallery = Gallery.objects.get(galleryid=galleryid)
-            artworks = Artwork.objects.filter(gallery=gallery)
+            exhibitionid = data['exhibitionid']
+            exhibition = Exhibition.objects.get(exhibitionid=exhibitionid)
+            artworks = Artwork.objects.filter(exhibition=exhibition)
 
             txt = str(len(artworks))
             txt += '\n'
@@ -79,7 +79,7 @@ class ArtworkView(View):
 
 @method_decorator(csrf_exempt, name = 'dispatch')
 class getVoronoi(View): #Voronoi 결과를 얻기.
-    def post(self, request, galleryid):
+    def post(self, request, exhibitionid):
         inp = request.POST.get('input')
 
         command = "tools/cpptest.exe"
@@ -111,20 +111,20 @@ class getVoronoi(View): #Voronoi 결과를 얻기.
                             edge.append(stdout[i][j])
                         else:
                             area.append(stdout[i][j])
-            gallery = Gallery.objects.get(galleryid = galleryid)
+            exhibition = Exhibition.objects.get(exhibitionid = exhibitionid)
 
             #기존에 저장해둔 모든 데이터 삭제
-            Voronoipoint.objects.delete(gallery = gallery)
-            Voronoiresult.objects.delete(gallery = gallery)
+            Voronoipoint.objects.delete(exhibition = exhibition)
+            Voronoiresult.objects.delete(exhibition = exhibition)
 
             #데이터 신규 생성
             for idx, point in enumerate(vertex):
                 coorx, coory = point[0], point[1]
-                Voronoipoint.objects.create(coorx = coorx, coory = coory, pointid = idx, gallery = gallery)
+                Voronoipoint.objects.create(coorx = coorx, coory = coory, pointid = idx, exhibition = exhibition)
             for idx, e in enumerate(edge):
                 point1id, point2id = e[0], e[1]
                 cw1, cw2 = area[idx][0], area[idx][1]
-                Voronoiresult.objects.create(point1id = point1id, point2id = point2id, cwartworkid = cw1, ccwartworkid = cw2, gallery = gallery)
+                Voronoiresult.objects.create(point1id = point1id, point2id = point2id, cwartworkid = cw1, ccwartworkid = cw2, exhibition = exhibition)
             return HttpResponse(status = 200, content = 'successfully worked.')
         else:
             raise Exception

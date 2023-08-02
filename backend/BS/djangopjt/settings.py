@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'device.apps.DeviceConfig',
     'artwork.apps.ArtworkConfig',
-    'gallery.apps.GalleryConfig',
+    'exhibition.apps.GalleryConfig',
     'mqtt.apps.MqttConfig',
 ]
 
