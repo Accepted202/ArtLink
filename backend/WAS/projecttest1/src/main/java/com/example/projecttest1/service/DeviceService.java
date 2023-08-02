@@ -1,7 +1,6 @@
 package com.example.projecttest1.service;
 
-import com.example.projecttest1.entity.Device;
-import com.example.projecttest1.entity.Selection;
+import com.example.projecttest1.entity.*;
 //import com.example.projecttest1.entity.Collection;
 import com.example.projecttest1.repository.*;
 import org.springframework.stereotype.Service;
@@ -83,7 +82,7 @@ public class DeviceService {
         return res;
     }
 
-    public String deviceDelete(Device device){
+    public String deviceDelete(Device device) throws Exception {
         //유저가 회원가입 되어 있는지를 검증하고 회원가입이 되어 있다면 자동으로 연동하는 코드를 짜야 함.
         //유저가 unique한 숫자를 이용하여 Key를 얻어야 함.
 
@@ -99,15 +98,26 @@ public class DeviceService {
         try{
             //Selection에서 해당하는 미술작품의 id 리스트를 구해낸 후 url과 같이 묶어 저장한다.
             Long deviceId = device.getDeviceId();
+            Long phoneNumber = device.getPhoneNumber();
+
             List<Selection> selections = selectionRepository.getSelectionByDevice(deviceId);
-            List<Long> artWorkIds = new ArrayList<>();
-            for(Selection selection : selections){
-                Long artWorkId= selection.getArtWork().getId();
-                artWorkIds.add(artWorkId);
+            List<ArtWork> artWorks = new ArrayList<>();
+
+            if(selections.size() == 0){
+                throw new Exception("Empty selection");
             }
 
-            userKeyRepository.saveKey(url);
-            postEventRepository.savePostEvent(url, artWorkIds);
+            for(Selection selection : selections){
+                ArtWork artWork = selection.getArtWork();
+                artWorks.add(artWork);
+            }
+
+            ArtWork artwork = selections.get(0).getArtWork();
+            Exhibition exhibition = artwork.getExhibition();
+            Gallery gallery = exhibition.getGallery();
+
+            UserKey userKey = userKeyRepository.saveKey(gallery, exhibition, phoneNumber, url);
+            postEventRepository.savePostEvent(userKey, artWorks);
             //postEvent에 저장 후 삭제
             deviceRepository.delete(device);
             return url;
@@ -118,7 +128,7 @@ public class DeviceService {
         }
     }
 
-    public String deviceDelete(Long deviceId){
+    public String deviceDelete(Long deviceId) throws Exception {
         Device device = deviceRepository.findBydeviceId(deviceId);
         return deviceDelete(device);
     }
