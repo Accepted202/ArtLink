@@ -1,6 +1,4 @@
 import InfoTable from "./commponents/Info/InfoTable";
-import { useState } from "react";
-import Pagination from "./commponents/Info/Pagination";
 
 // 타입지정
 interface ArtworkData {
@@ -11,14 +9,7 @@ interface ArtworkData {
   [key: string]: string | number;
 }
 
-interface SelectedPage {
-  selected: number;
-}
-
 function ComponentTest() {
-  const pageSize = 10; // 한 페이지에 표시할 작품 수
-  const [currentPage, setCurrentPage] = useState(0); // 현재 페이지 번호
-
   const artworkData: ArtworkData[] = [
     { id: 1, title: "제목1", location: "위치1", description: "설명1" },
     { id: 2, title: "제목2", location: "위치2", description: "설명2" },
@@ -36,28 +27,19 @@ function ComponentTest() {
   ];
 
   const keys = Object.keys(artworkData[0]);
-  const widths = ["8%", "30%", "8%"];
-
-  const pageCount = Math.ceil(artworkData.length / pageSize);
-  const offset = currentPage * pageSize;
-  const currentPageArtworks = artworkData.slice(offset, offset + pageSize);
-
-  // 페이지 변경 시 호출되는 함수
-  const handlePageChange = (selectedPage: SelectedPage) => {
-    const newPage = selectedPage.selected;
-    setCurrentPage(Math.max(newPage, 0)); // 현재 페이지가 0 미만이면 0으로 설정
-    console.log(keys);
-  };
+  const widths = ["8%", "54%", "30%", "8%"];
+  const keyToExclude = ["description"];
 
   return (
     <>
       <h1>ComponentTest</h1>
       <InfoTable
-        columnHeaders={keys}
+        data={artworkData}
+        pageSize={10}
+        dataKeys={keys}
         columnWidths={widths}
-        data={currentPageArtworks}
+        keyToExclude={keyToExclude}
       />
-      <Pagination pageCount={pageCount} handlePageChange={handlePageChange} />
     </>
   );
 }
