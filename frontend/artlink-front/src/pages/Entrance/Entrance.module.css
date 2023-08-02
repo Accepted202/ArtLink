@@ -40,3 +40,12 @@
 
   margin-top: 100px;
 }
+
+.entranceContainer {
+  margin-top: 190px;
+}
+@media (max-width: 767px) {
+  .entranceContainer {
+    margin-top: 100px;
+  }
+}

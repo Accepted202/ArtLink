@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'device.apps.DeviceConfig',
     'artwork.apps.ArtworkConfig',
     'gallery.apps.GalleryConfig',
-    # 'mqtt.apps.MqttConfig',
+    'mqtt.apps.MqttConfig',
 ]
 
 MIDDLEWARE = [
@@ -140,5 +140,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SPRING_SERVER_PATH = 'http://localhost:8080'
-#DJANGO_REQUEST_PATH = 'http://localhost:8000/device/click/'
-DJANGO_REQUEST_PATH = 'http://localhost:8000/test/'
+DJANGO_REQUEST_PATH = 'http://localhost:8000/device/click/'
+# DJANGO_REQUEST_PATH = 'http://localhost:8000/test/'

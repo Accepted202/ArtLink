@@ -1,25 +1,44 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Menu.module.css";
+import jwt_decode from "jwt-decode";
 
 interface MenuItem {
   label: string;
   path: string;
+}
+interface DecodedToken {
+  sub: string;
+  role: string;
+  id: number;
+  exp: number;
+  username: string;
 }
 
 function Menu() {
   // 권한에 따라 다른 메뉴창 보이기
   const [isLoggedIn] = useState(true);
   const [whoareyou, setWhoAreYou] = useState("user");
-  function handleUser() {
-    setWhoAreYou("user");
-  }
-  function handleGallery() {
-    setWhoAreYou("gallery");
-  }
-  function handleManager() {
-    setWhoAreYou("manager");
-  }
+  const accessToken: string | null = localStorage.getItem("access_token");
+
+  useEffect(() => {
+    if (accessToken) {
+      const decodedToken = jwt_decode<DecodedToken>(accessToken);
+      const userRole = decodedToken.role;
+      if (userRole === "ROLE_MANAGER") {
+        setWhoAreYou("manager");
+      } else if (userRole === "ROLE_USER") {
+        setWhoAreYou("user");
+      } else if (userRole === "ROLE_GALLERY") {
+        setWhoAreYou("gallery");
+      }
+    }
+  }, [accessToken]);
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    window.location.reload();
+  };
 
   const menus: { [key: string]: MenuItem[] } = {
     user: [
@@ -37,20 +56,11 @@ function Menu() {
   };
 
   const menuItems = isLoggedIn ? menus[whoareyou] : [];
-
+  if (!accessToken) {
+    return null;
+  }
   return (
     <>
-      {/* <div style={{ display: "flex", flexDirection: "column", margin: "auto" }}>
-        <button onClick={handleUser} style={{ fontSize: "10px" }}>
-          유저
-        </button>
-        <button onClick={handleGallery} style={{ fontSize: "10px" }}>
-          갤러리
-        </button>
-        <button onClick={handleManager} style={{ fontSize: "10px" }}>
-          매니저
-        </button>
-      </div> */}
       {/* 움직이는 메뉴바 */}
       <div className="menuContainer">
         <nav>
@@ -63,6 +73,7 @@ function Menu() {
                 <li>{menuItem.label}</li>
               </Link>
             ))}
+            <li onClick={handleLogout}>Logout</li>
           </ul>
         </nav>
       </div>

@@ -1,0 +1,23 @@
+.PMContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.PMBtn {
+  font-family: SUITE-Regular;
+  border: 1px solid black;
+  margin: 5px;
+}
+.PMBtn:hover {
+  font-weight: bold;
+  border: 2px solid black;
+}
+
+.PMSection {
+  width: 26%;
+  border: 1px solid rgb(147, 147, 147);
+  margin: 10px;
+  padding: 10px;
+}

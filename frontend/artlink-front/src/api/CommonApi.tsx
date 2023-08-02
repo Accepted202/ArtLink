@@ -13,15 +13,16 @@ const createUrl = (endpoint: string): string => {
 export interface LoginRes {
   accessToken: string;
   refreshToken: string;
+  role: string;
 }
 export interface LoginReq {
   username: string;
   password: string;
   role: string;
 }
-export const LoginApi = async (dataToSend: LoginReq): Promise<LoginReq[]> => {
+export const LoginApi = async (dataToSend: LoginReq): Promise<LoginRes> => {
   try {
-    const response: AxiosResponse<LoginReq[]> = await axios.post(
+    const response: AxiosResponse<LoginRes> = await axios.post(
       createUrl("/auth/login"),
       dataToSend
     );

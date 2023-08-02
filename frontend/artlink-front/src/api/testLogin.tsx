@@ -26,6 +26,9 @@ const Apitest: React.FC = () => {
   return (
     <>
       <h1>Apitest</h1>
+      <p>로그인 API 테스트입니다.</p>
+      <p>USER1에 대한 시도입니다.</p>
+      <hr />
       <div>
         {/* 가져온 데이터를 화면에 렌더링 */}
         accessToken : <p>{sampleData.accessToken}</p>

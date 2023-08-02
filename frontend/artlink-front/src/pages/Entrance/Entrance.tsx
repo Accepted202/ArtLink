@@ -2,20 +2,22 @@
 import MainLogo from "../../commponents/Base/MainLogo";
 import { Link } from "react-router-dom";
 import Styles from "./Entrance.module.css";
-import MarginTop200 from "../../commponents/EditCss/MarginTop200";
+import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 
 function Entrance() {
   return (
     <>
-      <MarginTop200 />
-      <MainLogo />
-      <Link to="/login" style={{ textDecoration: "none" }}>
-        <div className={Styles.startbtnBody}>
-          <div className={Styles.startbtn}>
-            <p className={Styles.innerIcon}>{"start"}</p>
+      <div className={Styles.entranceContainer}>
+        <MainLogo />
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          <div className={Styles.startbtnBody}>
+            <div className={Styles.startbtn}>
+              <p className={Styles.innerIcon}>{"start"}</p>
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+        <MarginTopInput value={100} />
+      </div>
     </>
   );
 }

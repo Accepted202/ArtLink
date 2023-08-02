@@ -21,6 +21,9 @@ const Apitest: React.FC = () => {
   return (
     <>
       <h1>Apitest</h1>
+      <p>환율정보를 불러오는 API 테스트 (상태 : 성공)</p>
+      <p>API 구조를 참고하세요.</p>
+      <hr />
       <div>
         {/* 가져온 데이터를 화면에 렌더링 */}
         {sampleData.map((item) => (
