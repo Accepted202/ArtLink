@@ -32,7 +32,7 @@ class MqttConfig(AppConfig):
             link_cnt = data["LC"]
             if link_cnt < 3 :
                 res = 2
-                publish.single(tag_id, res,hostname = self.MQTT_BROKER_HOST, port = self.MQTT_BROKER_PORT)
+                publish.single(tag_id, res, hostname = self.MQTT_BROKER_HOST, port = self.MQTT_BROKER_PORT)
                 return
             # make request body
             req_body = {}
