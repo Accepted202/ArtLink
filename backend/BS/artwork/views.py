@@ -73,7 +73,7 @@ class ArtworkView(View):
         except Exception as e:
             return HttpResponse(status=404, content = "Not valid form")
 
-# TODO: gallery에서 exhibition으로 리팩토링!
+# TODO: URL 매핑 다시 확인
 # TODO: 전시회별 수정 요청.
 # TODO: 미술품 삭제요청도 만들어야 함!!
 
