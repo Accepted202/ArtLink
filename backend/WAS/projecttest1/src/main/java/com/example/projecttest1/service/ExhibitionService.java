@@ -9,6 +9,7 @@ import com.example.projecttest1.repository.ExhibitionRepository;
 import com.example.projecttest1.repository.GalleryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -43,6 +44,7 @@ public class ExhibitionService {
         return exhibitionRepository.findAllByGallery(gallery);
     }
 
+    @Transactional
     public Exhibition modifyExhibition(ExhibitionRequestDto requestDto, Integer id) {
         Exhibition exhibition = findById(id);
         if (requestDto.getExhibitionName() != null) {
@@ -56,7 +58,7 @@ public class ExhibitionService {
         if (requestDto.getPosterUrl() != null) {
             exhibition.setPosterUrl(requestDto.getPosterUrl());
         }
-        return exhibitionRepository.save(exhibition);
+        return exhibition;
     }
 
 }
