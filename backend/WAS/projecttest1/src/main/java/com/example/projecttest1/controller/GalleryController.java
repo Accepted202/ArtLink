@@ -5,10 +5,8 @@ import com.example.projecttest1.dto.*;
 import com.example.projecttest1.entity.ArtWork;
 import com.example.projecttest1.entity.Exhibition;
 import com.example.projecttest1.entity.Gallery;
-import com.example.projecttest1.entity.Principal;
 import com.example.projecttest1.exception.django.DjangoFailedException;
 import com.example.projecttest1.helper.Helper;
-import com.example.projecttest1.repository.GalleryRepository;
 import com.example.projecttest1.service.ArtWorkService;
 import com.example.projecttest1.service.ExhibitionService;
 import com.example.projecttest1.service.GalleryService;
@@ -97,9 +95,9 @@ public class GalleryController {
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
             List<ArtWork> artWorkList = exhibition.getArtWorks();
 
-            List<GalleryArtWorkDto> galleryArtWorkList = new ArrayList<GalleryArtWorkDto>();
+            List<ArtWorkDto> galleryArtWorkList = new ArrayList<ArtWorkDto>();
             for (ArtWork artWork : artWorkList) {
-                galleryArtWorkList.add(new GalleryArtWorkDto(artWork.getName(),
+                galleryArtWorkList.add(new ArtWorkDto(artWork.getName(),
                         artWork.getArtist(),
                         artWork.getXCoor(),
                         artWork.getYCoor(),
@@ -119,7 +117,7 @@ public class GalleryController {
     //TODO:갤러리 관리자 그림 추가: Done
     @PostMapping("/me/exhibitions/{exhibitionId}/artworks")
     public ResponseEntity<?> postGalleryArtwork(HttpServletRequest request, Authentication authentication, @PathVariable Integer exhibitionId,
-                                                @RequestBody GalleryArtWorkDto newArtwork) throws DjangoFailedException {
+                                                @RequestBody ArtWorkDto newArtwork) throws DjangoFailedException {
         try{
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
             ArtWork artWork = artWorkService.addArtWork(newArtwork.getName(),
@@ -141,13 +139,13 @@ public class GalleryController {
             sendMsg.put("coory", artWork.getYCoor());
 
             //sendMsg
-            int statuscode = helper.SendMsg(path, sendMsg);
+            int statuscode = helper.postSendMsg(path, sendMsg);
             if (statuscode != 200){
                 throw new DjangoFailedException("Django failed to send");
             }
             */
 
-            return new ResponseEntity<GalleryArtWorkDto>(newArtwork, HttpStatus.OK);
+            return new ResponseEntity<ArtWorkDto>(newArtwork, HttpStatus.OK);
         }
         /*
         catch(DjangoFailedException de){

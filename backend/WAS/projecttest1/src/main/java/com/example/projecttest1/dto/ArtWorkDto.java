@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class GalleryArtWorkDto {
+public class ArtWorkDto {
     private final String Name;
 
     private final String Artist;
