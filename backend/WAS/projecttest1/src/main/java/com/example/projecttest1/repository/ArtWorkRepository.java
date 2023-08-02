@@ -15,8 +15,9 @@ public class ArtWorkRepository{
     @PersistenceContext
     private EntityManager em;
 
-    public void save(ArtWork artWork){
+    public ArtWork save(ArtWork artWork){
         em.persist(artWork);
+        return artWork;
     }
 
     public boolean delete(ArtWork artWork){

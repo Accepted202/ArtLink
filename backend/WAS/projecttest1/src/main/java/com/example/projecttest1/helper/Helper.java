@@ -1,6 +1,7 @@
 package com.example.projecttest1.helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -8,7 +9,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public class helper {
+@Component
+public class Helper {
     public static String getJsonStringFromMap(Map<String, Object> map) throws Exception{
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(map);
