@@ -25,5 +25,5 @@ app_name = 'device'
 urlpatterns = [
     path('anchor/', AnchorView.as_view(), name='anchorview'),
     path('anchor/<int:anchorid>/', AnchorDetailView.as_view(), name='anchordatailview'),
-    path('iot/click/', ClickEvent.as_view(), name='clickevent')
+    path('iot/click/<int:deviceId>/', ClickEvent.as_view(), name='clickevent')
 ]

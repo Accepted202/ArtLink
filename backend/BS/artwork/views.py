@@ -1,7 +1,7 @@
 import json
 import subprocess
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -73,9 +73,16 @@ class ArtworkView(View):
         except Exception as e:
             return HttpResponse(status=404, content = "Not valid form")
 
-# TODO: URL 매핑 다시 확인
-# TODO: 전시회별 수정 요청.
-# TODO: 미술품 삭제요청도 만들어야 함!!
+# TODO: 전시회별 수정 요청.=> 무슨 의미였지... 나중에 다시 확인하기로.
+
+@method_decorator(csrf_exempt, name = 'dispatch')
+class ArtworkDetailView(View):
+    def delete(self, request, artworkId):
+        try:
+            Artwork.objects.delete(artworkid = artworkId)
+            return JsonResponse({'msg':'ok'}, status = 200)
+        except:
+            return JsonResponse({'msg':'deletion failed'}, status = 400)
 
 @method_decorator(csrf_exempt, name = 'dispatch')
 class getVoronoi(View): #Voronoi 결과를 얻기.
