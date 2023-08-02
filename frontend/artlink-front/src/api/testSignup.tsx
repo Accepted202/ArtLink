@@ -5,9 +5,10 @@ import { SignupApi, SignupRes, SignupReq } from "./CommonApi";
 const Apitest: React.FC = () => {
   const [sampleData, setSampleData] = useState<SignupRes[]>([]);
   const sendData: SignupReq = {
-    username: "Cho Junha",
-    password: "wnsgk0208!",
+    username: "userrr",
+    password: "1234",
     phoneNumber: 821022921491,
+    nickname: "",
   };
   const getData = async () => {
     try {
@@ -26,6 +27,8 @@ const Apitest: React.FC = () => {
   return (
     <>
       <h1>Apitest</h1>
+      <p>회원가입 API 테스트입니다.</p>
+      <hr />
       <div>
         {/* 가져온 데이터를 화면에 렌더링 */}
         <p>{sampleData.id}</p>

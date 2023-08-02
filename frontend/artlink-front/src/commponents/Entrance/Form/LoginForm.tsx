@@ -1,12 +1,20 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState, useEffect } from "react";
 import "./Form.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { LoginApi } from "../../../api/CommonApi";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { useLogin } from "./LoginFormFunction";
+import { LoginFormVar } from "./LoginFormUtil";
 
 function LoginForm() {
-  const navigate = useNavigate();
+  // 사용하는 함수들 임포트
+  const { determineRole, reqLogin } = useLogin();
+  // 사용하는 변수들 임포트
+  const {
+    signUpLink,
+    anotherLoginLink,
+    anotherLogintxt,
+    loginTitle,
+    isLoginAdmin,
+  } = LoginFormVar();
 
   // 인풋 필드 useState
   const [formData, setFormData] = useState({
@@ -16,7 +24,6 @@ function LoginForm() {
   });
   // 인풋 필드 변경
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("변경시도");
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -24,67 +31,24 @@ function LoginForm() {
     }));
   };
   // url에 따른 role 값 사전 설정
-  const location = useLocation();
+  const role = determineRole();
   useEffect(() => {
-    const determineRole = () => {
-      if (location.pathname.includes("login-gallery")) {
-        return "GALLERY";
-      } else if (location.pathname.includes("login-admin")) {
-        return "ADMIN";
-      } else {
-        return "USER";
-      }
-    };
-
     // role 값을 설정해줍니다.
-    const role = determineRole();
     setFormData((prevData) => ({
       ...prevData,
       role: role,
     }));
-  }, [location.pathname]);
-  // 로그인 API요청
-  const reqLogin = async () => {
-    try {
-      // 로그인 API를 호출하여 데이터를 서버로 보냅니다.
-      const response = await LoginApi(formData);
-      console.log(response, response.accessToken);
-      // 로그인 성공시 (Header에 저장, Home으로 이동)
-      const accessToken = response.accessToken;
-      const refreshToken = response.refreshToken;
-      localStorage.setItem("access_token", accessToken);
-      localStorage.setItem("refresh_token", refreshToken);
-      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-      console.log(axios.defaults.headers.common["Authorization"]);
-      // 홈으로 이동
-      navigate("/home");
-    } catch (error) {
-      console.error("Error Log in:", error);
-      window.alert(error);
-    }
-  };
+  }, [role]);
+
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      void reqLogin();
+      void reqLogin(formData);
     }
   };
-  const signUpLink = location.pathname.includes("login-gallery")
-    ? "/signup-gallery"
-    : "/signup";
-  const anotherLoginLink = location.pathname.includes("login-gallery")
-    ? "/login"
-    : "/login-gallery";
-  const anotherLogintxt = location.pathname.includes("login-gallery")
-    ? "Go to User Login"
-    : "Go to Gallery Login";
-  const loginTitle = location.pathname.includes("login-admin")
-    ? "Admin Login"
-    : location.pathname.includes("login-gallery")
-    ? "Gallery Login"
-    : "User Login";
+  function handlereqLogin() {
+    void reqLogin(formData);
+  }
 
-  // location.pathname.includes('login-admin')가 true인 경우에는 링크들을 비활성화
-  const isLoginAdmin = location.pathname.includes("login-admin");
   return (
     <>
       <p className="loginTitle">{loginTitle}</p>
@@ -134,13 +98,13 @@ function LoginForm() {
               <button
                 type="submit"
                 className="btn smallbutton"
-                onClick={reqLogin}
+                onClick={handlereqLogin}
               >
                 <p>Log In</p>
               </button>
             </>
           ) : (
-            <button type="submit" className="btn" onClick={reqLogin}>
+            <button type="submit" className="btn" onClick={handlereqLogin}>
               <p>Log In</p>
             </button>
           )}

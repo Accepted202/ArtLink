@@ -10,6 +10,7 @@
     -10px -10px 20px rgba(255, 255, 255, 0.7);
   animation: fadeIn 3s;
   transition: box-shadow 0.3s ease;
+  font-family: SUITE-Regular;
 }
 .BigBtn:hover {
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2),

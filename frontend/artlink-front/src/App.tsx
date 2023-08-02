@@ -14,6 +14,7 @@ import Signup from "./pages/Entrance/Signup";
 import LoginGallery from "./pages/Entrance/LoginGallery";
 import LoginAdmin from "./pages/Entrance/LoginAdmin";
 import SignupGallery from "./pages/Entrance/SignupGallery";
+import FindPassword from "./pages/Entrance/FindPassword";
 // User
 import ArtMemory from "./pages/User/ArtMemory";
 import ArtMemoryDetail from "./pages/User/ArtMemoryDetail";
@@ -74,6 +75,8 @@ function App() {
         <Route path="/login-gallery" element={<LoginGallery />} />
         <Route path="/signup-gallery" element={<SignupGallery />} />
         <Route path="/login-admin" element={<LoginAdmin />} />
+        <Route path="/login/password" element={<FindPassword />} />
+        <Route path="/login-gallery/password" element={<FindPassword />} />
 
         {/* User Routes */}
         <Route path="/home" element={<Homepage />} />
