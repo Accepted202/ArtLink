@@ -22,9 +22,9 @@ public class ExhibitionService {
     @Autowired
     private GalleryRepository galleryRepository;
 
-    public Exhibition registerExhibition(ExhibitionRequestDto requestDto, String galleryName) {
+    public Exhibition registerExhibition(ExhibitionRequestDto requestDto, String username) {
         // 검증
-        Gallery gallery = galleryRepository.findByUsername(galleryName);
+        Gallery gallery = galleryRepository.findByUsername(username);
         Exhibition exhibition = new Exhibition();
         exhibition.setExhibitionName(requestDto.getExhibitionName());
         exhibition.setGallery(gallery);
@@ -37,8 +37,8 @@ public class ExhibitionService {
         return exhibitionRepository.findById(id).orElseThrow(()->new ExhibitionNotFoundException("Exhibition with id " + id + " not found"));
     }
 
-    public List<Exhibition> selectAllExhibitions(String galleryName) {
-        Gallery gallery = galleryRepository.findByUsername(galleryName);
+    public List<Exhibition> selectAllExhibitions(String username) {
+        Gallery gallery = galleryRepository.findByUsername(username);
         return exhibitionRepository.findAllByGallery(gallery);
     }
 }

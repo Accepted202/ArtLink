@@ -40,8 +40,8 @@ public class GalleryController {
 
     @PostMapping("/me/exhibitions")
     public ResponseEntity<ExhibitionDetailResponseDto> registerExhibition(@RequestBody ExhibitionRequestDto requestDto, HttpServletRequest request) {
-        String galleryName = (String) request.getAttribute("username");
-        Exhibition exhibition = exhibitionService.registerExhibition(requestDto, galleryName);
+        String username = (String) request.getAttribute("username");
+        Exhibition exhibition = exhibitionService.registerExhibition(requestDto, username);
         ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
                 exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(),
                 exhibition.getPosterUrl(), exhibition.getCreatedAt());
@@ -51,8 +51,8 @@ public class GalleryController {
     @GetMapping("/me/exhibitions")
     public ResponseEntity<Map<String, List<ExhibitionResponseDto>>> selectAllExhibitions(HttpServletRequest request, Authentication authentication) {
         System.out.println(authentication);
-        String galleryName = (String) request.getAttribute("username");
-        List<Exhibition> exhibitions = exhibitionService.selectAllExhibitions(galleryName);
+        String username = (String) request.getAttribute("username");
+        List<Exhibition> exhibitions = exhibitionService.selectAllExhibitions(username);
         List<ExhibitionResponseDto> exhibitionResponseDtos = new ArrayList<>();
         exhibitions.forEach(exhibition -> exhibitionResponseDtos.add(new ExhibitionResponseDto(exhibition.getId(),
                 exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(),
