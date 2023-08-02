@@ -23,7 +23,7 @@ export function useLogin() {
       localStorage.setItem("access_token", accessToken);
       localStorage.setItem("refresh_token", refreshToken);
 
-      navigate("/home");
+      window.location.reload();
     } catch (error) {
       console.error("Error Log in:", error);
       window.alert(error);

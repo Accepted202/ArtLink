@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 import "./Home.css";
 
@@ -7,61 +8,44 @@ import HomeUser from "../../commponents/HomeWho/HomeUser";
 import HomeGallery from "../../commponents/HomeWho/HomeGallery";
 import HomeManager from "../../commponents/HomeWho/HomeManager";
 
+interface DecodedToken {
+  sub: string;
+  role: string;
+  id: number;
+  exp: number;
+  username: string;
+}
+
 function Homepage() {
-  // (시작) 로그인 여부, 로그인 주체 판단용 임시 코드
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [whoareyou, setWhoAreYou] = useState("user");
-  function handleLog() {
-    setIsLoggedIn(!isLoggedIn);
-  }
-  function handleUser() {
-    setWhoAreYou("user");
-  }
-  function handleGallery() {
-    setWhoAreYou("gallery");
-  }
-  function handleManager() {
-    setWhoAreYou("manager");
-  }
-
-  // (시작) 로그인 여부, 로그인 주체 판단용 임시 코드
-
+  const [userRole, setUserRole] = useState("");
   const navigate = useNavigate();
+  const accessToken: string | null = localStorage.getItem("access_token");
 
   useEffect(() => {
     // 컴포넌트가 마운트된 후에 isLoggedIn 상태를 체크하고, 로그인 상태가 아니라면 내비게이션을 수행합니다.
-    if (!isLoggedIn) {
+
+    if (!accessToken) {
       navigate("/");
+    } else {
+      // 엑세스 토큰을 디코딩하여 사용자 역할을 추출합니다.
+      const decodedToken = jwt_decode<DecodedToken>(accessToken);
+      const userRole = decodedToken.role; // 디코딩된 토큰에서 'role' 값을 추출
+      setUserRole(userRole); // 사용자 역할을 상태에 저장
     }
-  }, [isLoggedIn, navigate]);
+  }, [navigate]);
 
   let render_component;
-  if (isLoggedIn) {
-    if (whoareyou === "manager") {
-      render_component = <HomeManager />;
-    } else if (whoareyou === "user") {
-      render_component = <HomeUser />;
-    } else if (whoareyou === "gallery") {
-      render_component = <HomeGallery />;
-    }
-  } else {
-    render_component = <h1>로그인하세요</h1>;
+  if (userRole === "ROLE_MANAGER") {
+    render_component = <HomeManager />;
+  } else if (userRole === "ROLE_USER") {
+    render_component = <HomeUser />;
+  } else if (userRole === "ROLE_GALLERY") {
+    render_component = <HomeGallery />;
   }
 
   return (
     <>
-      {/* Body */}
-      {/* (시작) 서비스 제작용 툴입니다 추후 삭제 예정  */}
-      {/* (끝) 서비스 제작용 툴입니다 추후 삭제 예정  */}
       <div style={{ marginTop: "100px" }}>{render_component}</div>
-      <div>
-        <button onClick={handleLog}>
-          {isLoggedIn ? "로그아웃" : "로그인"}
-        </button>
-        |<button onClick={handleUser}>유저</button>
-        <button onClick={handleGallery}>갤러리</button>
-        <button onClick={handleManager}>매니저</button>
-      </div>
     </>
   );
 }
