@@ -69,4 +69,15 @@ public class GalleryController {
                 exhibition.getExhibitionExplanation(), exhibition.getPosterUrl(), exhibition.getCreatedAt()));
     }
 
+    @PutMapping("/me/exhibitions/{id}")
+    public ResponseEntity<ExhibitionDetailResponseDto> modifyExhibition(
+            @RequestBody ExhibitionRequestDto requestDto, HttpServletRequest request, @PathVariable Integer id) {
+        String username = (String) request.getAttribute("username");
+        Exhibition exhibition = exhibitionService.modifyExhibition(requestDto, id);
+        ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
+                exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(),
+                exhibition.getPosterUrl(), exhibition.getCreatedAt());
+        return ResponseEntity.ok(responseDto);
+    }
+
 }

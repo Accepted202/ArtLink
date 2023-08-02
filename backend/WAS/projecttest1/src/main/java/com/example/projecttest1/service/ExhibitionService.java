@@ -28,7 +28,8 @@ public class ExhibitionService {
         Exhibition exhibition = new Exhibition();
         exhibition.setExhibitionName(requestDto.getExhibitionName());
         exhibition.setGallery(gallery);
-        exhibition.setExhibitionExplanation("");
+        exhibition.setExhibitionExplanation(exhibition.getExhibitionExplanation());
+        exhibition.setPosterUrl(exhibition.getPosterUrl());
         exhibition.setCreatedAt(LocalDate.now());
         return exhibitionRepository.save(exhibition);
     }
@@ -41,4 +42,14 @@ public class ExhibitionService {
         Gallery gallery = galleryRepository.findByUsername(username);
         return exhibitionRepository.findAllByGallery(gallery);
     }
+
+    public Exhibition modifyExhibition(ExhibitionRequestDto requestDto, Integer id) {
+
+        Exhibition exhibition = findById(id);
+        exhibition.setExhibitionName(requestDto.getExhibitionName());
+        exhibition.setExhibitionExplanation(requestDto.getExhibitionExplanation());
+        exhibition.setPosterUrl(requestDto.getPosterUrl());
+        return exhibitionRepository.save(exhibition);
+    }
+
 }

@@ -21,7 +21,6 @@ public class UserKey {
     @Column
     private String hashKey;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_pk")
     private User user;
@@ -32,17 +31,14 @@ public class UserKey {
     @Column
     private Long phoneNumber;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gallery_pk")
     private Gallery gallery;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exhibition_pk")
     private Exhibition exhibition;
 
-    @Column
     @OneToMany(mappedBy = "userKey", cascade = CascadeType.ALL)
     public List<PostEvent> postEvents;
 }
