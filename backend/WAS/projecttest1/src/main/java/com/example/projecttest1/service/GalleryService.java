@@ -1,5 +1,6 @@
 package com.example.projecttest1.service;
 
+import com.example.projecttest1.dto.GalleryUpdateDto;
 import com.example.projecttest1.dto.gallery.GallerySignupDto;
 import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.exception.auth.UserAlreadyExistsException;
@@ -52,6 +53,12 @@ public class GalleryService {
     public Gallery acceptGallery(Integer id) {
         Gallery gallery = findById(id);
         gallery.setAccepted(Boolean.TRUE);
+        return galleryRepository.save(gallery);
+    }
+
+    public Gallery updateGallery(GalleryUpdateDto galleryUpdateDto)  {
+        Gallery gallery = galleryRepository.findByUsername(galleryUpdateDto.getUsername());
+        gallery.setDescription(galleryUpdateDto.getDescription());
         return galleryRepository.save(gallery);
     }
 

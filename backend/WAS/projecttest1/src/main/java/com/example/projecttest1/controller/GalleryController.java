@@ -48,6 +48,17 @@ public class GalleryController {
                 gallery.getAccepted(), gallery.getDescription()));
     }
 
+    @PutMapping("/me")
+    public ResponseEntity<GalleryResponseDto> updateMe(@RequestBody GalleryUpdateDto updateDto, Authentication authentication) {
+        String username = ((PrincipalDetails)authentication.getPrincipal()).getUsername();
+        updateDto.setUsername(username);
+        System.out.println("dto " + updateDto);
+        Gallery gallery = galleryService.updateGallery(updateDto);
+        GalleryResponseDto responseDto = new GalleryResponseDto(gallery.getUsername(), gallery.getGalleryName(),
+                gallery.getAccepted(), gallery.getDescription());
+        return ResponseEntity.ok(responseDto);
+    }
+
     @PostMapping("/me/exhibitions")
     public ResponseEntity<ExhibitionDetailResponseDto> registerExhibition(@RequestBody ExhibitionRequestDto requestDto, HttpServletRequest request) {
         String username = (String) request.getAttribute("username");
