@@ -24,8 +24,8 @@ function PageManager() {
     WorksBoard: "/works-board",
     WorksCreate: "/works-board/create",
     WorksDetail: "/works-board/1", // Example with parameter (replace '1' with an actual ID)
-    IotAdd: "/gallery/add-iot",
-    IotRemove: "/gallery/remove-iot",
+    IoTAdd: "/gallery/add-iot",
+    IoTBoard: "/gallery/iot-board",
     MypageGallery: "/mypage/gallery",
     // Manager
     UserBoard: "/user-board",
@@ -67,8 +67,8 @@ function PageManager() {
       "WorksBoard",
       "WorksCreate",
       "WorksDetail",
-      "IotAdd",
-      "IotRemove",
+      "IoTAdd",
+      "IoTBoard",
       "MypageGallery",
     ],
     Manager: ["UserBoard", "UserDetail", "GalleryBoard", "GalleryDetail"],
