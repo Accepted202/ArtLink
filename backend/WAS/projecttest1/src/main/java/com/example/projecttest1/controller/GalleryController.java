@@ -8,6 +8,7 @@ import com.example.projecttest1.entity.Exhibition;
 import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.exception.django.DjangoFailedException;
 import com.example.projecttest1.helper.Helper;
+import com.example.projecttest1.helper.S3Uploader;
 import com.example.projecttest1.repository.GalleryRepository;
 import com.example.projecttest1.service.ArtWorkService;
 import com.example.projecttest1.service.ExhibitionService;
@@ -17,7 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -39,6 +42,9 @@ public class GalleryController {
 
     @Autowired
     private Helper helper;
+
+    @Autowired
+    private S3Uploader s3Uploader;
 
     @GetMapping("/me")
     public ResponseEntity<GalleryResponseDto> me(HttpServletRequest request) {
@@ -131,18 +137,29 @@ public class GalleryController {
     //TODO:갤러리 관리자 그림 추가: Done
     @PostMapping("/me/exhibitions/{exhibitionId}/artworks")
     public ResponseEntity<?> postGalleryArtwork(HttpServletRequest request, Authentication authentication, @PathVariable Integer exhibitionId,
-                                                @RequestBody ArtWorkDto newArtwork) throws DjangoFailedException {
+                                                @ModelAttribute ArtWorkInputDto artWorkInputDto,
+                                                @RequestParam MultipartFile ImageFile) throws Exception {
         try{
+            String ImageUrl = s3Uploader.upload(ImageFile);
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
-            ArtWork artWork = artWorkService.addArtWork(newArtwork.getName(),
-                    newArtwork.getArtist(),
-                    newArtwork.getDescription(),
-                    newArtwork.getLocationX(),
-                    newArtwork.getLocationY(),
-                    newArtwork.getDrawingPath(),
+            ArtWork artWork = artWorkService.addArtWork(
+                    artWorkInputDto.getName(),
+                    artWorkInputDto.getArtist(),
+                    artWorkInputDto.getDescription(),
+                    artWorkInputDto.getLocationX(),
+                    artWorkInputDto.getLocationY(),
+                    ImageUrl,
                     exhibition
             );
 
+            ArtWorkDto artWorkDto = new ArtWorkDto(
+                    artWork.getName(),
+                    artWork.getArtist(),
+                    artWork.getXCoor(),
+                    artWork.getYCoor(),
+                    artWork.getExplanation(),
+                    ImageUrl
+            );
             /*
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
@@ -159,7 +176,7 @@ public class GalleryController {
             }
             */
 
-            return new ResponseEntity<ArtWorkDto>(newArtwork, HttpStatus.OK);
+            return new ResponseEntity<ArtWorkDto>(artWorkDto, HttpStatus.OK);
         }
         /*
         catch(DjangoFailedException de){

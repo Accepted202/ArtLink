@@ -1,11 +1,13 @@
 package com.example.projecttest1.repository;
 
+import com.example.projecttest1.entity.ArtWork;
 import com.example.projecttest1.entity.Device;
 import com.example.projecttest1.entity.Selection;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -45,4 +47,16 @@ public class SelectionRepository{
         }
     }
 
+    public boolean existsDeviceArtwork(Device device, ArtWork artWork){
+        String Query = "SELECT s FROM Selection s WHERE s.device = :device AND s.artWork = :artWork";
+        TypedQuery<Selection> query = em.createQuery(Query, Selection.class);
+        query.setParameter("device",device);
+        query.setParameter("artWork",artWork);
+
+        List<Selection> resultList = query.getResultList();
+        if(resultList.size() == 0){
+            return false;
+        }
+        return true;
+    }
 }
