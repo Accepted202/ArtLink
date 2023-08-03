@@ -1,6 +1,7 @@
 package com.example.projecttest1.service;
 
 import com.example.projecttest1.entity.ArtWork;
+import com.example.projecttest1.entity.Exhibition;
 import com.example.projecttest1.repository.ArtWorkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,14 +11,16 @@ public class ArtWorkService {
 
     @Autowired
     private ArtWorkRepository artWorkRepository;
-    public void addArtWork(String name, String artist, String explanation, Long xCoor, Long yCoor){
+    public ArtWork addArtWork(String name, String artist, String explanation, double xCoor, double yCoor, String artWorkPath, Exhibition exhibition){
         ArtWork artWork = new ArtWork();
         artWork.setName(name);
         artWork.setArtist(artist);
         artWork.setExplanation(explanation);
         artWork.setXCoor(xCoor);
         artWork.setYCoor(yCoor);
-        artWorkRepository.save(artWork);
+        artWork.setPaintPath(artWorkPath);
+        artWork.setExhibition(exhibition);
+        return artWorkRepository.save(artWork);
     }
 
     public void addArtWork(ArtWork artWork){

@@ -1,7 +1,6 @@
 package com.example.projecttest1.repository;
 
-import com.example.projecttest1.entity.UserKey;
-import com.example.projecttest1.entity.PostEvent;
+import com.example.projecttest1.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,15 +14,17 @@ import java.util.List;
 public class PostEventRepository {
     @Autowired
     private UserKeyRepository userKeyRepository;
+
+    @Autowired
+    private ArtWorkRepository artWorkRepository;
     @PersistenceContext
     private EntityManager em;
 
-    public void savePostEvent(String hashKey, List<Long> artWorkIdList){
+    public void savePostEvent( UserKey userKey, List<ArtWork> artWorkList){
         try{
-            UserKey userKey = userKeyRepository.findKey(hashKey);
-            for(Long artWorkId : artWorkIdList){
+            for(ArtWork artWork : artWorkList){
                 PostEvent postEvent = new PostEvent();
-                postEvent.setArtWorkId(artWorkId);
+                postEvent.setArtWork(artWork);
                 postEvent.setUserKey(userKey);
                 em.persist(postEvent);
             }
@@ -34,11 +35,22 @@ public class PostEventRepository {
         }
     }
 
-    public void modifyPostEvent(String hashKey, Long srcWorkId, Long destWorkId){
+    public List<PostEvent> getPostEventsByUserKey(UserKey userKey){
+        try {
+            List<PostEvent> postEvents = em.createQuery("select p from PostEvent p where p.userKey = : userKey").setParameter("userKey", userKey).getResultList();
+            return postEvents;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            throw e;
+        }
+
+    }
+
+    public void modifyPostEvent(UserKey userKey, ArtWork srcWork, ArtWork destWork){
         try{
-            UserKey userKey = userKeyRepository.findKey(hashKey);
-            PostEvent postEvent = (PostEvent) em.createQuery("select p from PostEvent p where p.artWorkId = :artWorkId").setParameter("artWorkId", srcWorkId).getSingleResult();
-            postEvent.setArtWorkId(destWorkId);
+            PostEvent postEvent = (PostEvent) em.createQuery("select p from PostEvent p where p.artWork = :artWork").setParameter("artWork", srcWork).getSingleResult();
+            postEvent.setArtWork(destWork);
             em.merge(postEvent);
         }
         catch(Exception e){

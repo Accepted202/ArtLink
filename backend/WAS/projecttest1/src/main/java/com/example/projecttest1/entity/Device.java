@@ -33,4 +33,8 @@ public class Device {
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
     public List<Selection> selections;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gallery_pk")
+    private Gallery gallery;
+
 }

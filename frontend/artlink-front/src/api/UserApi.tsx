@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
+//
+
 const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
 // URL을 디폴트 백엔드 URL과 합치는 함수
 const createUrl = (endpoint: string): string => {
@@ -8,9 +10,10 @@ const createUrl = (endpoint: string): string => {
 
 // 유저정보 조회
 export interface UserInfoRes {
-  username: string;
-  nickname: string;
-  phoneNumber: number;
+  // id: number;
+  // username: string;
+  // phoneNumber: number;
+  [key: string]: string | number;
 }
 export const UserInfo = async (): Promise<UserInfoRes> => {
   try {

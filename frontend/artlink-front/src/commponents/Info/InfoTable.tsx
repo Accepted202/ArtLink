@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./InfoTable.module.css";
 import Pagination from "./Pagination";
 
-interface TableRow {
+interface Data {
   [key: string]: string | number;
 }
 
@@ -13,7 +13,7 @@ interface SelectedPage {
 
 interface Props {
   pageSize: number; // 표 페이지 하나에 표시할 요소 개수
-  data: TableRow[]; // 데이터
+  data: Data[]; // 데이터
   dataKeys: string[]; // 데이터의 키들
   columnWidths: string[]; // 표의 각 열의 너비
   keyToExclude: string[]; // 표에서 나타나지 않게 하고 싶은 키
@@ -35,7 +35,7 @@ function InfoTable({
   const headersToShow = dataKeys.filter((ele) => !keyToExclude.includes(ele)); // 헤드에 노출할 키
 
   // 각 열에 해당하는 값 반환
-  const getColumnValue = (row: TableRow, columnKey: string) => {
+  const getColumnValue = (row: Data, columnKey: string) => {
     return row[columnKey];
   };
 

@@ -24,7 +24,8 @@ import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
 import IotAdd from "./pages/Gallery/IotAdd";
-import IotRemove from "./pages/Gallery/IotRemove";
+import IoTBoard from "./commponents/Iot/IotBoard";
+
 // Manager
 import UserBoard from "./pages/Manager/UserBoard";
 import UserDetail from "./pages/Manager/UserDetail";
@@ -142,7 +143,7 @@ function App() {
           }
         />
         <Route path="/gallery/add-iot" element={<IotAdd />} />
-        <Route path="/gallery/remove-iot" element={<IotRemove />} />
+        <Route path="/gallery/iot-board" element={<IoTBoard />} />
 
         {/* Manager Routes */}
         <Route

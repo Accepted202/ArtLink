@@ -3,43 +3,43 @@ import json
 from rest_framework import serializers
 
 from artwork.models import Artwork
-from gallery.models import Gallery
+from exhibition.models import Exhibition
 
 
 class ArtworkSerializer(serializers.Serializer):
     artworkid = serializers.IntegerField()
     coorx = serializers.FloatField()
     coory = serializers.FloatField()
-    gallery = serializers.IntegerField()
+    exhibition = serializers.IntegerField()
 
     def to_representation(self, instance):
         print(instance)
         data = {}
-        attr = ['artworkid', 'coorx', 'coory', 'gallery']
+        attr = ['artworkid', 'coorx', 'coory', 'exhibition']
         for att in attr:
             data[att] = getattr(instance, att)
         print(data)
-        data['gallery'] = data['gallery'].galleryid
+        data['exhibition'] = data['exhibition'].exhibitionid
         return data
 
 
     def create(self, validated_data):
-        gallery_id = validated_data.get('gallery')
+        exhibition_id = validated_data.get('exhibition')
         try:
-            gallery = Gallery.objects.get(galleryid=gallery_id)
-            validated_data['gallery'] = gallery
+            exhibition = Exhibition.objects.get(exhibitionid = exhibition_id)
+            validated_data['exhibition'] = exhibition
             print(validated_data)
             Artwork.objects.create(**validated_data)
         except Exception as e:
             print(e)
-            raise serializers.ValidationError('Gallery does not exist')
+            raise serializers.ValidationError('Exhibition does not exist')
     def update(self, validated_data):
         artwork_id = validated_data.get('artworkid')
-        gallery_id = validated_data.get('gallery')
+        exhibition_id = validated_data.get('exhibition')
         try:
             artwork = Artwork.objects.get(artworkid=artwork_id)
-            gallery = Gallery.objects.get(galleryid=gallery_id)
-            validated_data['gallery'] = gallery
+            exhibition = Exhibition.objects.get(exhibitionid=exhibition_id)
+            validated_data['exhibition'] = exhibition
             print(validated_data)
             for key, value in validated_data.items():
                 artwork.__setattr__(key, value)
