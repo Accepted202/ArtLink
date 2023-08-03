@@ -1,3 +1,5 @@
+import styles from "./InfoDetail.module.css";
+
 interface Data {
   [key: string]: string | number;
 }
@@ -18,9 +20,8 @@ function InfoDetail({ data, handleInputChange }: Props) {
             name={key}
             value={data[key]}
             onChange={handleInputChange}
+            className={styles.profileInput}
           />
-          <td>{key}</td>
-          <td>{data[key]}</td>
         </p>
       ))}
     </>
