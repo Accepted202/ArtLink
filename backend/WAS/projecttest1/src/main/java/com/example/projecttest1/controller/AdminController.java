@@ -28,7 +28,8 @@ public class AdminController {
     @GetMapping("/users")
     private ResponseEntity<Map<String, List<UserResponseDto>>> findAllUsers() {
         List<UserResponseDto> usersDto = new ArrayList<>();
-        userService.findAll().forEach( u -> usersDto.add(new UserResponseDto(u.getUsername(), u.getNickname(), u.getPhoneNumber())));
+        userService.findAll().forEach( u -> usersDto.add(
+                new UserResponseDto(u.getUsername(), u.getPhoneNumber(), u.getNickname())));
         return ResponseEntity.ok(Map.of("users", usersDto));
     }
 
@@ -45,6 +46,13 @@ public class AdminController {
         GalleryResponseDto responseDto = new GalleryResponseDto(gallery.getUsername(), gallery.getGalleryName(), gallery.getAccepted(), gallery.getDescription());
         return ResponseEntity.ok(responseDto);
     }
+
+    @PatchMapping("/galleries/{id}/accept")
+    public ResponseEntity<GalleryResponseDto> acceptGallery() {
+//        galleryService.
+        return null;
+    }
+
 
 //    @PostMapping("/galleries")
 //    public ResponseEntity<GalleryResponseDto> createGallery(@RequestBody Gallery gallery) {

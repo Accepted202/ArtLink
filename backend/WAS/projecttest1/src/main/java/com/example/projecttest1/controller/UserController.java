@@ -45,7 +45,7 @@ public class UserController {
     public ResponseEntity<UserResponseDto> me(HttpServletRequest request) {
         String username = (String) request.getAttribute("username");
         User user = userRepository.findByUsername(username);
-        return ResponseEntity.ok(new UserResponseDto(user.getUsername(), user.getNickname(), user.getPhoneNumber()));
+        return ResponseEntity.ok(new UserResponseDto(user.getUsername(), user.getPhoneNumber(), user.getNickname()));
     }
 
     @PutMapping("/me")
@@ -55,7 +55,7 @@ public class UserController {
             throw new UserAuthorizationException("권한없음");
         }
         User user = userService.updateUser(userUpdateDto);
-        return ResponseEntity.ok(new UserResponseDto(user.getUsername(), user.getNickname(), user.getPhoneNumber()));
+        return ResponseEntity.ok(new UserResponseDto(user.getUsername(), user.getPhoneNumber(), user.getNickname()));
     }
 
     @PutMapping("/me/profile-picture")

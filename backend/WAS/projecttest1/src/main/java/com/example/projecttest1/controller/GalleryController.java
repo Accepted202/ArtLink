@@ -53,8 +53,8 @@ public class GalleryController {
         String username = (String) request.getAttribute("username");
         Exhibition exhibition = exhibitionService.registerExhibition(requestDto, username);
         ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
-                exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(),
-                exhibition.getPosterUrl(), exhibition.getCreatedAt());
+                exhibition.getCreatedAt(), exhibition.getExhibitionName(),
+                exhibition.getExhibitionExplanation(), exhibition.getPosterUrl());
         return ResponseEntity.ok(responseDto);
     }
 
@@ -75,8 +75,8 @@ public class GalleryController {
             HttpServletRequest request, Authentication authentication, @PathVariable Integer id) {
         System.out.println(((PrincipalDetails)authentication.getPrincipal()).getUsername());
         Exhibition exhibition = exhibitionService.findById(id);
-        return ResponseEntity.ok(new ExhibitionDetailResponseDto(exhibition.getId(), exhibition.getExhibitionName(),
-                exhibition.getExhibitionExplanation(), exhibition.getPosterUrl(), exhibition.getCreatedAt()));
+        return ResponseEntity.ok(new ExhibitionDetailResponseDto(exhibition.getId(), exhibition.getCreatedAt(),
+                exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(), exhibition.getPosterUrl()));
     }
 
     @PutMapping("/me/exhibitions/{id}")
@@ -85,8 +85,8 @@ public class GalleryController {
         String username = (String) request.getAttribute("username");
         Exhibition exhibition = exhibitionService.modifyExhibition(requestDto, id);
         ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
-                exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(),
-                exhibition.getPosterUrl(), exhibition.getCreatedAt());
+                exhibition.getCreatedAt(), exhibition.getExhibitionName(),
+                exhibition.getExhibitionExplanation(), exhibition.getPosterUrl());
         return ResponseEntity.ok(responseDto);
     }
 

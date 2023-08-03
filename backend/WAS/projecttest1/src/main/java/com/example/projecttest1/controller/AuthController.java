@@ -40,7 +40,7 @@ public class AuthController {
         validator.validateUser(user);
         userService.registerUser(user);
         System.out.println("AuthController : 회원가입 완료");
-        UserResponseDto dto = new UserResponseDto(user.getUsername(), user.getNickname(), user.getPhoneNumber());
+        UserResponseDto dto = new UserResponseDto(user.getUsername(), user.getPhoneNumber(), user.getNickname());
         return ResponseEntity.ok(dto);
     }
 
