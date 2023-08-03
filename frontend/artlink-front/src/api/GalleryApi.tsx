@@ -9,10 +9,11 @@ const createUrl = (endpoint: string): string => {
 
 // 갤러리 정보 조회
 export interface GalleryInfoRes {
-  username: string;
-  galleryName: string;
-  accepted: boolean;
-  description: string;
+  // username: string;
+  // galleryName: string;
+  // accepted: boolean;
+  // description: string;
+  [key: string]: string | boolean;
 }
 export const GalleryInfo = async (): Promise<GalleryInfoRes> => {
   try {
