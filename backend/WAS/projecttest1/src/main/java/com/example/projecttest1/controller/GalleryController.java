@@ -9,6 +9,7 @@ import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.exception.django.DjangoFailedException;
 import com.example.projecttest1.helper.Helper;
 import com.example.projecttest1.helper.S3Uploader;
+import com.example.projecttest1.repository.ExhibitionRepository;
 import com.example.projecttest1.repository.GalleryRepository;
 import com.example.projecttest1.service.ArtWorkService;
 import com.example.projecttest1.service.ExhibitionService;
@@ -33,6 +34,9 @@ public class GalleryController {
 
     @Autowired
     private GalleryRepository galleryRepository;
+
+    @Autowired
+    private ExhibitionRepository exhibitionRepository;
 
     @Autowired
     private ExhibitionService exhibitionService;
@@ -134,13 +138,14 @@ public class GalleryController {
         }
     }
 
-    //TODO:갤러리 관리자 그림 추가: Done
     @PostMapping("/me/exhibitions/{exhibitionId}/artworks")
     public ResponseEntity<?> postGalleryArtwork(HttpServletRequest request, Authentication authentication, @PathVariable Integer exhibitionId,
                                                 @ModelAttribute ArtWorkInputDto artWorkInputDto,
                                                 @RequestParam MultipartFile ImageFile) throws Exception {
         try{
-            String ImageUrl = s3Uploader.upload(ImageFile);
+            //그림만 모아두는 폴더를 만들 예정.
+            String folder = String.format("artworks/%d", exhibitionId);
+            String ImageUrl = s3Uploader.upload(folder, artWorkInputDto.getName(), ImageFile);
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
             ArtWork artWork = artWorkService.addArtWork(
                     artWorkInputDto.getName(),
@@ -191,14 +196,12 @@ public class GalleryController {
     }
 
     //갤러리 별 관람 중 기기 띄우기
-    @GetMapping("/{galleryId}/devices")
-    public ResponseEntity<?> getGalleryDevices(@PathVariable Integer galleryId) throws Exception{
+    @GetMapping("/devices")
+    public ResponseEntity<?> getGalleryDevices(HttpServletRequest request) throws Exception{
         try{
-            Optional<Gallery> gallery = galleryRepository.findById(galleryId);
-            if(gallery.get()==null){
-                throw new NoSuchElementException("Could not find gallery");
-            }
-            List<Device> deviceList = gallery.get().getDevices();
+            String username = (String) request.getAttribute("username");
+            Gallery gallery = galleryService.findByUsername(username);
+            List<Device> deviceList = gallery.getDevices();
 
             List<GalleryDeviceDto> response = new ArrayList<GalleryDeviceDto>();
             for(Device device: deviceList){
@@ -207,6 +210,59 @@ public class GalleryController {
             return new ResponseEntity<List<GalleryDeviceDto>>(response, HttpStatus.OK);
 
         }catch(Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto(e.getMessage(), 400), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //전시회 포스터 조회? => 필요한가? URL을 제공하니 필요없을지도.
+
+    //전시회 포스터는 S3의 exhibition/{exhibitionId}에 저장할 것임.
+    @PostMapping("me/exhibitions/{exhibitionId}/posters")
+    public ResponseEntity<?> addExhibitionPoster(HttpServletRequest request,
+                                                 @PathVariable Integer exhibitionId,
+                                                 @RequestParam MultipartFile posterFile) throws Exception{
+        try{
+            String username = (String) request.getAttribute("username");
+            Gallery gallery = galleryService.findByUsername(username);
+            Optional<Exhibition> optionalExhibition = exhibitionRepository.findById(exhibitionId);
+            Exhibition exhibition = optionalExhibition.get();
+            if(exhibition == null){
+                throw new Exception();
+            }
+
+            String folderName = String.format("exhibition/%d", exhibitionId);
+            String posterName = exhibition.getExhibitionName();
+
+            String posterUrl = s3Uploader.upload(folderName, posterName, posterFile);
+            exhibition.setPosterUrl(posterUrl);
+            return new ResponseEntity<GalleryPosterResponseDto>(new GalleryPosterResponseDto(posterUrl), HttpStatus.OK);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto(e.getMessage(), 400), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("me/exhibitions/{exhibitionId}/posters")
+    public ResponseEntity<?> modifyExhibitionPoster(HttpServletRequest request,
+                                                 @PathVariable Integer exhibitionId,
+                                                 @RequestParam String oldPosterUrl,
+                                                 @RequestParam MultipartFile posterFile) throws Exception {
+        try{
+            String username = (String) request.getAttribute("username");
+            Gallery gallery = galleryService.findByUsername(username);
+            Optional<Exhibition> optionalExhibition = exhibitionRepository.findById(exhibitionId);
+            Exhibition exhibition = optionalExhibition.get();
+            if(exhibition == null){
+                throw new Exception();
+            }
+
+            String folderName = String.format("exhibition/%d", exhibitionId);
+            String posterName = exhibition.getExhibitionName();
+            String posterUrl = s3Uploader.modify(folderName, posterName, posterFile);
+            return new ResponseEntity<GalleryPosterResponseDto>(new GalleryPosterResponseDto(posterUrl), HttpStatus.OK);
+        }catch(Exception e){
             e.printStackTrace();
             return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto(e.getMessage(), 400), HttpStatus.BAD_REQUEST);
         }

@@ -14,6 +14,4 @@ public class ArtWorkInputDto {
     private final double LocationY;
 
     private final String Description;
-
-    private final MultipartFile ImageFile;
 }

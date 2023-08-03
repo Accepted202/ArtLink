@@ -32,16 +32,17 @@ public class Gallery implements Principal {
     @Setter
     private String refreshToken;
 
+    @Setter
+    private Boolean accepted;
+
+
     @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
     private List<UserKey> userkeys;
 
     @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
     private List<Device> devices;
 
-    @Setter
-    private Boolean accepted;
-
-
+    //일대다 다대일 관계는 뒤로 빼려고 하였음.
     public Gallery(String username, String password, String galleryName) {
         this.username = username;
         this.galleryName = galleryName;

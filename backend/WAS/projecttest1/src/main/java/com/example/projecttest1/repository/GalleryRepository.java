@@ -9,6 +9,5 @@ import java.util.Optional;
 public interface GalleryRepository extends JpaRepository<Gallery, Integer> {
     Gallery findByUsername(String username);
     boolean existsByGalleryName(String galleryName);
-
     Optional<Gallery> findById(Integer id);
 }
