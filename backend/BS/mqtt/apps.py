@@ -15,6 +15,7 @@ class MqttConfig(AppConfig):
 
     request_url = getattr(settings, 'DJANGO_REQUEST_PATH', 'none') #이것이 에러날 수도 있음 (장고 로딩 순서 이슈) 에러날 경우 밑의 url사용.
     #request_url = 'http://localhost:8000/test/'
+    
 
     # 테스트용 api 확인
     # 반드시 data를 data = { "num" : 3 } 형태의 json 파일로 보낼것.
@@ -22,7 +23,7 @@ class MqttConfig(AppConfig):
         # payload는 json 형태로 수신
         payload = message.payload.decode()
         data = json.loads(payload)
-        # print("your data : ", data)
+        print("your data : ", data)
         
         event = data["E"]
         # 등록 요청인 경우
@@ -30,21 +31,21 @@ class MqttConfig(AppConfig):
             # data preprocessing 
             tag_id = data["T"]
             link_cnt = data["LC"]
-            if link_cnt < 3 :
+            if int(link_cnt) < 3 :
                 res = 2
                 publish.single(tag_id, res,hostname = self.MQTT_BROKER_HOST, port = self.MQTT_BROKER_PORT)
                 return
             # make request body
             req_body = {}
             req_body['deviceid'] = tag_id
-            for i in range(3):
+            for i in range(3):  
                 now_anchor = "anchor" + str(i+1)
                 now_range = "d" + str(i+1)
-                req_body[now_anchor] = int(data["L"][i][0])
-                req_body[now_range] = float(data["L"][i][1])
+                req_body[now_anchor] = int(data["L"][i]["A"])
+                req_body[now_range] = float(data["L"][i]["R"])
             # 정제된 데이터는 다시 json으로 변환하여 서버에 요청
             req_body = json.dumps(req_body)
-            response = requests.post(self.request_url, data)
+            response = requests.post(self.request_url, req_body)
             print("Response from other server:", response.text)
             # 요청 성공시, response.status_code = 200 (int) 로 넘어온다.
             # IoT 기기에게 잘 등록됬으면 mqtt publish 하여 완료 신호 송신

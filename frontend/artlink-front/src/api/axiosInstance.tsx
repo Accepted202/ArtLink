@@ -3,7 +3,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: "http://70.12.246.124:8080", // 디폴트 백엔드 URL
+  baseURL: import.meta.env.VITE_APP_BACKEND_URL, // 디폴트 백엔드 URL
 });
 
 // 리프레시한 엑세스 토큰을 헤더에 싣는 작업

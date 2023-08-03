@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const defaultBackendUrl = "http://70.12.246.124:8080";
+const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
 // URL을 디폴트 백엔드 URL과 합치는 함수
 const createUrl = (endpoint: string): string => {
   return `${defaultBackendUrl}${endpoint}`;
@@ -13,9 +13,9 @@ export interface UserInfoRes {
   // phoneNumber: number;
   [key: string]: string | number;
 }
-export const UserInfo = async (): Promise<UserInfoRes[]> => {
+export const UserInfo = async (): Promise<UserInfoRes> => {
   try {
-    const response: AxiosResponse<UserInfoRes[]> = await axios.get(
+    const response: AxiosResponse<UserInfoRes> = await axios.get(
       createUrl("/users/me")
     );
     return response.data;
@@ -35,9 +35,9 @@ export interface UserInfoEditReq {
 }
 export const UserInfoEdit = async (
   dataToSend: UserInfoEditReq
-): Promise<UserInfoEditRes[]> => {
+): Promise<UserInfoEditRes> => {
   try {
-    const response: AxiosResponse<UserInfoEditRes[]> = await axios.put(
+    const response: AxiosResponse<UserInfoEditRes> = await axios.put(
       createUrl("/users/me"),
       dataToSend
     );
