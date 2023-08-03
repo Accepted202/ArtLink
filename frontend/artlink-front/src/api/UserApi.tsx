@@ -8,8 +8,8 @@ const createUrl = (endpoint: string): string => {
 
 // 유저정보 조회
 export interface UserInfoRes {
-  id: number;
   username: string;
+  nickname: string;
   phoneNumber: number;
 }
 export const UserInfo = async (): Promise<UserInfoRes> => {
@@ -26,10 +26,13 @@ export const UserInfo = async (): Promise<UserInfoRes> => {
 
 // 유저정보 변경
 export interface UserInfoEditRes {
-  notdefined: boolean;
+  username: string;
+  nickname: string;
+  phoneNumber: number;
 }
 export interface UserInfoEditReq {
   username: string;
+  nickname: string;
   phoneNumber: number;
 }
 export const UserInfoEdit = async (

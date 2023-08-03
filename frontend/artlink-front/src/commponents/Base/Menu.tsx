@@ -25,8 +25,8 @@ function Menu() {
     if (accessToken) {
       const decodedToken = jwt_decode<DecodedToken>(accessToken);
       const userRole = decodedToken.role;
-      if (userRole === "ROLE_MANAGER") {
-        setWhoAreYou("manager");
+      if (userRole === "ROLE_ADMIN") {
+        setWhoAreYou("admin");
       } else if (userRole === "ROLE_USER") {
         setWhoAreYou("user");
       } else if (userRole === "ROLE_GALLERY") {
@@ -49,9 +49,9 @@ function Menu() {
       { label: "Artwork Manager", path: "/works-board" },
       { label: "My Page", path: "/mypage/gallery" },
     ],
-    manager: [
-      { label: "Manage User", path: "/user-board" },
-      { label: "Manage Gallery", path: "/gallery-board" },
+    admin: [
+      { label: "User Manage", path: "/user-board" },
+      { label: "Gallery Manage", path: "/gallery-board" },
     ],
   };
 
@@ -65,9 +65,11 @@ function Menu() {
       <div className="menuContainer">
         <nav>
           <ul>
-            <Link to="/about">
-              <li>About</li>
-            </Link>
+            {whoareyou !== "admin" && (
+              <Link to="/about">
+                <li>About</li>
+              </Link>
+            )}
             {menuItems.map((menuItem, index) => (
               <Link to={menuItem.path} key={index}>
                 <li>{menuItem.label}</li>

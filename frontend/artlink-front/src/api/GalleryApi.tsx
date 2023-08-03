@@ -28,11 +28,16 @@ export const GalleryInfo = async (): Promise<GalleryInfoRes> => {
 
 // 갤러리 정보 변경
 export interface GalleryInfoEditRes {
-  notdefined: boolean;
+  username: string;
+  galleryName: string;
+  accepted: boolean;
+  description: string;
 }
 export interface GalleryInfoEditReq {
   username: string;
-  phoneNumber: number;
+  galleryName: string;
+  accepted: boolean;
+  description: string;
 }
 export const GalleryInfoEdit = async (
   dataToSend: GalleryInfoEditReq

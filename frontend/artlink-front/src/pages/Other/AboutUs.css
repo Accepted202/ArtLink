@@ -23,17 +23,27 @@
   align-items: center;
   font-size: 100px;
 }
-
-.bg-yellow {
-  background-color: #e0e0e0;
+.AP_Container {
+  display: block;
+  height: 100%;
 }
-
-.bg-blue {
-  background-color: #e0e0e0;
+.AP_box1 {
+  margin-top: 20%;
+  height: 80%;
 }
-
-.bg-pink {
-  background-color: #e0e0e0;
+.AP_box1 {
+  height: 20%;
+}
+.AP1 {
+  font-size: 18px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+.AP1_txt1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 10px;
 }
 
 @media (max-width: 767px) {

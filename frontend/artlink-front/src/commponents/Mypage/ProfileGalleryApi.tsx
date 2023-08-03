@@ -6,7 +6,7 @@ interface ApitestGalleryInfoProps {
   onGalleryDataChange: (data: GalleryInfoRes) => void;
 }
 
-const ApitestUserInfo: React.FC<ApitestGalleryInfoProps> = ({
+const ApiGalleryInfo: React.FC<ApitestGalleryInfoProps> = ({
   onGalleryDataChange,
 }) => {
   useEffect(() => {
@@ -18,12 +18,11 @@ const ApitestUserInfo: React.FC<ApitestGalleryInfoProps> = ({
         }`;
 
         const data = await GalleryInfo();
-        console.log(data);
 
         // 부모 컴포넌트로 데이터 전달
         onGalleryDataChange(data);
       } catch (error) {
-        console.error("Error fetching sample data:", error);
+        console.error("Error fetching Gallery info data:", error);
       }
     };
 
@@ -33,4 +32,4 @@ const ApitestUserInfo: React.FC<ApitestGalleryInfoProps> = ({
   return <></>;
 };
 
-export default ApitestUserInfo;
+export default ApiGalleryInfo;

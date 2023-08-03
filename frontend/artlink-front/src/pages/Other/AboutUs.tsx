@@ -2,6 +2,10 @@ import { useRef, useEffect, useState } from "react";
 import "./AboutUs.css";
 import Dots from "./AboutDot";
 import UpBtn from "../../commponents/Base/UpBtn";
+// pages
+import AboutPage1 from "./AboutPage1";
+import AboutPage2 from "./AboutPage2";
+import AboutPage3 from "./AboutPage3";
 
 function AboutUs() {
   const outerDivRef = useRef<HTMLDivElement>(null);
@@ -90,9 +94,15 @@ function AboutUs() {
       <div className="aboutBody">
         <div ref={outerDivRef} className="outer">
           <Dots scrollIndex={scrollIndex} />
-          <div className="inner">1</div>
-          <div className="inner">2</div>
-          <div className="inner">3</div>
+          <div className="inner">
+            <AboutPage1 />
+          </div>
+          <div className="inner">
+            <AboutPage2 />
+          </div>
+          <div className="inner">
+            <AboutPage3 />
+          </div>
         </div>
       </div>
       <div className="aboutBodyMobile">

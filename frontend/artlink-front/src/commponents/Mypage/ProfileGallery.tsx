@@ -1,15 +1,22 @@
 import { useState } from "react";
 import ProfileGalleryApi from "./ProfileGalleryApi";
-import { GalleryInfoRes } from "../../api/GalleryApi";
+import {
+  GalleryInfoRes,
+  GalleryInfo,
+  GalleryInfoEdit,
+} from "../../api/GalleryApi";
 import ProfileBox from "./ProfileBox";
 import Styles from "./Profile.module.css";
+import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 
 function ProfileUser() {
+  const [isModalActive, setisModalActive] = useState(false);
   const [galleryData, setgalleryData] = useState<GalleryInfoRes | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   // 자식 컴포넌트에서 받아온 데이터를 상태에 저장하는 콜백 함수
   const handleGalleryInfoData = (data: GalleryInfoRes) => {
+    console.log(data);
     setgalleryData(data);
     setLoading(false); // Data has been fetched, set loading to false
   };
@@ -20,8 +27,20 @@ function ProfileUser() {
     setgalleryData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  // 갤러리 정보 업데이트
+  const updateGalleryinfo = async () => {
+    try {
+      const data = await GalleryInfoEdit(galleryData);
+      console.log("업데이트후 받아온", data);
+      setisModalActive(true);
+    } catch (error) {
+      console.error("Error UserInfoEdit:", error);
+    }
+  };
+
   return (
     <>
+      <Modal sendActive={isModalActive} />
       {loading ? ( // Show loading message if data is being fetched
         <>
           <h3>Loading...</h3>
@@ -59,9 +78,14 @@ function ProfileUser() {
           )}
         </div>
       )}
+      {/* 갤러리 정보 로딩 컴포넌트 */}
       <ProfileGalleryApi onGalleryDataChange={handleGalleryInfoData} />
-      {/* 데이터 변경요청 */}
-      {loading ? null : <button className={Styles.changeBtn}>change</button>}
+      {/* 데이터 변경요청 버튼 */}
+      {loading ? null : (
+        <button className={Styles.changeBtn} onClick={updateGalleryinfo}>
+          change
+        </button>
+      )}
     </>
   );
 }

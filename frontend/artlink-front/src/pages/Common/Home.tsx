@@ -35,7 +35,7 @@ function Homepage() {
   }, [navigate]);
 
   let render_component;
-  if (userRole === "ROLE_MANAGER") {
+  if (userRole === "ROLE_ADMIN") {
     render_component = <HomeManager />;
   } else if (userRole === "ROLE_USER") {
     render_component = <HomeUser />;

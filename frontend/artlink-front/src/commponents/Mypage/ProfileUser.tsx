@@ -1,10 +1,19 @@
 import { useState } from "react";
 import ProfileUserApi from "./ProfileUserApi";
-import { UserInfoRes } from "../../api/UserApi";
+import { UserInfoRes, UserInfoEdit } from "../../api/UserApi";
 import ProfileBox from "./ProfileBox";
+import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 import Styles from "./Profile.module.css";
 
+// 화면에 보일 라벨링 이름
+const labelMapping: Record<string, string> = {
+  username: "아이디",
+  nickname: "닉네임",
+  phoneNumber: "핸드폰 번호",
+};
+
 function ProfileUser() {
+  const [isModalActive, setisModalActive] = useState(false);
   const [userData, setUserData] = useState<UserInfoRes | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -19,11 +28,25 @@ function ProfileUser() {
     const { name, value } = event.target;
     setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
+  // 유저정보 업데이트 요청
+  const updateUserinfo = async () => {
+    try {
+      const data = await UserInfoEdit(userData);
+      console.log(data);
+      setisModalActive(true);
+    } catch (error) {
+      console.error("Error UserInfoEdit:", error);
+    }
+  };
 
   return (
     <>
+      <Modal sendActive={isModalActive} />
       {loading ? ( // Show loading message if data is being fetched
-        <h1>Loading...</h1>
+        <>
+          <h3>Loading...</h3>
+          <p>The server is under maintenance. Please try again later.</p>
+        </>
       ) : (
         <div className={Styles.MypageinnerBox}>
           {/* 왼쪽 박스 (프로필 이미지) */}
@@ -41,12 +64,13 @@ function ProfileUser() {
                 </p>
                 {Object.keys(userData).map((key) => (
                   <p key={key}>
-                    {key}:{" "}
+                    {labelMapping[key]}:{" "}
                     <input
                       type="text"
                       name={key}
                       value={userData[key]}
                       onChange={handleInputChange}
+                      disabled={key === "username" || key === "phoneNumber"} // 읽기 전용 설정
                       className={Styles.profileInput}
                     />
                   </p>
@@ -58,7 +82,11 @@ function ProfileUser() {
       )}
       <ProfileUserApi onUserDataChange={handleUserInfoData} />
       {/* 데이터 변경요청 */}
-      {loading ? null : <button className={Styles.changeBtn}>change</button>}
+      {loading ? null : (
+        <button className={Styles.changeBtn} onClick={updateUserinfo}>
+          change
+        </button>
+      )}
     </>
   );
 }
