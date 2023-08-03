@@ -44,7 +44,8 @@ public class GalleryController {
     public ResponseEntity<GalleryResponseDto> me(HttpServletRequest request) {
         String username = (String) request.getAttribute("username");
         Gallery gallery = galleryService.findByUsername(username);
-        return ResponseEntity.ok(new GalleryResponseDto(gallery.getUsername(), gallery.getGalleryName(), gallery.getDescription()));
+        return ResponseEntity.ok(new GalleryResponseDto(gallery.getUsername(), gallery.getGalleryName(),
+                gallery.getAccepted(), gallery.getDescription()));
     }
 
     @PostMapping("/me/exhibitions")

@@ -48,7 +48,8 @@ public class AuthController {
     public ResponseEntity<GalleryResponseDto> gallerySignup(@RequestBody GallerySignupDto requestDto) {
         validator.validateGallery(requestDto);
         galleryService.registerGallery(requestDto);
-        GalleryResponseDto dto = new GalleryResponseDto(requestDto.getUsername(), requestDto.getGalleryName(), "");
+        GalleryResponseDto dto = new GalleryResponseDto(requestDto.getUsername(), requestDto.getGalleryName(),
+                Boolean.FALSE, "");
         return ResponseEntity.ok(dto);
     }
 

@@ -3,6 +3,7 @@ package com.example.projecttest1.service;
 import com.example.projecttest1.dto.gallery.GallerySignupDto;
 import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.exception.auth.UserAlreadyExistsException;
+import com.example.projecttest1.exception.gallery.GalleryNotFoundException;
 import com.example.projecttest1.repository.GalleryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,6 +31,8 @@ public class GalleryService {
         gallery.setUsername(requestDto.getUsername());
         gallery.setPassword(bCryptPasswordEncoder.encode(requestDto.getPassword()));
         gallery.setGalleryName(requestDto.getGalleryName());
+        gallery.setDescription("");
+        gallery.setAccepted(Boolean.FALSE);
         galleryRepository.save(gallery);
     }
 
@@ -39,6 +42,11 @@ public class GalleryService {
 
     public List<Gallery> findAll() {
         return galleryRepository.findAll();
+    }
+
+    public Gallery findById(Integer id) {
+        return galleryRepository.findById(id).orElseThrow(
+                ()-> new GalleryNotFoundException("Gallery with id " + id + " not found"));
     }
 
 }

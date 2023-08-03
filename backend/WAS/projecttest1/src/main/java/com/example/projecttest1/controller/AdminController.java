@@ -35,9 +35,17 @@ public class AdminController {
     @GetMapping("/galleries")
     public ResponseEntity<Map<String, List<GalleryResponseDto>>> findAllGalleries() {
         List<GalleryResponseDto> galleriesDto = new ArrayList<>();
-        galleryService.findAll().forEach( g -> galleriesDto.add(new GalleryResponseDto(g.getUsername(), g.getGalleryName(), g.getDescription())));
+        galleryService.findAll().forEach( g -> galleriesDto.add(new GalleryResponseDto(g.getUsername(), g.getGalleryName(), g.getAccepted(), g.getDescription())));
         return ResponseEntity.ok(Map.of("galleries", galleriesDto));
     }
+
+    @GetMapping("/galleries/{id}")
+    public ResponseEntity<GalleryResponseDto> findByIdGallery(@PathVariable Integer id) {
+        Gallery gallery = galleryService.findById(id);
+        GalleryResponseDto responseDto = new GalleryResponseDto(gallery.getUsername(), gallery.getGalleryName(), gallery.getAccepted(), gallery.getDescription());
+        return ResponseEntity.ok(responseDto);
+    }
+
 //    @PostMapping("/galleries")
 //    public ResponseEntity<GalleryResponseDto> createGallery(@RequestBody Gallery gallery) {
 //        System.out.println(gallery);
