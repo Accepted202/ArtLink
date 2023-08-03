@@ -42,3 +42,21 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr,
+td {
+  border: 1px solid black;
+  width: 100vw;
+  height: 2.5vh;
+  text-align: center;
+  border-left: none; /* 각 행의 위에만 경계선 없음 */
+  border-right: none; /* 각 행의 위에만 경계선 없음 */
+  padding: 8px;
+  padding-left: 0px;
+  font-size: 13px;
+}
