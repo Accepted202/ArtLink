@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'device.apps.DeviceConfig',
     'artwork.apps.ArtworkConfig',
-    'gallery.apps.GalleryConfig',
-    'mqtt.apps.MqttConfig',
+    'exhibition.apps.GalleryConfig',
+    # 'device.apps.MqttConfig',
+    # 'device.apps.DeviceConfig'
 ]
 
 MIDDLEWARE = [
