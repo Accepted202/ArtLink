@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'device.apps.DeviceConfig',
     'artwork.apps.ArtworkConfig',
     'exhibition.apps.GalleryConfig',
-    'mqtt.apps.MqttConfig',
+    # 'device.apps.MqttConfig',
+    # 'device.apps.DeviceConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,23 +81,23 @@ WSGI_APPLICATION = 'djangopjt.wsgi.application'
 
 # TODO: Django 기본 DB로 바꾸기
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'local_db',
-        'USER': 'root',
-        'PASSWORD': 'chriskim970407',
-        'HOST': "127.0.0.1",
-        'PORT': "3306",
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'local_db',
+#         'USER': 'root',
+#         'PASSWORD': 'chriskim970407',
+#         'HOST': "127.0.0.1",
+#         'PORT': "3306",
+#     }
+# }
 
 
 # Password validation

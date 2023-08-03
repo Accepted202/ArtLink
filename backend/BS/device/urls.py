@@ -18,12 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from device.views import AnchorView, AnchorDetailView, ClickEvent
+from device.views import AnchorView, AnchorDetailView #, ClickEvent
 
 app_name = 'device'
 
 urlpatterns = [
     path('anchor/', AnchorView.as_view(), name='anchorview'),
     path('anchor/<int:anchorid>/', AnchorDetailView.as_view(), name='anchordatailview'),
-    path('iot/click/<int:deviceId>/', ClickEvent.as_view(), name='clickevent')
+    # path('iot/click/<int:deviceId>/', ClickEvent.as_view(), name='clickevent')
 ]
