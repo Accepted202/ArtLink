@@ -17,8 +17,10 @@ public class Gallery implements Principal {
     @Column(name = "gallery_pk")
     private Integer id;
 
+    @Setter
     private String username; // gallery_id
 
+    @Setter
     private String galleryName;
 
     @Setter

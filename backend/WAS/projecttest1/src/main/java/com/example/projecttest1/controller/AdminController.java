@@ -20,7 +20,7 @@ public class AdminController {
     @PostMapping("/galleries")
     public ResponseEntity<GalleryResponseDto> createGallery(@RequestBody Gallery gallery) {
         System.out.println(gallery);
-        galleryService.registerGallery(gallery);
+//        galleryService.registerGallery(gallery);
         GalleryResponseDto dto = new GalleryResponseDto(gallery.getUsername(), gallery.getGalleryName(), gallery.getDescription());
         return ResponseEntity.ok(dto);
     }
