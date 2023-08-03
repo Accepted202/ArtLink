@@ -49,4 +49,10 @@ public class GalleryService {
                 ()-> new GalleryNotFoundException("Gallery with id " + id + " not found"));
     }
 
+    public Gallery acceptGallery(Integer id) {
+        Gallery gallery = findById(id);
+        gallery.setAccepted(Boolean.TRUE);
+        return galleryRepository.save(gallery);
+    }
+
 }

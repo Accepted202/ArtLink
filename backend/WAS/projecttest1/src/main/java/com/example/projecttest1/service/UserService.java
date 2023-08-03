@@ -4,6 +4,7 @@ import com.example.projecttest1.dto.UserResponseDto;
 import com.example.projecttest1.dto.UserUpdateDto;
 import com.example.projecttest1.entity.User;
 import com.example.projecttest1.exception.auth.UserAlreadyExistsException;
+import com.example.projecttest1.exception.user.UserIdNotFoundException;
 import com.example.projecttest1.exception.user.UserNotFoundException;
 import com.example.projecttest1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,9 @@ public class UserService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User findById(Integer id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserIdNotFoundException(id));
     }
 }
