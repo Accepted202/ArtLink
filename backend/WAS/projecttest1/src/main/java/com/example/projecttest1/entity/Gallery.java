@@ -38,10 +38,15 @@ public class Gallery implements Principal {
     @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
     private List<Device> devices;
 
+    @Setter
+    private Boolean accepted;
+
+
     public Gallery(String username, String password, String galleryName) {
         this.username = username;
         this.galleryName = galleryName;
         this.password = password;
+        this.accepted = Boolean.FALSE;
     }
 
     @Override
@@ -50,6 +55,9 @@ public class Gallery implements Principal {
     }
     @Override
     public String getRole() {
+//        if (!accepted) {
+//            return "UNACCEPTED";
+//        }
         return "ROLE_GALLERY";
     }
 }
