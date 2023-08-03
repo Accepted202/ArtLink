@@ -24,5 +24,5 @@ urlpatterns = [
     path('gallery/', include('gallery.urls')),
     path('artwork/', include('artwork.urls')),
     path('test/', include('apitest.urls'))
-
+    
 ]
