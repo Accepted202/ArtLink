@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'apitest',
+
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,23 +83,23 @@ WSGI_APPLICATION = 'djangopjt.wsgi.application'
 
 # TODO: Django 기본 DB로 바꾸기
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'local_db',
-        'USER': 'root',
-        'PASSWORD': 'chriskim970407',
-        'HOST': "127.0.0.1",
-        'PORT': "3306",
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'local_db',
+#         'USER': 'root',
+#         'PASSWORD': 'chriskim970407',
+#         'HOST': "127.0.0.1",
+#         'PORT': "3306",
+#     }
+# }
 
 
 # Password validation
@@ -140,5 +143,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SPRING_SERVER_PATH = 'http://localhost:8080'
-DJANGO_REQUEST_PATH = 'http://localhost:8000/device/click/'
-# DJANGO_REQUEST_PATH = 'http://localhost:8000/test/'
+# DJANGO_REQUEST_PATH = 'http://localhost:8000/device/click/'
+DJANGO_REQUEST_PATH = 'http://localhost:8000/test/'

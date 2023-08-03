@@ -7,8 +7,9 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
 
-@method_decorator(csrf_exempt, name = 'dispatch')
 # Create your views here.
+
+@method_decorator(csrf_exempt, name = 'dispatch')
 class TestView(View):
     def post(self, request):
         try:
