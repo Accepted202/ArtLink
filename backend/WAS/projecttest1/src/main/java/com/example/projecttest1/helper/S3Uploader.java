@@ -56,12 +56,12 @@ public class S3Uploader {
     }
 
     //이미 올라갔던 사진 삭제 후 재 생성.
-    public String modify(String folderName, String fileName, MultipartFile multipartFile) throws Exception{
+    public String modify(String folderName, String oldFileName, String newFileName, MultipartFile multipartFile) throws Exception{
         try{
-            if(!delete(fileName)){
+            if(!delete(oldFileName)){
                 throw new S3DeleteFailException("Delete failed");
             }
-            return upload(folderName, fileName, multipartFile);
+            return upload(folderName, newFileName, multipartFile);
         }
         catch(S3DeleteFailException de){
             de.printStackTrace();
