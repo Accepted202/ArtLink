@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { UserInfoRes, UserInfo } from "../../api/UserApi";
+import { GalleryInfoRes, GalleryInfo } from "../../api/GalleryApi";
 import axios from "axios";
 
-interface ApitestUserInfoProps {
-  onUserDataChange: (data: UserInfoRes) => void;
+interface ApitestGalleryInfoProps {
+  onGalleryDataChange: (data: GalleryInfoRes) => void;
 }
 
-const ApitestUserInfo: React.FC<ApitestUserInfoProps> = ({
-  onUserDataChange,
+const ApitestUserInfo: React.FC<ApitestGalleryInfoProps> = ({
+  onGalleryDataChange,
 }) => {
   useEffect(() => {
     const fetchData = async () => {
@@ -17,11 +17,11 @@ const ApitestUserInfo: React.FC<ApitestUserInfoProps> = ({
           accessToken as string
         }`;
 
-        const data = await UserInfo();
+        const data = await GalleryInfo();
         console.log(data);
 
         // 부모 컴포넌트로 데이터 전달
-        onUserDataChange(data);
+        onGalleryDataChange(data);
       } catch (error) {
         console.error("Error fetching sample data:", error);
       }

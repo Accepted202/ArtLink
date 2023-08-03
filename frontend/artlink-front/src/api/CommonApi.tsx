@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 // 아래의 API들은 요청&반환 값에 대한 타입지정, Api함수 로직으로 구성되어있습니다.
 
 // 디폴트 백엔드 URL
-const defaultBackendUrl = "http://70.12.246.124:8080";
+const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
 
 // URL을 디폴트 백엔드 URL과 합치는 함수
 const createUrl = (endpoint: string): string => {
@@ -22,6 +22,7 @@ export interface LoginReq {
 }
 export const LoginApi = async (dataToSend: LoginReq): Promise<LoginRes> => {
   try {
+    console.log(defaultBackendUrl, "sdsd");
     const response: AxiosResponse<LoginRes> = await axios.post(
       createUrl("/auth/login"),
       dataToSend
@@ -77,7 +78,7 @@ export const RefreshToken = async (
     throw error;
   }
 };
-// 회원가입 API
+// 회원가입 (유저) API
 export interface SignupRes {
   message: string;
   data: {
@@ -93,6 +94,7 @@ export interface SignupReq {
   password: string;
   phoneNumber: number;
   nickname: string;
+  galleryName: string;
 }
 export const SignupApi = async (
   dataToSend: SignupReq
@@ -100,6 +102,38 @@ export const SignupApi = async (
   try {
     const response: AxiosResponse<SignupRes[]> = await axios.post(
       createUrl("/auth/signup"),
+      dataToSend
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching SignupApi:", error);
+    throw error;
+  }
+};
+// 회원가입 (갤러리) API
+export interface SignupGalleryRes {
+  message: string;
+  data: {
+    user: {
+      username: string;
+      galleryName: string;
+      description: string;
+    };
+  };
+}
+export interface SignupReq {
+  username: string;
+  password: string;
+  phoneNumber: number;
+  nickname: string;
+  galleryName: string;
+}
+export const SignupGalleryApi = async (
+  dataToSend: SignupReq
+): Promise<SignupGalleryRes[]> => {
+  try {
+    const response: AxiosResponse<SignupGalleryRes[]> = await axios.post(
+      createUrl("/auth/signup/galleries"),
       dataToSend
     );
     return response.data;

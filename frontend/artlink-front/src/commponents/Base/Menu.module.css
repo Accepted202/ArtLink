@@ -11,7 +11,7 @@ nav {
 nav ul li {
   display: inline-block;
   list-style: none;
-  font-size: 16px;
+  font-size: 14px;
   color: #454545;
   font-family: SUITE-Regular;
   padding: 0 10px;
@@ -50,4 +50,8 @@ nav ul li:hover {
 }
 
 @media (max-width: 767px) {
+  nav ul li {
+    font-size: 16x;
+    margin: 0px 4px 0px 4px;
+  }
 }

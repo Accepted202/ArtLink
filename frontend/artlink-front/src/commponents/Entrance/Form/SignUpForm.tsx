@@ -2,7 +2,7 @@
 import "./Form.css";
 import React, { useState } from "react";
 import Modal from "../../Base/Form/SignupModal/Modal";
-import { SignupReq, SignupApi } from "../../../api/CommonApi";
+import { SignupReq, SignupApi, SignupGalleryApi } from "../../../api/CommonApi";
 import BackBtn from "../../Base/BackBtn";
 import MarginTopInput from "../../EditCss/MaginTopInput";
 
@@ -14,8 +14,10 @@ function SignupForm() {
     password: "",
     phoneNumber: 0,
     nickname: "",
+    galleryName: "",
   });
   const [isPassCheck, setisPassCheck] = useState("");
+  const [passwordCheckMsg, setPasswordCheckMsg] = useState("");
   // 인풋 필드 저장
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,23 +25,51 @@ function SignupForm() {
       ...prevData,
       [name]: value,
     }));
+    if (value && isPassCheck) {
+      if (isPassCheck === value) {
+        setPasswordCheckMsg("입력하신 값이 같습니다.");
+      } else {
+        setPasswordCheckMsg("입력하신 값이 다릅니다.");
+      }
+    } else {
+      // Hide the message when either password is empty
+      setPasswordCheckMsg("");
+    }
   };
   const handlePass2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setisPassCheck(value);
+    if (formData.password && value) {
+      if (formData.password === value) {
+        setPasswordCheckMsg("입력하신 값이 같습니다.");
+      } else {
+        setPasswordCheckMsg("입력하신 값이 다릅니다.");
+      }
+    } else {
+      // Hide the message when either password is empty
+      setPasswordCheckMsg("");
+    }
   };
 
+  // 권한에 따른 필드 설정
+  const showGalleryNameField = location.pathname === "/signup-gallery";
   // 회원가입 API 요청
   const reqSignup = async () => {
     try {
       // 회원가입 API를 호출하여 데이터를 서버로 보냅니다.
-      const response = await SignupApi(formData);
-      console.log(response);
-      setisActive(true);
-      // 회원가입 성공 시, 화면에 알림 메시지 또는 다른 처리를 수행할 수 있습니다.
+      if (showGalleryNameField) {
+        console.log("갤러리 회원가입 요청");
+        const response = await SignupGalleryApi(formData);
+        console.log(response);
+        setisActive(true);
+      } else if (!showGalleryNameField) {
+        console.log("유저 회원가입 요청");
+        const response = await SignupApi(formData);
+        console.log(response);
+        setisActive(true); // 성공 모달창
+      }
     } catch (error) {
       console.error("Error signing up:", error);
-      // 회원가입 실패 시, 화면에 알림 메시지 또는 다른 처리를 수행할 수 있습니다.
     }
   };
   // Handle form submission on Enter key press
@@ -81,8 +111,6 @@ function SignupForm() {
         />
         <input
           type="password"
-          name="password"
-          id="password"
           placeholder="Confirm Password"
           className="input-box"
           onChange={handlePass2}
@@ -90,19 +118,40 @@ function SignupForm() {
         />
         <br />
         {/* 패스워드 다를시 로직 */}
-        <div className="passwordCheck">{}</div>
+        <div className="passwordCheck">{passwordCheckMsg}</div>
         <br />
-        <label>Nickname</label>
-        <br />
-        <input
-          type="nickname"
-          name="nickname"
-          id="nickname"
-          placeholder="Enter nickname"
-          className="input-box"
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        />
+        {/* 닉네임 */}
+        {!showGalleryNameField && (
+          <>
+            <label>Nickname</label>
+            <br />
+            <input
+              type="nickname"
+              name="nickname"
+              id="nickname"
+              placeholder="Enter nickname"
+              className="input-box"
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}
+            />
+          </>
+        )}
+        {/* 갤러리 이름 */}
+        {showGalleryNameField && (
+          <>
+            <label>Galleryname</label>
+            <br />
+            <input
+              type="galleryName"
+              name="galleryName"
+              id="galleryName"
+              placeholder="Enter galleryName"
+              className="input-box"
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}
+            />
+          </>
+        )}
         {/* 에러메세지 띄우기 */}
         <div className="errorMsg">{}</div>
         <button type="submit" className="btn" onClick={reqSignup}>
