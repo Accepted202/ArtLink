@@ -32,6 +32,13 @@ public class ArtWork {
     @Column
     private double yCoor;
 
+    @Column
+    private String paintPath;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_pk")
+    private Exhibition exhibition;
+
     @OneToMany(mappedBy = "artWork", cascade = CascadeType.ALL)
     private List<Selection> selections;
 }

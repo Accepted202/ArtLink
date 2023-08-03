@@ -17,7 +17,9 @@ function AMDExhibition({ onButtonClick }: AMDExhibitionProps) {
     <>
       {/* 갤러리의 특정 전시회를 불러와서 정보를 보여줌 */}
       <p className={`${Styles.AMDTitleTxt}`}>Exhibition Title</p>
-      <div className={`${isFrameEnabled ? Styles.AMDFrame : ""}`}>
+      <div
+        className={`${isFrameEnabled ? Styles.AMDFrame : Styles.AMDFrameOn}`}
+      >
         <div className={`${Styles.AMDimageBox}`}>
           <img
             src={poster}

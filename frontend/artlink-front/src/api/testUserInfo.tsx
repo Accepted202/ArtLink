@@ -26,6 +26,8 @@ const ApitestUserInfo: React.FC = () => {
   return (
     <>
       <h1>Apitest</h1>
+      <p>USER Info API 테스트입니다.</p>
+      <hr />
       {userInfoData && (
         <div>
           <p>PK: {userInfoData.id}</p>

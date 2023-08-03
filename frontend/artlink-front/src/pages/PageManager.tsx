@@ -1,5 +1,6 @@
 // import React from "react";
 import { Link } from "react-router-dom";
+import "./PM.css";
 
 function PageManager() {
   const PM: Record<string, string> = {
@@ -11,6 +12,8 @@ function PageManager() {
     LoginGallery: "/login-gallery",
     LoginAdmin: "/login-admin",
     SignupGallery: "/signup-gallery",
+    Password: "/login/password",
+    PasswordGallery: "/login-gallery/password",
     // User
     ArtMemory: "/art-memory",
     ArtMemoryDetail: "/art-memory/1",
@@ -21,8 +24,8 @@ function PageManager() {
     WorksBoard: "/works-board",
     WorksCreate: "/works-board/create",
     WorksDetail: "/works-board/1", // Example with parameter (replace '1' with an actual ID)
-    IotAdd: "/gallery/add-iot",
-    IotRemove: "/gallery/remove-iot",
+    IoTAdd: "/gallery/add-iot",
+    IoTBoard: "/gallery/iot-board",
     MypageGallery: "/mypage/gallery",
     // Manager
     UserBoard: "/user-board",
@@ -48,28 +51,24 @@ function PageManager() {
   };
 
   const sections = {
-    Common: ["Home", "MypageEdit"],
+    Common: ["Home"],
     Entrance: [
       "Entrance",
       "Login",
       "Signup",
       "LoginGallery",
-      "LoginAdmin",
       "SignupGallery",
+      "LoginAdmin",
+      "Password",
+      "PasswordGallery",
     ],
-    User: [
-      "ArtMemory",
-      "ArtMemoryDetail",
-      "ArtMemoryEdit",
-      "ThreeTest",
-      "MypageUser",
-    ],
+    User: ["ArtMemory", "ArtMemoryDetail", "ThreeTest", "MypageUser"],
     Gallery: [
       "WorksBoard",
       "WorksCreate",
       "WorksDetail",
-      "IotAdd",
-      "IotRemove",
+      "IoTAdd",
+      "IoTBoard",
       "MypageGallery",
     ],
     Manager: ["UserBoard", "UserDetail", "GalleryBoard", "GalleryDetail"],
@@ -88,17 +87,19 @@ function PageManager() {
   return (
     <>
       <h1>PageManager</h1>
+      <div className="PMContainer">
+        {Object.entries(sections).map(([sectionName, componentList]) => (
+          <div key={sectionName} className="PMSection">
+            <h3>{sectionName}</h3>
+            {componentList.map((componentName) => (
+              <Link key={componentName} to={PM[componentName]}>
+                <button className="PMBtn">{componentName}</button>
+              </Link>
+            ))}
+          </div>
+        ))}
+      </div>
       {/* Map through the sections to create buttons for each component group */}
-      {Object.entries(sections).map(([sectionName, componentList]) => (
-        <div key={sectionName}>
-          <h3>{sectionName}</h3>
-          {componentList.map((componentName) => (
-            <Link key={componentName} to={PM[componentName]}>
-              <button>{componentName}</button>
-            </Link>
-          ))}
-        </div>
-      ))}
     </>
   );
 }

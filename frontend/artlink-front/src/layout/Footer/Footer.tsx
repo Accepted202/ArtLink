@@ -1,7 +1,11 @@
-// import React from 'react';
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faEnvelope,
+  faHouse,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGitlab } from "@fortawesome/free-brands-svg-icons";
 import "./Footer.css";
 
 function Footer() {
@@ -15,17 +19,33 @@ function Footer() {
         <div className="footBody">
           <section className="footer">
             <div className="social">
-              <a href="#">
-                <FontAwesomeIcon icon={faCamera} size="2x" />
+              <a href="/home">
+                <FontAwesomeIcon
+                  icon={faHouse}
+                  size="sm"
+                  style={{ margin: "auto" }}
+                />
               </a>
-              <a href="#">
-                <i className="fab fa-snapchat"></i>
+              <a href="https://lofty-cream-f31.notion.site/59d76894cbcc49b2b6f1adc747c01d06?v=1d3daf3fd2b5425bb03182aa2ab2abb7&pvs=4">
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  size="sm"
+                  style={{ margin: "auto" }}
+                />
               </a>
-              <a href="#">
-                <i className="fab fa-twitter"></i>
+              <a href="/contact">
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  size="sm"
+                  style={{ margin: "auto" }}
+                />
               </a>
-              <a href="#">
-                <i className="fab fa-facebook-f"></i>
+              <a href="https://lab.ssafy.com/s09-webmobile3-sub2/S09P12A202">
+                <FontAwesomeIcon
+                  style={{ margin: "auto" }}
+                  size="sm"
+                  icon={faGitlab}
+                />
               </a>
             </div>
             <ul className="list">
@@ -45,7 +65,9 @@ function Footer() {
                 <a href="#">Privacy Policy</a>
               </li>
             </ul>
-            <p className="copyright">SSAFY PJT1 - Accpted 202 @ 2023</p>
+            <p className="copyright">
+              SSAFY Project - Team : Accpted 202 @ 2023
+            </p>
           </section>
         </div>
       )}

@@ -13,9 +13,9 @@ const ApitestUserInfo: React.FC<ApitestUserInfoProps> = ({
     const fetchData = async () => {
       try {
         const accessToken = localStorage.getItem("access_token");
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${
+          accessToken as string
+        }`;
 
         const data = await UserInfo();
         console.log(data);

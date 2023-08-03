@@ -1,5 +1,7 @@
 package com.example.projecttest1.service;
 
+import com.example.projecttest1.dto.UserResponseDto;
+import com.example.projecttest1.dto.UserUpdateDto;
 import com.example.projecttest1.entity.User;
 import com.example.projecttest1.exception.auth.UserAlreadyExistsException;
 import com.example.projecttest1.exception.user.UserNotFoundException;
@@ -7,6 +9,7 @@ import com.example.projecttest1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -46,5 +49,11 @@ public class UserService {
         user.setRefreshToken(null);
         userRepository.save(user);
         System.out.println("UserService : removeRefreshToken call");
+    }
+
+    public User updateUser(UserUpdateDto userUpdateDto) {
+        User user = userRepository.findByUsername(userUpdateDto.getUsername());
+        user.setNickname(userUpdateDto.getNickname());
+        return userRepository.save(user);
     }
 }

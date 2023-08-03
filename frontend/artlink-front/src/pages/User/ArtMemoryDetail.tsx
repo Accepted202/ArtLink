@@ -25,7 +25,7 @@ function ArtMemoryDetail() {
       <div className={Styles["artmemory-container"]}>
         {/* Left div with the button */}
         <div
-          className={`${Styles.artdetailLeft} ${Styles.swingL}`}
+          className={`${Styles.artdetailLeft}`}
           style={{
             width: isLeftVisible ? "100%" : "100%",
             display: isLeftVisible ? "block" : "none",
@@ -39,7 +39,7 @@ function ArtMemoryDetail() {
 
         {/* Right div */}
         <div
-          className={`${Styles.artdetailRight} ${Styles.swingR}`}
+          className={`${Styles.artdetailRight}`}
           style={{
             display: isRightVisible ? "block" : "none",
             width: isLeftVisible ? "100%" : "100%",

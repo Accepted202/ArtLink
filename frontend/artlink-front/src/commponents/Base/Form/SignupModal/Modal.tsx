@@ -8,6 +8,7 @@ interface ModalProps {
 }
 export const Modal = ({ sendActive }: ModalProps) => {
   const [isActive, setIsActive] = useState(false);
+  const showGalleryNameField = location.pathname === "/signup-gallery";
   useEffect(() => {
     setIsActive(sendActive);
   }, [sendActive]);
@@ -15,7 +16,11 @@ export const Modal = ({ sendActive }: ModalProps) => {
 
   const onClickModalOff = () => {
     setIsActive(false);
-    navigate("/login");
+    if (showGalleryNameField) {
+      navigate("/login-gallery");
+    } else if (!showGalleryNameField) {
+      navigate("/login");
+    }
   };
 
   const onClickCardRemove = () => {

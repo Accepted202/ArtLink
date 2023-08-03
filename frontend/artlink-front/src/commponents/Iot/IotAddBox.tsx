@@ -24,7 +24,6 @@ function IotInputBox() {
           />
         </div>
       </div>
-      <NormalForm />
     </>
   );
 }

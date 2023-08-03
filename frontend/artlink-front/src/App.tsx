@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import "./index.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Header from "./layout/Header/Header";
@@ -14,6 +13,7 @@ import Signup from "./pages/Entrance/Signup";
 import LoginGallery from "./pages/Entrance/LoginGallery";
 import LoginAdmin from "./pages/Entrance/LoginAdmin";
 import SignupGallery from "./pages/Entrance/SignupGallery";
+import FindPassword from "./pages/Entrance/FindPassword";
 // User
 import ArtMemory from "./pages/User/ArtMemory";
 import ArtMemoryDetail from "./pages/User/ArtMemoryDetail";
@@ -24,7 +24,8 @@ import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
 import IotAdd from "./pages/Gallery/IotAdd";
-import IotRemove from "./pages/Gallery/IotRemove";
+import IoTBoard from "./commponents/Iot/IotBoard";
+
 // Manager
 import UserBoard from "./pages/Manager/UserBoard";
 import UserDetail from "./pages/Manager/UserDetail";
@@ -58,42 +59,117 @@ function App() {
 
       <Routes>
         {/* Common */}
-        {/* 로그인 여부로 리다이렉트 예시 */}
-        {/* <Route
+        <Route
           path="/home"
           element={isLoggedIn() ? <Homepage /> : <Navigate to="/login" />}
-        /> */}
-        <Route path="/home" element={<Homepage />} />
-        <Route path="/mypage/user" element={<Mypage />} />
-        <Route path="/mypage/gallery" element={<Mypage />} />
+        />
+        <Route
+          path="/mypage/user"
+          element={isLoggedIn() ? <Mypage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/mypage/gallery"
+          element={isLoggedIn() ? <Mypage /> : <Navigate to="/login-gallery" />}
+        />
 
         {/* Entrance Routes */}
         <Route path="/" element={<Entrance />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login-gallery" element={<LoginGallery />} />
-        <Route path="/signup-gallery" element={<SignupGallery />} />
-        <Route path="/login-admin" element={<LoginAdmin />} />
+        <Route
+          path="/login"
+          element={!isLoggedIn() ? <Login /> : <Navigate to="/home" />}
+        />
+        <Route
+          path="/signup"
+          element={!isLoggedIn() ? <Signup /> : <Navigate to="/home" />}
+        />
+        <Route
+          path="/login-gallery"
+          element={!isLoggedIn() ? <LoginGallery /> : <Navigate to="/home" />}
+        />
+        <Route
+          path="/signup-gallery"
+          element={!isLoggedIn() ? <SignupGallery /> : <Navigate to="/home" />}
+        />
+        <Route
+          path="/login-admin"
+          element={!isLoggedIn() ? <LoginAdmin /> : <Navigate to="/home" />}
+        />
+        <Route
+          path="/login/password"
+          element={!isLoggedIn() ? <FindPassword /> : <Navigate to="/home" />}
+        />
+        <Route
+          path="/login-gallery/password"
+          element={!isLoggedIn() ? <FindPassword /> : <Navigate to="/home" />}
+        />
 
         {/* User Routes */}
-        <Route path="/home" element={<Homepage />} />
-        <Route path="/art-memory" element={<ArtMemory />} />
-        <Route path="/art-memory/:pk" element={<ArtMemoryDetail />} />
-        <Route path="/art-memory/:pk/edit" element={<ArtMemoryEdit />} />
-        <Route path="/art-memory/:pk/3d" element={<ThreeTest />} />
+        <Route
+          path="/art-memory"
+          element={isLoggedIn() ? <ArtMemory /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/art-memory/:pk"
+          element={
+            isLoggedIn() ? <ArtMemoryDetail /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/art-memory/:pk/edit"
+          element={isLoggedIn() ? <ArtMemoryEdit /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/art-memory/:pk/3d"
+          element={isLoggedIn() ? <ThreeTest /> : <Navigate to="/login" />}
+        />
 
         {/* Gallery Routes */}
-        <Route path="/works-board" element={<WorksBoard />} />
-        <Route path="/works-board/create" element={<WorksCreate />} />
-        <Route path="/works-board/:pk" element={<WorksDetail />} />
+        <Route
+          path="/works-board"
+          element={
+            isLoggedIn() ? <WorksBoard /> : <Navigate to="/login-gallery" />
+          }
+        />
+        <Route
+          path="/works-board/create"
+          element={
+            isLoggedIn() ? <WorksCreate /> : <Navigate to="/login-gallery" />
+          }
+        />
+        <Route
+          path="/works-board/:pk"
+          element={
+            isLoggedIn() ? <WorksDetail /> : <Navigate to="/login-gallery" />
+          }
+        />
         <Route path="/gallery/add-iot" element={<IotAdd />} />
-        <Route path="/gallery/remove-iot" element={<IotRemove />} />
+        <Route path="/gallery/iot-board" element={<IoTBoard />} />
 
         {/* Manager Routes */}
-        <Route path="/user-board" element={<UserBoard />} />
-        <Route path="/user-board/:pk" element={<UserDetail />} />
-        <Route path="/gallery-board" element={<GalleryBoard />} />
-        <Route path="/gallery-board/:pk" element={<GalleryDetail />} />
+        <Route
+          path="/user-board"
+          element={
+            isLoggedIn() ? <UserBoard /> : <Navigate to="/login-admin" />
+          }
+        />
+        <Route
+          path="/user-board/:pk"
+          element={
+            isLoggedIn() ? <UserDetail /> : <Navigate to="/login-admin" />
+          }
+        />
+        <Route
+          path="/gallery-board"
+          element={
+            isLoggedIn() ? <GalleryBoard /> : <Navigate to="/login-admin" />
+          }
+        />
+        <Route
+          path="/gallery-board/:pk"
+          element={
+            isLoggedIn() ? <GalleryDetail /> : <Navigate to="/login-admin" />
+          }
+        />
 
         {/* Kiosk Routes */}
         <Route path="/kiosk/home" element={<Kiosk />} />

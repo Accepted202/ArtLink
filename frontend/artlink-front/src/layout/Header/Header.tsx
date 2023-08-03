@@ -14,6 +14,7 @@ const excludeHeaderPaths: string[] = [
   "/login-gallery",
   "/signup-gallery",
   "/login-admin",
+  "/PM",
 ];
 
 function Header(): JSX.Element {
