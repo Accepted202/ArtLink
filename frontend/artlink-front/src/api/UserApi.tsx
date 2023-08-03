@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 //
 
-const defaultBackendUrl: ImportMeta = import.meta.env.VITE_APP_BACKEND_URL;
+const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
 // URL을 디폴트 백엔드 URL과 합치는 함수
 const createUrl = (endpoint: string): string => {
   return `${defaultBackendUrl}${endpoint}`;
