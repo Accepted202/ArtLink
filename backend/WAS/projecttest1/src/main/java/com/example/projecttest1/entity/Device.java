@@ -34,6 +34,10 @@ public class Device {
     public List<Selection> selections;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_pk")
+    private Exhibition exhibition;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gallery_pk")
     private Gallery gallery;
 

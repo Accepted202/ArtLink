@@ -16,7 +16,6 @@ public class UserSignupValidator extends Validator  {
     private static final int MAXIMUM_PASSWORD_LENGTH = 20;
     private static final int MINIMUM_USERNAME_LENGTH = 5;
     private static final int MAXIMUM_USERNAME_LENGTH = 20;
-
     private static final int MAXIMUM_NICKNAME_LENGTH = 5;
 
     private void validateUsername(String username) {
