@@ -2,6 +2,13 @@ import styles from "./IoTBoard.module.css";
 import { Link } from "react-router-dom";
 import IoTTable from "./IoTTable";
 
+/*
+TODO:
+[ ] 삭제 기능 구현
+[ ] api 연결
+[ ] 삭제 시 모달 창 생성
+*/
+
 interface Data {
   [key: string]: string | number; // 키-값 데이터 타입은 이렇게만 설정해두면 됨
 }
