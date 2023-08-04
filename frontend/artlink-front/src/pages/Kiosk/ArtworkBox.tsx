@@ -4,14 +4,13 @@ import DeleteModal from "./DeleteModal";
 
 // 작품의 정보를 띄울 박스, delete로 작품 삭제 가능
 
-interface Artwork {
-  id: number;
-  title: string;
+interface Data {
+  [key: string]: string | number;
 }
 
 interface Props {
-  artwork: Artwork;
-  onClickDelete: (id: number) => void;
+  artwork: Data;
+  onClickDelete: (id: number | string) => void;
 }
 
 function ArtworkBox({ artwork, onClickDelete }: Props) {
