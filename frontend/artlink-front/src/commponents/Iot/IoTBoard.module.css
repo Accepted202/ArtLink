@@ -12,13 +12,13 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 90%;
+  width: 60%;
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .table-wrapper {
-  width: 90%;
+  width: 60%;
 }
 
 .addbutton {
