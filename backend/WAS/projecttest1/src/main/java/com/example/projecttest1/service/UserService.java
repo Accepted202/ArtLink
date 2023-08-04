@@ -67,4 +67,8 @@ public class UserService {
     public User findById(Integer id) {
         return userRepository.findById(id).orElseThrow(() -> new UserIdNotFoundException(id));
     }
+
+    public String getProfilePicture(String username) {
+        return userRepository.findByUsername(username).getProfilePictureUrl();
+    }
 }

@@ -6,6 +6,7 @@ import com.example.projecttest1.dto.UserUpdateDto;
 import com.example.projecttest1.entity.User;
 import com.example.projecttest1.entity.UserKey;
 import com.example.projecttest1.exception.user.UserAuthorizationException;
+import com.example.projecttest1.helper.S3Uploader;
 import com.example.projecttest1.repository.UserKeyRepository;
 import com.example.projecttest1.repository.UserRepository;
 import com.example.projecttest1.service.ImageService;
@@ -24,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -36,10 +38,10 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private ImageService imageService;
+    private UserKeyRepository userKeyRepository;
 
     @Autowired
-    private UserKeyRepository userKeyRepository;
+    private S3Uploader s3Uploader;
 
     @GetMapping("/me")
     public ResponseEntity<UserResponseDto> me(HttpServletRequest request) {
@@ -64,11 +66,20 @@ public class UserController {
         String username = (String) request.getAttribute("username");
         User user = userRepository.findByUsername(username);
 
-        // 파일 저장
-        String imagePath = imageService.saveImage(file, username);
+        String folder = String.format("user/profile/%d", user.getId());
+        String imageUrl = user.getProfilePictureUrl();
+        try {
+            if (imageUrl == null) {
+                imageUrl = s3Uploader.upload(folder, user.getUsername(), file);
+            } else {
+                imageUrl = s3Uploader.modify(folder, user.getUsername(), file);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // 유저 레코드 업데이트
-        user.setProfilePictureUrl(imagePath);
+        user.setProfilePictureUrl(imageUrl);
         userRepository.save(user);
 
         // 응답 반환
@@ -76,19 +87,14 @@ public class UserController {
     }
 
     @GetMapping("/me/profile-picture")
-    public ResponseEntity<byte[]> getProfilePicture(HttpServletRequest request) throws IOException {
-        // 유저 찾기
-        User user = userRepository.findByUsername((String) request.getAttribute("username"));
+    public ResponseEntity<Map<String, String>> getProfilePicture(HttpServletRequest request) throws IOException {
 
-        // 이미지 파일을 byte 배열로 읽기
-        byte[] imageBytes = imageService.loadImage(user.getUsername() + File.separator + user.getProfilePictureUrl());
+        String username = (String) request.getAttribute("username");
+        System.out.println("username : " + username);
 
-        // 헤더 설정
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-
+        String url = userService.getProfilePicture(username);
         // 이미지 반환
-        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+        return ResponseEntity.ok(Map.of("profilePicture", url));
     }
 
     //TODO: User UserKey 반환
