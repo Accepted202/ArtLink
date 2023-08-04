@@ -140,12 +140,11 @@ public class GalleryController {
 
     @PostMapping("/me/exhibitions/{exhibitionId}/artworks")
     public ResponseEntity<?> postGalleryArtwork(HttpServletRequest request, Authentication authentication, @PathVariable Integer exhibitionId,
-                                                @ModelAttribute ArtWorkInputDto artWorkInputDto,
-                                                @RequestParam MultipartFile ImageFile) throws Exception {
+                                                @ModelAttribute ArtWorkInputDto artWorkInputDto) throws Exception {
         try{
             //그림만 모아두는 폴더를 만들 예정.
             String folder = String.format("artworks/%d", exhibitionId);
-            String ImageUrl = s3Uploader.upload(folder, artWorkInputDto.getName(), ImageFile);
+            String ImageUrl = s3Uploader.upload(folder, artWorkInputDto.getName(), artWorkInputDto.getImageFile());
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
             ArtWork artWork = artWorkService.addArtWork(
                     artWorkInputDto.getName(),
