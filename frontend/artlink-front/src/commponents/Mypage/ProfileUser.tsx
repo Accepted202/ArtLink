@@ -13,9 +13,10 @@ const labelMapping: Record<string, string> = {
 };
 
 function ProfileUser() {
-  const [isModalActive, setisModalActive] = useState(false);
+  const [isModalActive, setisModalActive] = useState<boolean>(false); // 모달 활성 boolean
+  const [isChange, setisChange] = useState<boolean>(false); // 변경요청 boolean
   const [userData, setUserData] = useState<UserInfoRes | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true); // 유저정보 수신 boolean
 
   // 자식 컴포넌트에서 받아온 데이터를 상태에 저장하는 콜백 함수
   const handleUserInfoData = (data: UserInfoRes) => {
@@ -27,6 +28,11 @@ function ProfileUser() {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUserData((prevData) => ({ ...prevData, [name]: value }));
+  };
+  // 변경버튼 눌렀을시
+  const clickChnageBtn = () => {
+    setisChange(true); // 이미지 업데이트 요청
+    void updateUserinfo(); // 텍스트 업데이트
   };
   // 유저정보 업데이트 요청
   const updateUserinfo = async () => {
@@ -52,7 +58,7 @@ function ProfileUser() {
           {/* 왼쪽 박스 (프로필 이미지) */}
           <div className={Styles.infoOuterBoxLeft}>
             <div className={Styles.infoInnerBoxLeft}>
-              <ProfileBox />
+              <ProfileBox isChanged={isChange} />
             </div>
           </div>
           {/* 오른쪽 박스 (프로필 데이터) */}
@@ -80,10 +86,11 @@ function ProfileUser() {
           )}
         </div>
       )}
+      {/* 데이터조회 및 변경 api : 리턴값없음 */}
       <ProfileUserApi onUserDataChange={handleUserInfoData} />
       {/* 데이터 변경요청 */}
       {loading ? null : (
-        <button className={Styles.changeBtn} onClick={updateUserinfo}>
+        <button className={Styles.changeBtn} onClick={clickChnageBtn}>
           change
         </button>
       )}

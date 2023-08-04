@@ -1,14 +1,103 @@
 import axios, { AxiosResponse } from "axios";
-export interface Sample {
-  Sample: string;
-  // 필요한 정보 타입 명시
+import { getPk } from "../commponents/Base/BaseFun";
+
+// 디폴트 백엔드 URL
+const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+// URL을 디폴트 백엔드 URL과 합치는 함수
+const createUrl = (endpoint: string): string => {
+  return `${defaultBackendUrl}${endpoint}`;
+};
+
+// 전체 유저 정보 조회
+export interface UserGetRes {
+  users: UserEach[];
 }
-export const fetchSample = async (): Promise<Sample[]> => {
+export interface UserEach {
+  username: string;
+  nickname: string;
+  phoneNumber: number;
+}
+export const UserGet = async (): Promise<UserGetRes> => {
   try {
-    const response: AxiosResponse<Sample[]> = await axios.get("/api/Sample");
+    const response: AxiosResponse<UserGetRes> = await axios.get(
+      createUrl("/admin/users")
+    );
+    console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error("Error fetching Sample:", error);
+    console.error("Error fetching UserGet:", error);
+    throw error;
+  }
+};
+
+// 개별 유저 정보 조회
+export interface OneUserGetRes {
+  users: OneUserEach[];
+}
+export interface OneUserEach {
+  id: number;
+  username: string;
+  nickname: string;
+  phoneNumber: number;
+}
+export const OneUserGet = async (): Promise<OneUserGetRes> => {
+  try {
+    const pk = getPk();
+    const response: AxiosResponse<OneUserGetRes> = await axios.get(
+      createUrl(`/admin/users/${pk}`)
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching OneUserGet:", error);
+    throw error;
+  }
+};
+
+// 전체 갤러리 정보 조회
+export interface GalleryGetRes {
+  galleries: GalleryEach[];
+}
+export interface GalleryEach {
+  id: number;
+  username: string;
+  galleryName: string;
+  accepted: boolean;
+  description: string;
+}
+export const GalleryGet = async (): Promise<GalleryGetRes> => {
+  try {
+    const response: AxiosResponse<GalleryGetRes> = await axios.get(
+      createUrl("/admin/galleries")
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching GalleryGet:", error);
+    throw error;
+  }
+};
+// 개별 갤러리 정보 조회
+export interface OneGalleryGetRes {
+  users: OneGalleryEach[];
+}
+export interface OneGalleryEach {
+  id: number;
+  username: string;
+  galleryName: string;
+  accepted: boolean;
+  description: string;
+}
+export const OneGalleryGet = async (): Promise<OneGalleryGetRes> => {
+  try {
+    const pk = getPk();
+    const response: AxiosResponse<OneGalleryGetRes> = await axios.get(
+      createUrl(`/admin/galleries/${pk}`)
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching OneGalleryGet:", error);
     throw error;
   }
 };

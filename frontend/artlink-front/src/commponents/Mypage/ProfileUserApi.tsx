@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { UserInfoRes, UserInfo } from "../../api/UserApi";
-import axios from "axios";
+import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
 
 interface ApitestUserInfoProps {
   onUserDataChange: (data: UserInfoRes) => void;
@@ -12,10 +12,7 @@ const ApitestUserInfo: React.FC<ApitestUserInfoProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const accessToken = localStorage.getItem("access_token");
-        axios.defaults.headers.common["Authorization"] = `Bearer ${
-          accessToken as string
-        }`;
+        setAuthorizationHeader(); // set authorization
 
         const data = await UserInfo();
         console.log(data);

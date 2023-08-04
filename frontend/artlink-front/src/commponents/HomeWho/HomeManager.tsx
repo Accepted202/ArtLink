@@ -15,7 +15,10 @@ function HomeManager() {
         </Link>
         {/* Menu : Gallery Manage */}
         <Link to="/gallery-board" className={LinkStyle.LinkNone}>
-          <BigButton tabName={"Gallery Manage"} mini={"Manage your gallerys"} />
+          <BigButton
+            tabName={"Gallery Manage"}
+            mini={"Manage your galleries"}
+          />
         </Link>
       </div>
     </>
