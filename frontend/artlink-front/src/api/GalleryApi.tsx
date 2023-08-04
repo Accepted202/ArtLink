@@ -54,5 +54,3 @@ export const GalleryInfoEdit = async (
     throw error;
   }
 };
-// IotAdd
-// IotRemove

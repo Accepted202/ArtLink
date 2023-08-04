@@ -4,9 +4,7 @@ import IoTTable from "./IoTTable";
 
 /*
 TODO:
-[ ] 삭제 기능 구현
 [ ] api 연결
-[ ] 삭제 시 모달 창 생성
 */
 
 interface Data {
@@ -30,7 +28,7 @@ function IoTBoard() {
   ];
 
   const keys = Object.keys(IoTData[0]);
-  const widths = ["20%", "60%", "20%"];
+  const widths = ["20%", "80%"];
 
   return (
     <>

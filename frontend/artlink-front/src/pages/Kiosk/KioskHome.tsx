@@ -14,6 +14,7 @@ function KioskHome() {
           <div className={styles["notice-text"]}>{"Please Tag"}</div>
         </div>
       </div>
+      <input type="text" id="tag" />
     </>
   );
 }

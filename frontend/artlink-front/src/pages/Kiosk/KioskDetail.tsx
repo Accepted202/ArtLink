@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
   [v] 요소 삭제 시 모달 창 띄우기
   [ ] 상속 문제 해결
   [ ] 요소 삭제 시 삭제 애니메이션
-  [ ] 페이지 별로 구분하는 애니메이션
 */
 
 /*
@@ -20,10 +19,13 @@ api 확인 후 데이터 구조에 따라 수정 필요.
 데이터 내의 정보로 어떤 것을 삭제할 지 결정해야한다.
 -> api 아직 완성 안됨
 */
+interface Data {
+  [key: string]: string | number;
+}
 
 function KioskDetail() {
   // 서버로부터 가져온 작품 정보
-  const artworksInfo = [
+  const data: Data[] = [
     { id: 1, title: "1" },
     { id: 2, title: "2" },
     { id: 3, title: "3" },
@@ -37,10 +39,10 @@ function KioskDetail() {
   ];
 
   // 서버에 보낼 최종 데이터는 artworks다.
-  const [artworks, setArtworks] = useState(artworksInfo);
+  const [artworks, setArtworks] = useState(data);
 
   // Delete 버튼 클릭 시 요소 삭제
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: number | string) => {
     setArtworks((prevData) => prevData.filter((item) => item.id !== id));
   };
 
@@ -51,12 +53,6 @@ function KioskDetail() {
   for (let i = 0; i < artworks.length; i += chunkSize) {
     chunkedData.push(artworks.slice(i, i + chunkSize));
   }
-
-  // 페이지
-  // const startIdx = (currentPage - 1) * itemsPerContainer;
-  // const endIdx = currentPage * itemsPerContainer;
-
-  // const displayedArtworks = artworks.slice(startIdx, endIdx);
 
   return (
     <>

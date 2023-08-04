@@ -3,14 +3,13 @@ import ArtworkBox from "./ArtworkBox";
 
 // ArtworkBox를 담는 컨테이너
 
-interface Artwork {
-  id: number;
-  title: string;
+interface Data {
+  [key: string]: string | number;
 }
 
 interface Props {
-  chunk: Artwork[];
-  onClickDelete: (id: number) => void;
+  chunk: Data[];
+  onClickDelete: (id: number | string) => void;
 }
 
 function BoxContainer({ chunk, onClickDelete }: Props) {

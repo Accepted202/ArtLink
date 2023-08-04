@@ -48,7 +48,6 @@ function IoTTable({ pageSize, dataKeys, data, columnWidths }: Props) {
                 {header}
               </th>
             ))}
-            <th>삭제</th>
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
@@ -59,9 +58,6 @@ function IoTTable({ pageSize, dataKeys, data, columnWidths }: Props) {
                   {getColumnValue(row, columnKey)}
                 </td>
               ))}
-              <td style={{ width: columnWidths[columnWidths.length - 1] }}>
-                <button>삭제</button>
-              </td>
             </tr>
           ))}
         </tbody>
