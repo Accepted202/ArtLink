@@ -28,10 +28,10 @@ public class AdminController {
     private GalleryService galleryService;
 
     @GetMapping("/users")
-    private ResponseEntity<Map<String, List<UserResponseDto>>> findAllUsers() {
-        List<UserResponseDto> usersDto = new ArrayList<>();
+    private ResponseEntity<Map<String, List<UserDetailResponseDto>>> findAllUsers() {
+        List<UserDetailResponseDto> usersDto = new ArrayList<>();
         userService.findAll().forEach( u -> usersDto.add(
-                new UserResponseDto(u.getUsername(), u.getPhoneNumber(), u.getNickname())));
+                new UserDetailResponseDto(u.getId(), u.getUsername(), u.getPhoneNumber(), u.getNickname())));
         return ResponseEntity.ok(Map.of("users", usersDto));
     }
 
@@ -39,7 +39,8 @@ public class AdminController {
     private ResponseEntity<UserDetailResponseDto> findByIdUser(@PathVariable Integer id) {
         User user = userService.findById(id);
         UserDetailResponseDto responseDto = new UserDetailResponseDto(
-                user.getUsername(), user.getPhoneNumber(), user.getNickname());
+                user.getId(), user.getUsername(),
+                user.getPhoneNumber(), user.getNickname());
         return ResponseEntity.ok(responseDto);
     }
 
