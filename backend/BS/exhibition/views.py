@@ -22,8 +22,7 @@ class ExhibitionView(View):
     def get(self, request):
         try:
             exhibitions = Exhibition.objects.all()
-            res = {}
-            res['exhibitionList'] = []
+            res = {'exhibitionList' : []}
             for exhibition in exhibitions:
                 res['exhibitionList'].append(exhibition.exhibitionid)
             return HttpResponse(status=200, content=json.dumps(res))
