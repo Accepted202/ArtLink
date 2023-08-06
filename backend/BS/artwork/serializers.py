@@ -5,7 +5,6 @@ from rest_framework import serializers
 from artwork.models import Artwork
 from exhibition.models import Exhibition
 
-
 class ArtworkSerializer(serializers.Serializer):
     artworkid = serializers.IntegerField()
     coorx = serializers.FloatField()
@@ -26,7 +25,7 @@ class ArtworkSerializer(serializers.Serializer):
     def create(self, validated_data):
         exhibition_id = validated_data.get('exhibition')
         try:
-            exhibition = Exhibition.objects.get(exhibitionid = exhibition_id)
+            exhibition = Exhibition.objects.get(exhibitionid=exhibition_id)
             validated_data['exhibition'] = exhibition
             print(validated_data)
             Artwork.objects.create(**validated_data)

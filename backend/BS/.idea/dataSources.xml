@@ -10,5 +10,12 @@
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/local_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="db" uuid="5f9d5d97-dd5b-4532-bc46-696ae6d121d6">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\project\embedded\S09P12A202\backend\BS\db.sqlite3</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

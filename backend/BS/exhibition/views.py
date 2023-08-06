@@ -5,35 +5,32 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import json
 from exhibition.models import Exhibition
+from exhibition.services import *
 
 # Create your views here.
 @method_decorator(csrf_exempt, name = 'dispatch')
 class ExhibitionView(View):
     @method_decorator(csrf_exempt)
     def post(self, request):
-        data = json.loads(request.body)
-        print(data)
+        data = request.data
+        id = data.get('id')
         try:
-            Exhibition.objects.create(exhibitionid = data['exhibitionId'])
+            create_by_Id(id)
             return HttpResponse(status=201, content = 'Exhibition created successfully')
         except:
             return HttpResponse(status=404, content='It is already created.')
 
     def get(self, request):
         try:
-            exhibitions = Exhibition.objects.all()
-            res = {}
-            res['exhibitionList'] = []
-            for exhibition in exhibitions:
-                res['exhibitionList'].append(exhibition.exhibitionid)
-            return HttpResponse(status=200, content=json.dumps(res))
+            res = {'Exhibition_List' : get_all_exhibitions()}
+            return JsonResponse(res, status=200)
         except:
-            return HttpResponse(status=404, content='There is no exhibition.')
+            return JsonResponse({'msg': 'Failed to get list'}, status=404)
 
 
 @method_decorator(csrf_exempt, name = 'dispatch')
 class ExhibitionDetailView(View):
     @method_decorator(csrf_exempt)
     def delete(self, request, exhibitionid):
-        Exhibition.objects.delete(exhibitionid = exhibitionid)
-        return HttpResponse(status=200, content = 'Exhibition deleted successfully')
+        delete_by_Id(exhibitionid)
+        return JsonResponse({'msg': 'Successfully deleted'}, status = 200)

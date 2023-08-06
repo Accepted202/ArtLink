@@ -8,15 +8,16 @@ import json
 
 from .signals import mtos_post, mtos_delete
 
+
 class DeviceConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'device'
 
     MQTT_BROKER_HOST = "localhost"
     MQTT_BROKER_PORT = 1883
-    MAX_ANCHOR       = 3
-    PUB_TOPIC        = "StoD"
-    SUB_TOPIC        = "DtoS"
+    MAX_ANCHOR = 3
+    PUB_TOPIC = "StoD"
+    SUB_TOPIC = "DtoS"
 
     def on_message(self, client, userdata, message):
         payload = message.payload.decode()
@@ -30,20 +31,20 @@ class DeviceConfig(AppConfig):
             pub_json = dict()
             pub_json["T"] = device_id
             cnt = pub_json["LC"] = int(data["LC"])
-            if not cnt >= 3 :
-                res = 2 # pending or error
-                publish.single(pub_topic, res, hostname = self.MQTT_BROKER_HOST, port = self.MQTT_BROKER_PORT)
+            if not cnt >= 3:
+                res = 2  # pending or error
+                publish.single(pub_topic, res, hostname=self.MQTT_BROKER_HOST, port=self.MQTT_BROKER_PORT)
                 return
             cnt = min(cnt, self.MAX_ANCHOR)
             child_lst = [None for _ in range(cnt)]
             for i in range(cnt):
-                child_lst[i] = {"A":int(data["L"][i]["A"]), "R":float(data["L"][i]["R"])}
+                child_lst[i] = {"A": int(data["L"][i]["A"]), "R": float(data["L"][i]["R"])}
             pub_json["L"] = child_lst
             mtos_post.send(sender=self, data=json.dumps(pub_json))
 
         elif event == "D":
             mtos_delete.send(sender=self, device=device_id)
-    
+
     def on_connect(self, client, userdata, flags, rc):
         print("Connected with result code " + str(rc))
         client.subscribe(self.SUB_TOPIC)
