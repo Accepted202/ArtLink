@@ -81,7 +81,6 @@ public class GalleryController {
 
         int statuscode = helper.postSendMsg(path, sendMsg);
         if(statuscode != 201){
-            sout
             throw new DjangoFailedException("Django failed");
         }
 
@@ -176,7 +175,6 @@ public class GalleryController {
                     artWork.getExplanation(),
                     ImageUrl
             );
-            /*
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
             String path = "http://localhost:8000/artwork/";
@@ -187,10 +185,9 @@ public class GalleryController {
 
             //sendMsg
             int statuscode = helper.postSendMsg(path, sendMsg);
-            if (statuscode != 200){
+            if (statuscode != 201){
                 throw new DjangoFailedException("Django failed to send");
             }
-            */
 
             return new ResponseEntity<ArtWorkDto>(artWorkDto, HttpStatus.OK);
         }
