@@ -54,14 +54,8 @@ def getVoronoi(exhibition):
         delete_VoronoiResult_by_exhibition(exhibition)
         return True
 
-    command = 'D:\\project\\S09P12A202\\backend\\BS\\tools\\cpptest.exe'
+    command = '.tools/cpptest.exe'
 
-    # TODO: OS가 Window일때만 git bash로 우회. EC2 배포시 삭제 요망
-    git_bash_path = '"C:\\Program Files\\Git\\bin\\sh.exe" --login'
-    command = git_bash_path + ' ' + command
-
-    print(command)
-    # 실행.
     process = subprocess.Popen([command], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                text=True)
 
