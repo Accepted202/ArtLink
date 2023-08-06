@@ -1,6 +1,7 @@
 package com.example.projecttest1.controller;
 
 import com.example.projecttest1.dto.ErrorResponseDto;
+import com.example.projecttest1.dto.SimpleMsgDto;
 import com.example.projecttest1.entity.ArtWork;
 import com.example.projecttest1.entity.PostEvent;
 import com.example.projecttest1.repository.ArtWorkRepository;
@@ -77,5 +78,16 @@ public class PostEventController {
         }
     }
 
-
+    @DeleteMapping("/{Key}/drawings/{drawingId}")
+    public ResponseEntity<?> deletePostEvnetDrawings(@PathVariable String Key, @PathVariable Long drawingId){
+        try{
+            UserKey userKey = userKeyRepository.findKey(Key);
+            ArtWork artWork = artWorkRepository.findById(drawingId);
+            postEventRepository.deletePostEvent(userKey, artWork);
+            return new ResponseEntity<SimpleMsgDto>(new SimpleMsgDto("Successfully deleted drawing"), HttpStatus.OK);
+        }catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto(e.getMessage(), 400), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

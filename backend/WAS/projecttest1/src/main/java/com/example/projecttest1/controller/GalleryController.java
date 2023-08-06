@@ -6,7 +6,6 @@ import com.example.projecttest1.entity.ArtWork;
 import com.example.projecttest1.entity.Device;
 import com.example.projecttest1.entity.Exhibition;
 import com.example.projecttest1.entity.Gallery;
-import com.example.projecttest1.exception.django.DjangoFailedException;
 import com.example.projecttest1.helper.Helper;
 import com.example.projecttest1.helper.S3Uploader;
 import com.example.projecttest1.repository.ExhibitionRepository;
