@@ -41,6 +41,9 @@ public class Exhibition {
     @OneToMany(mappedBy = "exhibition", cascade = CascadeType.ALL)
     private List<ArtWork> artWorks;
 
+    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.ALL)
+    private List<Device> devices;
+
     public Exhibition(String exhibitionName, Gallery gallery) {
         this.exhibitionName = exhibitionName;
         this.gallery = gallery;

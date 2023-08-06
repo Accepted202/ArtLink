@@ -22,7 +22,7 @@ public class SelectionController {
 
     //TODO: 그림은 하나씩만!
     @PostMapping("/devices/{deviceId}")
-    public ResponseEntity pickPainting(@PathVariable Long deviceId, @RequestBody Map<String, Object> mp){
+    public ResponseEntity pickPainting(@PathVariable Long deviceId, @RequestBody Map<String, Object> mp) throws Exception{
         try{
             Long drawingId = Long.parseLong(String.valueOf(mp.get("drawingId")));
             System.out.println(drawingId);

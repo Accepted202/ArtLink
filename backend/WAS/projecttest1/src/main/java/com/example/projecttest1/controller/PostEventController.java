@@ -1,6 +1,7 @@
 package com.example.projecttest1.controller;
 
 import com.example.projecttest1.dto.ErrorResponseDto;
+import com.example.projecttest1.dto.SimpleMsgDto;
 import com.example.projecttest1.entity.ArtWork;
 import com.example.projecttest1.entity.PostEvent;
 import com.example.projecttest1.repository.ArtWorkRepository;
@@ -46,15 +47,19 @@ public class PostEventController {
     public ResponseEntity<?> putPostEvent(@PathVariable String Key, @RequestBody Map<String, Object> request){
         try{
             // 두 Drawing의 ID를 request body에서 불러온다.
-            Long OriginalDrawingID = (Long) request.get("OriginalDrawingID");
-            Long AfterDrawingID = (Long) request.get("AfterDrawingID");
+            Integer Origin = (Integer) request.get("OriginalDrawingID");
+            Integer After = (Integer) request.get("AfterDrawingID");
+
+            Long originalDrawingID = Origin.longValue();
+            Long afterDrawingID = After.longValue();
+
             // PathVariable에 해당하는 UserKey를 불러온다.
             UserKey userKey = userKeyRepository.findKey(Key);
             // 해당 UserKey에 대한 List<PostEvent>를 불러온다.
             List<PostEvent> postEventList = postEventRepository.getPostEventsByUserKey(userKey);
 
-            ArtWork OriginalArtWork = artWorkRepository.findById(OriginalDrawingID);
-            ArtWork AfterArtWork = artWorkRepository.findById(AfterDrawingID);
+            ArtWork OriginalArtWork = artWorkRepository.findById(originalDrawingID);
+            ArtWork AfterArtWork = artWorkRepository.findById(afterDrawingID);
             for(PostEvent postEvent: postEventList){
                 ArtWork artWork = postEvent.getArtWork();
                 if(artWork == OriginalArtWork){
@@ -73,5 +78,16 @@ public class PostEventController {
         }
     }
 
-
+    @DeleteMapping("/{Key}/drawings/{drawingId}")
+    public ResponseEntity<?> deletePostEvnetDrawings(@PathVariable String Key, @PathVariable Long drawingId){
+        try{
+            UserKey userKey = userKeyRepository.findKey(Key);
+            ArtWork artWork = artWorkRepository.findById(drawingId);
+            postEventRepository.deletePostEvent(userKey, artWork);
+            return new ResponseEntity<SimpleMsgDto>(new SimpleMsgDto("Successfully deleted drawing"), HttpStatus.OK);
+        }catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto(e.getMessage(), 400), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

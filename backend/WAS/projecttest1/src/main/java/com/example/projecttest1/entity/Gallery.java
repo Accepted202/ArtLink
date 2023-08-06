@@ -17,8 +17,10 @@ public class Gallery implements Principal {
     @Column(name = "gallery_pk")
     private Integer id;
 
+    @Setter
     private String username; // gallery_id
 
+    @Setter
     private String galleryName;
 
     @Setter
@@ -30,16 +32,22 @@ public class Gallery implements Principal {
     @Setter
     private String refreshToken;
 
+    @Setter
+    private Boolean accepted;
+
+
     @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
     private List<UserKey> userkeys;
 
     @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL)
     private List<Device> devices;
 
+    //일대다 다대일 관계는 뒤로 빼려고 하였음.
     public Gallery(String username, String password, String galleryName) {
         this.username = username;
         this.galleryName = galleryName;
         this.password = password;
+        this.accepted = Boolean.FALSE;
     }
 
     @Override
@@ -48,6 +56,9 @@ public class Gallery implements Principal {
     }
     @Override
     public String getRole() {
+//        if (!accepted) {
+//            return "UNACCEPTED";
+//        }
         return "ROLE_GALLERY";
     }
 }

@@ -33,21 +33,26 @@ public class DeviceService {
     //@Autowired
     //private CollectionRepository collectionRepository;
 
-    public void save(Device device){
+    public Device save(Device device){
         try{
-            deviceRepository.save(device);
+            return deviceRepository.save(device);
         }catch(Exception e){
             e.printStackTrace();
         }
+        return null;
     }
 
-    public void save(Long deviceId, Long phoneNumber, Gallery gallery){
+    public Device save(Long deviceId, Long phoneNumber, Exhibition exhibition){
         Device device = new Device();
         device.setDeviceId(deviceId);
         device.setPhoneNumber(phoneNumber);
+        device.setExhibition(exhibition);
+        System.out.println(exhibition.getId());
+        Gallery gallery = exhibition.getGallery();
+        System.out.println(gallery.getId());
         device.setGallery(gallery);
 
-        save(device);
+        return save(device);
     }
 
     protected Long power(Long a, Long exp, Long mod){

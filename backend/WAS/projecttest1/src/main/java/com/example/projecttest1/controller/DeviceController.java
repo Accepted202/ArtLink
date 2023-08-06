@@ -1,8 +1,11 @@
 package com.example.projecttest1.controller;
 
+import com.example.projecttest1.dto.DeviceDto;
 import com.example.projecttest1.dto.ErrorResponseDto;
 import com.example.projecttest1.entity.Device;
+import com.example.projecttest1.entity.Exhibition;
 import com.example.projecttest1.entity.Gallery;
+import com.example.projecttest1.repository.ExhibitionRepository;
 import com.example.projecttest1.repository.GalleryRepository;
 import com.example.projecttest1.repository.PostEventRepository;
 import com.example.projecttest1.service.ArtWorkService;
@@ -26,6 +29,7 @@ public class DeviceController {
     private final DeviceService deviceService;
     private final SelectionService selectionService;
     private final GalleryRepository galleryRepository;
+    private final ExhibitionRepository exhibitionRepository;
 
     //Remind: 프론트에게 AddVisitor에 GalleryId 추가해도 되는지 물어보기. 08/02
 
@@ -33,16 +37,14 @@ public class DeviceController {
     public ResponseEntity AddVisitor(@PathVariable Long deviceId, @RequestBody Map<String, Object> mp) throws Exception {
         try{
             Long phoneNumber = (Long)mp.get("phoneNumber");
-            Integer galleryId = (Integer)mp.get("galleryId");
-            Optional<Gallery> gallery = galleryRepository.findById(galleryId);
+            Integer exhibitionId = (Integer)mp.get("exhibitionId");
+            Optional<Exhibition> exhibition = exhibitionRepository.findById(exhibitionId);
 
-            if(gallery == null){
+            if(exhibition == null){
                 throw new NoSuchFieldException("Could not find gallery");
             }
-            deviceService.save(deviceId, phoneNumber, gallery.get());
-            Map<String, String> msg = new HashMap<String, String>();
-            msg.put("Status", "OK");
-            return new ResponseEntity<>(msg, HttpStatus.OK);
+            Device device = deviceService.save(deviceId, phoneNumber, exhibition.get());
+            return new ResponseEntity<DeviceDto>(new DeviceDto(phoneNumber), HttpStatus.OK);
         }catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto(e.getMessage(), 400), HttpStatus.BAD_REQUEST);

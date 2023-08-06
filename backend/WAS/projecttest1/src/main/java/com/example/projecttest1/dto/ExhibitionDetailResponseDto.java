@@ -9,12 +9,8 @@ import java.time.LocalDate;
 @Data
 public class ExhibitionDetailResponseDto {
     private final Integer id;
-
-    private final String exhibitionName;
-
-    private final String exhibitionExplanation;
-
-    private final String posterUrl;
-
     private final LocalDate createdAt;
+    private final String exhibitionName;
+    private final String exhibitionExplanation;
+    private final String posterUrl;
 }

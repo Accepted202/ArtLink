@@ -4,12 +4,15 @@ import com.example.projecttest1.dto.UserResponseDto;
 import com.example.projecttest1.dto.UserUpdateDto;
 import com.example.projecttest1.entity.User;
 import com.example.projecttest1.exception.auth.UserAlreadyExistsException;
+import com.example.projecttest1.exception.user.UserIdNotFoundException;
 import com.example.projecttest1.exception.user.UserNotFoundException;
 import com.example.projecttest1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -28,6 +31,7 @@ public class UserService {
             throw new UserAlreadyExistsException("User with nickname " + user.getNickname() + " already exists.");
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setProfilePictureUrl("http://43.201.84.42:8080/static/default-profile.png");
         userRepository.save(user);
     }
 
@@ -55,5 +59,17 @@ public class UserService {
         User user = userRepository.findByUsername(userUpdateDto.getUsername());
         user.setNickname(userUpdateDto.getNickname());
         return userRepository.save(user);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findById(Integer id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserIdNotFoundException(id));
+    }
+
+    public String getProfilePicture(String username) {
+        return userRepository.findByUsername(username).getProfilePictureUrl();
     }
 }

@@ -1,5 +1,7 @@
 package com.example.projecttest1.service.validator;
 
+import com.example.projecttest1.dto.gallery.GallerySignupDto;
+import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.entity.User;
 import com.example.projecttest1.exception.auth.InvalidNicknameFormatException;
 import com.example.projecttest1.exception.auth.InvalidPasswordFormatException;
@@ -14,37 +16,46 @@ public class UserSignupValidator extends Validator  {
     private static final int MAXIMUM_PASSWORD_LENGTH = 20;
     private static final int MINIMUM_USERNAME_LENGTH = 5;
     private static final int MAXIMUM_USERNAME_LENGTH = 20;
-
     private static final int MAXIMUM_NICKNAME_LENGTH = 5;
 
-    public void validate(User user) {
-        // 입력값 존재 검사
-        if (isNullOrEmpty(user.getUsername())) {
+    private void validateUsername(String username) {
+        if (isNullOrEmpty(username)) {
             throw new MissingInputException("username");
         }
-        if (isNullOrEmpty(user.getPassword())) {
-            throw new MissingInputException("password");
-        }
-        if (isNullOrEmpty(user.getNickname())) {
-            throw new MissingInputException("nickname");
-        }
-        if (user.getPhoneNumber() == null) {
-            throw new MissingInputException("phoneNumber");
-        }
-        // 입력값 유효성 검사
-        if (!inRange(user.getUsername().length(), MINIMUM_USERNAME_LENGTH, MAXIMUM_USERNAME_LENGTH)) {
+        if (!inRange(username.length(), MINIMUM_USERNAME_LENGTH, MAXIMUM_USERNAME_LENGTH)) {
             throw new InvalidUsernameFormatException("length");
         }
-        if (!isAlphaNumeric(user.getUsername())) {
+        if (!isAlphaNumeric(username)) {
             throw new InvalidUsernameFormatException("format");
         }
-        if (!inRange(user.getPassword().length(), MINIMUM_PASSWORD_LENGTH, MAXIMUM_PASSWORD_LENGTH)) {
+    }
+
+    private void validatePassword(String password) {
+        if (isNullOrEmpty(password)) {
+            throw new MissingInputException("password");
+        }
+        if (!inRange(password.length(), MINIMUM_PASSWORD_LENGTH, MAXIMUM_PASSWORD_LENGTH)) {
             throw new InvalidPasswordFormatException("length");
         }
-        if (!inRange(user.getNickname().length(), 1, MAXIMUM_NICKNAME_LENGTH)) {
+    }
+
+    private void validateNickname(String nickname) {
+        if (isNullOrEmpty(nickname)) {
+            throw new MissingInputException("nickname");
+        }
+        if (!inRange(nickname.length(), 1, MAXIMUM_NICKNAME_LENGTH)) {
             throw new InvalidNicknameFormatException("length");
         }
 
     }
-
+    public void validateUser(User user) {
+        // 입력값 존재 검사
+        validateUsername(user.getUsername());
+        validatePassword(user.getPassword());
+        validateNickname(user.getNickname());
+    }
+    public void validateGallery(GallerySignupDto dto) {
+        validateUsername(dto.getUsername());
+        validatePassword(dto.getPassword());
+    }
 }

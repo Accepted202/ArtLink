@@ -30,7 +30,6 @@ public class ExhibitionService {
         exhibition.setExhibitionName(requestDto.getExhibitionName());
         exhibition.setGallery(gallery);
         exhibition.setExhibitionExplanation(requestDto.getExhibitionExplanation());
-        exhibition.setPosterUrl(requestDto.getPosterUrl());
         exhibition.setCreatedAt(LocalDate.now());
         return exhibitionRepository.save(exhibition);
     }
@@ -55,9 +54,6 @@ public class ExhibitionService {
             exhibition.setExhibitionExplanation(requestDto.getExhibitionExplanation());
         }
 
-        if (requestDto.getPosterUrl() != null) {
-            exhibition.setPosterUrl(requestDto.getPosterUrl());
-        }
         return exhibition;
     }
 

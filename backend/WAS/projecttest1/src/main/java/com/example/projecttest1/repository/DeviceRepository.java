@@ -18,9 +18,11 @@ public class DeviceRepository{
     //Device 객체를 입력하면 해당 기기 DB 등록
     //Input: Device 객체
     //Output: None
-    public void save(Device device){
+    public Device save(Device device){
         em.persist(device);
+        return device;
     }
+
 
     //Device 객체를 입력하면 해당 기기 DB 삭제
     //Input: Device 객체
@@ -59,6 +61,7 @@ public class DeviceRepository{
     //Input: Device 객체의 deviceId(Long)
     //Output: 해당 deviceId를 가진 Device 객체
     public Device findBydeviceId(Long deviceId){
+        System.out.println(deviceId);
         return em.createQuery("select d from Device d where d.deviceId = :deviceId", Device.class).setParameter("deviceId", deviceId).getSingleResult();
     }
 

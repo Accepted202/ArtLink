@@ -17,10 +17,10 @@ public class ArtWork {
     @Column(name = "artWork_pk")
     private Long id;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 50, nullable = false)
     private String artist;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 50, nullable = false)
     private String name;
 
     @Column(columnDefinition = "TEXT", nullable = false)

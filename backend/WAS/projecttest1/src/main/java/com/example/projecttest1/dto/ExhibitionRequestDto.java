@@ -6,5 +6,4 @@ import lombok.Data;
 public class ExhibitionRequestDto {
     private String exhibitionName;
     private String exhibitionExplanation;
-    private String posterUrl;
 }

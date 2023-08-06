@@ -1,6 +1,7 @@
 package com.example.projecttest1.config.jwt;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.example.projecttest1.config.jwt.exception.JWTAuthenticationException;
