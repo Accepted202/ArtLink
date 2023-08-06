@@ -9,19 +9,14 @@ import com.example.projecttest1.exception.user.UserAuthorizationException;
 import com.example.projecttest1.helper.S3Uploader;
 import com.example.projecttest1.repository.UserKeyRepository;
 import com.example.projecttest1.repository.UserRepository;
-import com.example.projecttest1.service.ImageService;
 import com.example.projecttest1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +38,8 @@ public class UserController {
     @Autowired
     private S3Uploader s3Uploader;
 
+    private static String DEFAULT_URL = "http://43.201.84.42:8080/static/default-profile.png";
+
     @GetMapping("/me")
     public ResponseEntity<UserResponseDto> me(HttpServletRequest request) {
         String username = (String) request.getAttribute("username");
@@ -61,7 +58,7 @@ public class UserController {
     }
 
     @PutMapping("/me/profile-picture")
-    public ResponseEntity<?> uploadProfilePicture(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<?> uploadProfilePicture(HttpServletRequest request, @RequestParam MultipartFile file) throws IOException {
         // 유저 찾기
         String username = (String) request.getAttribute("username");
         User user = userRepository.findByUsername(username);
@@ -69,7 +66,7 @@ public class UserController {
         String folder = String.format("user/profile/%d", user.getId());
         String imageUrl = user.getProfilePictureUrl();
         try {
-            if (imageUrl == null) {
+            if (imageUrl == null || imageUrl.equals(DEFAULT_URL)) {
                 imageUrl = s3Uploader.upload(folder, user.getUsername(), file);
             } else {
                 imageUrl = s3Uploader.modify(folder, user.getUsername(), file);
@@ -94,6 +91,9 @@ public class UserController {
 
         String url = userService.getProfilePicture(username);
         // 이미지 반환
+        if (url == null || url.length() == 0) {
+            url = DEFAULT_URL;
+        }
         return ResponseEntity.ok(Map.of("profilePicture", url));
     }
 
