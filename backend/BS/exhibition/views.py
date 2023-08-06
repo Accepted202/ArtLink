@@ -12,7 +12,7 @@ from exhibition.services import *
 class ExhibitionView(View):
     @method_decorator(csrf_exempt)
     def post(self, request):
-        data = request.data
+        data = json.loads(request.body)
         id = data.get('id')
         try:
             create_by_Id(id)
@@ -32,5 +32,8 @@ class ExhibitionView(View):
 class ExhibitionDetailView(View):
     @method_decorator(csrf_exempt)
     def delete(self, request, exhibitionid):
-        delete_by_Id(exhibitionid)
-        return JsonResponse({'msg': 'Successfully deleted'}, status = 200)
+        try:
+            delete_by_Id(exhibitionid)
+            return JsonResponse({'msg': 'Successfully deleted'}, status = 200)
+        except:
+            return JsonResponse({'msg': 'Failed deletion'}, status = 404)

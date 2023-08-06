@@ -6,6 +6,7 @@ import com.example.projecttest1.entity.ArtWork;
 import com.example.projecttest1.entity.Device;
 import com.example.projecttest1.entity.Exhibition;
 import com.example.projecttest1.entity.Gallery;
+import com.example.projecttest1.exception.django.DjangoFailedException;
 import com.example.projecttest1.helper.Helper;
 import com.example.projecttest1.helper.S3Uploader;
 import com.example.projecttest1.repository.ExhibitionRepository;
@@ -69,9 +70,21 @@ public class GalleryController {
     }
 
     @PostMapping("/me/exhibitions")
-    public ResponseEntity<ExhibitionDetailResponseDto> registerExhibition(@RequestBody ExhibitionRequestDto requestDto, HttpServletRequest request) {
+    public ResponseEntity<ExhibitionDetailResponseDto> registerExhibition(@RequestBody ExhibitionRequestDto requestDto, HttpServletRequest request)
+    throws Exception{
         String username = (String) request.getAttribute("username");
         Exhibition exhibition = exhibitionService.registerExhibition(requestDto, username);
+
+        Map<String, Object> sendMsg = new HashMap<String, Object>();
+        String path = "http://localhost:8000/exhibition/";
+        sendMsg.put("id", exhibition.getId());
+
+        int statuscode = helper.postSendMsg(path, sendMsg);
+        if(statuscode != 201){
+            sout
+            throw new DjangoFailedException("Django failed");
+        }
+
         ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
                 exhibition.getCreatedAt(), exhibition.getExhibitionName(),
                 exhibition.getExhibitionExplanation(), exhibition.getPosterUrl());
