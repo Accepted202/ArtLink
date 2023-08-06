@@ -22,7 +22,8 @@ function UserBoard() {
 
   // 테이블 데이터
   const userData = AllUserData;
-  const keys = Object.keys(userData[0]);
+  // const keys = Object.keys(userData[0]);
+  const keys = ["ID", "이름", "전화번호"]; // 데이터가 존재하지 않을 경우 오류가 발생하기 때문에 이 부분은 페이지 별로 하드코딩해야 함
   const widths = ["8%", "20%", "20%", "20%", "8%"];
   const keyToExclude = [""];
 
