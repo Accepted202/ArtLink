@@ -31,19 +31,16 @@ export const UserGet = async (): Promise<UserGetRes> => {
 };
 
 // 개별 유저 정보 조회
-export interface OneUserGetRes {
-  users: OneUserEach[];
-}
 export interface OneUserEach {
   id: number;
   username: string;
   nickname: string;
   phoneNumber: number;
 }
-export const OneUserGet = async (): Promise<OneUserGetRes> => {
+export const OneUserGet = async (): Promise<OneUserEach> => {
   try {
     const pk = getPk();
-    const response: AxiosResponse<OneUserGetRes> = await axios.get(
+    const response: AxiosResponse<OneUserEach> = await axios.get(
       createUrl(`/admin/users/${pk}`)
     );
     console.log(response.data);
@@ -78,9 +75,6 @@ export const GalleryGet = async (): Promise<GalleryGetRes> => {
   }
 };
 // 개별 갤러리 정보 조회
-export interface OneGalleryGetRes {
-  users: OneGalleryEach[];
-}
 export interface OneGalleryEach {
   id: number;
   username: string;
@@ -88,10 +82,10 @@ export interface OneGalleryEach {
   accepted: boolean;
   description: string;
 }
-export const OneGalleryGet = async (): Promise<OneGalleryGetRes> => {
+export const OneGalleryGet = async (): Promise<OneGalleryEach> => {
   try {
     const pk = getPk();
-    const response: AxiosResponse<OneGalleryGetRes> = await axios.get(
+    const response: AxiosResponse<OneGalleryEach> = await axios.get(
       createUrl(`/admin/galleries/${pk}`)
     );
     console.log(response.data);

@@ -13,6 +13,12 @@
   width: 80%;
   font-family: SUITE-Regular;
 }
+.infoOuterBoxRightGal {
+  /* width: 80%; */
+  font-family: SUITE-Regular;
+  display: flex;
+  justify-content: center;
+}
 .infoInnerBoxLeft {
   margin: auto;
 }
@@ -22,6 +28,13 @@
   text-align: left;
   min-width: 400px;
 }
+.infoInnerBoxRightGal {
+  margin: auto;
+  text-align: left;
+  /* min-width: 400px; */
+  display: flex;
+  flex-direction: column;
+}
 
 .profileInput {
   border: none;
@@ -29,6 +42,15 @@
   padding: 5px;
   padding-left: 10px;
   font-family: SUITE-Regular;
+}
+.profileTextArea {
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  padding-left: 10px;
+  font-family: SUITE-Regular;
+  width: 50vw;
+  max-width: 50vw;
 }
 
 .changeBtn {
@@ -70,11 +92,24 @@
     width: unset;
     margin-top: 5%;
   }
-
+  .infoInnerBoxRightGal {
+    text-align: center;
+    min-width: unset;
+  }
+  .infoOuterBoxRightGal {
+    margin: auto;
+    width: unset;
+    margin-top: 5%;
+    display: block;
+    min-width: unset;
+  }
   .infoInnerBoxRight {
     display: flex;
     flex-direction: column;
     text-align: center;
     min-width: unset;
+  }
+  .description {
+    width: 80%;
   }
 }
