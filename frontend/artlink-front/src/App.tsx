@@ -142,8 +142,16 @@ function App() {
             isLoggedIn() ? <WorksDetail /> : <Navigate to="/login-gallery" />
           }
         />
-        <Route path="/gallery/add-iot" element={<IotAdd />} />
-        <Route path="/gallery/iot-board" element={<IoTBoard />} />
+        <Route
+          path="/gallery/add-iot"
+          element={isLoggedIn() ? <IotAdd /> : <Navigate to="/login-gallery" />}
+        />
+        <Route
+          path="/gallery/iot-board"
+          element={
+            isLoggedIn() ? <IoTBoard /> : <Navigate to="/login-gallery" />
+          }
+        />
 
         {/* Manager Routes */}
         <Route
