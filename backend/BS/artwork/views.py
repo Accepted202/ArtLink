@@ -43,8 +43,8 @@ class ArtworkView(View):
 
     def get(self, request):
         #모든 Artwork 조회
-        content = ArtworkSerializer(Artwork.objects.all(), many = True)
-        return JsonResponse(json.dumps(content.data), status = 200)
+        content = ArtworkServices.artwork_serializing(Artwork.objects.all())
+        return JsonResponse(json.dumps(content), status = 200)
 
     def put(self, request): # 미술품 좌표 수정.
         data = json.loads(request.body)

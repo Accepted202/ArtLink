@@ -36,6 +36,17 @@ def put_artwork(artwork, **kwargs):
     for key in kwargs:
         artwork.__setattr__(key, kwargs[key])
 
+def artwork_serializing(artworks):
+    list_of_artworks = []
+    attr_list = ['artworkid', 'coorx', 'coory', 'exhibition']
+    for artwork in artworks:
+        serialized_data = {}
+        for attr in attr_list:
+            serialized_data.__setattr__(attr, artwork.get(attr))
+        list_of_artworks.append(serialized_data)
+    return list_of_artworks
+
+
 def delete_VoronoiResult_by_exhibition(exhibition):
     Voronoipoint.objects.filter(exhibition = exhibition).delete()
     Voronoiresult.objects.filter(exhibition = exhibition).delete()
