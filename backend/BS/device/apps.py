@@ -14,7 +14,7 @@ class DeviceConfig(AppConfig):
     name = 'device'
 
     MQTT_BROKER_HOST = "localhost"
-    MQTT_BROKER_PORT = 1883
+    MQTT_BROKER_PORT = 8884
     MAX_ANCHOR = 3
     PUB_TOPIC = "StoD"
     SUB_TOPIC = "DtoS"
