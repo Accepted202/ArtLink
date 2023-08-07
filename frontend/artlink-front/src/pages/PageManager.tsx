@@ -23,8 +23,8 @@ function PageManager() {
     // Gallery
     ExhibitionBoard: "/exhibition-board",
     ExhibitionDetail: "/exhibition-board/1",
-    WorksCreate: "/exhibition-board/1/works/create",
-    WorksDetail: "/exhibition-board/1/works/1",
+    WorksCreate: "/exhibition-board/1/create",
+    WorksDetail: "/exhibition-board/1/1",
     IoTAdd: "/gallery/add-iot",
     IoTBoard: "/gallery/iot-board",
     MypageGallery: "/mypage/gallery",

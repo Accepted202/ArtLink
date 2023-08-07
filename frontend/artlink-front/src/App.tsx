@@ -165,13 +165,13 @@ function App() {
           }
         />
         <Route
-          path="/exhibition-board/:pk/works/create"
+          path="/exhibition-board/:pk/create"
           element={
             isLoggedIn() ? <WorksCreate /> : <Navigate to="/login-gallery" />
           }
         />
         <Route
-          path="/exhibition-board/:pk/works/:pk"
+          path="/exhibition-board/:pk/:pk"
           element={
             isLoggedIn() ? <WorksDetail /> : <Navigate to="/login-gallery" />
           }
