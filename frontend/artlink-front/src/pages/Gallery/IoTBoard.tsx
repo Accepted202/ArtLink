@@ -5,13 +5,11 @@ import { useState, useEffect } from "react";
 import { Data, getDeviceList } from "../../api/IoTApi";
 import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
 
-/*
-TODO:
-[ ] api 연결
-*/
-
 function IoTBoard() {
-  const [deviceData, setDeviceData] = useState([{}]);
+  const [deviceData, setDeviceData] = useState<Data[]>([]);
+  const [searchTerm, setSearchTerm] = useState(""); // 검색용
+  const [filteredData, setFilteredData] = useState<Data[]>([]);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -24,11 +22,26 @@ function IoTBoard() {
       }
     };
     void getData();
-  }, []);
+  });
 
-  const IoTData: Data[] = deviceData;
+  // 검색어로 데이터 필터링
+  const filteringData = () => {
+    const filteredData = deviceData.filter((item) =>
+      Object.values(item).some((value) =>
+        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
 
-  const keys = Object.keys(IoTData[0]);
+    setFilteredData(filteredData);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      filteringData();
+    }
+  };
+
+  const keys = ["Id", "Phone number"];
   const widths = ["20%", "80%"];
 
   return (
@@ -44,14 +57,21 @@ function IoTBoard() {
               type="search"
               placeholder="검색할 전화번호를 입력하세요."
               className={styles.searchinput}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                filteringData();
+              }}
+              onKeyPress={handleKeyPress}
             />
-            <button className={styles.searchbutton}>search</button>
+            <button className={styles.searchbutton} onClick={filteringData}>
+              search
+            </button>
           </div>
         </div>
         {/* 테이블 내용 */}
         <div className={styles["table-wrapper"]}>
           <IoTTable
-            data={IoTData}
+            data={searchTerm === "" ? deviceData : filteredData}
             pageSize={10}
             dataKeys={keys}
             columnWidths={widths}
