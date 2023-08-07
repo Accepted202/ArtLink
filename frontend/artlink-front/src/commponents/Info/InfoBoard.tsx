@@ -60,7 +60,10 @@ function InfoBoard({
             type="search"
             placeholder={placeholder}
             className={styles.searchInput}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              filteringData();
+            }}
             onKeyPress={handleKeyPress}
           />
           <button className={styles.searchButton} onClick={filteringData}>
@@ -71,7 +74,7 @@ function InfoBoard({
       {/* 테이블 내용 */}
       <div className={styles.tableWrapper}>
         <InfoTable
-          data={filteredData}
+          data={searchTerm === "" ? data : filteredData}
           pageSize={pageSize}
           dataKeys={dataKeys}
           columnWidths={columnWidths}
