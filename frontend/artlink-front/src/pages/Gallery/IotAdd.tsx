@@ -23,7 +23,6 @@ function IoTAdd() {
         [name]: Number(value),
       }));
     }
-    console.log(deviceData);
   };
 
   const handleKeyPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
