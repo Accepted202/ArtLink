@@ -10,7 +10,7 @@ function HomeGallery() {
       <MainLogo />
       <div className="BigBtnBox2">
         {/* Menu : Artwork Manage */}
-        <Link to="/works-board" className={LinkStyle.LinkNone}>
+        <Link to="/exhibition-board" className={LinkStyle.LinkNone}>
           <BigButton tabName={"Artwork Manager"} mini={"Register your work"} />
         </Link>
         {/* Menu : My page */}

@@ -20,6 +20,7 @@ import ArtMemoryDetail from "./pages/User/ArtMemoryDetail";
 import ArtMemoryEdit from "./pages/User/ArtMemoryEdit";
 import ThreeTest from "./pages/ThreeMain";
 // Gallery
+import ExhibitionBoard from "./pages/Gallery/ExhibitionBoard";
 import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
@@ -46,6 +47,9 @@ import Apitest from "./api/Apitest";
 import TestSignup from "./api/testSignup";
 import TestLogin from "./api/testLogin";
 import TestUserInfo from "./api/testUserInfo";
+import NotFound from "./pages/Common/NotFound";
+import ExhibitionCreate from "./pages/Gallery/ExhibitionCreate";
+import ExhibitionUpdate from "./pages/Gallery/ExhibitionUpdate";
 
 function App() {
   // 로그인 여부 판단
@@ -125,19 +129,49 @@ function App() {
 
         {/* Gallery Routes */}
         <Route
-          path="/works-board"
+          path="/exhibition-board"
+          element={
+            isLoggedIn() ? (
+              <ExhibitionBoard />
+            ) : (
+              <Navigate to="/login-gallery" />
+            )
+          }
+        />
+        <Route
+          path="/exhibition-board/create"
+          element={
+            isLoggedIn() ? (
+              <ExhibitionCreate />
+            ) : (
+              <Navigate to="/login-gallery" />
+            )
+          }
+        />
+        <Route
+          path="/exhibition-board/:pk"
           element={
             isLoggedIn() ? <WorksBoard /> : <Navigate to="/login-gallery" />
           }
         />
         <Route
-          path="/works-board/create"
+          path="/exhibition-board/:pk/update"
+          element={
+            isLoggedIn() ? (
+              <ExhibitionUpdate />
+            ) : (
+              <Navigate to="/login-gallery" />
+            )
+          }
+        />
+        <Route
+          path="/exhibition-board/:pk/works/create"
           element={
             isLoggedIn() ? <WorksCreate /> : <Navigate to="/login-gallery" />
           }
         />
         <Route
-          path="/works-board/:pk"
+          path="/exhibition-board/:pk/works/:pk"
           element={
             isLoggedIn() ? <WorksDetail /> : <Navigate to="/login-gallery" />
           }
@@ -197,6 +231,8 @@ function App() {
         <Route path="/api_signup" element={<TestSignup />} />
         <Route path="/api_login" element={<TestLogin />} />
         <Route path="/api_userinfo" element={<TestUserInfo />} />
+        {/* 404 Not Found */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />

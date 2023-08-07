@@ -79,7 +79,7 @@ function InfoTable({
                 {/*id값은 보통 맨 첫번째로 오는 키고,
                 id라는 이름으로만 고정되어 있을 것 같지 않아 이렇게 코드를 작성함*/}
                 <Link
-                  to={`${row[Object.keys(row)[0]]}`}
+                  to={`works/${row[Object.keys(row)[0]]}`}
                   style={{ textDecoration: "none" }}
                 >
                   →

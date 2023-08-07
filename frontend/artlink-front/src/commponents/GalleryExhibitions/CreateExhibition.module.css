@@ -1,0 +1,54 @@
+.ExhibitionInfo {
+  justify-content: space-around;
+  margin: auto;
+  padding: 5vh;
+  border-radius: 50px;
+  width: 80%;
+  margin-top: 50px;
+  box-shadow: 10px 10px 10px rgba(37, 37, 37, 0.2),
+    -10px -10px 10px rgba(255, 255, 255, 0.7);
+}
+
+.ExhibitionInner {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ExhibitionProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ExhibitionTxt {
+  /* border: 1px solid black; */
+  padding: 20px;
+}
+.ExhibitionInputContainer {
+  display: block;
+  align-items: baseline;
+  width: 35vw;
+}
+.ExhibitionInput {
+  border: none !important;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  width: 70%;
+}
+
+@media (max-width: 767px) {
+  .ExhibitionInner {
+    display: block;
+  }
+  .ExhibitionTxt {
+    margin-top: 30px;
+  }
+
+  .ExhibitionInputContainer {
+    justify-content: center;
+    display: flex;
+    align-items: baseline;
+    width: unset;
+  }
+}
