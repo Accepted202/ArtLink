@@ -1,11 +1,6 @@
 import { useState } from "react";
 import ProfileGalleryApi from "./ProfileGalleryApi";
-import {
-  GalleryInfoRes,
-  GalleryInfo,
-  GalleryInfoEdit,
-} from "../../api/GalleryApi";
-import ProfileBox from "./ProfileBox";
+import { GalleryInfoRes, GalleryInfoEdit } from "../../api/GalleryApi";
 import Styles from "./Profile.module.css";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 
@@ -21,7 +16,7 @@ function ProfileUser() {
     setLoading(false); // Data has been fetched, set loading to false
   };
 
-  // input 필드의 값을 변경하여 galleryData를 업데이트하는 함수
+  // input 필드의 값을 변경하여 galleryData를 변경하는 함수
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setgalleryData((prevData) => ({ ...prevData, [name]: value }));
@@ -48,30 +43,39 @@ function ProfileUser() {
         </>
       ) : (
         <div className={Styles.MypageinnerBox}>
-          {/* 왼쪽 박스 (프로필 이미지) */}
-          <div className={Styles.infoOuterBoxLeft}>
-            <div className={Styles.infoInnerBoxLeft}>
-              <ProfileBox />
-            </div>
-          </div>
-          {/* 오른쪽 박스 (프로필 데이터) */}
+          {/* 프로필 데이터 */}
           {galleryData && (
-            <div className={Styles.infoOuterBoxRight}>
-              <div className={Styles.infoInnerBoxRight}>
+            <div className={Styles.infoOuterBoxRightGal}>
+              <div className={Styles.infoInnerBoxRightGal}>
                 <p style={{ fontSize: "25px", fontWeight: "600" }}>
                   Gallery Information
                 </p>
                 {Object.keys(galleryData).map((key) => (
-                  <p key={key}>
-                    {key}:{" "}
-                    <input
-                      type="text"
-                      name={key}
-                      value={galleryData[key]}
-                      onChange={handleInputChange}
-                      className={Styles.profileInput}
-                    />
-                  </p>
+                  <div key={key}>
+                    {key === "description" ? ( // Check if the key is "description"
+                      <>
+                        <p>{key}:</p>
+                        <textarea
+                          name={key}
+                          value={galleryData[key]}
+                          onChange={handleInputChange}
+                          className={Styles.profileTextArea}
+                        />
+                      </>
+                    ) : (
+                      <p key={key}>
+                        {key}:{" "}
+                        <input
+                          type="text"
+                          name={key}
+                          value={galleryData[key]}
+                          onChange={handleInputChange}
+                          readOnly={key !== "description"}
+                          className={Styles.profileInput}
+                        />
+                      </p>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>

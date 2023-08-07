@@ -22,7 +22,8 @@ function GalleryBoard() {
 
   // 테이블 데이터
   const galleryData = AllGalleryData;
-  const keys = Object.keys(galleryData[0]);
+  // const keys = Object.keys(galleryData[0]);
+  const keys = ["PK", "아이디", "갤러리이름", "허용여부", "설명문"]; // 데이터가 존재하지 않을 경우 오류가 발생하기 때문에 이 부분은 페이지 별로 하드코딩해야 함
   const widths = ["6%", "13%", "13%", "13%", "45%"];
   const keyToExclude = [""];
 
