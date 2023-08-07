@@ -1,0 +1,31 @@
+.ExhibitionBox {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+
+.ExhibitionLink {
+  text-decoration: none;
+  color: black;
+  width: 25vw;
+}
+
+.ExhibitionBox img {
+  width: 80%;
+  object-fit: contain;
+  background-color: aqua;
+  display: block; /* Add this line */
+  margin: auto;
+}
+
+@media (max-width: 767px) {
+  .ExhibitionLink {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ExhibitionLink {
+    width: 40vw;
+  }
+}
