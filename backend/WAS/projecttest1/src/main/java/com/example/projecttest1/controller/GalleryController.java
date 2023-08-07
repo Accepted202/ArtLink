@@ -9,6 +9,7 @@ import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.exception.django.DjangoFailedException;
 import com.example.projecttest1.helper.Helper;
 import com.example.projecttest1.helper.S3Uploader;
+import com.example.projecttest1.repository.ArtWorkRepository;
 import com.example.projecttest1.repository.ExhibitionRepository;
 import com.example.projecttest1.repository.GalleryRepository;
 import com.example.projecttest1.service.ArtWorkService;
@@ -40,6 +41,9 @@ public class GalleryController {
 
     @Autowired
     private ExhibitionService exhibitionService;
+
+    @Autowired
+    private ArtWorkRepository artWorkRepository;
 
     @Autowired
     private ArtWorkService artWorkService;
@@ -76,7 +80,8 @@ public class GalleryController {
         Exhibition exhibition = exhibitionService.registerExhibition(requestDto, username);
 
         Map<String, Object> sendMsg = new HashMap<String, Object>();
-        String path = "http://localhost:8000/exhibition/";
+        String path = "http://43.201.84.42:8000/exhibition/";
+//        String path = "http://localhost:8000/exhibition/";
         sendMsg.put("id", exhibition.getId());
 
         int statuscode = helper.postSendMsg(path, sendMsg);
@@ -177,8 +182,10 @@ public class GalleryController {
             );
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
-            String path = "http://localhost:8000/artwork/";
-            sendMsg.put("galleryid", exhibition.getId());
+//            String path = "http://localhost:8000/artwork/";
+            String path = "http://43.201.84.42:8000/artwork/";
+
+            sendMsg.put("exhibitionid", exhibition.getId());
             sendMsg.put("artworkid", artWork.getId());
             sendMsg.put("coorx", artWork.getXCoor());
             sendMsg.put("coory", artWork.getYCoor());
@@ -191,12 +198,62 @@ public class GalleryController {
 
             return new ResponseEntity<ArtWorkDto>(artWorkDto, HttpStatus.OK);
         }
-        /*
         catch(DjangoFailedException de){
             de.printStackTrace();
             return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto("Django failed to send", 400), HttpStatus.BAD_REQUEST);
         }
-        */
+        catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto("Post Drawing Failed", 400), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/me/exhibitions/{exhibitionId}/artworks")
+    public ResponseEntity<?> putGalleryArtwork(HttpServletRequest request, Authentication authentication, @PathVariable Integer exhibitionId,
+                                                @ModelAttribute ModifyArtWorkInputDto modifyArtWorkInputDto) throws Exception {
+        try{
+            //그림만 모아두는 폴더를 만들 예정.
+            String folder = String.format("artworks/%d", exhibitionId);
+            String ImageUrl = s3Uploader.upload(folder, modifyArtWorkInputDto.getName(), modifyArtWorkInputDto.getImageFile());
+            Exhibition exhibition = exhibitionService.findById(exhibitionId);
+            ArtWork artWork = artWorkRepository.findById(modifyArtWorkInputDto.getOldArtworkId());
+            artWork.setName(modifyArtWorkInputDto.getName());
+            artWork.setArtist(modifyArtWorkInputDto.getArtist());
+            artWork.setXCoor(modifyArtWorkInputDto.getLocationX());
+            artWork.setYCoor(modifyArtWorkInputDto.getLocationY());
+            artWork.setExplanation(modifyArtWorkInputDto.getDescription());
+            artWork.setPaintPath(ImageUrl);
+
+            ArtWorkDto artWorkDto = new ArtWorkDto(
+                    artWork.getName(),
+                    artWork.getArtist(),
+                    artWork.getXCoor(),
+                    artWork.getYCoor(),
+                    artWork.getExplanation(),
+                    ImageUrl
+            );
+            //Send the data to Django server.
+            Map<String, Object> sendMsg = new HashMap<String, Object>();
+//            String path = "http://localhost:8000/artwork/";
+            String path = "http://43.201.84.42:8000/artwork/";
+
+            sendMsg.put("exhibitionid", exhibition.getId());
+            sendMsg.put("artworkid", artWork.getId());
+            sendMsg.put("coorx", artWork.getXCoor());
+            sendMsg.put("coory", artWork.getYCoor());
+
+            //sendMsg
+            int statuscode = helper.putSendMsg(path, sendMsg);
+            if (statuscode != 200){
+                throw new DjangoFailedException("Django failed to send");
+            }
+
+            return new ResponseEntity<ArtWorkDto>(artWorkDto, HttpStatus.OK);
+        }
+        catch(DjangoFailedException de){
+            de.printStackTrace();
+            return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto("Django failed to send", 400), HttpStatus.BAD_REQUEST);
+        }
         catch(Exception e){
             e.printStackTrace();
             return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto("Post Drawing Failed", 400), HttpStatus.BAD_REQUEST);
