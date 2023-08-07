@@ -16,6 +16,7 @@ export interface UserEach {
   username: string;
   nickname: string;
   phoneNumber: number;
+  [key: string]: string | number;
 }
 export const UserGet = async (): Promise<UserGetRes> => {
   try {
@@ -61,6 +62,7 @@ export interface GalleryEach {
   galleryName: string;
   accepted: boolean;
   description: string;
+  [key: string]: string | number | boolean;
 }
 export const GalleryGet = async (): Promise<GalleryGetRes> => {
   try {
