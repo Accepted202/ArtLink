@@ -42,7 +42,8 @@ def artwork_serializing(artworks):
     for artwork in artworks:
         serialized_data = {}
         for attr in attr_list:
-            serialized_data.__setattr__(attr, artwork.get(attr))
+            serialized_data[attr] = getattr(artwork, attr)
+            if attr == 'exhibition': serialized_data[attr] = serialized_data[attr].exhibitionid
         list_of_artworks.append(serialized_data)
     return list_of_artworks
 
