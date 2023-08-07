@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class ModifyArtWorkInputDto {
-    private final Long OldArtworkId;
+    private final Long OldArtWorkId;
 
     private final String Name;
 

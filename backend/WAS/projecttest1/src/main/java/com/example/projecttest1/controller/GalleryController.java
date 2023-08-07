@@ -216,7 +216,9 @@ public class GalleryController {
             String folder = String.format("artworks/%d", exhibitionId);
             String ImageUrl = s3Uploader.upload(folder, modifyArtWorkInputDto.getName(), modifyArtWorkInputDto.getImageFile());
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
-            ArtWork artWork = artWorkRepository.findById(modifyArtWorkInputDto.getOldArtworkId());
+            System.out.println(modifyArtWorkInputDto.getOldArtWorkId());
+            ArtWork artWork = artWorkRepository.findById(modifyArtWorkInputDto.getOldArtWorkId());
+            System.out.println("!!!!!!");
             artWork.setName(modifyArtWorkInputDto.getName());
             artWork.setArtist(modifyArtWorkInputDto.getArtist());
             artWork.setXCoor(modifyArtWorkInputDto.getLocationX());
