@@ -57,10 +57,10 @@ class ArtworkView(View):
         try:
             # Voronoi diagram을 뽑는 과정
             exhibition = ExhibitionServices.find_by_Id(data['exhibitionid'])
-            artworks = ArtworkServices.find_by_exhibition(exhibition)
+            artworks = ArtworkServices.find_artwork_by_exhibition(exhibition)
 
             # Voronoi diagram 돌리기 요청.
-            if ExhibitionServices.getVoronoi(exhibition):
+            if ArtworkServices.getVoronoi(exhibition):
                 return JsonResponse({'msg': 'ok'}, status = 200)
         except Exception as e:
             print(e)
@@ -69,14 +69,14 @@ class ArtworkView(View):
 @method_decorator(csrf_exempt, name = "dispatch")
 class ArtworkDetailView(View):
     def delete(self, request, artworkid):
-        data = json.loads(request.body)
+        artwork = ArtworkServices.find_artwork_by_Id(artworkid)
+        exhibition = artwork.exhibition
         ArtworkServices.delete_artwork_by_Id(artworkid)
         try:
-            exhibition = ExhibitionServices.find_by_Id(data['exhibitionid'])
-            artworks = ArtworkServices.find_by_exhibition(exhibition)
+            artworks = ArtworkServices.find_artwork_by_exhibition(exhibition)
 
             # Voronoi diagram 돌리기 요청.
-            if ExhibitionServices.getVoronoi(exhibition):
+            if ArtworkServices.getVoronoi(exhibition):
                 return JsonResponse({'msg': 'ok'}, status=200)
         except Exception as e:
             print(e)
