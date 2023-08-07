@@ -46,17 +46,15 @@ def getVoronoi(exhibition):
     Input = make_input_by_artworks(artworks)
 
     # 미술품의 개수가 3개 이상일 때만 보로노이 실행
-
     if count <= 1:
         delete_VoronoiResult_by_exhibition(exhibition)
         return True
     if count == 2:
         delete_VoronoiResult_by_exhibition(exhibition)
         return True
-
-    command = '.tools/cpptest.exe'
-
-    process = subprocess.Popen([command], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+    command = './tools/cpptest'
+    # 실행.
+    process = subprocess.Popen([command],stdin=subprocess.PIPE,  stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                text=True)
 
     stdout, stderr = process.communicate(input = Input)
