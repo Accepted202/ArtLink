@@ -23,7 +23,7 @@ import ThreeTest from "./pages/ThreeMain";
 import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
-import IotAdd from "./pages/Gallery/IotAdd";
+import IoTAdd from "./pages/Gallery/IotAdd";
 import IoTBoard from "./pages/Gallery/IoTBoard";
 
 // Manager
@@ -144,7 +144,7 @@ function App() {
         />
         <Route
           path="/gallery/add-iot"
-          element={isLoggedIn() ? <IotAdd /> : <Navigate to="/login-gallery" />}
+          element={isLoggedIn() ? <IoTAdd /> : <Navigate to="/login-gallery" />}
         />
         <Route
           path="/gallery/iot-board"
