@@ -80,8 +80,8 @@ public class GalleryController {
         Exhibition exhibition = exhibitionService.registerExhibition(requestDto, username);
 
         Map<String, Object> sendMsg = new HashMap<String, Object>();
-        String path = "http://43.201.84.42:8000/exhibition/";
-//        String path = "http://localhost:8000/exhibition/";
+//        String path = "http://43.201.84.42:8000/exhibition/";
+        String path = "http://localhost:8000/exhibition/";
         sendMsg.put("id", exhibition.getId());
 
         int statuscode = helper.postSendMsg(path, sendMsg);
@@ -182,8 +182,8 @@ public class GalleryController {
             );
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
-//            String path = "http://localhost:8000/artwork/";
-            String path = "http://43.201.84.42:8000/artwork/";
+            String path = "http://localhost:8000/artwork/";
+//            String path = "http://43.201.84.42:8000/artwork/";
 
             sendMsg.put("exhibitionid", exhibition.getId());
             sendMsg.put("artworkid", artWork.getId());
@@ -236,8 +236,8 @@ public class GalleryController {
             );
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
-//            String path = "http://localhost:8000/artwork/";
-            String path = "http://43.201.84.42:8000/artwork/";
+            String path = "http://localhost:8000/artwork/";
+//            String path = "http://43.201.84.42:8000/artwork/";
 
             sendMsg.put("exhibitionid", exhibition.getId());
             sendMsg.put("artworkid", artWork.getId());

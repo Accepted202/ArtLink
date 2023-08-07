@@ -13,7 +13,7 @@ class DeviceConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'device'
 
-    MQTT_BROKER_HOST = "43.201.84.42"
+    MQTT_BROKER_HOST = "localhost"
     MQTT_BROKER_PORT = 8884
     MAX_ANCHOR = 3
     PUB_TOPIC = "StoD"
