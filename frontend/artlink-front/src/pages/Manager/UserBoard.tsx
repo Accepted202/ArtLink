@@ -4,8 +4,12 @@ import { UserGet, UserGetRes } from "../../api/ManagerApi";
 import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
 import InfoTable from "../../commponents/Info/InfoTable";
 
+interface Data {
+  [key: string]: string | number;
+}
+
 function UserBoard() {
-  const [AllUserData, setAllUserData] = useState([{}]);
+  const [AllUserData, setAllUserData] = useState<Data[]>([]);
   useEffect(() => {
     const AllUser = async () => {
       try {
@@ -15,10 +19,11 @@ function UserBoard() {
       } catch (error) {
         console.error("Error Alluser:", error);
         window.alert(error);
+        console.log(AllUserData);
       }
     };
     void AllUser();
-  }, []);
+  });
 
   // 테이블 데이터
   const userData = AllUserData;
