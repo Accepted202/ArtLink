@@ -1,9 +1,9 @@
 import styles from "./IoTBoard.module.css";
 import { Link } from "react-router-dom";
-import IoTTable from "./IoTTable";
+import IoTTable from "../../commponents/Iot/IoTTable";
 import { useState, useEffect } from "react";
 import { Data, getDeviceList } from "../../api/IoTApi";
-import { setAuthorizationHeader } from "../Base/BaseFun";
+import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
 
 /*
 TODO:

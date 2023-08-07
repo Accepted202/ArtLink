@@ -24,7 +24,7 @@ import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
 import IotAdd from "./pages/Gallery/IotAdd";
-import IoTBoard from "./commponents/Iot/IoTBoard";
+import IoTBoard from "./pages/Gallery/IoTBoard";
 
 // Manager
 import UserBoard from "./pages/Manager/UserBoard";
