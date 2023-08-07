@@ -17,6 +17,7 @@ interface Props {
   dataKeys: string[]; // 데이터의 키들
   columnWidths: string[]; // 표의 각 열의 너비
   keyToExclude: string[]; // 표에서 나타나지 않게 하고 싶은 키
+  detail?: boolean; // detail 화면으로 이동하는 링크 열 포함 여부
 }
 
 function InfoTable({
@@ -25,6 +26,7 @@ function InfoTable({
   data,
   columnWidths,
   keyToExclude,
+  detail = true,
 }: Props) {
   const [currentPage, setCurrentPage] = useState(0); // 현재 페이지 번호 저장
 
@@ -58,7 +60,7 @@ function InfoTable({
                 {header}
               </th>
             ))}
-            <th>자세히</th>
+            {detail && <th>자세히</th>}
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
@@ -75,16 +77,16 @@ function InfoTable({
                     </td>
                   )
               )}
-              <td style={{ width: columnWidths[columnWidths.length - 1] }}>
-                {/*id값은 보통 맨 첫번째로 오는 키고,
-                id라는 이름으로만 고정되어 있을 것 같지 않아 이렇게 코드를 작성함*/}
-                <Link
-                  to={`${row[Object.keys(row)[0]]}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  →
-                </Link>
-              </td>
+              {detail && (
+                <td style={{ width: columnWidths[columnWidths.length - 1] }}>
+                  <Link
+                    to={`${row[Object.keys(row)[0]]}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    →
+                  </Link>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
