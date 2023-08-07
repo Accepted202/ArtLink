@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { setAuthorizationHeader, getPk } from "../commponents/Base/BaseFun";
+import { setAuthorizationHeader, getPk, getPk2 } from "../commponents/Base/BaseFun";
 
 // 디폴트 백엔드 URL
 const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
@@ -10,10 +10,6 @@ const createUrl = (endpoint: string): string => {
 
 // 갤러리 정보 조회
 export interface GalleryInfoRes {
-  // username: string;
-  // galleryName: string;
-  // accepted: boolean;
-  // description: string;
   [key: string]: string | boolean;
 }
 export const GalleryInfo = async (): Promise<GalleryInfoRes> => {
@@ -104,25 +100,58 @@ export const ExhibitionCreate = async (
 
 // 전시회 수정
 
+// 전시회 상세 조회
+
 // 전시회 작품 생성
+export interface WorkCreateCreateRes {
+  Name: string;
+	Artist: string;
+	LocationX: number;
+	LocationY: number;
+	Description: string;
+	DrawingPath: string;
+}
+export interface WorkCreateCreateReq {
+  Name: string;
+	Artist: string;
+	LocationX: number;
+	LocationY: number;
+	Description: string;
+	ImageFile: File;
+}
+export const WorkCreate = async (
+  formData: WorkCreateCreateReq
+): Promise<WorkCreateCreateRes> => {
+  try {
+    setAuthorizationHeader();
+    const pk = getPk2();
+    const response: AxiosResponse<WorkCreateCreateRes> = await axios.post(
+      createUrl(`/galleries/me/exhibitions/${pk}/artworks`),
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching WorkCreate:", error);
+    throw error;
+  }
+};
 
 // 전시회 작품 전체 조회
 export interface AllWorksRes {
   DrawingList: Drawing[];
 }
 export interface Drawing {
-  name: string;
-  drawingPath: string;
-  description: string;
-  artist: string;
-  locationX: number;
-  locationY: number;
+  Name: string;
+  DrawingPath: string;
+  Description: string;
+  Artist: string;
+  LocationX: number;
+  LocationY: number;
 }
 export const AllWorks = async (): Promise<AllWorksRes> => {
   try {
     setAuthorizationHeader();
     const pk = getPk();
-    console.log(pk, "pk는");
     const response: AxiosResponse<AllWorksRes> = await axios.get(
       createUrl(`/galleries/me/exhibitions/${pk}/artworks`)
     );
@@ -136,3 +165,4 @@ export const AllWorks = async (): Promise<AllWorksRes> => {
 // 전시회 작품 업데이트
 
 // 전시회 작품 개별 조회
+

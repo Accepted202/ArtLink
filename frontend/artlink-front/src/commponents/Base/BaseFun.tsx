@@ -15,3 +15,12 @@ export const getPk = () => {
   const pk = parts[parts.length - 1];
   return Number(pk);
 };
+
+// Url중간에서 PK 추출
+export const getPk2 = () => {
+  const url = window.location.href;
+  const parts = url.split("/");
+  
+  const lastPart = parts[parts.length - 2];
+  return Number(lastPart);
+};

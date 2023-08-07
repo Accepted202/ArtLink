@@ -44,6 +44,27 @@
   margin-top: 30px;
 }
 
+.image-box{
+  display: flex;
+  flex-direction: column;
+}
+.txt-box{
+  width: 60%;
+  margin-top: 20px;
+  text-align: left;
+}
+.input-field{
+  margin: auto;
+  margin-bottom: 20px;
+}
+.input-field input{
+  border: none;
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  width: 80%;
+}
+
 @media (max-width: 1024px) {
   .detail-container {
     flex-direction: column;
@@ -57,5 +78,24 @@
     flex-direction: unset;
     align-items: unset;
     margin-left: unset;
+  }
+  .image-box{
+    margin: auto;
+  }
+  .txt-box{
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+  }
+  .input-field{
+    display: flex;
+    flex-direction: column;
+  }
+  .input-field input{
+    width: 80%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
   }
 }
