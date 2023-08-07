@@ -1,31 +1,32 @@
 import styles from "./IoTBoard.module.css";
 import { Link } from "react-router-dom";
-import IoTTable from "./IoTTable";
+import IoTTable from "../../commponents/Iot/IoTTable";
+import { useState, useEffect } from "react";
+import { Data, getDeviceList } from "../../api/IoTApi";
+import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
 
 /*
 TODO:
 [ ] api 연결
 */
 
-interface Data {
-  [key: string]: string | number; // 키-값 데이터 타입은 이렇게만 설정해두면 됨
-}
-
 function IoTBoard() {
-  const IoTData: Data[] = [
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-    { deviceId: 1, phoneNumber: 8201000000000 },
-  ];
+  const [deviceData, setDeviceData] = useState([{}]);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setAuthorizationHeader();
+        const response: Data[] = await getDeviceList();
+        setDeviceData(response);
+      } catch (error) {
+        console.error("기기 정보들을 가져오는 데 실패했습니다.", error);
+        window.alert("기기 정보 가져오기 실패");
+      }
+    };
+    void getData();
+  }, []);
+
+  const IoTData: Data[] = deviceData;
 
   const keys = Object.keys(IoTData[0]);
   const widths = ["20%", "80%"];

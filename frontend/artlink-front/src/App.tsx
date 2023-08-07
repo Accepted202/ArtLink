@@ -24,8 +24,8 @@ import ExhibitionBoard from "./pages/Gallery/ExhibitionBoard";
 import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
-import IotAdd from "./pages/Gallery/IotAdd";
-import IoTBoard from "./commponents/Iot/IoTBoard";
+import IoTAdd from "./pages/Gallery/IotAdd";
+import IoTBoard from "./pages/Gallery/IoTBoard";
 
 // Manager
 import UserBoard from "./pages/Manager/UserBoard";
@@ -176,8 +176,16 @@ function App() {
             isLoggedIn() ? <WorksDetail /> : <Navigate to="/login-gallery" />
           }
         />
-        <Route path="/gallery/add-iot" element={<IotAdd />} />
-        <Route path="/gallery/iot-board" element={<IoTBoard />} />
+        <Route
+          path="/gallery/add-iot"
+          element={isLoggedIn() ? <IoTAdd /> : <Navigate to="/login-gallery" />}
+        />
+        <Route
+          path="/gallery/iot-board"
+          element={
+            isLoggedIn() ? <IoTBoard /> : <Navigate to="/login-gallery" />
+          }
+        />
 
         {/* Manager Routes */}
         <Route
