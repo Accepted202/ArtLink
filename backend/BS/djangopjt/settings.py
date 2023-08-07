@@ -129,5 +129,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SPRING_SERVER_PATH = 'http://localhost:8080'
-DJANGO_REQUEST_PATH = 'http://localhost:8000/device/click/'
+SPRING_SERVER_PATH = 'http://43.201.84.42:8080'

@@ -2,92 +2,67 @@ import json, random
 import math
 import requests
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
-from artwork.models import Voronoipoint, Voronoiresult
+import artwork.services
+import device.services
+from artwork.models import Voronoipoint, Voronoiresult, Artwork
 from device.models import Anchor
 from device.serializers import AnchorSerializer
 
 from exhibition.models import Exhibition
 from helper.helper import rotation, get_coord, dist
-
-# Create your views here.
-# POST Request form:
-# {
-#     "exhibitionId": 2,
-#     "anchorId": 3,
-# }
-# GET Response form:
-# [{"anchorid": 3, "coorx": 120.32, "coory": 1.3, "exhibition": 3},
-# {"anchorid": 4, "coorx": 120.32, "coory": 1.3, "exhibition": 3}]
-# PUT Response form:
-# Same as POST
 @method_decorator(csrf_exempt, name = 'dispatch')
 class AnchorView(View):
     def post(self, request):
         data = json.loads(request.body)
-        serializer = AnchorSerializer(data = data)
         try:
-            serializer.create(validated_data = data)
-            return HttpResponse(status=201, content = "Well Created")
+            device.services.create_anchor_by_input(data)
+            return JsonResponse({'msg' : 'Well created'}, status = 201)
         except Exception as e:
             print(e)
-            return HttpResponse(status=404, content = "No valid exhibition")
+            return JsonResponse({'msg' : 'Failed to create'}, status = 404)
 
     def get(self, request):
-        content = AnchorSerializer(Anchor.objects.all(), many = True)
-        print(content)
-        return HttpResponse(status=200, content = json.dumps(content.data))
+        stdout = device.services.create_output_by_anchorList(Anchor.objects.all())
+        return JsonResponse({'anchorList' : stdout}, status = 200)
 
 @method_decorator(csrf_exempt, name = 'dispatch')
 class AnchorDetailView(View):
     def put(self, request, anchorid):
         try:
-            anchor = Anchor.objects.get(anchorid=anchorid)
             data = json.loads(request.body)
-            n_anchorid = data['anchorid']
-            n_exhibition = Exhibition.objects.get(exhibitionid = data['exhibitionid'])
-            coorx, coory = data['coorx'], data['coory']
-            anchor.anchorid = n_anchorid
-            anchor.exhibition = n_exhibition
-            anchor.coorx = coorx
-            anchor.coory = coory
-            anchor.save()
+            device.services.modify_anchor(anchorid, data)
         except Exception as e:
             print(e)
             raise Exception
 
     def delete(self, request, anchorid):
         try:
-            Anchor.objects.delete(anchorid = anchorid)
+            device.services.delete_anchor(anchorid)
         except Exception as e:
             print(e)
             raise Exception
 
 @method_decorator(csrf_exempt, name = 'dispatch')
 class ClickEvent(View):
-    def post(self, request):
+    def post(self, request, deviceid):
         try:
             #MQTT단에서 보내준 데이터를 통한 좌표 추출
             data = json.loads(request.body)
-            deviceid = data['deviceid']
-            d1, d2, d3 = data['d1'], data['d2'], data['d3']
-            anchorid1, anchorid2, anchorid3 = data['anchorid1'], data['anchorid2'], data['anchorid3']
-            anchor1, anchor2, anchor3 = Anchor.objects.get(anchorid = anchorid1), Anchor.objects.get(anchorid = anchorid2), Anchor.objects.get(anchorid = anchorid3)
+            coor, exhibition = device.services.get_coordination_by_input(deviceid, data)
 
-            exhibition = anchor1.exhibition
-
-            x1, y1, x2, y2, x3, y3 = anchor1.coorx, anchor1.coory, anchor2.coorx, anchor2.coory, anchor3.coorx, anchor3.coory
-            coor = get_coord(d1, d2, d3, [x1, y1], [x2, y2], [x3, y3]) # device의 현재 좌표
+            count = artwork.services.get_artwork_count(exhibition)
+            if count == 1:
+                return JsonResponse({'drawingId' : Artwork.objects.filter(exhibition = exhibition).first().artworkid}, status = 200)
 
             #랜덤 기울기를 가진 직선
             slope = math.tan((random.random() - 0.5) * math.pi)
-            intersections = Voronoipoint.objects.filter(exhibition = exhibition)
-            edges = Voronoiresult.objects.filter(exhibition = exhibition)
+            intersections, edges = device.services.get_intersection_with_edge_by_exhibition(exhibition)
 
             points = {}
 
@@ -118,7 +93,6 @@ class ClickEvent(View):
                     xx = abs(x1 - (y1 / k))
                 res.append([xx, area1, area2])
 
-            #TODO: 미술품 한 개 시 에러 수정.
             res.sort() #적어도 하나는 만나기 때문에 res[0]가 있음은 보장되어야 한다. => 만일 미술품이 오로지 한개 뿐이라면 에러.
 
             rres = res[0]
@@ -144,3 +118,11 @@ class ClickEvent(View):
         except Exception as e:
             print(e)
             return HttpResponse(status = 404, content = "Calculation failed")
+    def delete(self, request, deviceid):
+        spring_server_path = getattr(settings, 'SPRING_SERVER_PATH', 'None')
+        target = f'/selections/devices/{deviceid}'
+        response = requests.delete(spring_server_path + target)
+        if response.status_code != 200:
+            return HttpResponse(status = 200, content = response.content)
+        else:
+            return HttpResponse(status=404, content="Calculation failed")

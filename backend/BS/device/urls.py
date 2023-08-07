@@ -23,7 +23,7 @@ from device.views import AnchorView, AnchorDetailView, ClickEvent
 app_name = 'device'
 
 urlpatterns = [
-    path('', AnchorView.as_view(), name='anchorview'),
-    path('<int:anchorid>/', AnchorDetailView.as_view(), name='anchordatailview'),
-    path('click/', ClickEvent.as_view(), name='clickevent')
+    path('anchor/', AnchorView.as_view(), name='anchorview'),
+    path('anchor/<int:anchorid>/', AnchorDetailView.as_view(), name='anchordatailview'),
+    path('iot/click/<int:deviceid>', ClickEvent.as_view(), name='clickevent')
 ]
