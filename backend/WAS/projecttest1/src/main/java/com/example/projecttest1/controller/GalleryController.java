@@ -137,12 +137,15 @@ public class GalleryController {
 
             List<ArtWorkDto> galleryArtWorkList = new ArrayList<ArtWorkDto>();
             for (ArtWork artWork : artWorkList) {
-                galleryArtWorkList.add(new ArtWorkDto(artWork.getName(),
+                galleryArtWorkList.add(new ArtWorkDto(
+                        artWork.getId(),
+                        artWork.getName(),
                         artWork.getArtist(),
                         artWork.getXCoor(),
                         artWork.getYCoor(),
-                        artWork.getExplanation(),
-                        artWork.getPaintPath()));
+                        artWork.getPaintPath(),
+                        artWork.getExplanation()
+                        ));
             }
             Map<String, Object> msg = new HashMap<String, Object>();
             msg.put("DrawingList", galleryArtWorkList);
@@ -173,17 +176,17 @@ public class GalleryController {
             );
 
             ArtWorkDto artWorkDto = new ArtWorkDto(
+                    artWork.getId(),
                     artWork.getName(),
                     artWork.getArtist(),
                     artWork.getXCoor(),
                     artWork.getYCoor(),
-                    artWork.getExplanation(),
-                    ImageUrl
+                    ImageUrl,
+                    artWork.getExplanation()
             );
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
             String path = "http://localhost:8000/artwork/";
-//            String path = "http://43.201.84.42:8000/artwork/";
 
             sendMsg.put("exhibitionid", exhibition.getId());
             sendMsg.put("artworkid", artWork.getId());
@@ -218,7 +221,6 @@ public class GalleryController {
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
             System.out.println(modifyArtWorkInputDto.getOldArtWorkId());
             ArtWork artWork = artWorkRepository.findById(modifyArtWorkInputDto.getOldArtWorkId());
-            System.out.println("!!!!!!");
             artWork.setName(modifyArtWorkInputDto.getName());
             artWork.setArtist(modifyArtWorkInputDto.getArtist());
             artWork.setXCoor(modifyArtWorkInputDto.getLocationX());
@@ -227,17 +229,17 @@ public class GalleryController {
             artWork.setPaintPath(ImageUrl);
 
             ArtWorkDto artWorkDto = new ArtWorkDto(
+                    artWork.getId(),
                     artWork.getName(),
                     artWork.getArtist(),
                     artWork.getXCoor(),
                     artWork.getYCoor(),
-                    artWork.getExplanation(),
-                    ImageUrl
+                    ImageUrl,
+                    artWork.getExplanation()
             );
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
             String path = "http://localhost:8000/artwork/";
-//            String path = "http://43.201.84.42:8000/artwork/";
 
             sendMsg.put("exhibitionid", exhibition.getId());
             sendMsg.put("artworkid", artWork.getId());

@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class ArtWorkDto {
+    private final Long ArtworkId;
+
     private final String Name;
 
     private final String Artist;
@@ -14,7 +16,8 @@ public class ArtWorkDto {
 
     private final double LocationY;
 
+    private final String DrawingPath;
+
     private final String Description;
 
-    private final String DrawingPath;
 }
