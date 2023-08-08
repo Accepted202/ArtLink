@@ -48,7 +48,6 @@ import PageManager from "./pages/PageManager";
 import Apitest from "./api/Apitest";
 import TestSignup from "./api/testSignup";
 import TestLogin from "./api/testLogin";
-import TestUserInfo from "./api/testUserInfo";
 import NotFound from "./pages/Common/NotFound";
 import ExhibitionCreate from "./pages/Gallery/ExhibitionCreate";
 import ExhibitionUpdate from "./pages/Gallery/ExhibitionUpdate";
@@ -244,7 +243,6 @@ function App() {
         <Route path="/api" element={<Apitest />} />
         <Route path="/api_signup" element={<TestSignup />} />
         <Route path="/api_login" element={<TestLogin />} />
-        <Route path="/api_userinfo" element={<TestUserInfo />} />
         {/* 404 Not Found */}
         <Route path="*" element={<NotFound />} />
       </Routes>
