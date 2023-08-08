@@ -103,7 +103,7 @@ public class GalleryController {
         List<Exhibition> exhibitions = exhibitionService.selectAllExhibitions(username);
         List<ExhibitionResponseDto> exhibitionResponseDtos = new ArrayList<>();
         exhibitions.forEach(exhibition -> exhibitionResponseDtos.add(new ExhibitionResponseDto(exhibition.getId(),
-                exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(),
+                exhibition.getExhibitionName(), exhibition.getPosterUrl(), exhibition.getExhibitionExplanation(),
                 exhibition.getCreatedAt())));
         return ResponseEntity.ok(Map.of("exhibitions", exhibitionResponseDtos));
     }
@@ -339,6 +339,7 @@ public class GalleryController {
             String folderName = String.format("exhibition/%d", exhibitionId);
             String posterName = exhibition.getExhibitionName();
             String posterUrl = s3Uploader.modify(folderName, posterName, posterFile);
+            exhibition.setPosterUrl(posterUrl);
             return new ResponseEntity<GalleryPosterResponseDto>(new GalleryPosterResponseDto(posterUrl), HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();
