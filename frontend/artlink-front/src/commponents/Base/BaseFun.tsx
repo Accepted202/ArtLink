@@ -20,7 +20,17 @@ export const getPk = () => {
 export const getPk2 = () => {
   const url = window.location.href;
   const parts = url.split("/");
-  
+
   const lastPart = parts[parts.length - 2];
   return Number(lastPart);
+};
+
+// 전시회 작품 상세 PK추출
+export const getPk3 = () => {
+  const url = window.location.href;
+  const parts = url.split("/");
+
+  const exhiPK = Number(parts[parts.length - 1]);
+  const workPK = Number(parts[parts.length - 2]);
+  return [exhiPK, workPK];
 };

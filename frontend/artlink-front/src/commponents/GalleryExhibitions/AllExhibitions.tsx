@@ -26,7 +26,7 @@ function AllExhibitions() {
           className="ExhibitionLink"
         >
           <div className="ExhibitionBox">
-            <div>{exhibition.exhibitionName}</div>
+            <div className="ExhibitionTitle">{exhibition.exhibitionName}</div>
             <img src={exhibition.posterUrl} alt="전시회 이미지가 없습니다" />
           </div>
         </Link>

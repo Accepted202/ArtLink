@@ -1,8 +1,23 @@
-// import React from 'react';
+import BackBtn from "../../commponents/Base/BackBtn";
+import UpdateExhibition from "../../commponents/GalleryExhibitions/UpdateExhibition";
+import Styles from "./Exhibition.module.css";
+
 function ExhibitionUpdate() {
   return (
     <>
-      <h1>ExhibitionUpdate</h1>
+      {/* 전시회 박스 */}
+      <div className={Styles.Create}>
+        {/* 상단 메뉴 */}
+        <div className={Styles.CreateMenu}>
+          <BackBtn />
+          <div className={Styles.CreateTitle}>Exhibition Update</div>
+        </div>
+        <hr style={{ width: "80vw" }} />
+        {/* 메인 컨테이너 */}
+        <div className={Styles.CreateContainer}>
+          <UpdateExhibition />
+        </div>
+      </div>
     </>
   );
 }

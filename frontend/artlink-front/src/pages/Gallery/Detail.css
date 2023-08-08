@@ -44,20 +44,29 @@
   margin-top: 30px;
 }
 
-.image-box{
+.image-box {
   display: flex;
   flex-direction: column;
 }
-.txt-box{
-  width: 60%;
-  margin-top: 20px;
-  text-align: left;
+.imageInner-box {
+  margin: 20px;
 }
-.input-field{
+.work-image {
+  width: 30vw;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 3px 3px 5px rgb(80, 80, 80), -2px -2px 3px white;
+  padding: 10px;
+}
+.txt-box {
+  width: 50%;
+  text-align: left;
+  margin-top: auto; /* 위쪽 여백을 자동으로 조절하여 아래로 쏠립니다. */
+}
+.input-field {
   margin: auto;
   margin-bottom: 20px;
 }
-.input-field input{
+.input-field input {
   border: none;
   border-radius: 20px;
   padding: 5px;
@@ -79,19 +88,23 @@
     align-items: unset;
     margin-left: unset;
   }
-  .image-box{
+  .image-box {
     margin: auto;
   }
-  .txt-box{
+  .work-image {
+    width: 60vw !important;
+  }
+
+  .txt-box {
     text-align: center;
     margin: auto;
     margin-top: 50px;
   }
-  .input-field{
+  .input-field {
     display: flex;
     flex-direction: column;
   }
-  .input-field input{
+  .input-field input {
     width: 80%;
     padding: 10px;
     margin: auto;

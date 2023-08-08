@@ -1,5 +1,10 @@
 import axios, { AxiosResponse } from "axios";
-import { setAuthorizationHeader, getPk, getPk2 } from "../commponents/Base/BaseFun";
+import {
+  setAuthorizationHeader,
+  getPk,
+  getPk2,
+  getPk3,
+} from "../commponents/Base/BaseFun";
 
 // 디폴트 백엔드 URL
 const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
@@ -78,7 +83,8 @@ export const ExhibitionAllInfo = async (): Promise<ExhibitionAllInfoRes> => {
 
 // 전시회 생성
 export interface ExhibitionCreateRes {
-  [key: string]: string;
+  id: number;
+  [key: string]: string | number;
 }
 export interface ExhibitionCreateReq {
   [key: string]: string;
@@ -97,35 +103,110 @@ export const ExhibitionCreate = async (
     throw error;
   }
 };
+// 전시회 포스터 등록
+export interface ExhibitionPosterAddRes {
+  [key: string]: string;
+}
+export const ExhibitionPosterAdd = async (
+  formData: FormData,
+  exhibitionId: number
+): Promise<ExhibitionPosterAddRes> => {
+  try {
+    setAuthorizationHeader();
+    console.log("포스터 등록", exhibitionId);
+    const response: AxiosResponse<ExhibitionPosterAddRes> = await axios.post(
+      createUrl(`/galleries/me/exhibitions/${exhibitionId}/posters`),
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching ExhibitionCreate:", error);
+    throw error;
+  }
+};
 
 // 전시회 수정
+export interface WorkUpdateRes {
+  name: string;
+  artist: string;
+  locationX: number;
+  locationY: number;
+  description: string;
+  drawingPath: string;
+}
+export interface WorkUpdateReq {
+  name: string;
+  artist: string;
+  locationX: number;
+  locationY: number;
+  description: string;
+  imageFile: File;
+}
+export const WorkUpdate = async (
+  formData: FormData
+): Promise<WorkUpdateRes> => {
+  try {
+    setAuthorizationHeader();
+    const allpk = getPk3();
+    const exhiPK = allpk[1];
+    const workPK = allpk[0];
+    const response: AxiosResponse<WorkUpdateRes> = await axios.put(
+      createUrl(`/galleries/me/exhibitions/${exhiPK}/artworks/${workPK}`),
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching WorkUpdate:", error);
+    throw error;
+  }
+};
 
 // 전시회 상세 조회
-
-// 전시회 작품 생성
-export interface WorkCreateCreateRes {
-  Name: string;
-	Artist: string;
-	LocationX: number;
-	LocationY: number;
-	Description: string;
-	DrawingPath: string;
+export interface ExhibitionOneInfoRes {
+  id: number;
+  exhibitionName: string;
+  exhibitionExplanation: string;
+  posterUrl: string;
+  createdAt: string;
 }
-export interface WorkCreateCreateReq {
-  Name: string;
-	Artist: string;
-	LocationX: number;
-	LocationY: number;
-	Description: string;
-	ImageFile: File;
-}
-export const WorkCreate = async (
-  formData: WorkCreateCreateReq
-): Promise<WorkCreateCreateRes> => {
+export const ExhibitionOneInfo = async (): Promise<ExhibitionOneInfoRes> => {
   try {
     setAuthorizationHeader();
     const pk = getPk2();
-    const response: AxiosResponse<WorkCreateCreateRes> = await axios.post(
+    const response: AxiosResponse<ExhibitionOneInfoRes> = await axios.get(
+      createUrl(`/galleries/me/exhibitions/${pk}`)
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching ExhibitionOneInfo:", error);
+    throw error;
+  }
+};
+
+// 전시회 작품 생성
+export interface WorkCreateRes {
+  name: string;
+  artist: string;
+  locationX: number;
+  locationY: number;
+  description: string;
+  drawingPath: string;
+}
+export interface WorkCreateReq {
+  name: string;
+  artist: string;
+  locationX: number;
+  locationY: number;
+  description: string;
+  imageFile: File;
+}
+export const WorkCreate = async (
+  formData: FormData
+): Promise<WorkCreateRes> => {
+  try {
+    setAuthorizationHeader();
+    const pk = getPk2();
+    const response: AxiosResponse<WorkCreateRes> = await axios.post(
       createUrl(`/galleries/me/exhibitions/${pk}/artworks`),
       formData
     );
@@ -141,12 +222,13 @@ export interface AllWorksRes {
   DrawingList: Drawing[];
 }
 export interface Drawing {
-  Name: string;
-  DrawingPath: string;
-  Description: string;
-  Artist: string;
-  LocationX: number;
-  LocationY: number;
+  name: string;
+  id: number;
+  drawingPath: string;
+  description: string;
+  artist: string;
+  locationX: number;
+  locationY: number;
 }
 export const AllWorks = async (): Promise<AllWorksRes> => {
   try {
@@ -162,7 +244,21 @@ export const AllWorks = async (): Promise<AllWorksRes> => {
   }
 };
 
-// 전시회 작품 업데이트
-
 // 전시회 작품 개별 조회
+export const OneWork = async (): Promise<Drawing> => {
+  try {
+    setAuthorizationHeader();
+    const allpk = getPk3();
+    const exhiPK = allpk[1];
+    const workPK = allpk[0];
+    const response: AxiosResponse<Drawing> = await axios.get(
+      createUrl(`/galleries/me/exhibitions/${exhiPK}/artworks/${workPK}`)
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching OneWorkInfo:", error);
+    throw error;
+  }
+};
 
+// 전시회 작품 업데이트

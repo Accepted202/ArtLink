@@ -4,37 +4,41 @@ import EmptyProfile from "../../assets/EmptyProfile2.svg";
 import BackBtn from "../../commponents/Base/BackBtn.tsx";
 import TextBtn from "../../commponents/Base/TextBtn.tsx";
 import { Drawing, WorkCreate } from "../../api/GalleryApi.tsx";
+import Modal2 from "../../commponents/Base/Form/ExhibitionModal/Modal2.tsx";
 
 function WorksCreate() {
   // 전송할 폼데이터
   const formDataRef = useRef<FormData>(new FormData());
+  const [isModalActive, setisModalActive] = useState<boolean>(false); // 모달 활성 boolean
   const [formData, setFormData] = useState<Drawing>({
-    Name: "",
-    DrawingPath: "",
-    Description: "",
-    Artist: "",
-    LocationX: 0,
-    LocationY: 0,
+    name: "",
+    id: 0,
+    drawingPath: "",
+    description: "",
+    artist: "",
+    locationX: 0,
+    locationY: 0,
   });
   // 각 필드와 필드에 대한 이름을 매핑한 객체
-  const fieldNames: Record<keyof Drawing, string> = {
-    Name: "제목",
-    Description: "설명",
-    Artist: "작가",
-    LocationX: "위치 X",
-    LocationY: "위치 Y",
-    DrawingPath: ""
+  const fieldNames = {
+    name: "제목",
+    id: "유저번호",
+    description: "설명",
+    artist: "작가",
+    locationX: "위치 X",
+    locationY: "위치 Y",
+    drawingPath: "",
   };
   const [image, setImage] = useState<string | null>(null); // 이미지 관련
   // 생성 요청시
   const handleAdd = () => {
     console.log("creating");
     for (const key in formData) {
-      if (key != "DrawingPath"){
+      if (key != "drawingPath" && key != "id") {
         formDataRef.current.append(key, formData[key]);
       }
     }
-    if (formDataRef.current.has("ImageFile")) {
+    if (formDataRef.current.has("imageFile")) {
       void callCreateWork();
     }
   };
@@ -43,6 +47,7 @@ function WorksCreate() {
     try {
       const response = await WorkCreate(formDataRef.current);
       console.log("Work created:", response);
+      setisModalActive(true);
     } catch (error) {
       console.error("Error creating exhibition:", error);
     }
@@ -59,7 +64,7 @@ function WorksCreate() {
     if (file) {
       reader.readAsDataURL(file);
       // 폼데이터에 파일 저장
-      formDataRef.current.append("ImageFile", file);
+      formDataRef.current.append("imageFile", file);
     }
   };
   // 인풋값 변경시
@@ -75,11 +80,13 @@ function WorksCreate() {
   // 인풋 필드 자동 생성
   const renderFields = () => {
     return Object.keys(formData).map((field, index) => {
-      if (field !== "DrawingPath") {
+      if (field !== "drawingPath" && field !== "id") {
         // 이미지 필드는 제외
         return (
           <div key={index} className="input-field">
-            <label htmlFor={field}>{fieldNames[field as keyof Drawing]} : </label>
+            <label htmlFor={field}>
+              {fieldNames[field as keyof Drawing]} :{" "}
+            </label>
             <input
               type="text"
               id={field}
@@ -96,6 +103,7 @@ function WorksCreate() {
 
   return (
     <>
+      <Modal2 sendActive={isModalActive} />
       {/* 뒤로가기 & 페이지 설명 */}
       <div className="worksBackBtn">
         <BackBtn />

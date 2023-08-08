@@ -9,8 +9,8 @@ function WorksBoard() {
   const [works, setWorks] = useState([{}]);
   useEffect(() => {
     const fetchAllworks = async () => {
-      const allWorks:AllWorksRes = await AllWorks();
-      console.log('전체 작품 목록', allWorks);
+      const allWorks: AllWorksRes = await AllWorks();
+      console.log("전체 작품 목록", allWorks);
       setWorks(allWorks.DrawingList);
     };
 
@@ -18,9 +18,9 @@ function WorksBoard() {
   }, []);
 
   // const keys = Object.keys(works[0]);
-  const keys = ["아티스트", "설명", "제목"];
-  const widths = ["20%", "40%", "30%"];
-  const keyToExclude = ["drawingPath","locationX","locationY"];
+  const keys = ["id", "제목", "아티스트", "설명"];
+  const widths = ["3%", "25%", "20%", "45%"];
+  const keyToExclude = ["drawingPath", "locationX", "locationY"];
 
   return (
     <>

@@ -79,10 +79,7 @@ function InfoTable({
               )}
               {detail && (
                 <td style={{ width: columnWidths[columnWidths.length - 1] }}>
-                  <Link
-                    to={`${row[Object.keys(row)[0]]}`}
-                    style={{ textDecoration: "none" }}
-                  >
+                  <Link to={`${row.id}`} style={{ textDecoration: "none" }}>
                     →
                   </Link>
                 </td>
