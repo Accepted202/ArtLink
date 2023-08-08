@@ -23,7 +23,7 @@ function UserBoard() {
       }
     };
     void AllUser();
-  });
+  }, []);
 
   // 테이블 데이터
   const userData = AllUserData;

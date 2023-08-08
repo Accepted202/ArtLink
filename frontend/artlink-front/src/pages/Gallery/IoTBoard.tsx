@@ -19,7 +19,7 @@ function IoTBoard() {
       }
     };
     void getData();
-  });
+  }, []);
 
   const keys = ["Id", "Phone number"];
   const widths = ["20%", "80%"];
