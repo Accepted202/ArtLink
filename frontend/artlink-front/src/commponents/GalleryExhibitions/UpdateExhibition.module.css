@@ -1,28 +1,31 @@
 .ExhibitionInfo {
+  display: flex;
   justify-content: space-around;
+  width: 70vw !important;
+  margin-top: 30px !important;
   margin: auto;
   padding: 5vh;
   border-radius: 50px;
-  width: 80%;
-  margin-top: 50px;
   box-shadow: 10px 10px 10px rgba(37, 37, 37, 0.2),
     -10px -10px 10px rgba(255, 255, 255, 0.7);
 }
-
-.ExhibitionInner {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.ExhibitionProfile {
+.imagebox{
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+.imageInnerBox{
+  margin: 20px;
+}
+.workImage{
+  width: 30vw;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 3px 3px 5px rgb(80, 80, 80), -2px -2px 3px white;
+  padding: 10px;
 }
 .ExhibitionTxt {
-  /* border: 1px solid black; */
-  padding: 20px;
+  padding-left: 0;
+  text-align: left;
+
 }
 .ExhibitionInputContainer {
   display: block;
@@ -37,12 +40,19 @@
   width: 70%;
 }
 
-@media (max-width: 767px) {
-  .ExhibitionInner {
+@media (max-width: 1024px) {
+  .ExhibitionInfo {
     display: block;
   }
+
   .ExhibitionTxt {
     margin-top: 30px;
+  }
+  .imagebox {
+    margin: auto;
+  }
+  .workImage {
+    width: 50vw !important;
   }
 
   .ExhibitionInputContainer {

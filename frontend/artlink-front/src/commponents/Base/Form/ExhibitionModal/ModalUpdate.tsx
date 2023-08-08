@@ -30,11 +30,11 @@ export const Modal = ({ sendActive }: ModalProps) => {
       <ModalBase active={isActive} closeEvent={onClickModalOff}>
         <CardModal
           closeEvent={onClickModalOff}
-          title="생성"
+          title="업데이트"
           actionMsg="삭제"
           actionEvent={onClickCardRemove}
         >
-          작품 생성에 성공했습니다.
+          전시 정보 수정에 성공했습니다.
           <br />
           <br />
           <br />

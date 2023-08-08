@@ -42,7 +42,6 @@ function CreateExhibition() {
           {/* 텍스트 박스 */}
           <div className={Styles.ExhibitionTxt}>
             {initialFields.map((field) => (
-              <>
                 <div
                   className={Styles.ExhibitionInputContainer}
                   key={field.name}
@@ -56,7 +55,6 @@ function CreateExhibition() {
                     className={Styles.ExhibitionInput}
                   />
                 </div>
-              </>
             ))}
           </div>
         </div>
