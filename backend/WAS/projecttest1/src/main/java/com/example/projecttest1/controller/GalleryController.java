@@ -16,6 +16,7 @@ import com.example.projecttest1.service.ArtWorkService;
 import com.example.projecttest1.service.ExhibitionService;
 import com.example.projecttest1.service.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -209,6 +210,14 @@ public class GalleryController {
             e.printStackTrace();
             return new ResponseEntity<ErrorResponseDto>(new ErrorResponseDto("Post Drawing Failed", 400), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/me/exhibitions/{exhibitionId}/artworks/{artworksId}")
+    public ResponseEntity<?> getArtworkDetail(@PathVariable Integer exhibitionId, @PathVariable Long artworksId) {
+        ArtWork artWork = artWorkService.findArtWork(artworksId);
+        ArtWorkDto dto = new ArtWorkDto(artWork.getId(), artWork.getName(), artWork.getArtist(), artWork.getXCoor(),
+                artWork.getYCoor(), artWork.getPaintPath(), artWork.getExplanation());
+        return ResponseEntity.ok(dto);
     }
 
     @PutMapping("/me/exhibitions/{exhibitionId}/artworks")
