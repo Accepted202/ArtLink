@@ -48,6 +48,12 @@ table {
   width: 100%;
 }
 
+/* 자동완성으로 인한 디자인 변경 삭제 */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s;
+}
+
 tr,
 td {
   border: 1px solid black;

@@ -21,9 +21,10 @@ function PageManager() {
     ThreeTest: "/art-memory/1/3d",
     MypageUser: "/mypage/user",
     // Gallery
-    WorksBoard: "/works-board",
-    WorksCreate: "/works-board/create",
-    WorksDetail: "/works-board/1", // Example with parameter (replace '1' with an actual ID)
+    ExhibitionBoard: "/exhibition-board",
+    ExhibitionDetail: "/exhibition-board/1",
+    WorksCreate: "/exhibition-board/1/create",
+    WorksDetail: "/exhibition-board/1/1",
     IoTAdd: "/gallery/add-iot",
     IoTBoard: "/gallery/iot-board",
     MypageGallery: "/mypage/gallery",
@@ -41,6 +42,7 @@ function PageManager() {
     // Other
     Contact: "/contact",
     AboutUs: "/about",
+    NotFound: "/not-found",
     // Only Developer
     ThreeTestPage: "/3d",
     ApiTest: "/api",
@@ -64,7 +66,8 @@ function PageManager() {
     ],
     User: ["ArtMemory", "ArtMemoryDetail", "ThreeTest", "MypageUser"],
     Gallery: [
-      "WorksBoard",
+      "ExhibitionBoard",
+      "ExhibitionDetail",
       "WorksCreate",
       "WorksDetail",
       "IoTAdd",
@@ -73,7 +76,7 @@ function PageManager() {
     ],
     Manager: ["UserBoard", "UserDetail", "GalleryBoard", "GalleryDetail"],
     Kiosk: ["Kiosk", "KioskDetail", "KioskPrint", "KioskExit", "ComponentTest"],
-    Other: ["Contact", "AboutUs"],
+    Other: ["Contact", "AboutUs", "NotFound"],
     OnlyDeveloper: [
       "ThreeTestPage",
       "ApiTest",

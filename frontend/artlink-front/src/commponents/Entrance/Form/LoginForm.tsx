@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Form.css";
 import { Link } from "react-router-dom";
-import { useLogin } from "./LoginFormFunction";
+import { useLogIn } from "./LoginFormFunction";
 import { LoginFormVar } from "./LoginFormUtil";
 
 function LoginForm() {
   // 사용하는 함수들 임포트
-  const { determineRole, reqLogin } = useLogin();
+  const { determineRole, reqLogIn } = useLogIn();
   // 사용하는 변수들 임포트
   const {
     signUpLink,
@@ -42,11 +42,11 @@ function LoginForm() {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      void reqLogin(formData);
+      void reqLogIn(formData);
     }
   };
-  function handlereqLogin() {
-    void reqLogin(formData);
+  function handlereqLogIn() {
+    void reqLogIn(formData);
   }
 
   return (
@@ -98,13 +98,13 @@ function LoginForm() {
               <button
                 type="submit"
                 className="btn smallbutton"
-                onClick={handlereqLogin}
+                onClick={handlereqLogIn}
               >
                 <p>Log In</p>
               </button>
             </>
           ) : (
-            <button type="submit" className="btn" onClick={handlereqLogin}>
+            <button type="submit" className="btn" onClick={handlereqLogIn}>
               <p>Log In</p>
             </button>
           )}

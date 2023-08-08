@@ -1,0 +1,60 @@
+/* ExhibitionBoard.tsx */
+
+.ExhibitionMenu {
+  display: flex;
+  text-align: center;
+  align-items: baseline;
+  width: 80vw;
+  margin: auto;
+}
+.ExhibitionTitle {
+  margin-right: auto;
+  font-size: 30px;
+}
+
+.ExhibitionContainer {
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 80vw;
+}
+
+@media (max-width: 767px) {
+  .ExhibitionMenu {
+    display: block;
+  }
+  .ExhibitionTitle {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+/* ExhibitionCreate.tsx */
+.CreateMenu {
+  display: flex;
+  text-align: center;
+  align-items: end;
+  width: 80vw;
+  margin: auto;
+}
+.CreateTitle {
+  margin-left: 20px;
+  margin-right: auto;
+  font-size: 30px;
+}
+.CreateContainer {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .CreateMenu {
+    display: block;
+  }
+  .CreateTitle {
+    margin-left: unset;
+    margin-bottom: 30px;
+  }
+}

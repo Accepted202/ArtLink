@@ -44,6 +44,36 @@
   margin-top: 30px;
 }
 
+.image-box {
+  display: flex;
+  flex-direction: column;
+}
+.imageInner-box {
+  margin: 20px;
+}
+.work-image {
+  width: 30vw;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 3px 3px 5px rgb(80, 80, 80), -2px -2px 3px white;
+  padding: 10px;
+}
+.txt-box {
+  width: 50%;
+  text-align: left;
+  margin-top: auto; /* 위쪽 여백을 자동으로 조절하여 아래로 쏠립니다. */
+}
+.input-field {
+  margin: auto;
+  margin-bottom: 20px;
+}
+.input-field input {
+  border: none;
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  width: 80%;
+}
+
 @media (max-width: 1024px) {
   .detail-container {
     flex-direction: column;
@@ -57,5 +87,28 @@
     flex-direction: unset;
     align-items: unset;
     margin-left: unset;
+  }
+  .image-box {
+    margin: auto;
+  }
+  .work-image {
+    width: 60vw !important;
+  }
+
+  .txt-box {
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+  }
+  .input-field {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-field input {
+    width: 80%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
   }
 }

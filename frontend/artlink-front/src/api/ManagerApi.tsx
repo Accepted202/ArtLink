@@ -16,13 +16,13 @@ export interface UserEach {
   username: string;
   nickname: string;
   phoneNumber: number;
+  [key: string]: string | number;
 }
 export const UserGet = async (): Promise<UserGetRes> => {
   try {
     const response: AxiosResponse<UserGetRes> = await axios.get(
       createUrl("/admin/users")
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching UserGet:", error);
@@ -61,6 +61,7 @@ export interface GalleryEach {
   galleryName: string;
   accepted: boolean;
   description: string;
+  [key: string]: string | number | boolean;
 }
 export const GalleryGet = async (): Promise<GalleryGetRes> => {
   try {

@@ -12,6 +12,7 @@
 
 | Tech       | Version | Description           |
 | ---------- | ------- | --------------------- |
+| Node.js    | 18.16.1 |                       |
 | TypeScript | 5.0.2   | JavaScript Superset   |
 | Three.js   | 0.154.0 | JavaScript 3D Library |
 | React      | 18.2.0  | JavaScript Framework  |
