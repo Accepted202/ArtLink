@@ -41,7 +41,7 @@ function GalleryBoard() {
       <div className="container">
         <InfoBoard
           data={galleryData}
-          link={"/user-board/create"}
+          link={"/gallery-board/create"}
           dataKeys={keys}
           columnWidths={widths}
         />
