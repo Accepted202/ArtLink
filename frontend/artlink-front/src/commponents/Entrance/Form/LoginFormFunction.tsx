@@ -1,8 +1,7 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { LoginApi, LoginRes, LoginReq } from "../../../api/CommonApi";
+import { useLocation } from "react-router-dom";
+import { logInApi, LogInRes, LogInReq } from "../../../api/CommonApi";
 
-export function useLogin() {
-  const navigate = useNavigate();
+export function useLogIn() {
   const location = useLocation();
 
   const determineRole = () => {
@@ -15,9 +14,9 @@ export function useLogin() {
     }
   };
 
-  const reqLogin = async (formData: LoginReq) => {
+  const reqLogIn = async (formData: LogInReq) => {
     try {
-      const response: LoginRes = await LoginApi(formData);
+      const response: LogInRes = await logInApi(formData);
       const accessToken = response.accessToken;
       const refreshToken = response.refreshToken;
       localStorage.setItem("access_token", accessToken);
@@ -30,5 +29,5 @@ export function useLogin() {
     }
   };
 
-  return { determineRole, reqLogin };
+  return { determineRole, reqLogIn };
 }
