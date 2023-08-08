@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class ArtWorkDto {
-    private final Long ArtworkId;
+    private final Long Id;
 
     private final String Name;
 
