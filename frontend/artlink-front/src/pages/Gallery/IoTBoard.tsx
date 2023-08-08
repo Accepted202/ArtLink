@@ -19,7 +19,7 @@ function IoTBoard() {
       }
     };
     void getData();
-  });
+  }, []);
 
   const keys = ["Id", "Phone number"];
   const widths = ["20%", "80%"];
@@ -27,9 +27,11 @@ function IoTBoard() {
   return (
     <>
       <div className={styles.container}>
+        <p className={styles.boardTitle}>IoT Manager</p>
+      </div>
+      <div className={styles.container}>
         <InfoBoard
           data={deviceData}
-          placeholder={"검색할 정보를 입력하세요"}
           link={"/gallery/add-iot"}
           dataKeys={keys}
           columnWidths={widths}

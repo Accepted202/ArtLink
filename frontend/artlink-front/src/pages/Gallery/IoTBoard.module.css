@@ -1,10 +1,16 @@
 .container {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: SUITE-Regular;
+  width: 100%;
+}
+
+.boardTitle {
+  width: 50%;
+  text-align: left;
+  margin: 0 0 20px 5%;
+  font-size: 20px;
 }
 
 .wrapper {
@@ -74,4 +80,11 @@
   border: none;
   box-shadow: inset 3px 3px 2px rgba(37, 37, 37, 0.2);
   margin-right: 10px;
+}
+
+@media (max-width: 767px) {
+  .boardTitle {
+    text-align: center;
+    margin: 2% 0 5% 0;
+  }
 }

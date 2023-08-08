@@ -2,22 +2,28 @@
 import "./Form.css";
 import React, { useState } from "react";
 import Modal from "../../Base/Form/SignupModal/Modal";
-import { SignupReq, SignupApi, SignupGalleryApi } from "../../../api/CommonApi";
+import {
+  SignUpReq,
+  signUpUserApi,
+  signUpGalleryApi,
+} from "../../../api/CommonApi";
 import BackBtn from "../../Base/BackBtn";
 import MarginTopInput from "../../EditCss/MaginTopInput";
 
 function SignupForm() {
-  const [isActive, setisActive] = useState(false);
-  // 인풋 필드 useState
-  const [formData, setFormData] = useState<SignupReq>({
+  const [isActive, setisActive] = useState(false); // 모달창 띄울 때 사용
+
+  // 폼 데이터
+  const [formData, setFormData] = useState<SignUpReq>({
     username: "",
     password: "",
     phoneNumber: 0,
     nickname: "",
     galleryName: "",
   });
-  const [isPassCheck, setisPassCheck] = useState("");
-  const [passwordCheckMsg, setPasswordCheckMsg] = useState("");
+
+  const [passwordCheckMsg, setPasswordCheckMsg] = useState(""); // 입력값 일치 확인
+
   // 인풋 필드 저장
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,20 +31,10 @@ function SignupForm() {
       ...prevData,
       [name]: value,
     }));
-    if (value && isPassCheck) {
-      if (isPassCheck === value) {
-        setPasswordCheckMsg("입력하신 값이 같습니다.");
-      } else {
-        setPasswordCheckMsg("입력하신 값이 다릅니다.");
-      }
-    } else {
-      // Hide the message when either password is empty
-      setPasswordCheckMsg("");
-    }
   };
-  const handlePass2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handlePass = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setisPassCheck(value);
     if (formData.password && value) {
       if (formData.password === value) {
         setPasswordCheckMsg("입력하신 값이 같습니다.");
@@ -46,25 +42,25 @@ function SignupForm() {
         setPasswordCheckMsg("입력하신 값이 다릅니다.");
       }
     } else {
-      // Hide the message when either password is empty
+      // 입력값 없을 시 메세지 가림
       setPasswordCheckMsg("");
     }
   };
 
-  // 권한에 따른 필드 설정
+  // 가입자의 종류에 따른 필드 설정
   const showGalleryNameField = location.pathname === "/signup-gallery";
+
   // 회원가입 API 요청
   const reqSignup = async () => {
     try {
-      // 회원가입 API를 호출하여 데이터를 서버로 보냅니다.
       if (showGalleryNameField) {
         console.log("갤러리 회원가입 요청");
-        const response = await SignupGalleryApi(formData);
+        const response = await signUpGalleryApi(formData);
         console.log(response);
         setisActive(true);
       } else if (!showGalleryNameField) {
         console.log("유저 회원가입 요청");
-        const response = await SignupApi(formData);
+        const response = await signUpUserApi(formData);
         console.log(response);
         setisActive(true); // 성공 모달창
       }
@@ -72,7 +68,8 @@ function SignupForm() {
       console.error("Error signing up:", error);
     }
   };
-  // Handle form submission on Enter key press
+
+  // 입력창에서 엔터키 누를 시 폼 제출
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       void reqSignup();
@@ -113,7 +110,7 @@ function SignupForm() {
           type="password"
           placeholder="Confirm Password"
           className="input-box"
-          onChange={handlePass2}
+          onChange={handlePass}
           onKeyPress={handleKeyPress}
         />
         <br />

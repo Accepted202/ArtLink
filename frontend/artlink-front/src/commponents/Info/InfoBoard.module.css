@@ -1,9 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  min-width: 400px;
+}
+
 .upperWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 60%;
+  width: 100%;
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -67,5 +76,5 @@
 }
 
 .tableWrapper {
-  width: 60%;
+  width: 100%;
 }

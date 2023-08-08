@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-// 아래의 API들은 요청&반환 값에 대한 타입지정, Api함수 로직으로 구성되어있습니다.
+// 아래의 API들은 로그인 요청&반환 값에 대한 타입지정, Api함수 로직으로 구성되어있습니다.
 
 // 디폴트 백엔드 URL
 const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
@@ -10,20 +10,22 @@ const createUrl = (endpoint: string): string => {
 };
 
 // 로그인 API
-export interface LoginRes {
+export interface LogInRes {
   accessToken: string;
   refreshToken: string;
   role: string;
 }
-export interface LoginReq {
+
+export interface LogInReq {
   username: string;
   password: string;
   role: string;
 }
-export const LoginApi = async (dataToSend: LoginReq): Promise<LoginRes> => {
+
+export const logInApi = async (dataToSend: LogInReq): Promise<LogInRes> => {
   try {
     console.log(defaultBackendUrl, "sdsd");
-    const response: AxiosResponse<LoginRes> = await axios.post(
+    const response: AxiosResponse<LogInRes> = await axios.post(
       createUrl("/auth/login"),
       dataToSend
     );
@@ -35,17 +37,19 @@ export const LoginApi = async (dataToSend: LoginReq): Promise<LoginRes> => {
 };
 
 // 로그아웃 API
-export interface LogoutRes {
+export interface LogOutRes {
   Sample: string;
 }
+
 export interface LogoutReq {
   Sample: string;
 }
-export const LogoutApi = async (
+
+export const logOutApi = async (
   dataToSend: LogoutReq
-): Promise<LogoutRes[]> => {
+): Promise<LogOutRes> => {
   try {
-    const response: AxiosResponse<LogoutRes[]> = await axios.post(
+    const response: AxiosResponse<LogOutRes> = await axios.post(
       createUrl("/auth/logout"),
       dataToSend
     );
@@ -55,20 +59,23 @@ export const LogoutApi = async (
     throw error;
   }
 };
+
 // 토큰 갱신
 export interface RefreshRes {
   Sample: string;
   // 필요한 정보 타입 명시
 }
+
 export interface RefreshReq {
   Sample: string;
   // 필요한 정보 타입 명시
 }
-export const RefreshToken = async (
+
+export const refreshToken = async (
   dataToSend: RefreshReq
-): Promise<RefreshRes[]> => {
+): Promise<RefreshRes> => {
   try {
-    const response: AxiosResponse<RefreshRes[]> = await axios.post(
+    const response: AxiosResponse<RefreshRes> = await axios.post(
       createUrl("/auth/refresh"),
       dataToSend
     );
@@ -78,40 +85,45 @@ export const RefreshToken = async (
     throw error;
   }
 };
+
 // 회원가입 (유저) API
-export interface SignupRes {
+export interface SignUpUserRes {
   message: string;
   data: {
     user: {
       username: string;
-      nickname: number;
+      nickname: string;
       phoneNumber: number;
     };
   };
 }
-export interface SignupReq {
+
+export interface SignUpReq {
   username: string;
   password: string;
   phoneNumber: number;
-  nickname: string;
-  galleryName: string;
+  nickname?: string;
+  galleryName?: string;
 }
-export const SignupApi = async (
-  dataToSend: SignupReq
-): Promise<SignupRes[]> => {
+
+
+export const signUpUserApi = async (
+  dataToSend: SignUpReq
+): Promise<SignUpUserRes> => {
   try {
-    const response: AxiosResponse<SignupRes[]> = await axios.post(
+    const response: AxiosResponse<SignUpUserRes> = await axios.post(
       createUrl("/auth/signup"),
       dataToSend
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching SignupApi:", error);
+    console.error("Error fetching SignUpApi:", error);
     throw error;
   }
 };
+
 // 회원가입 (갤러리) API
-export interface SignupGalleryRes {
+export interface SignUpGalleryRes {
   message: string;
   data: {
     user: {
@@ -121,37 +133,35 @@ export interface SignupGalleryRes {
     };
   };
 }
-export interface SignupReq {
-  username: string;
-  password: string;
-  phoneNumber: number;
-  nickname: string;
-  galleryName: string;
-}
-export const SignupGalleryApi = async (
-  dataToSend: SignupReq
-): Promise<SignupGalleryRes[]> => {
+
+
+export const signUpGalleryApi = async (
+  dataToSend: SignUpReq
+): Promise<SignUpGalleryRes> => {
   try {
-    const response: AxiosResponse<SignupGalleryRes[]> = await axios.post(
+    const response: AxiosResponse<SignUpGalleryRes> = await axios.post(
       createUrl("/auth/signup/galleries"),
       dataToSend
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching SignupApi:", error);
+    console.error("Error fetching SignUpApi:", error);
     throw error;
   }
 };
+
 // 회원탈퇴 API
 export interface WithdrawalRes {
   Sample: string;
 }
+
 export interface WithdrawalReq {
   Sample: string;
 }
-export const WithdrawalApi = async (): Promise<WithdrawalRes[]> => {
+
+export const withdrawalApi = async (): Promise<WithdrawalRes> => {
   try {
-    const response: AxiosResponse<WithdrawalRes[]> = await axios.delete(
+    const response: AxiosResponse<WithdrawalRes> = await axios.delete(
       createUrl("/api/Withdrawal")
     );
     return response.data;

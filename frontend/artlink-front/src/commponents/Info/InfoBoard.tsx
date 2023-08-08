@@ -9,7 +9,7 @@ interface Data {
 
 interface Props {
   data: Data[]; // 출력할 데이터
-  placeholder: string; // 검색창에 표시할 문구
+  placeholder?: string; // 검색창에 표시할 문구
   link: string; // add 버튼 클릭 시 이동할 페이지의 링크
   pageSize?: number; // 표 페이지 하나에 표시할 요소 개수
   dataKeys: string[]; // 데이터의 키들
@@ -20,7 +20,7 @@ interface Props {
 
 function InfoBoard({
   data,
-  placeholder,
+  placeholder = "검색할 정보를 입력하세요",
   link,
   pageSize = 10,
   dataKeys,
@@ -50,37 +50,39 @@ function InfoBoard({
 
   return (
     <>
-      {/* 테이블 상단 */}
-      <div className={styles.upperWrapper}>
-        <Link to={link}>
-          <button className={styles.addButton}>+</button>
-        </Link>
-        <div>
-          <input
-            type="search"
-            placeholder={placeholder}
-            className={styles.searchInput}
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-              filteringData();
-            }}
-            onKeyPress={handleKeyPress}
-          />
-          <button className={styles.searchButton} onClick={filteringData}>
-            search
-          </button>
+      <div className={styles.container}>
+        {/* 테이블 상단 */}
+        <div className={styles.upperWrapper}>
+          <Link to={link}>
+            <button className={styles.addButton}>+</button>
+          </Link>
+          <div>
+            <input
+              type="search"
+              placeholder={placeholder}
+              className={styles.searchInput}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                filteringData();
+              }}
+              onKeyPress={handleKeyPress}
+            />
+            <button className={styles.searchButton} onClick={filteringData}>
+              search
+            </button>
+          </div>
         </div>
-      </div>
-      {/* 테이블 내용 */}
-      <div className={styles.tableWrapper}>
-        <InfoTable
-          data={searchTerm === "" ? data : filteredData}
-          pageSize={pageSize}
-          dataKeys={dataKeys}
-          columnWidths={columnWidths}
-          keyToExclude={keyToExclude}
-          detail={detail}
-        />
+        {/* 테이블 내용 */}
+        <div className={styles.tableWrapper}>
+          <InfoTable
+            data={searchTerm === "" ? data : filteredData}
+            pageSize={pageSize}
+            dataKeys={dataKeys}
+            columnWidths={columnWidths}
+            keyToExclude={keyToExclude}
+            detail={detail}
+          />
+        </div>
       </div>
     </>
   );
