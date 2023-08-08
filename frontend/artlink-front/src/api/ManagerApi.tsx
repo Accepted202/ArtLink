@@ -23,7 +23,6 @@ export const UserGet = async (): Promise<UserGetRes> => {
     const response: AxiosResponse<UserGetRes> = await axios.get(
       createUrl("/admin/users")
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching UserGet:", error);
