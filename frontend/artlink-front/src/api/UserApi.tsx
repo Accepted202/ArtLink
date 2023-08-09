@@ -113,7 +113,8 @@ export interface Exhibition {
   [key: string]: string;
 }
 export interface UserRecordsRes {
-  [key: string]: string;
+  [key: string]: string | number;
+  posterUrl: string;
 }
 export const UserRecords = async (): Promise<[UserRecordsRes]> => {
   setAuthorizationHeader();

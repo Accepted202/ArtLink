@@ -7,17 +7,19 @@ import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 import AMIntro from "../../commponents/ViewExhibition/AMIntro";
 import { UserRecords, UserRecordsRes } from "../../api/UserApi";
 
+const defaultRecord = {
+  id: 1,
+  userKey: "",
+  exhibitionName: "",
+  posterUrl: "",
+  galleryName: "",
+  visitDate: "2023-08-09",
+}; // 기본 세팅
 function ArtMemory() {
   // 슬라이더 세팅
   const isMobile = window.innerWidth <= 1024;
   const [userRecords, setUserRecords] = useState<[UserRecordsRes]>([
-    {
-      userKey: "",
-      exhibitionName: "",
-      posterUrl: "",
-      galleryName: "",
-      visitDate: "",
-    },
+    defaultRecord,
   ]); // 유저 전시 관람 정보 전체
   const [perView, setPerView] = useState(isMobile ? 1 : 3);
   useEffect(() => {
@@ -26,14 +28,20 @@ function ArtMemory() {
       if (window.innerWidth <= 1024) {
         setPerView(1);
       } else {
-        setPerView(3);
+        if (userRecords.length == 1) {
+          setPerView(2);
+        } else {
+          setPerView(3);
+        }
       }
     };
     window.addEventListener("resize", updatePerView);
     updatePerView();
-    return () => {
-      window.removeEventListener("resize", updatePerView);
-    };
+  }, []);
+
+  //  전시 기록 전체 조회
+  useEffect(() => {
+    void loadUserRecord();
   }, []);
   const [sliderRef] = useKeenSlider({
     loop: true,
@@ -53,9 +61,6 @@ function ArtMemory() {
       window.alert(error);
     }
   };
-  useEffect(() => {
-    void loadUserRecord();
-  }, []);
   return (
     <>
       <MarginTopInput value={50} />
@@ -74,8 +79,18 @@ function ArtMemory() {
             </div>
           </div>
         )}
-
-        {userRecords &&
+        {userRecords[0].userKey == "" && (
+          <Link to={`/art-memory`} className="linkbox">
+            <div className="keen-slider__slide number-slide">
+              <div className="innerSlideBox">
+                <div className="innerTxt1">
+                  {`< 서비스를 이용하고 전시회를 기록해보세요 >`}{" "}
+                </div>
+              </div>
+            </div>
+          </Link>
+        )}
+        {userRecords[0].userKey !== "" &&
           userRecords.map((slide, index) => (
             <Link to={`/art-memory/${index}`} className="linkbox" key={index}>
               <div className="keen-slider__slide number-slide">

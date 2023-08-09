@@ -24,7 +24,7 @@ import ExhibitionBoard from "./pages/Gallery/ExhibitionBoard";
 import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
-import IoTAdd from "./pages/Gallery/IoTAdd";
+import IoTAdd from "./pages/Gallery/IotAdd";
 import IoTBoard from "./pages/Gallery/IoTBoard";
 
 // Manager
