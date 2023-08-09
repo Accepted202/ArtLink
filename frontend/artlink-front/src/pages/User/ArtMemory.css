@@ -2,7 +2,6 @@
 
 [class^="number-slide"],
 [class*="number-slide"] {
-  /* background: #a84848; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,19 +12,28 @@
   max-height: 100vh;
 }
 .minwid {
-  /* min-width: 1000px; */
+  width: 95% !important;
+  margin: auto;
 }
 
 .innerSlideBox {
   background-color: #e0e0e0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 90%;
   height: 90%;
-  box-shadow: 10px 10px 20px rgba(37, 37, 37, 0.2),
-    -10px -10px 20px rgba(255, 255, 255, 0.7);
+  box-shadow: 8px 8px 15px rgba(37, 37, 37, 0.2),
+    -8px -8px 15px rgba(255, 255, 255, 0.7);
   transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+.innerSlideBox img {
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+  border: 4px ridge rgb(157, 157, 157);
+  /* box-shadow: 4px 4px 4px black; */
 }
 
 .innerSlideBox:hover {
@@ -33,6 +41,20 @@
     -5px -5px 10px rgba(255, 255, 255, 0.7);
   width: 95%;
   height: 95%;
+}
+.innerTxt1 {
+  color: black;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
+    1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+.innerTxt2 {
+  color: black;
+  font-family: SUITE-Regular;
+  font-size: 11px;
+  margin-top: 5px;
 }
 
 .linkbox {
@@ -43,7 +65,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70%;
+  width: 80%;
   height: 90%;
   color: black;
   text-align: left;
@@ -62,13 +84,25 @@
 }
 
 @media (max-width: 1024px) {
+  [class^="number-slide"],
+  [class*="number-slide"] {
+    height: 100vw;
+    max-height: 100vh;
+  }
   .innerSlideBox {
-    width: 70%;
+    width: 60%;
+    /* width: auto; */
+  }
+  .introBox {
+    width: 60%;
+  }
+  .innerTxt1 {
+    font-size: 16px;
   }
   .innerSlideBox:hover {
     box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
-      -5px -5px 10px rgba(255, 255, 255, 0.7);
-    width: 75%;
-    /* height: 75%; */
+      -5px -5px 10px rgba(247, 250, 236, 0.7);
+    width: 65%;
+    /* width: auto; */
   }
 }
