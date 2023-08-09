@@ -5,17 +5,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class ModifyArtWorkInputDto {
-    private final Long OldArtWorkId;
+    private final String name;
 
-    private final String Name;
+    private final String artist;
 
-    private final String Artist;
+    private final double locationX;
 
-    private final double LocationX;
+    private final double locationY;
 
-    private final double LocationY;
+    private final String description;
 
-    private final String Description;
-
-    private final MultipartFile ImageFile;
+    private final MultipartFile imageFile;
 }

@@ -13,7 +13,9 @@ import com.example.projecttest1.repository.UserKeyRepository;
 import com.example.projecttest1.repository.UserRepository;
 import com.example.projecttest1.service.UserService;
 import com.example.projecttest1.service.validator.UserSignupValidator;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -45,8 +47,10 @@ public class UserController {
     @Autowired
     private UserSignupValidator validator;
 
-    private static String DEFAULT_URL = "http://43.201.84.42:8080/static/default-profile.png";
+    @Value("${server.port}")
+    private Integer PORT;
 
+    private String DEFAULT_URL = String.format("http://43.201.84.42:%d/static/default_profile.png", PORT);
     @GetMapping("/me")
     public ResponseEntity<UserResponseDto> me(HttpServletRequest request) {
         String username = (String) request.getAttribute("username");
@@ -71,16 +75,19 @@ public class UserController {
         User user = userRepository.findByUsername(username);
 
         String folder = String.format("user/profile/%d", user.getId());
+
+
         String imageUrl = user.getProfilePictureUrl();
         try {
-            if (imageUrl == null || imageUrl.equals(DEFAULT_URL)) {
+            if (imageUrl.equals(DEFAULT_URL)) {
                 imageUrl = s3Uploader.upload(folder, user.getUsername(), file);
             } else {
                 imageUrl = s3Uploader.modify(folder, user.getUsername(), file);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+
 
         // 유저 레코드 업데이트
         user.setProfilePictureUrl(imageUrl);

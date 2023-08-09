@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class NearByArtWorkDto {
-    private final Long DrawingID;
-    private final String DrawingName;
-    private final String DrawingUrl;
+    private final Long drawingID;
+    private final String drawingName;
+    private final String drawingUrl;
 }
