@@ -13,8 +13,8 @@ class DeviceConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'device'
 
-    MQTT_BROKER_HOST = "localhost"
-    MQTT_BROKER_PORT = 8884
+    MQTT_BROKER_HOST = "mqtt-broker"
+    MQTT_BROKER_PORT = 1883
     MAX_ANCHOR = 3
     PUB_TOPIC = "StoD"
     SUB_TOPIC = "DtoS"
@@ -26,7 +26,8 @@ class DeviceConfig(AppConfig):
         event = data["E"]
         device_id = data["T"]
         pub_topic = self.PUB_TOPIC + "/" + device_id
-
+        print("your message : ", data)
+        print("Pub topic : ", pub_topic)
         if event == "R":
             pub_json = dict()
             pub_json["T"] = device_id
