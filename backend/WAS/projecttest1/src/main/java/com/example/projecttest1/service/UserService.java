@@ -8,6 +8,7 @@ import com.example.projecttest1.exception.user.UserIdNotFoundException;
 import com.example.projecttest1.exception.user.UserNotFoundException;
 import com.example.projecttest1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Value("${server.port}")
+    private Integer PORT;
+
+
     public void registerUser(User user) {
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new UserAlreadyExistsException("User with username " + user.getUsername() + " already exists.");
@@ -31,7 +36,7 @@ public class UserService {
             throw new UserAlreadyExistsException("User with nickname " + user.getNickname() + " already exists.");
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setProfilePictureUrl("http://43.201.84.42:8080/static/default-profile.png");
+        user.setProfilePictureUrl(String.format("http://43.201.84.42:%d/static/default_profile.png", PORT));
         userRepository.save(user);
     }
 

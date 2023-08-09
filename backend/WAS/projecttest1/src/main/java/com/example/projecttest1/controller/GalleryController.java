@@ -20,6 +20,7 @@ import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -80,15 +81,15 @@ public class GalleryController {
         String username = (String) request.getAttribute("username");
         Exhibition exhibition = exhibitionService.registerExhibition(requestDto, username);
 
-        Map<String, Object> sendMsg = new HashMap<String, Object>();
+//        Map<String, Object> sendMsg = new HashMap<String, Object>();
 //        String path = "http://43.201.84.42:8000/exhibition/";
-        String path = "http://localhost:8000/exhibition/";
-        sendMsg.put("id", exhibition.getId());
-
-        int statuscode = helper.postSendMsg(path, sendMsg);
-        if(statuscode != 201){
-            throw new DjangoFailedException("Django failed");
-        }
+//        String path = "http://localhost:8000/exhibition/";
+//        sendMsg.put("id", exhibition.getId());
+//
+//        int statuscode = helper.postSendMsg(path, sendMsg);
+//        if(statuscode != 201){
+//            throw new DjangoFailedException("Django failed");
+//        }
 
         ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
                 exhibition.getCreatedAt(), exhibition.getExhibitionName(),
@@ -186,19 +187,19 @@ public class GalleryController {
                     artWork.getExplanation()
             );
             //Send the data to Django server.
-            Map<String, Object> sendMsg = new HashMap<String, Object>();
-            String path = "http://localhost:8000/artwork/";
-
-            sendMsg.put("exhibitionid", exhibition.getId());
-            sendMsg.put("artworkid", artWork.getId());
-            sendMsg.put("coorx", artWork.getXCoor());
-            sendMsg.put("coory", artWork.getYCoor());
-
-            //sendMsg
-            int statuscode = helper.postSendMsg(path, sendMsg);
-            if (statuscode != 201){
-                throw new DjangoFailedException("Django failed to send");
-            }
+//            Map<String, Object> sendMsg = new HashMap<String, Object>();
+//            String path = "http://localhost:8000/artwork/";
+//
+//            sendMsg.put("exhibitionid", exhibition.getId());
+//            sendMsg.put("artworkid", artWork.getId());
+//            sendMsg.put("coorx", artWork.getXCoor());
+//            sendMsg.put("coory", artWork.getYCoor());
+//
+//            //sendMsg
+//            int statuscode = helper.postSendMsg(path, sendMsg);
+//            if (statuscode != 201){
+//                throw new DjangoFailedException("Django failed to send");
+//            }
 
             return new ResponseEntity<ArtWorkDto>(artWorkDto, HttpStatus.OK);
         }
@@ -220,16 +221,15 @@ public class GalleryController {
         return ResponseEntity.ok(dto);
     }
 
-    @PutMapping("/me/exhibitions/{exhibitionId}/artworks")
+    @PutMapping("/me/exhibitions/{exhibitionId}/artworks/{artworkId}")
     public ResponseEntity<?> putGalleryArtwork(HttpServletRequest request, Authentication authentication, @PathVariable Integer exhibitionId,
-                                                @ModelAttribute ModifyArtWorkInputDto modifyArtWorkInputDto) throws Exception {
+                                                @PathVariable Long artworkId, @ModelAttribute ModifyArtWorkInputDto modifyArtWorkInputDto) throws Exception {
         try{
             //그림만 모아두는 폴더를 만들 예정.
             String folder = String.format("artworks/%d", exhibitionId);
             String ImageUrl = s3Uploader.upload(folder, modifyArtWorkInputDto.getName(), modifyArtWorkInputDto.getImageFile());
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
-            System.out.println(modifyArtWorkInputDto.getOldArtWorkId());
-            ArtWork artWork = artWorkRepository.findById(modifyArtWorkInputDto.getOldArtWorkId());
+            ArtWork artWork = artWorkRepository.findById(artworkId);
             artWork.setName(modifyArtWorkInputDto.getName());
             artWork.setArtist(modifyArtWorkInputDto.getArtist());
             artWork.setXCoor(modifyArtWorkInputDto.getLocationX());
@@ -247,19 +247,19 @@ public class GalleryController {
                     artWork.getExplanation()
             );
             //Send the data to Django server.
-            Map<String, Object> sendMsg = new HashMap<String, Object>();
-            String path = "http://localhost:8000/artwork/";
-
-            sendMsg.put("exhibitionid", exhibition.getId());
-            sendMsg.put("artworkid", artWork.getId());
-            sendMsg.put("coorx", artWork.getXCoor());
-            sendMsg.put("coory", artWork.getYCoor());
+//            Map<String, Object> sendMsg = new HashMap<String, Object>();
+//            String path = "http://localhost:8000/artwork/";
+//
+//            sendMsg.put("exhibitionid", exhibition.getId());
+//            sendMsg.put("artworkid", artWork.getId());
+//            sendMsg.put("coorx", artWork.getXCoor());
+//            sendMsg.put("coory", artWork.getYCoor());
 
             //sendMsg
-            int statuscode = helper.putSendMsg(path, sendMsg);
-            if (statuscode != 200){
-                throw new DjangoFailedException("Django failed to send");
-            }
+//            int statuscode = helper.putSendMsg(path, sendMsg);
+//            if (statuscode != 200){
+//                throw new DjangoFailedException("Django failed to send");
+//            }
 
             return new ResponseEntity<ArtWorkDto>(artWorkDto, HttpStatus.OK);
         }
@@ -275,7 +275,7 @@ public class GalleryController {
 
     //갤러리 별 관람 중 기기 띄우기
     @GetMapping("/devices")
-    public ResponseEntity<?> getGalleryDevices(HttpServletRequest request) throws Exception{
+    public ResponseEntity<?> getGalleryDevices(HttpServletRequest request, Authentication authentication) throws Exception{
         try{
             String username = (String) request.getAttribute("username");
             Gallery gallery = galleryService.findByUsername(username);
@@ -297,23 +297,25 @@ public class GalleryController {
 
     //전시회 포스터는 S3의 exhibition/{exhibitionId}에 저장할 것임.
     @PostMapping("me/exhibitions/{exhibitionId}/posters")
-    public ResponseEntity<?> addExhibitionPoster(HttpServletRequest request,
+    public ResponseEntity<?> addExhibitionPoster(HttpServletRequest request, Authentication authentication,
                                                  @PathVariable Integer exhibitionId,
                                                  @RequestParam MultipartFile posterFile) throws Exception{
         try{
             String username = (String) request.getAttribute("username");
             Gallery gallery = galleryService.findByUsername(username);
             Optional<Exhibition> optionalExhibition = exhibitionRepository.findById(exhibitionId);
+
             Exhibition exhibition = optionalExhibition.get();
-            if(exhibition == null){
-                throw new Exception();
-            }
 
             String folderName = String.format("exhibition/%d", exhibitionId);
             String posterName = exhibition.getExhibitionName();
 
             String posterUrl = s3Uploader.upload(folderName, posterName, posterFile);
+            System.out.println(posterUrl);
             exhibition.setPosterUrl(posterUrl);
+
+            exhibitionRepository.save(exhibition);
+
             return new ResponseEntity<GalleryPosterResponseDto>(new GalleryPosterResponseDto(posterUrl), HttpStatus.OK);
 
         }catch(Exception e){
@@ -323,7 +325,7 @@ public class GalleryController {
     }
 
     @PutMapping("me/exhibitions/{exhibitionId}/posters")
-    public ResponseEntity<?> modifyExhibitionPoster(HttpServletRequest request,
+    public ResponseEntity<?> modifyExhibitionPoster(HttpServletRequest request, Authentication authentication,
                                                  @PathVariable Integer exhibitionId,
                                                  @RequestParam String oldPosterUrl,
                                                  @RequestParam MultipartFile posterFile) throws Exception {
@@ -340,6 +342,9 @@ public class GalleryController {
             String posterName = exhibition.getExhibitionName();
             String posterUrl = s3Uploader.modify(folderName, posterName, posterFile);
             exhibition.setPosterUrl(posterUrl);
+            System.out.println(exhibition.getPosterUrl());
+            exhibitionRepository.save(exhibition);
+
             return new ResponseEntity<GalleryPosterResponseDto>(new GalleryPosterResponseDto(posterUrl), HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();

@@ -5,15 +5,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class ArtWorkInputDto {
-    private final String Name;
+    private final String name;
 
-    private final String Artist;
+    private final String artist;
 
-    private final double LocationX;
+    private final double locationX;
 
-    private final double LocationY;
+    private final double locationY;
 
-    private final String Description;
+    private final String description;
 
-    private final MultipartFile ImageFile;
+    private final MultipartFile imageFile;
 }

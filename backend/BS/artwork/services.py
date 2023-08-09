@@ -1,4 +1,5 @@
 import subprocess
+import os
 from django.db.models import Q
 
 from artwork.models import Voronoipoint, Voronoiresult, Artwork
@@ -68,16 +69,15 @@ def getVoronoi(exhibition):
     # 실행.
     process = subprocess.Popen([command],stdin=subprocess.PIPE,  stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                text=True)
-
     stdout, stderr = process.communicate(input = Input)
-
-    stdout = [ele.strip() for ele in stdout.split('_')]
-
+    stdout = stdout.split('_')
+    print(stdout)
     if process.returncode == 0:
         for i in range(len(stdout)):
-            stdout[i] = stdout[i].split('\n')
+            if stdout[i]: stdout[i] = stdout[i].strip().split('\n')
+            else: stdout[i] = []
             for j in range(len(stdout[i])):
-                if i == 0:
+                if i == 0 and stdout[i]:
                     stdout[i][j] = list(map(float, stdout[i][j].split(' ')))
                 else:
                     stdout[i][j] = list(map(int, stdout[i][j].split(' ')))

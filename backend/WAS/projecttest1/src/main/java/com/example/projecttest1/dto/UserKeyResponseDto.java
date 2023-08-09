@@ -8,9 +8,9 @@ import java.time.LocalDate;
 @Data
 @RequiredArgsConstructor
 public class UserKeyResponseDto {
-    private final String UserKey;
-    private final String ExhibitionName;
-    private final String GalleryName;
-    private final LocalDate VisitDate;
+    private final String userKey;
+    private final String exhibitionName;
+    private final String galleryName;
+    private final LocalDate visitDate;
 
 }

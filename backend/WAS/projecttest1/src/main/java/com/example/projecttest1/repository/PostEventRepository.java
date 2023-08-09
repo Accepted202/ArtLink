@@ -61,7 +61,7 @@ public class PostEventRepository {
 
     public void deletePostEvent(UserKey userKey, ArtWork srcWork){
         try{
-            em.createQuery("delete from PostEvent p where p.userKey = :userKey and p.ArtWork = := artWork").setParameter("userKey", userKey)
+            em.createQuery("delete from PostEvent p where p.userKey = :userKey and p.artWork = :artWork").setParameter("userKey", userKey)
                     .setParameter("artWork", srcWork)
                     .executeUpdate();
         }
