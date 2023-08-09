@@ -93,9 +93,8 @@ function WorksDetail() {
         formDataRef.current.append(key, value as string);
       }
     }
-    if (formDataRef.current.has("imageFile")) {
-      void callWorkUpdate();
-    }
+
+    void callWorkUpdate();
   };
   // 업데이트 요청
   const callWorkUpdate = async () => {
