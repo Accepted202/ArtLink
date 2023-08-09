@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProfileUserApi from "./ProfileUserApi";
-import { UserInfoRes, UserInfoEdit } from "../../api/UserApi";
+import { UserInfo, UserInfoEdit } from "../../api/UserApi";
 import ProfileBox from "./ProfileBox";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 import Styles from "./Profile.module.css";
@@ -15,11 +15,15 @@ const labelMapping: Record<string, string> = {
 function ProfileUser() {
   const [isModalActive, setisModalActive] = useState<boolean>(false); // 모달 활성 boolean
   const [isChange, setisChange] = useState<boolean>(false); // 변경요청 boolean
-  const [userData, setUserData] = useState<UserInfoRes | null>(null);
+  const [userData, setUserData] = useState<UserInfo>({
+    id: 0,
+    username: "",
+    phoneNumber: 0,
+  });
   const [loading, setLoading] = useState<boolean>(true); // 유저정보 수신 boolean
 
   // 자식 컴포넌트에서 받아온 데이터를 상태에 저장하는 콜백 함수
-  const handleUserInfoData = (data: UserInfoRes) => {
+  const handleUserInfoData = (data: UserInfo) => {
     setUserData(data);
     setLoading(false); // Data has been fetched, set loading to false
   };

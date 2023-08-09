@@ -15,6 +15,10 @@ const createUrl = (endpoint: string): string => {
 
 // 갤러리 정보 조회
 export interface GalleryInfoRes {
+  username: string;
+  galleryName: string;
+  accepted: boolean;
+  description: string;
   [key: string]: string | boolean;
 }
 export const GalleryInfo = async (): Promise<GalleryInfoRes> => {
@@ -142,7 +146,7 @@ export const ExhibitionPosterAdd = async (
 };
 // 전시회 포스터 수정
 export const ExhibitionPosterUpdate = async (
-  formData: FormData,
+  formData: FormData
 ): Promise<ExhibitionPosterAddRes> => {
   try {
     setAuthorizationHeader();
@@ -157,7 +161,6 @@ export const ExhibitionPosterUpdate = async (
     throw error;
   }
 };
-
 
 // 전시회 상세 조회
 export interface ExhibitionOneInfoRes {

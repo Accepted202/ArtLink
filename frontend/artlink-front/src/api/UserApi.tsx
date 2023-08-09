@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { setAuthorizationHeader } from "../commponents/Base/BaseFun";
 
 const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
 // URL을 디폴트 백엔드 URL과 합치는 함수
@@ -7,15 +8,15 @@ const createUrl = (endpoint: string): string => {
 };
 
 // 유저정보 조회
-export interface UserInfoRes {
-  // id: number;
-  // username: string;
-  // phoneNumber: number;
+export interface UserInfo {
+  id: number;
+  username: string;
+  phoneNumber: number;
   [key: string]: string | number;
 }
-export const UserInfo = async (): Promise<UserInfoRes> => {
+export const GetUserInfo = async (): Promise<UserInfo> => {
   try {
-    const response: AxiosResponse<UserInfoRes> = await axios.get(
+    const response: AxiosResponse<UserInfo> = await axios.get(
       createUrl("/users/me")
     );
     return response.data;
@@ -31,13 +32,8 @@ export interface UserInfoEditRes {
   nickname: string;
   phoneNumber: number;
 }
-export interface UserInfoEditReq {
-  username: string;
-  nickname: string;
-  phoneNumber: number;
-}
 export const UserInfoEdit = async (
-  dataToSend: UserInfoEditReq
+  dataToSend: UserInfo
 ): Promise<UserInfoEditRes> => {
   try {
     const response: AxiosResponse<UserInfoEditRes> = await axios.put(
@@ -60,9 +56,9 @@ export interface UserPasswordChangeReq {
 }
 export const UserPasswordChange = async (
   dataToSend: UserPasswordChangeReq
-): Promise<UserInfoRes[]> => {
+): Promise<UserInfo[]> => {
   try {
-    const response: AxiosResponse<UserInfoRes[]> = await axios.post(
+    const response: AxiosResponse<UserInfo[]> = await axios.post(
       createUrl("/users/me/change-password"),
       dataToSend
     );
@@ -108,6 +104,51 @@ export const UserImageChange = async (
     return response.data;
   } catch (error) {
     console.error("Error fetching User Profile Image:", error);
+    throw error;
+  }
+};
+
+// 유저 전시 전체 조회
+export interface Exhibition {
+  [key: string]: string;
+}
+export interface UserRecordsRes {
+  [key: string]: string;
+}
+export const UserRecords = async (): Promise<[UserRecordsRes]> => {
+  setAuthorizationHeader();
+  try {
+    const response: AxiosResponse<[UserRecordsRes]> = await axios.get(
+      createUrl("/users/me/userkeys")
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching UserRecords:", error);
+    throw error;
+  }
+};
+
+// 유저 전시 상세 조회
+export interface Paint {
+  [key: string]: string;
+}
+export interface UserOneRecordRes {
+  exhibitionID: number;
+  exhibitionName: string;
+  galleryID: number;
+  galleryName: string;
+  visitDate: string;
+  workList: Paint[];
+}
+export const UserOneRecord = async (pk: number): Promise<UserOneRecordRes> => {
+  try {
+    setAuthorizationHeader();
+    const response: AxiosResponse<UserOneRecordRes> = await axios.get(
+      createUrl(`/postevents/${pk}`)
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching UserOneRecord:", error);
     throw error;
   }
 };

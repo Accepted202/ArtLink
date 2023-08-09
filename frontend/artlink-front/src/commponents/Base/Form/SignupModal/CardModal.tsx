@@ -1,6 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import Button from "./Button";
 import "./modal.css";
 
 export type CardModalProps = {
@@ -12,22 +10,12 @@ export type CardModalProps = {
   actionEvent?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const CardModal = ({
-  closeEvent,
-  title,
-  children,
-  actionMsg,
-  actionEvent,
-}: CardModalProps) => {
+const CardModal = ({ closeEvent, title, children }: CardModalProps) => {
   return (
     <>
       <CardModalContainer>
         <div className="action_box">
-          <div
-            onClick={closeEvent}
-            theme="tertiary"
-            className="close close2"
-          ></div>
+          <button onClick={closeEvent} className="close close2"></button>
           {/* <Button theme="secondary" onClick={actionEvent}>
             {actionMsg}
           </Button> */}

@@ -6,7 +6,12 @@ import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 
 function ProfileUser() {
   const [isModalActive, setisModalActive] = useState(false);
-  const [galleryData, setgalleryData] = useState<GalleryInfoRes | null>(null);
+  const [galleryData, setgalleryData] = useState<GalleryInfoRes>({
+    username: "",
+    galleryName: "",
+    accepted: true,
+    description: "",
+  });
   const [loading, setLoading] = useState<boolean>(true);
 
   // 자식 컴포넌트에서 받아온 데이터를 상태에 저장하는 콜백 함수
@@ -17,7 +22,11 @@ function ProfileUser() {
   };
 
   // input 필드의 값을 변경하여 galleryData를 변경하는 함수
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
     setgalleryData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -50,7 +59,7 @@ function ProfileUser() {
                 <p style={{ fontSize: "25px", fontWeight: "600" }}>
                   Gallery Information
                 </p>
-                {Object.keys(galleryData).map((key) => (
+                {Object.entries(galleryData).map(([key, value]) => (
                   <div key={key}>
                     {key === "description" ? ( // Check if the key is "description"
                       <>
@@ -68,7 +77,7 @@ function ProfileUser() {
                         <input
                           type="text"
                           name={key}
-                          value={galleryData[key]}
+                          value={value as string}
                           onChange={handleInputChange}
                           readOnly={key !== "description"}
                           className={Styles.profileInput}
@@ -86,6 +95,7 @@ function ProfileUser() {
       <ProfileGalleryApi onGalleryDataChange={handleGalleryInfoData} />
       {/* 데이터 변경요청 버튼 */}
       {loading ? null : (
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         <button className={Styles.changeBtn} onClick={updateGalleryinfo}>
           change
         </button>
