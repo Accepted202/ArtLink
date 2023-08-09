@@ -47,7 +47,6 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  width: 80vw;
 }
 
 @media (max-width: 767px) {

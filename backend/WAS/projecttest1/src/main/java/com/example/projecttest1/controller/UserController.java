@@ -1,5 +1,7 @@
 package com.example.projecttest1.controller;
 
+import com.example.projecttest1.config.auth.PrincipalDetails;
+import com.example.projecttest1.dto.PasswordUpdateDto;
 import com.example.projecttest1.dto.UserKeyResponseDto;
 import com.example.projecttest1.dto.UserResponseDto;
 import com.example.projecttest1.dto.UserUpdateDto;
@@ -10,9 +12,11 @@ import com.example.projecttest1.helper.S3Uploader;
 import com.example.projecttest1.repository.UserKeyRepository;
 import com.example.projecttest1.repository.UserRepository;
 import com.example.projecttest1.service.UserService;
+import com.example.projecttest1.service.validator.UserSignupValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,6 +41,9 @@ public class UserController {
 
     @Autowired
     private S3Uploader s3Uploader;
+
+    @Autowired
+    private UserSignupValidator validator;
 
     private static String DEFAULT_URL = "http://43.201.84.42:8080/static/default-profile.png";
 
@@ -96,6 +103,17 @@ public class UserController {
         }
         return ResponseEntity.ok(Map.of("profilePicture", url));
     }
+
+    @PatchMapping("/me/password")
+    public ResponseEntity<String> setNewPassword(@RequestBody PasswordUpdateDto dto, Authentication authentication) {
+        System.out.println(dto);
+        validator.validatePassword(dto);
+        String newPassword = dto.getNewPassword();
+        String username = ((PrincipalDetails)authentication.getPrincipal()).getUsername();
+        userService.setNewPassword(username, newPassword);
+        return ResponseEntity.ok("Password changed successfully");
+    }
+
 
     //TODO: User UserKey 반환
     @GetMapping("/me/userkeys")

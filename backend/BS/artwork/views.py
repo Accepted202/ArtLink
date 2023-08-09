@@ -43,8 +43,9 @@ class ArtworkView(View):
 
     def get(self, request):
         #모든 Artwork 조회
-        content = ArtworkSerializer(Artwork.objects.all(), many = True)
-        return JsonResponse(json.dumps(content.data), status = 200)
+        artworks = Artwork.objects.all()
+        content = {'artworkList': ArtworkServices.artwork_serializing(artworks)}
+        return JsonResponse(content, status = 200)
 
     def put(self, request): # 미술품 좌표 수정.
         data = json.loads(request.body)
@@ -56,10 +57,10 @@ class ArtworkView(View):
         try:
             # Voronoi diagram을 뽑는 과정
             exhibition = ExhibitionServices.find_by_Id(data['exhibitionid'])
-            artworks = ArtworkServices.find_by_exhibition(exhibition)
+            artworks = ArtworkServices.find_artwork_by_exhibition(exhibition)
 
             # Voronoi diagram 돌리기 요청.
-            if ExhibitionServices.getVoronoi(exhibition):
+            if ArtworkServices.getVoronoi(exhibition):
                 return JsonResponse({'msg': 'ok'}, status = 200)
         except Exception as e:
             print(e)
@@ -68,14 +69,14 @@ class ArtworkView(View):
 @method_decorator(csrf_exempt, name = "dispatch")
 class ArtworkDetailView(View):
     def delete(self, request, artworkid):
-        data = json.loads(request.body)
+        artwork = ArtworkServices.find_artwork_by_Id(artworkid)
+        exhibition = artwork.exhibition
         ArtworkServices.delete_artwork_by_Id(artworkid)
         try:
-            exhibition = ExhibitionServices.find_by_Id(data['exhibitionid'])
-            artworks = ArtworkServices.find_by_exhibition(exhibition)
+            artworks = ArtworkServices.find_artwork_by_exhibition(exhibition)
 
             # Voronoi diagram 돌리기 요청.
-            if ExhibitionServices.getVoronoi(exhibition):
+            if ArtworkServices.getVoronoi(exhibition):
                 return JsonResponse({'msg': 'ok'}, status=200)
         except Exception as e:
             print(e)

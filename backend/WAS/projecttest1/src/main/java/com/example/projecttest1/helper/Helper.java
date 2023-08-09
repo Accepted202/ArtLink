@@ -48,6 +48,31 @@ public class Helper {
         return responseCode;
     }
 
+    public static int putSendMsg(String pathurl, Map<String, Object> msg) throws Exception {
+        URL url = new URL(pathurl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        conn.setRequestMethod("PUT");
+        String postData = getJsonStringFromMap(msg);
+        byte[] postDataBytes = postData.getBytes(StandardCharsets.UTF_8);
+
+
+        conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+        conn.setRequestProperty("Content-Length", String.valueOf(postData.length()));
+        conn.setDoOutput(true);
+
+        OutputStream outputStream = conn.getOutputStream();
+        outputStream.write(postDataBytes);
+        outputStream.flush();
+        outputStream.close();
+
+        conn.connect();
+        int responseCode = conn.getResponseCode();
+
+        conn.disconnect();
+        return responseCode;
+    }
+
     public static Map<String, Object> getSendMsg(String pathurl) throws Exception {
         URL url = new URL(pathurl);
         System.out.println("Done");

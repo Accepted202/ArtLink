@@ -1,12 +1,11 @@
 package com.example.projecttest1.dto;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
-@RequiredArgsConstructor
-public class ArtWorkDto {
-    private final Long Id;
+public class ModifyArtWorkInputDto {
+    private final Long OldArtWorkId;
 
     private final String Name;
 
@@ -16,8 +15,7 @@ public class ArtWorkDto {
 
     private final double LocationY;
 
-    private final String DrawingPath;
-
     private final String Description;
 
+    private final MultipartFile ImageFile;
 }

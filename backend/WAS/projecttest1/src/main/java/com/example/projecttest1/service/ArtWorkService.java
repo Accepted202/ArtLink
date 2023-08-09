@@ -26,4 +26,8 @@ public class ArtWorkService {
     public void addArtWork(ArtWork artWork){
         artWorkRepository.save(artWork);
     }
+
+    public ArtWork findArtWork(Long id) {
+        return artWorkRepository.findById(id);
+    }
 }

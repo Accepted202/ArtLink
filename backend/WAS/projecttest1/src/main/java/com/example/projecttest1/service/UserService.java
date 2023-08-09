@@ -72,4 +72,10 @@ public class UserService {
     public String getProfilePicture(String username) {
         return userRepository.findByUsername(username).getProfilePictureUrl();
     }
+
+    public void setNewPassword(String username, String newPassword) {
+        User user = userRepository.findByUsername(username);
+        user.setPassword(bCryptPasswordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
 }

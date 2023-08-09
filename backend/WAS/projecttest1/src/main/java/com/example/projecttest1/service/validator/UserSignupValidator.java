@@ -1,5 +1,6 @@
 package com.example.projecttest1.service.validator;
 
+import com.example.projecttest1.dto.PasswordUpdateDto;
 import com.example.projecttest1.dto.gallery.GallerySignupDto;
 import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.entity.User;
@@ -57,5 +58,9 @@ public class UserSignupValidator extends Validator  {
     public void validateGallery(GallerySignupDto dto) {
         validateUsername(dto.getUsername());
         validatePassword(dto.getPassword());
+    }
+
+    public void validatePassword(PasswordUpdateDto dto) {
+        validatePassword(dto.getNewPassword());
     }
 }

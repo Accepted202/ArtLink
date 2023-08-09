@@ -36,6 +36,18 @@ def put_artwork(artwork, **kwargs):
     for key in kwargs:
         artwork.__setattr__(key, kwargs[key])
 
+def artwork_serializing(artworks):
+    list_of_artworks = []
+    attr_list = ['artworkid', 'coorx', 'coory', 'exhibition']
+    for artwork in artworks:
+        serialized_data = {}
+        for attr in attr_list:
+            serialized_data[attr] = getattr(artwork, attr)
+            if attr == 'exhibition': serialized_data[attr] = serialized_data[attr].exhibitionid
+        list_of_artworks.append(serialized_data)
+    return list_of_artworks
+
+
 def delete_VoronoiResult_by_exhibition(exhibition):
     Voronoipoint.objects.filter(exhibition = exhibition).delete()
     Voronoiresult.objects.filter(exhibition = exhibition).delete()
@@ -46,17 +58,15 @@ def getVoronoi(exhibition):
     Input = make_input_by_artworks(artworks)
 
     # 미술품의 개수가 3개 이상일 때만 보로노이 실행
-
     if count <= 1:
         delete_VoronoiResult_by_exhibition(exhibition)
         return True
     if count == 2:
         delete_VoronoiResult_by_exhibition(exhibition)
         return True
-
-    command = '.tools/cpptest.exe'
-
-    process = subprocess.Popen([command], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+    command = './tools/cpptest'
+    # 실행.
+    process = subprocess.Popen([command],stdin=subprocess.PIPE,  stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                text=True)
 
     stdout, stderr = process.communicate(input = Input)
