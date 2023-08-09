@@ -88,9 +88,9 @@ function WorksDetail() {
   // 업데이트 버튼 누를시
   const handleWorkUpdate = () => {
     console.log("Work update");
-    for (const key in workData) {
+    for (const [key, value] of Object.entries(workData)) {
       if (key != "drawingPath" && key != "id") {
-        formDataRef.current.append(key, workData[key]);
+        formDataRef.current.append(key, value as string);
       }
     }
 

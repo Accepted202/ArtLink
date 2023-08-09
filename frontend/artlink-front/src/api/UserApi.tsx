@@ -8,12 +8,15 @@ const createUrl = (endpoint: string): string => {
 };
 
 // 유저정보 조회
-export interface UserInfoRes {
+export interface UserInfo {
+  id: number;
+  username: string;
+  phoneNumber: number;
   [key: string]: string | number;
 }
-export const UserInfo = async (): Promise<UserInfoRes> => {
+export const GetUserInfo = async (): Promise<UserInfo> => {
   try {
-    const response: AxiosResponse<UserInfoRes> = await axios.get(
+    const response: AxiosResponse<UserInfo> = await axios.get(
       createUrl("/users/me")
     );
     return response.data;
@@ -29,13 +32,8 @@ export interface UserInfoEditRes {
   nickname: string;
   phoneNumber: number;
 }
-export interface UserInfoEditReq {
-  username: string;
-  nickname: string;
-  phoneNumber: number;
-}
 export const UserInfoEdit = async (
-  dataToSend: UserInfoEditReq
+  dataToSend: UserInfo
 ): Promise<UserInfoEditRes> => {
   try {
     const response: AxiosResponse<UserInfoEditRes> = await axios.put(
@@ -58,9 +56,9 @@ export interface UserPasswordChangeReq {
 }
 export const UserPasswordChange = async (
   dataToSend: UserPasswordChangeReq
-): Promise<UserInfoRes[]> => {
+): Promise<UserInfo[]> => {
   try {
-    const response: AxiosResponse<UserInfoRes[]> = await axios.post(
+    const response: AxiosResponse<UserInfo[]> = await axios.post(
       createUrl("/users/me/change-password"),
       dataToSend
     );

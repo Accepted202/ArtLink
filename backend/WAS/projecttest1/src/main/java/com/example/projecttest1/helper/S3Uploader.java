@@ -39,7 +39,6 @@ public class S3Uploader {
 
         request.setCannedAcl(CannedAccessControlList.PublicRead);
         amazonS3.putObject(request);
-
         return amazonS3.getUrl(bucket, s3FileName).toString();
     }
 

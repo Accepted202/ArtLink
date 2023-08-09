@@ -122,7 +122,7 @@ function UpdateExhibition() {
                 <input
                   type="text"
                   name={field.name}
-                  value={exhibitionInfo[field.name]}
+                  value={exhibitionInfo[field.name] as string}
                   onChange={handleInputChange}
                   className={Styles.ExhibitionInput}
                 />

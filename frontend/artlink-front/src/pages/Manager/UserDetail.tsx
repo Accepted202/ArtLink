@@ -54,13 +54,13 @@ function UserDetail() {
                   <p style={{ fontSize: "25px", fontWeight: "600" }}>
                     User Information
                   </p>
-                  {Object.keys(userData).map((key) => (
+                  {Object.entries(userData).map(([key, value]) => (
                     <p key={key}>
                       {labelMapping[key]}:{" "}
                       <input
                         type="text"
                         name={key}
-                        value={userData[key]}
+                        value={value as string}
                         className={Styles.profileInput}
                       />
                     </p>
