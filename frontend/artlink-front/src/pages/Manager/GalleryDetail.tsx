@@ -39,7 +39,7 @@ function GalleryDetail() {
                   <p style={{ fontSize: "25px", fontWeight: "600" }}>
                     Gallery Information
                   </p>
-                  {Object.keys(galleryData).map((key) => (
+                  {Object.entries(galleryData).map(([key, value]) => (
                     <div key={key}>
                       {key === "description" ? ( // Check if the key is "description"
                         <>
@@ -56,7 +56,7 @@ function GalleryDetail() {
                           <input
                             type="text"
                             name={key}
-                            value={galleryData[key]}
+                            value={value as string}
                             readOnly={key !== "description"}
                             className={Styles.profileInput}
                           />

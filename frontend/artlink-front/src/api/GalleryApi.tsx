@@ -168,6 +168,7 @@ export interface ExhibitionOneInfoRes {
   exhibitionExplanation: string;
   posterUrl: string;
   createdAt: string;
+  [key: string]: string | number;
 }
 export const ExhibitionOneInfo = async (): Promise<ExhibitionOneInfoRes> => {
   try {

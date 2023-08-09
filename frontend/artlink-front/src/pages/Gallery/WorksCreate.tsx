@@ -33,9 +33,9 @@ function WorksCreate() {
   // 생성 요청시
   const handleAdd = () => {
     console.log("creating");
-    for (const key in formData) {
+    for (const [key, value] of Object.entries(formData)) {
       if (key != "drawingPath" && key != "id") {
-        formDataRef.current.append(key, formData[key]);
+        formDataRef.current.append(key, value as string);
       }
     }
     if (formDataRef.current.has("imageFile")) {
