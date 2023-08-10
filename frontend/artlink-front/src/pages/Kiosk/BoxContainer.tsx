@@ -1,15 +1,12 @@
 import styles from "./BoxContainer.module.css";
 import ArtworkBox from "./ArtworkBox";
+import { Paint } from "../../api/KioskApi";
 
 // ArtworkBox를 담는 컨테이너
 
-interface Data {
-  [key: string]: string | number;
-}
-
 interface Props {
-  chunk: Data[];
-  onClickDelete: (id: number | string) => void;
+  chunk: Paint[];
+  onClickDelete: (drawingId: number) => Promise<void>;
 }
 
 function BoxContainer({ chunk, onClickDelete }: Props) {
@@ -19,7 +16,8 @@ function BoxContainer({ chunk, onClickDelete }: Props) {
         <ArtworkBox
           key={index}
           artwork={artwork}
-          onClickDelete={() => onClickDelete(artwork.id)}
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onClickDelete={() => onClickDelete(artwork.drawingId)}
         />
       ))}
     </div>

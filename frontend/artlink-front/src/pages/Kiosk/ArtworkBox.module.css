@@ -1,9 +1,5 @@
 .artwork-box {
   margin: 10vw;
-  /* margin-left: 10vw;
-  margin-right: 10vw;
-  margin-top: 5vw;
-  margin-bottom: 5vw; */
 }
 
 .artwork {
@@ -13,6 +9,28 @@
   height: 30vw;
   width: 30vw;
   border-radius: 10%;
+  /* padding: 10%; */
+}
+
+.title {
+  font-size: 20px;
+  text-shadow: 1px 1px 2px rgb(80, 80, 80), -1px -1px 2px white;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.artwork img {
+  width: 80%;
+  height: 60%;
+  object-fit: contain;
+  display: block; /* Add this line */
+  margin: auto;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 2px 2px 5px rgb(80, 80, 80), -2px -2px 3px white;
+  padding: 5px;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
 }
 
 .button-wrapper {
