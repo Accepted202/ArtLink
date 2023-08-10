@@ -30,10 +30,9 @@ import IoTBoard from "./pages/Gallery/IoTBoard";
 // Manager
 import UserBoard from "./pages/Manager/UserBoard";
 import UserDetail from "./pages/Manager/UserDetail";
-import UserCreate from "./pages/Manager/UserCreate";
 import GalleryBoard from "./pages/Manager/GalleryBoard";
 import GalleryDetail from "./pages/Manager/GalleryDetail";
-import GalleryCreate from "./pages/Manager/GalleryCreate";
+// import GalleryCreate from "./pages/Manager/GalleryCreate";
 // Kiosk
 import Kiosk from "./pages/Kiosk/KioskHome";
 import KioskDetail from "./pages/Kiosk/KioskDetail";
@@ -202,12 +201,6 @@ function App() {
           }
         />
         <Route
-          path="/user-board/create"
-          element={
-            isLoggedIn() ? <UserCreate /> : <Navigate to="/login-admin" />
-          }
-        />
-        <Route
           path="/gallery-board"
           element={
             isLoggedIn() ? <GalleryBoard /> : <Navigate to="/login-admin" />
@@ -219,12 +212,12 @@ function App() {
             isLoggedIn() ? <GalleryDetail /> : <Navigate to="/login-admin" />
           }
         />
-        <Route
+        {/* <Route
           path="/gallery-board/create"
           element={
             isLoggedIn() ? <GalleryCreate /> : <Navigate to="/login-admin" />
           }
-        />
+        /> */}
 
         {/* Kiosk Routes */}
         <Route path="/kiosk/home" element={<Kiosk />} />

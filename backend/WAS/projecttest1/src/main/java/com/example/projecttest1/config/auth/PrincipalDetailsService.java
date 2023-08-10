@@ -20,7 +20,7 @@ public class PrincipalDetailsService implements UserDetailsService {
     private final GalleryRepository galleryRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        String[] userInfo = username.split(" ");
+        String[] userInfo = username.split("#");
         Principal principal = null;
         if (userInfo[1].equals("USER")) {
             System.out.println("PrincipalDetailsService: user login");

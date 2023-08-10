@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import KioskMainLogo from "./KioskMainLogo";
 import styles from "./KioskDetail.module.css";
 import BoxContainer from "./BoxContainer";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import {
+  Paint,
+  PostData,
+  getPostevents,
+  deleteArtwork,
+} from "../../api/KioskApi";
 
 // 작품 조회 페이지
 
@@ -10,40 +16,36 @@ import { Link } from "react-router-dom";
   [v] Artwork 배분
   [v] Artwork 삭제
   [v] 요소 삭제 시 모달 창 띄우기
-  [ ] 상속 문제 해결
+  [ ] postData에 있는 데이터들 표시하기
   [ ] 요소 삭제 시 삭제 애니메이션
 */
 
-/*
-api 확인 후 데이터 구조에 따라 수정 필요.
-데이터 내의 정보로 어떤 것을 삭제할 지 결정해야한다.
--> api 아직 완성 안됨
-*/
-interface Data {
-  [key: string]: string | number;
-}
-
 function KioskDetail() {
-  // 서버로부터 가져온 작품 정보
-  const data: Data[] = [
-    { id: 1, title: "1" },
-    { id: 2, title: "2" },
-    { id: 3, title: "3" },
-    { id: 4, title: "4" },
-    { id: 5, title: "5" },
-    { id: 6, title: "6" },
-    { id: 7, title: "7" },
-    { id: 8, title: "8" },
-    { id: 9, title: "9" },
-    { id: 10, title: "10" },
-  ];
+  const { pk } = useParams();
+  const [postData, setPostData] = useState<PostData>(); // 서버로부터 가져온 작품 정보
+  const [artworks, setArtworks] = useState<Paint[]>([]);
 
-  // 서버에 보낼 최종 데이터는 artworks다.
-  const [artworks, setArtworks] = useState(data);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await getPostevents(pk as string);
+        setPostData(response);
+        setArtworks(response.workList);
+        console.log(response);
+      } catch (error) {
+        console.error("사후 데이터를 가져오는 데 실패했습니다.", error);
+        window.alert("사후 데이터 가져오기 실패");
+      }
+    };
+    void getData();
+  }, []);
 
   // Delete 버튼 클릭 시 요소 삭제
-  const handleDelete = (id: number | string) => {
-    setArtworks((prevData) => prevData.filter((item) => item.id !== id));
+  const handleDelete = async (drawingId: number) => {
+    setArtworks((prevData) =>
+      prevData.filter((item) => item.drawingId !== drawingId)
+    );
+    await deleteArtwork(pk as string, drawingId);
   };
 
   const chunkSize = 4; // 컨테이너 하나 당 들어가는 작품 개수
@@ -62,6 +64,7 @@ function KioskDetail() {
           <BoxContainer
             key={index}
             chunk={chunk}
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onClickDelete={handleDelete}
           />
         ))}

@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -131,15 +132,19 @@ public class UserController {
 
             //유저 키 찾기
             List<UserKey> userKeys = userKeyRepository.findByUser(user);
-            List<UserKeyResponseDto> ResponseDtoList = new ArrayList<UserKeyResponseDto>();
+            List<UserKeyResponseDto> responseDtoList = new ArrayList<UserKeyResponseDto>();
             for(UserKey userKey : userKeys){
-                ResponseDtoList.add(new UserKeyResponseDto(userKey.getHashKey(),
+                responseDtoList.add(new UserKeyResponseDto(userKey.getHashKey(), userKey.getExhibition().getId(),
+                        userKey.getExhibition().getExhibitionUrl(), userKey.getExhibition().getExhibitionExplanation(),
                         userKey.getExhibition().getExhibitionName(),
                         userKey.getExhibition().getGallery().getGalleryName(),
-                        userKey.getVisitDate()
+                        userKey.getVisitDate(), userKey.getExhibition().getPosterUrl()
                 ));
             }
-            return new ResponseEntity<List<UserKeyResponseDto>>(ResponseDtoList, HttpStatus.OK);
+            if (responseDtoList.isEmpty()) {
+                responseDtoList.add(new UserKeyResponseDto("", 1, "", "", "", "", LocalDate.of(2023, 8, 9), ""));
+            }
+            return new ResponseEntity<List<UserKeyResponseDto>>(responseDtoList, HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();
             throw e;

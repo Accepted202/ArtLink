@@ -27,15 +27,15 @@ public class SelectionRepository{
     }
 
     public List<Selection> getSelectionByDevice(Long deviceId){
-        Device device = em.find(Device.class,deviceId);
+        Device device = em.createQuery("select d from Device d where d.deviceId = :deviceId", Device.class).setParameter("deviceId", deviceId).getSingleResult();
         return em.createQuery("SELECT s FROM Selection s WHERE s.device = :device").setParameter("device",device).getResultList();
     }
 
     public void deleteRecentSelectionByDevice(Long deviceId){
         try{
             List<Selection> selectedList = new ArrayList<>();
-            Device device = em.find(Device.class,deviceId);
-            selectedList = em.createQuery("SELECT s FROM Selection s WHERE s.device = :device ORDER BY s.timeStamp" ).setParameter("device",device).getResultList();
+            Device device = em.createQuery("select d from Device d where d.deviceId = :deviceId", Device.class).setParameter("deviceId", deviceId).getSingleResult();
+            selectedList = em.createQuery("SELECT s FROM Selection s WHERE s.device = :device ORDER BY s.timeStamp DESC " ).setParameter("device",device).getResultList();
             for(Selection selection:selectedList){
                 System.out.println(selection.getTimeStamp());
             }

@@ -1,5 +1,6 @@
 package com.example.projecttest1.service;
 
+import com.example.projecttest1.dto.ArtWorkDto;
 import com.example.projecttest1.entity.ArtWork;
 import com.example.projecttest1.entity.Exhibition;
 import com.example.projecttest1.repository.ArtWorkRepository;
@@ -25,6 +26,13 @@ public class ArtWorkService {
 
     public void addArtWork(ArtWork artWork){
         artWorkRepository.save(artWork);
+    }
+
+    public void modifyArtWork(Long artWorkId, ArtWorkDto artWorkDto) {
+        ArtWork artWork = artWorkRepository.findById(artWorkId);
+        if (artWorkDto.getName() != null) {
+
+        }
     }
 
     public ArtWork findArtWork(Long id) {

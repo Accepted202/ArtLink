@@ -12,6 +12,8 @@ public class ExhibitionResponseDto {
 
     private final String exhibitionName;
 
+    private final String exhibitionUrl;
+
     private final String posterUrl;
 
     private final String exhibitionExplanation;

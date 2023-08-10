@@ -29,7 +29,7 @@ public class SelectionService {
             System.out.println(deviceId);
             Selection selection = new Selection();
             ArtWork artWork = artWorkRepository.findById(artWorkId);
-            Device device = deviceRepository.findById(deviceId);
+            Device device = deviceRepository.findBydeviceId(deviceId);
             if(selectionRepository.existsDeviceArtwork(device, artWork)){
                 throw new NotUniqueException(deviceId, artWorkId);
             }

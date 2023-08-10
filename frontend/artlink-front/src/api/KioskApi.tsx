@@ -18,20 +18,31 @@ const createUrl = (endpoint: string): string => {
   return `${defaultBackendUrl}${endpoint}`;
 };
 
-export interface Data {
-  [key: string]: string | number;
+export interface Paint {
+  drawingId: number;
+  paintName: string;
+  paintPath: string;
+}
+
+export interface PostData {
+  exhibitionID: number;
+  exhibitionName: string;
+  galleryID: number;
+  galleryName: string;
+  visitDate: string;
+  workList: Paint[];
 }
 
 // 사후 데이터 삭제(DELETE): /postevents/{userKey}/drawings/{deviceId}
 export const deleteArtwork = async (
   userKey: string,
   drawingId: number
-): Promise<Data> => {
+): Promise<void> => {
   try {
-    const response: AxiosResponse<Data> = await axios.delete(
+    const response: AxiosResponse<string> = await axios.delete(
       createUrl(`/postevents/${userKey}/drawings/${drawingId}`)
     );
-    return response.data;
+    console.log(response.data);
   } catch (error) {
     console.error("사후 데이터 삭제에 실패했습니다.", error);
     throw error;
@@ -39,14 +50,9 @@ export const deleteArtwork = async (
 };
 
 // 키를 통한 사후 데이터 조회(GET): /postevents/{userKey}
-export const getPostevents = async (userKey: string): Promise<Data[]> => {
+export const getPostevents = async (userKey: string): Promise<PostData> => {
   try {
-    const accessToken = localStorage.getItem("access_token");
-    axios.defaults.headers.common["Authorization"] = `Bearer ${
-      accessToken as string
-    }`;
-
-    const response: AxiosResponse<Data[]> = await axios.get(
+    const response: AxiosResponse<PostData> = await axios.get(
       createUrl(`/postevents/${userKey}`)
     );
     return response.data;

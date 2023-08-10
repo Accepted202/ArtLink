@@ -1,16 +1,13 @@
 import { useState } from "react";
 import styles from "./ArtworkBox.module.css";
 import DeleteModal from "./DeleteModal";
+import { Paint } from "../../api/KioskApi";
 
 // 작품의 정보를 띄울 박스, delete로 작품 삭제 가능
 
-interface Data {
-  [key: string]: string | number;
-}
-
 interface Props {
-  artwork: Data;
-  onClickDelete: (id: number | string) => void;
+  artwork: Paint;
+  onClickDelete: (drawingId: number) => Promise<void>;
 }
 
 function ArtworkBox({ artwork, onClickDelete }: Props) {
@@ -25,10 +22,10 @@ function ArtworkBox({ artwork, onClickDelete }: Props) {
   };
 
   // 모달 창 닫기
-  const handleModalClose = () => {
+  const handleModalClose = async () => {
     setIsModalOpen(false);
     if (isDelete) {
-      onClickDelete(artwork.id);
+      await onClickDelete(artwork.drawingId);
     }
   };
 
@@ -41,7 +38,8 @@ function ArtworkBox({ artwork, onClickDelete }: Props) {
     <div className={styles["artwork-box"]}>
       <div className={`${styles.artwork} ${styles.neu}`}>
         {/*작품의 정보가 들어갈 곳*/}
-        <div>{artwork.title}</div>
+        <div className={styles.title}>{artwork.paintName}</div>
+        <img src={artwork.paintPath} alt="작품 이미지" />
       </div>
       <div className={styles["button-wrapper"]}>
         <button
@@ -52,6 +50,7 @@ function ArtworkBox({ artwork, onClickDelete }: Props) {
         </button>
         <DeleteModal
           isOpen={isModalOpen}
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onClose={handleModalClose}
           onDelete={handleDelete}
         />

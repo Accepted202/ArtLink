@@ -12,5 +12,6 @@ public class ExhibitionDetailResponseDto {
     private final LocalDate createdAt;
     private final String exhibitionName;
     private final String exhibitionExplanation;
+    private final String exhibitionUrl;
     private final String posterUrl;
 }
