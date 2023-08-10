@@ -39,7 +39,7 @@ public class PostEventService {
 
             List<ArtWorkResponseDto> artWorkResponseDtoList = new ArrayList<ArtWorkResponseDto>();
             for(ArtWork artwork: artworklist){
-                artWorkResponseDtoList.add(new ArtWorkResponseDto(artwork.getName(), artwork.getPaintPath()));
+                artWorkResponseDtoList.add(new ArtWorkResponseDto(artwork.getId(), artwork.getName(), artwork.getPaintPath()));
             }
 
             ArtWork artwork = artworklist.get(0);
@@ -50,6 +50,8 @@ public class PostEventService {
             Map<String, Object> result = new HashMap<>();
             result.put("exhibitionID", exhibition.getId());
             result.put("exhibitionName", exhibition.getExhibitionName());
+            result.put("exhibitionUrl", exhibition.getExhibitionUrl());
+            result.put("exhibitionDescription", exhibition.getExhibitionExplanation());
             result.put("galleryID", gallery.getId());
             result.put("galleryName", gallery.getGalleryName());
             result.put("visitDate", userKey.getVisitDate());

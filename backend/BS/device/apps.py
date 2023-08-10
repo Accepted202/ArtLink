@@ -12,9 +12,9 @@ from .signals import mtos_post, mtos_delete
 class DeviceConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'device'
-
+    # MQTT_BROKER_HOST = "mqtt-network"
     MQTT_BROKER_HOST = "localhost"
-    MQTT_BROKER_PORT = 8884
+    MQTT_BROKER_PORT = 1883
     MAX_ANCHOR = 3
     PUB_TOPIC = "StoD"
     SUB_TOPIC = "DtoS"

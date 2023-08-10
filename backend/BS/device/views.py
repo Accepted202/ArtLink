@@ -61,12 +61,11 @@ def post(sender, **kwargs):
     try:
         # MQTT단에서 보내준 데이터를 통한 좌표 추출
         data = json.loads(kwargs.get('data'))
-        deviceid = int(data["T"])
+        deviceid = data["T"]
 
-        # Must be 3 Anchros in your exhibition. 
         coor, exhibition = device.services.get_coordination_by_input(deviceid, data)
+
         count = artwork.services.get_artwork_count(exhibition)
-                
         if count == 1:
             return JsonResponse({'drawingId': Artwork.objects.filter(exhibition=exhibition).first().artworkid},
                                 status=200)
@@ -110,7 +109,7 @@ def post(sender, **kwargs):
         p1, p2 = rres[1], rres[2]
 
         ans = p1 if dist(points[p1], coor) < dist(points[p2], coor) else p2  # 더 가까운 것의 인덱스가 ans에 저장.
-        
+
         # Response 예상 : {"drawingId" : 2}
         JSON = {}
         try:
