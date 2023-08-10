@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Styles from "./AMD.module.css";
 import poster from "../../assets/전시회.jpg";
+import { UserOneRecordRes } from "../../api/UserApi";
 
 interface AMDExhibitionProps {
   onButtonClick: () => void;
+  galleryData: UserOneRecordRes;
 }
-function AMDExhibition({ onButtonClick }: AMDExhibitionProps) {
+function AMDExhibition({ onButtonClick, galleryData }: AMDExhibitionProps) {
   const [isFrameEnabled, setIsFrameVisible] = useState(true);
 
   const handleButtonClick = () => {
@@ -16,7 +18,7 @@ function AMDExhibition({ onButtonClick }: AMDExhibitionProps) {
   return (
     <>
       {/* 갤러리의 특정 전시회를 불러와서 정보를 보여줌 */}
-      <p className={`${Styles.AMDTitleTxt}`}>Exhibition Title</p>
+      <p className={`${Styles.AMDTitleTxt}`}>{galleryData.exhibitionName}</p>
       <div
         className={`${isFrameEnabled ? Styles.AMDFrame : Styles.AMDFrameOn}`}
       >

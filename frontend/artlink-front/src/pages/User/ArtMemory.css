@@ -41,6 +41,7 @@
     -5px -5px 10px rgba(255, 255, 255, 0.7);
   width: 95%;
   height: 95%;
+  font-size: 40px;
 }
 .innerTxt1 {
   color: black;
@@ -49,6 +50,10 @@
   margin-bottom: 5px;
   text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
     1px 1px 1px rgba(0, 0, 0, 0.7);
+  transition: font-size 0.3s ease;
+}
+.innerSlideBox:hover .innerTxt1 {
+  font-size: 16px;
 }
 .innerTxt2 {
   color: black;
@@ -104,5 +109,8 @@
       -5px -5px 10px rgba(247, 250, 236, 0.7);
     width: 65%;
     /* width: auto; */
+  }
+  .innerSlideBox:hover .innerTxt1 {
+    font-size: 18px;
   }
 }
