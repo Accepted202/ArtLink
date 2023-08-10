@@ -82,8 +82,7 @@ public class GalleryController {
         Exhibition exhibition = exhibitionService.registerExhibition(requestDto, username);
 
 //        Map<String, Object> sendMsg = new HashMap<String, Object>();
-//        String path = "http://43.201.84.42:8000/exhibition/";
-//        String path = "http://localhost:8000/exhibition/";
+//        String path = "http://localhost:6000/exhibition/";
 //        sendMsg.put("id", exhibition.getId());
 //
 //        int statuscode = helper.postSendMsg(path, sendMsg);
@@ -188,7 +187,7 @@ public class GalleryController {
             );
             //Send the data to Django server.
 //            Map<String, Object> sendMsg = new HashMap<String, Object>();
-//            String path = "http://localhost:8000/artwork/";
+//            String path = "http://localhost:6000/artwork/";
 //
 //            sendMsg.put("exhibitionid", exhibition.getId());
 //            sendMsg.put("artworkid", artWork.getId());
@@ -226,29 +225,32 @@ public class GalleryController {
                                                 @PathVariable Long artworkId, @ModelAttribute ModifyArtWorkInputDto modifyArtWorkInputDto) throws Exception {
         try{
             //그림만 모아두는 폴더를 만들 예정.
-            String folder = String.format("artworks/%d", exhibitionId);
-            String ImageUrl = s3Uploader.upload(folder, modifyArtWorkInputDto.getName(), modifyArtWorkInputDto.getImageFile());
             Exhibition exhibition = exhibitionService.findById(exhibitionId);
             ArtWork artWork = artWorkRepository.findById(artworkId);
+            System.out.println(modifyArtWorkInputDto);
             artWork.setName(modifyArtWorkInputDto.getName());
             artWork.setArtist(modifyArtWorkInputDto.getArtist());
             artWork.setXCoor(modifyArtWorkInputDto.getLocationX());
             artWork.setYCoor(modifyArtWorkInputDto.getLocationY());
             artWork.setExplanation(modifyArtWorkInputDto.getDescription());
-            artWork.setPaintPath(ImageUrl);
-
+            if (modifyArtWorkInputDto.getImageFile() != null) {
+                String folder = String.format("artworks/%d", exhibitionId);
+                String imageUrl = s3Uploader.upload(folder, modifyArtWorkInputDto.getName(), modifyArtWorkInputDto.getImageFile());
+                artWork.setPaintPath(imageUrl);
+            }
+            artWorkRepository.save(artWork);
             ArtWorkDto artWorkDto = new ArtWorkDto(
                     artWork.getId(),
                     artWork.getName(),
                     artWork.getArtist(),
                     artWork.getXCoor(),
                     artWork.getYCoor(),
-                    ImageUrl,
+                    artWork.getPaintPath(),
                     artWork.getExplanation()
             );
             //Send the data to Django server.
 //            Map<String, Object> sendMsg = new HashMap<String, Object>();
-//            String path = "http://localhost:8000/artwork/";
+//            String path = "http://localhost:6000/artwork/";
 //
 //            sendMsg.put("exhibitionid", exhibition.getId());
 //            sendMsg.put("artworkid", artWork.getId());

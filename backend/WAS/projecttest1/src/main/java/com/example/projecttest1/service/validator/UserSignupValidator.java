@@ -17,7 +17,7 @@ public class UserSignupValidator extends Validator  {
     private static final int MAXIMUM_PASSWORD_LENGTH = 20;
     private static final int MINIMUM_USERNAME_LENGTH = 5;
     private static final int MAXIMUM_USERNAME_LENGTH = 20;
-    private static final int MAXIMUM_NICKNAME_LENGTH = 5;
+    private static final int MAXIMUM_NICKNAME_LENGTH = 20;
 
     private void validateUsername(String username) {
         if (isNullOrEmpty(username)) {
@@ -45,7 +45,7 @@ public class UserSignupValidator extends Validator  {
             throw new MissingInputException("nickname");
         }
         if (!inRange(nickname.length(), 1, MAXIMUM_NICKNAME_LENGTH)) {
-            throw new InvalidNicknameFormatException("length");
+            throw new InvalidNicknameFormatException("nick name length");
         }
 
     }

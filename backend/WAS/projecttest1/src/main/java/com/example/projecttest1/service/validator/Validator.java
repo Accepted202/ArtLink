@@ -11,6 +11,6 @@ public abstract class Validator {
     }
 
     protected boolean isAlphaNumeric(String str) {
-        return str.matches("^[a-z0-9]+$");
+        return str.matches("^[a-zA-Z0-9_]+$");
     }
 }
