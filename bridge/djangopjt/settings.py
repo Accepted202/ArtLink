@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'bridge',
         'USER': 'admin1',
         'PASSWORD': '1234',
-        'HOST': "mysql-db",
+        'HOST': "http://43.201.84.42",
         'PORT': "4000",
     }
 }
