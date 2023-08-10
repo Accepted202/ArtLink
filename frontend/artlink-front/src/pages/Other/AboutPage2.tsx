@@ -1,8 +1,12 @@
 // import React from 'react';
+import "./AboutUs.css";
+
 function AboutPage2() {
   return (
     <>
-      <p>Jae Woong's Movie</p>
+      <div className="AP_Container">
+        <img src="src/assets/About2.png" alt="" />
+      </div>
     </>
   );
 }

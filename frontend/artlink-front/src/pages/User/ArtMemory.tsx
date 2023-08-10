@@ -15,6 +15,7 @@ const defaultRecord = {
   galleryName: "",
   visitDate: "2023-08-09",
 }; // 기본 세팅
+
 function ArtMemory() {
   // 슬라이더 세팅
   const isMobile = window.innerWidth <= 1024;
@@ -65,13 +66,15 @@ function ArtMemory() {
     <>
       <MarginTopInput value={50} />
       <div></div>
+      {/* 모바일용 인트로 박스 */}
       {isMobile && (
         <div className="introBox mobileView" style={{ margin: "auto" }}>
           <AMIntro />
         </div>
       )}
-
+      {/* 슬라이드 박스 */}
       <div ref={sliderRef} className="keen-slider sliderbox minwid">
+        {/* 비모바일용 인트로 박스 */}
         {!isMobile && (
           <div className="keen-slider__slide number-slide">
             <div className="introBox webView">
@@ -79,6 +82,7 @@ function ArtMemory() {
             </div>
           </div>
         )}
+        {/* API로 로드한 정보로 슬라이드 구성 */}
         {userRecords[0].userKey == "" && (
           <Link to={`/art-memory`} className="linkbox">
             <div className="keen-slider__slide number-slide">
@@ -90,9 +94,16 @@ function ArtMemory() {
             </div>
           </Link>
         )}
+
         {userRecords[0].userKey !== "" &&
           userRecords.map((slide, index) => (
-            <Link to={`/art-memory/${index}`} className="linkbox" key={index}>
+            <Link
+              to={{
+                pathname: `/art-memory/${slide.id}?userKey=${slide.userKey}`,
+              }}
+              className="linkbox"
+              key={index}
+            >
               <div className="keen-slider__slide number-slide">
                 <div className="innerSlideBox">
                   <div className="innerTxt1">

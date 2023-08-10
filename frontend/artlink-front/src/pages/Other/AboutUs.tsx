@@ -106,9 +106,15 @@ function AboutUs() {
         </div>
       </div>
       <div className="aboutBodyMobile">
-        <div className="inner">1</div>
-        <div className="inner">2</div>
-        <div className="inner">3</div>
+        <div className="inner">
+          <AboutPage1 />
+        </div>
+        <div className="inner">
+          <AboutPage2 />
+        </div>
+        <div className="inner">
+          <AboutPage3 />
+        </div>
       </div>
       <UpBtn />
     </>

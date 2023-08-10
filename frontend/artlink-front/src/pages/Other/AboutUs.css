@@ -27,6 +27,10 @@
   display: block;
   height: 100%;
 }
+.AP_Container img {
+  width: 90%;
+  margin: auto;
+}
 .AP_box1 {
   margin-top: 20%;
   height: 80%;
@@ -52,5 +56,14 @@
   }
   .aboutBodyMobile {
     display: block;
+  }
+  .AP1 {
+    font-size: 12px;
+  }
+  .AP1_txt1 {
+    font-size: 20px;
+  }
+  .inner {
+    height: 350px;
   }
 }

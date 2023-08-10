@@ -10,8 +10,6 @@
   margin-top: 5%;
   font-size: 24px;
   font-weight: 600;
-  /* text-decoration-line: underline;
-  text-underline-offset: 10px; */
   border-bottom: 1px groove black;
   display: flex;
   width: 80%;
@@ -89,5 +87,8 @@
   }
   .AMDtxtBox {
     padding-right: 6%;
+  }
+  .AMDTitleTxt {
+    font-size: 20px !important;
   }
 }

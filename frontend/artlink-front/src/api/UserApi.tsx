@@ -115,6 +115,7 @@ export interface Exhibition {
 export interface UserRecordsRes {
   [key: string]: string | number;
   posterUrl: string;
+  userKey: string;
 }
 export const UserRecords = async (): Promise<[UserRecordsRes]> => {
   setAuthorizationHeader();
@@ -141,7 +142,7 @@ export interface UserOneRecordRes {
   visitDate: string;
   workList: Paint[];
 }
-export const UserOneRecord = async (pk: number): Promise<UserOneRecordRes> => {
+export const UserOneRecord = async (pk: string): Promise<UserOneRecordRes> => {
   try {
     setAuthorizationHeader();
     const response: AxiosResponse<UserOneRecordRes> = await axios.get(

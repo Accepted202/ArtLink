@@ -1,13 +1,10 @@
 body {
   background-color: #e0e0e0;
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   text-align: center;
   margin: 0px;
-  /* width: 100%; */
   height: 100%;
-  /* font-family: HealthsetGothicLight; */
   font-family: SUITE-Regular;
   text-decoration-line: none;
   color: black;
