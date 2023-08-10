@@ -71,7 +71,10 @@ function InfoTable({
                   !keyToExclude.includes(columnKey) && (
                     <td
                       key={cellIndex}
-                      style={{ width: columnWidths[cellIndex] }}
+                      style={{
+                        width: columnWidths[cellIndex],
+                        maxWidth: "100px",
+                      }}
                     >
                       {getColumnValue(row, columnKey)}
                     </td>
