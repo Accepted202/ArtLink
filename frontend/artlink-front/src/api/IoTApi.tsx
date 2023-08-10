@@ -35,9 +35,9 @@ export const registerDevice = async (
 };
 
 // 기기 데이터 삭제(유저키 생성)(DELETE): /devices/{deviceId}
-export const deleteDevice = async (deviceId: number): Promise<Data> => {
+export const deleteDevice = async (deviceId: number): Promise<string> => {
   try {
-    const response: AxiosResponse<Data> = await axios.delete(
+    const response: AxiosResponse<string> = await axios.delete(
       createUrl(`/devices/${deviceId}`)
     );
     return response.data;
