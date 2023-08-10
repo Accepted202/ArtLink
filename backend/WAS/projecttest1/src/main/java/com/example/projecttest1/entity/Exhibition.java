@@ -25,6 +25,9 @@ public class Exhibition {
     private String exhibitionExplanation;
 
     @Setter
+    private String exhibitionUrl;
+
+    @Setter
     private String posterUrl;
 
     @Setter

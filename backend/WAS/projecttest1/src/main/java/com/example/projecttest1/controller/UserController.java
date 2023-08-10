@@ -135,13 +135,14 @@ public class UserController {
             List<UserKeyResponseDto> responseDtoList = new ArrayList<UserKeyResponseDto>();
             for(UserKey userKey : userKeys){
                 responseDtoList.add(new UserKeyResponseDto(userKey.getHashKey(), userKey.getExhibition().getId(),
+                        userKey.getExhibition().getExhibitionUrl(), userKey.getExhibition().getExhibitionExplanation(),
                         userKey.getExhibition().getExhibitionName(),
                         userKey.getExhibition().getGallery().getGalleryName(),
                         userKey.getVisitDate(), userKey.getExhibition().getPosterUrl()
                 ));
             }
             if (responseDtoList.isEmpty()) {
-                responseDtoList.add(new UserKeyResponseDto("", 1, "", "", LocalDate.of(2023, 8, 9), ""));
+                responseDtoList.add(new UserKeyResponseDto("", 1, "", "", "", "", LocalDate.of(2023, 8, 9), ""));
             }
             return new ResponseEntity<List<UserKeyResponseDto>>(responseDtoList, HttpStatus.OK);
         } catch (Exception e){

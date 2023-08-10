@@ -92,7 +92,7 @@ public class GalleryController {
 
         ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
                 exhibition.getCreatedAt(), exhibition.getExhibitionName(),
-                exhibition.getExhibitionExplanation(), exhibition.getPosterUrl());
+                exhibition.getExhibitionExplanation(), exhibition.getExhibitionUrl(), exhibition.getPosterUrl());
         return ResponseEntity.ok(responseDto);
     }
 
@@ -103,7 +103,8 @@ public class GalleryController {
         List<Exhibition> exhibitions = exhibitionService.selectAllExhibitions(username);
         List<ExhibitionResponseDto> exhibitionResponseDtos = new ArrayList<>();
         exhibitions.forEach(exhibition -> exhibitionResponseDtos.add(new ExhibitionResponseDto(exhibition.getId(),
-                exhibition.getExhibitionName(), exhibition.getPosterUrl(), exhibition.getExhibitionExplanation(),
+                exhibition.getExhibitionName(), exhibition.getExhibitionUrl(), exhibition.getPosterUrl(),
+                exhibition.getExhibitionExplanation(),
                 exhibition.getCreatedAt())));
         return ResponseEntity.ok(Map.of("exhibitions", exhibitionResponseDtos));
     }
@@ -114,7 +115,7 @@ public class GalleryController {
         System.out.println(((PrincipalDetails)authentication.getPrincipal()).getUsername());
         Exhibition exhibition = exhibitionService.findById(id);
         return ResponseEntity.ok(new ExhibitionDetailResponseDto(exhibition.getId(), exhibition.getCreatedAt(),
-                exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(), exhibition.getPosterUrl()));
+                exhibition.getExhibitionName(), exhibition.getExhibitionExplanation(), exhibition.getExhibitionUrl(), exhibition.getPosterUrl()));
     }
 
     @PutMapping("/me/exhibitions/{id}")
@@ -124,7 +125,7 @@ public class GalleryController {
         Exhibition exhibition = exhibitionService.modifyExhibition(requestDto, id);
         ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
                 exhibition.getCreatedAt(), exhibition.getExhibitionName(),
-                exhibition.getExhibitionExplanation(), exhibition.getPosterUrl());
+                exhibition.getExhibitionExplanation(), exhibition.getExhibitionUrl(), exhibition.getPosterUrl());
         return ResponseEntity.ok(responseDto);
     }
 

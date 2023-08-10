@@ -29,6 +29,7 @@ public class ExhibitionService {
         Exhibition exhibition = new Exhibition();
         exhibition.setExhibitionName(requestDto.getExhibitionName());
         exhibition.setGallery(gallery);
+        exhibition.setExhibitionUrl(requestDto.getExhibitionUrl());
         exhibition.setExhibitionExplanation(requestDto.getExhibitionExplanation());
         exhibition.setCreatedAt(LocalDate.now());
         return exhibitionRepository.save(exhibition);
@@ -52,6 +53,10 @@ public class ExhibitionService {
 
         if (requestDto.getExhibitionExplanation() != null) {
             exhibition.setExhibitionExplanation(requestDto.getExhibitionExplanation());
+        }
+
+        if (requestDto.getExhibitionUrl() != null) {
+            exhibition.setExhibitionUrl(requestDto.getExhibitionUrl());
         }
 
         return exhibition;
