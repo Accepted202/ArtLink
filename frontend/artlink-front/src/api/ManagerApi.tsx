@@ -96,3 +96,20 @@ export const OneGalleryGet = async (): Promise<OneGalleryEach> => {
     throw error;
   }
 };
+
+// 갤러리 생성
+export interface Data {
+  [key: string]: string;
+}
+export const AddGallery = async (dataToSend: FormData): Promise<Data> => {
+  try {
+    const response: AxiosResponse<Data> = await axios.post(
+      createUrl("/admin/galleries"),
+      dataToSend
+    );
+    return response.data;
+  } catch (error) {
+    console.error("갤러리 계정 생성 실패", error);
+    throw error;
+  }
+};
