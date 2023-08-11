@@ -134,7 +134,7 @@ function PageManager() {
           <div style={{ fontSize: "12px" }}>
             <p>모달창 x버튼 디자인</p>
             <p>전시회 생성에서 이미지 비율</p>
-            <p>description 인풋필드 자동 줄바꿈</p>
+            <p>description 인풋필드 자동 줄바꿈(해결)</p>
             <p>위로 이동 버튼 디자인</p>
             <p>갤러리 마이페이지 key 라벨링</p>
             <p>전시회 설명 필드 text area변경</p>
@@ -143,7 +143,7 @@ function PageManager() {
           <h3>{`<ETC>`}</h3>
           <div style={{ fontSize: "12px" }}>
             <p>API 에러발생 처리 전부</p>
-            <p>Search 기능 구현 여부</p>
+            <p>Search 기능 구현 여부(해결)</p>
           </div>
         </div>
       </div>
