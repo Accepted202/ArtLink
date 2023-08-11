@@ -98,12 +98,17 @@ export const OneGalleryGet = async (): Promise<OneGalleryEach> => {
 };
 
 // 갤러리 생성
-export interface Data {
+export interface GalleryCreateRes {
+  username: string;
+  password: string;
+  galleryName: string;
   [key: string]: string;
 }
-export const AddGallery = async (dataToSend: FormData): Promise<Data> => {
+export const AddGallery = async (
+  dataToSend: FormData
+): Promise<GalleryCreateRes> => {
   try {
-    const response: AxiosResponse<Data> = await axios.post(
+    const response: AxiosResponse<GalleryCreateRes> = await axios.post(
       createUrl("/admin/galleries"),
       dataToSend
     );

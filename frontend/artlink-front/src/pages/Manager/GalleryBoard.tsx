@@ -36,12 +36,9 @@ function GalleryBoard() {
   return (
     <>
       <div className="container">
-        <p className="board_title">Gallery Manager</p>
-      </div>
-      <div className="container">
         <InfoBoard
+          title="Gallery Manager"
           data={galleryData}
-          link={"/gallery-board/create"}
           dataKeys={keys}
           columnWidths={widths}
         />

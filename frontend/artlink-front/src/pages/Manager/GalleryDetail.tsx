@@ -57,7 +57,7 @@ function GalleryDetail() {
                             type="text"
                             name={key}
                             value={value as string}
-                            readOnly={key !== "description"}
+                            disabled={true}
                             className={Styles.profileInput}
                           />
                         </p>

@@ -24,7 +24,7 @@ import ExhibitionBoard from "./pages/Gallery/ExhibitionBoard";
 import WorksBoard from "./pages/Gallery/WorksBoard";
 import WorksCreate from "./pages/Gallery/WorksCreate";
 import WorksDetail from "./pages/Gallery/WorksDetail";
-import IoTAdd from "./pages/Gallery/IotAdd";
+import IoTAdd from "./pages/Gallery/IoTAdd";
 import IoTBoard from "./pages/Gallery/IoTBoard";
 
 // Manager
@@ -32,6 +32,7 @@ import UserBoard from "./pages/Manager/UserBoard";
 import UserDetail from "./pages/Manager/UserDetail";
 import GalleryBoard from "./pages/Manager/GalleryBoard";
 import GalleryDetail from "./pages/Manager/GalleryDetail";
+import GalleryCreate from "./pages/Manager/GalleryCreate";
 // import GalleryCreate from "./pages/Manager/GalleryCreate";
 // Kiosk
 import Kiosk from "./pages/Kiosk/KioskHome";
@@ -56,6 +57,7 @@ function App() {
   const isLoggedIn = () => {
     const accessToken = localStorage.getItem("access_token");
     return !!accessToken; // access_token이 있으면 로그인 상태로 간주합니다.
+    // return true;
   };
   return (
     <div className="App">
@@ -212,12 +214,12 @@ function App() {
             isLoggedIn() ? <GalleryDetail /> : <Navigate to="/login-admin" />
           }
         />
-        {/* <Route
+        <Route
           path="/gallery-board/create"
           element={
             isLoggedIn() ? <GalleryCreate /> : <Navigate to="/login-admin" />
           }
-        /> */}
+        />
 
         {/* Kiosk Routes */}
         <Route path="/kiosk/home" element={<Kiosk />} />
