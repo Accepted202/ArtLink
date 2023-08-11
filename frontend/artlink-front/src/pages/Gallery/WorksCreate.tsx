@@ -20,7 +20,7 @@ function WorksCreate() {
     locationY: 0,
   });
   // 각 필드와 필드에 대한 이름을 매핑한 객체
-  const fieldNames = {
+  const fieldNames: Record<keyof Drawing, string> = {
     name: "제목",
     id: "유저번호",
     description: "설명",
@@ -84,14 +84,12 @@ function WorksCreate() {
         // 이미지 필드는 제외
         return (
           <div key={index} className="input-field">
-            <label htmlFor={field}>
-              {fieldNames[field as keyof Drawing]} :{" "}
-            </label>
+            <label htmlFor={field}>{fieldNames[field]} : </label>
             <input
               type="text"
               id={field}
               name={field}
-              placeholder={`${fieldNames[field as keyof Drawing]}을 입력하세요`}
+              placeholder={`${fieldNames[field]}을 입력하세요`}
               onChange={handleInputChange}
             />
           </div>
