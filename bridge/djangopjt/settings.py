@@ -81,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bridge',
-        'USER': 'admin1',
-        'PASSWORD': '1234',
-        'HOST': "http://43.201.84.42",
-        'PORT': "4000",
+        'USER': 'root',
+        'PASSWORD': 's09_a202_mysql',
+        'HOST': "database",
+        'PORT': "3306",
     }
 }
 
