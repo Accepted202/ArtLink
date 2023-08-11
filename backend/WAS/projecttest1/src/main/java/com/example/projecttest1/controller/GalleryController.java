@@ -187,19 +187,19 @@ public class GalleryController {
                     artWork.getExplanation()
             );
             //Send the data to Django server.
-//            Map<String, Object> sendMsg = new HashMap<String, Object>();
-//            String path = "http://localhost:6000/artwork/";
-//
-//            sendMsg.put("exhibitionid", exhibition.getId());
-//            sendMsg.put("artworkid", artWork.getId());
-//            sendMsg.put("coorx", artWork.getXCoor());
-//            sendMsg.put("coory", artWork.getYCoor());
-//
-//            //sendMsg
-//            int statuscode = helper.postSendMsg(path, sendMsg);
-//            if (statuscode != 201){
-//                throw new DjangoFailedException("Django failed to send");
-//            }
+            Map<String, Object> sendMsg = new HashMap<String, Object>();
+            String path = "http://localhost:6000/artwork/";
+
+            sendMsg.put("exhibitionid", exhibition.getId());
+            sendMsg.put("artworkid", artWork.getId());
+            sendMsg.put("coorx", artWork.getXCoor());
+            sendMsg.put("coory", artWork.getYCoor());
+
+            //sendMsg
+            int statuscode = helper.postSendMsg(path, sendMsg);
+            if (statuscode != 201){
+                throw new DjangoFailedException("Django failed to send");
+            }
 
             return new ResponseEntity<ArtWorkDto>(artWorkDto, HttpStatus.OK);
         }
@@ -250,19 +250,19 @@ public class GalleryController {
                     artWork.getExplanation()
             );
             //Send the data to Django server.
-//            Map<String, Object> sendMsg = new HashMap<String, Object>();
-//            String path = "http://localhost:6000/artwork/";
-//
-//            sendMsg.put("exhibitionid", exhibition.getId());
-//            sendMsg.put("artworkid", artWork.getId());
-//            sendMsg.put("coorx", artWork.getXCoor());
-//            sendMsg.put("coory", artWork.getYCoor());
+            Map<String, Object> sendMsg = new HashMap<String, Object>();
+            String path = "http://localhost:6000/artwork/";
+
+            sendMsg.put("exhibitionid", exhibition.getId());
+            sendMsg.put("artworkid", artWork.getId());
+            sendMsg.put("coorx", artWork.getXCoor());
+            sendMsg.put("coory", artWork.getYCoor());
 
             //sendMsg
-//            int statuscode = helper.putSendMsg(path, sendMsg);
-//            if (statuscode != 200){
-//                throw new DjangoFailedException("Django failed to send");
-//            }
+            int statuscode = helper.putSendMsg(path, sendMsg);
+            if (statuscode != 200){
+                throw new DjangoFailedException("Django failed to send");
+            }
 
             return new ResponseEntity<ArtWorkDto>(artWorkDto, HttpStatus.OK);
         }

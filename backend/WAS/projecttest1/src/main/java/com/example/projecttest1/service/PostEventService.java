@@ -46,7 +46,6 @@ public class PostEventService {
             Exhibition exhibition = artwork.getExhibition();
             Gallery gallery = exhibition.getGallery();
 
-
             Map<String, Object> result = new HashMap<>();
             result.put("exhibitionID", exhibition.getId());
             result.put("exhibitionName", exhibition.getExhibitionName());
