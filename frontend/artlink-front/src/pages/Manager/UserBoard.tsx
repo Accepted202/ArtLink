@@ -37,6 +37,7 @@ function UserBoard() {
           data={userData}
           dataKeys={keys}
           columnWidths={widths}
+          userManager={true}
         />
       </div>
     </>
