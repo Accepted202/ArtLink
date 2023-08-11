@@ -33,6 +33,7 @@ function PageManager() {
     UserDetail: "/user-board/1", // Example with parameter (replace '1' with an actual ID)
     GalleryBoard: "/gallery-board",
     GalleryDetail: "/gallery-board/1", // Example with parameter (replace '1' with an actual ID)
+    GalleryCreate: "/gallery-board/create",
     // Kiosk
     Kiosk: "/kiosk/home",
     KioskDetail: "/kiosk/1", // Example with parameter (replace '1' with an actual ID)
@@ -74,7 +75,13 @@ function PageManager() {
       "IoTBoard",
       "MypageGallery",
     ],
-    Manager: ["UserBoard", "UserDetail", "GalleryBoard", "GalleryDetail"],
+    Manager: [
+      "UserBoard",
+      "UserDetail",
+      "GalleryBoard",
+      "GalleryDetail",
+      "GalleryCreate",
+    ],
     Kiosk: ["Kiosk", "KioskDetail", "KioskPrint", "KioskExit", "ComponentTest"],
     Other: ["Contact", "AboutUs", "NotFound", "ThreeTestPage"],
   };
