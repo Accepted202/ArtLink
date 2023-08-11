@@ -61,6 +61,7 @@ function UserDetail() {
                         type="text"
                         name={key}
                         value={value as string}
+                        disabled={true}
                         className={Styles.profileInput}
                       />
                     </p>
