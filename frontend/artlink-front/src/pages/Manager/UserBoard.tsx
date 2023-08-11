@@ -11,18 +11,17 @@ interface Data {
 function UserBoard() {
   const [AllUserData, setAllUserData] = useState<Data[]>([]);
   useEffect(() => {
-    const AllUser = async () => {
+    const allUser = async () => {
       try {
         setAuthorizationHeader();
         const response: UserGetRes = await UserGet();
         setAllUserData(response.users);
       } catch (error) {
-        console.error("Error Alluser:", error);
-        window.alert(error);
-        console.log(AllUserData);
+        console.error("유저 정보들을 가져오는 데 실패했습니다.", error);
+        window.alert("기기 정보 가져오기 실패");
       }
     };
-    void AllUser();
+    void allUser();
   }, []);
 
   // 테이블 데이터
@@ -33,12 +32,9 @@ function UserBoard() {
   return (
     <>
       <div className="container">
-        <p className="board_title">User Manager</p>
-      </div>
-      <div className="container">
         <InfoBoard
+          title="User Manager"
           data={userData}
-          link={"/user-board/create"}
           dataKeys={keys}
           columnWidths={widths}
         />

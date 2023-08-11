@@ -1,20 +1,32 @@
 .container {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50%;
   min-width: 400px;
 }
 
 .upperWrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* justify-content: space-between; */
+  align-items: baseline;
   position: relative;
-  width: 100%;
-  margin-top: 20px;
+  /* width: 100%; */
+  width: 90%;
+  /* margin-top: 20px; */
   margin-bottom: 10px;
+}
+
+.leftWrapper {
+  display: flex;
+}
+
+.rightWrapper {
+  margin-left: auto;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .addButton {
@@ -22,14 +34,15 @@
   background-color: transparent;
   box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2),
     -3px -3px 3px rgba(255, 255, 255, 0.7);
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 25px;
-  margin-bottom: 10px;
+  margin-left: 10px;
   color: rgb(138, 138, 138);
   font-size: 30px;
   transition: color 0.5s ease, box-shadow 0.5s ease;
   font-family: SUITE-Regular;
+  padding-top: 0;
 }
 
 .addButton:hover {
@@ -43,9 +56,8 @@
 }
 
 .searchButton {
-  height: 40px;
+  height: 30px;
   width: 70px;
-  padding: 10px;
   border: none;
   color: rgb(138, 138, 138);
   background-color: transparent;
@@ -67,7 +79,7 @@
 
 .searchInput {
   height: 30px;
-  width: 250px;
+  width: 200px;
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -76,5 +88,18 @@
 }
 
 .tableWrapper {
-  width: 100%;
+  width: 90%;
+}
+
+@media (max-width: 767px) {
+  .upperWrapper {
+    display: block;
+  }
+  .leftWrapper {
+    justify-content: center;
+  }
+  .rightWrapper {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
 }

@@ -55,7 +55,8 @@ function App() {
   // 로그인 여부 판단
   const isLoggedIn = () => {
     const accessToken = localStorage.getItem("access_token");
-    return !!accessToken; // access_token이 있으면 로그인 상태로 간주합니다.
+    // return !!accessToken; // access_token이 있으면 로그인 상태로 간주합니다.
+    return true;
   };
   return (
     <div className="App">

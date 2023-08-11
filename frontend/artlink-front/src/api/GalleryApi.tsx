@@ -231,6 +231,7 @@ export interface Drawing {
   artist: string;
   locationX: number;
   locationY: number;
+  [key: string]: string | number;
 }
 export const AllWorks = async (): Promise<AllWorksRes> => {
   try {
