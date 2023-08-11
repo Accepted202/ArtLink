@@ -11,6 +11,6 @@ FROM amazoncorretto:11
 
 COPY --from=builder build/libs/*.jar app.jar
 
-EXPOSE 6000
+EXPOSE 8080
 
 ENTRYPOINT ["java","-jar","/app.jar"]
