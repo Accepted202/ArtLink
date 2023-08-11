@@ -30,7 +30,7 @@ function IoTBoard() {
         <InfoBoard
           title="IoT Manager"
           data={deviceData}
-          link={"/gallery/add-iot"}
+          addLink={"/gallery/add-iot"}
           dataKeys={keys}
           columnWidths={widths}
           detail={false}

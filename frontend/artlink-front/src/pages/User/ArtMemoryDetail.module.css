@@ -19,14 +19,50 @@
 }
 
 .artdetailRight {
-  /* Styles for the right side (50% width) */
-  float: left;
+  /* float: left; */
   box-sizing: border-box;
   padding: 10px;
   /* border: 1px solid rgb(81, 10, 245); */
   margin: 5%;
   box-shadow: 4px 4px 5px rgba(37, 37, 37, 0.2),
     -4px -4px 5px rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+.artdetailRight2 {
+  /* float: left; */
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 5%;
+  display: block;
+  flex-direction: column;
+}
+/* 버튼 */
+.AMDRightBtn {
+  width: 40%;
+  padding: 10px;
+  border: none;
+  color: rgb(138, 138, 138);
+  box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2);
+  transition: color 0.5s ease, box-shadow 0.5s ease;
+  font-family: SUITE-Regular;
+  margin-bottom: 20px;
+}
+.AMDRightBtn:hover {
+  box-shadow: 1px 1px 1px rgba(37, 37, 37, 0.2),
+    -1px -1px 2px rgba(255, 255, 255, 0.7);
+  color: rgb(58, 58, 58);
+}
+.AMDRightBtn:active {
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+  color: rgb(58, 58, 58);
+}
+/* 상단 헤더 */
+.MyrecordHead {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Media query for mobile screens (max-width: 767px) */
@@ -43,7 +79,8 @@
     padding: 10px;
     padding-left: 0px;
   }
-  .artdetailRight {
+  .artdetailRight,
+  .artdetailRight2 {
     width: 90% !important;
     float: none;
     box-sizing: content-box;
@@ -52,5 +89,8 @@
     margin: auto;
     margin-bottom: 30px;
     box-shadow: none;
+  }
+  .MyrecordHead {
+    margin-top: 20px;
   }
 }
