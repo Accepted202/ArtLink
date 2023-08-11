@@ -18,7 +18,7 @@ function UserBoard() {
         setAllUserData(response.users);
       } catch (error) {
         console.error("유저 정보들을 가져오는 데 실패했습니다.", error);
-        window.alert("기기 정보 가져오기 실패");
+        window.alert("유저 정보 가져오기 실패");
       }
     };
     void allUser();
