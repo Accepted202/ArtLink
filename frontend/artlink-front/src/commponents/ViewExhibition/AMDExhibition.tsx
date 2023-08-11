@@ -6,8 +6,13 @@ import { UserOneRecordRes } from "../../api/UserApi";
 interface AMDExhibitionProps {
   onButtonClick: () => void;
   galleryData: UserOneRecordRes;
+  isRightVisible: boolean;
 }
-function AMDExhibition({ onButtonClick, galleryData }: AMDExhibitionProps) {
+function AMDExhibition({
+  onButtonClick,
+  galleryData,
+  isRightVisible,
+}: AMDExhibitionProps) {
   const [isFrameEnabled, setIsFrameVisible] = useState(true);
 
   const handleButtonClick = () => {
@@ -30,17 +35,12 @@ function AMDExhibition({ onButtonClick, galleryData }: AMDExhibitionProps) {
           />
         </div>
         <div className={`${Styles.AMBRightBox}`}>
-          <div className={`${Styles.AMDtxtBox}`}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-            delectus ipsam, optio ipsa quaerat asperiores hic distinctio vitae
-            esse, mollitia ex aut similique magni, omnis iste libero at impedit
-            nisi reprehenderit cupiditate. Minus, non in deleniti voluptates
-            ipsam similique ea ducimus facere libero! Non necessitatibus officia
-            totam vitae cum illo veritatis maxime voluptate, deserunt
-            consequatur, sapiente dolor nam at earum id temporibus delectus
-            aliquam possimus fugiat. Voluptatum, distinctio. Veniam suscipit
-            mollitia esse aliquid omnis. Fuga vero fugiat tempore deserunt
-            laborum?
+          <div
+            className={`${Styles.AMDtxtBox} ${
+              isRightVisible ? Styles.smallFontSize : Styles.largeFontSize
+            }`}
+          >
+            {galleryData.exhibitionExplanation}
           </div>
           <div className={`${Styles.AMDbtnBox}`}>
             <button className={`${Styles.AMDLinkBtn}`}>About Page</button>

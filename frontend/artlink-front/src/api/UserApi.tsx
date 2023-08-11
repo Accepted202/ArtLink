@@ -137,6 +137,7 @@ export interface Paint {
 export interface UserOneRecordRes {
   exhibitionID: number;
   exhibitionName: string;
+  exhibitionExplanation: string;
   galleryID: number;
   galleryName: string;
   visitDate: string;

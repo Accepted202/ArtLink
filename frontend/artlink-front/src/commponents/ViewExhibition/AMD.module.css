@@ -1,6 +1,7 @@
 .AMDFrame {
   display: flex;
   padding: 20px;
+  flex-direction: column;
 }
 .AMBRightBox {
   width: 100%;
@@ -15,6 +16,8 @@
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2),
+    -1px -1px 1px rgba(255, 255, 255, 0.7);
 }
 
 .AMDimageBox {
@@ -29,11 +32,18 @@
 }
 .AMDtxtBox {
   /* border: 1px solid rgb(104, 200, 125); */
-  /* text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.2),
-    -1px 1px 3px rgba(70, 70, 70, 0.7); */
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
+    0.5px 0.5px 2px rgba(77, 77, 77, 0.7) !important;
   padding: 6%;
   padding-right: 0%;
   text-align: start;
+  font-size: 13.5px;
+}
+.smallFontSize {
+  font-size: 13.5px;
+}
+.largeFontSize {
+  font-size: 15px;
 }
 .AMDbtnBox {
   /* border: 1px solid rgb(136, 104, 200); */
@@ -90,5 +100,8 @@
   }
   .AMDTitleTxt {
     font-size: 20px !important;
+  }
+  .smallFontSize {
+    font-size: 15px;
   }
 }
