@@ -31,3 +31,4 @@ yarn-error.log*
 /database/data*
 
 __pycache__/
+migrations/
