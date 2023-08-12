@@ -29,3 +29,5 @@ yarn-error.log*
 .idea*
 
 /database/data*
+
+__pycache__/
