@@ -61,6 +61,7 @@ def post(sender, **kwargs):
     try:
         # MQTT단에서 보내준 데이터를 통한 좌표 추출
         data = json.loads(kwargs.get('data'))
+        print(data)
         deviceid = data["T"]
 
         coor, exhibition = device.services.get_coordination_by_input(deviceid, data)
@@ -128,8 +129,8 @@ def post(sender, **kwargs):
             return JsonResponse(msg, status=400)
             # return HttpResponse(status = 404, content = "No valid url")
     except Exception as e:
-        print(e)
         msg = {"msg": "Calculation failed"}
+        print(msg)
         return JsonResponse(msg, status=404)
         # return HttpResponse(status = 404, content = "Calculation failed")
 

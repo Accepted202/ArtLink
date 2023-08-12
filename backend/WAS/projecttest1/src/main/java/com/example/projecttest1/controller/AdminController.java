@@ -1,9 +1,7 @@
 package com.example.projecttest1.controller;
 
-import com.example.projecttest1.dto.GalleryManagementDto;
-import com.example.projecttest1.dto.GalleryResponseDto;
-import com.example.projecttest1.dto.UserDetailResponseDto;
-import com.example.projecttest1.dto.UserResponseDto;
+import com.example.projecttest1.dto.*;
+import com.example.projecttest1.dto.gallery.GallerySignupDto;
 import com.example.projecttest1.entity.Gallery;
 import com.example.projecttest1.entity.User;
 import com.example.projecttest1.service.GalleryService;
@@ -66,11 +64,12 @@ public class AdminController {
     }
 
 
-//    @PostMapping("/galleries")
-//    public ResponseEntity<GalleryResponseDto> createGallery(@RequestBody Gallery gallery) {
-//        System.out.println(gallery);
-//        galleryService.registerGallery(gallery);
-//        GalleryResponseDto dto = new GalleryResponseDto(gallery.getUsername(), gallery.getGalleryName(), gallery.getDescription());
-//        return ResponseEntity.ok(dto);
-//    }
+    @PostMapping("/galleries")
+    public ResponseEntity<GallerySignupResponseDto> createGallery(@RequestBody GallerySignupDto requestDto) {
+        System.out.println(requestDto);
+        galleryService.registerGallery(requestDto);
+        Gallery gallery = galleryService.findByUsername(requestDto.getUsername());
+        GallerySignupResponseDto dto = new GallerySignupResponseDto(gallery.getUsername(), gallery.getGalleryName(), gallery.getDescription());
+        return ResponseEntity.ok(dto);
+    }
 }
