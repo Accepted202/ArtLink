@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bridge',
-        'USER': 'root',
+        'USER': 'admin1',
         'PASSWORD': 's09_a202_mysql',
         'HOST': "database",
         'PORT': "3306",
@@ -129,4 +129,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SPRING_SERVER_PATH = 'http://localhost:8080'
+SPRING_SERVER_PATH = 'http://springboot:8080'
