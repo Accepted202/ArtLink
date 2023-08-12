@@ -28,7 +28,7 @@ const memberInfo: MemberInfo = {
   },
   4: {
     name: "배정원",
-    role: "<웹 프론트 및 키오스트 개발>",
+    role: "<웹 프론트 및 키오스크 개발>",
     comment: "프론트 개쉽누 ㅋ",
   },
   5: {
