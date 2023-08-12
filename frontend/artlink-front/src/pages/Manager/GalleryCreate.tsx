@@ -17,7 +17,7 @@ function GalleryCreate() {
 
   // 각 필드와 필드에 대한 이름을 매핑한 객체
   const fieldNames: Record<keyof GalleryCreateReq, string> = {
-    username: "본인 이름",
+    username: "ID",
     password: "비밀번호",
     galleryName: "갤러리 이름",
   };
