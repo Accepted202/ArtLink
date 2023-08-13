@@ -127,3 +127,18 @@ export const AddGallery = async (
     throw error;
   }
 };
+
+// 갤러리 승인
+export const AcceptGallery = async (
+  galleryId: number
+): Promise<GalleryCreateRes> => {
+  try {
+    const response: AxiosResponse<GalleryCreateRes> = await axios.patch(
+      createUrl(`/admin/galleries/${galleryId}/accept`)
+    );
+    return response.data;
+  } catch (error) {
+    console.error("갤러리 승인 실패: ", error);
+    throw error;
+  }
+};

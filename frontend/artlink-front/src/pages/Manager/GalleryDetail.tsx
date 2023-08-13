@@ -1,14 +1,17 @@
 import { useState } from "react";
 import GDApi from "./GDApi";
-import { OneGalleryEach } from "../../api/ManagerApi";
+import { OneGalleryEach, AcceptGallery } from "../../api/ManagerApi";
 import Styles from "../../commponents/Mypage/Profile.module.css";
 import Styles2 from "../../pages/Common/Mypage.module.css";
 import BackBtn from "../../commponents/Base/BackBtn";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
+import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
+import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 
 function GalleryDetail() {
   const [galleryData, setgalleryData] = useState<OneGalleryEach | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isModalActive, setisModalActive] = useState<boolean>(false); // 모달 활성 boolean
 
   const fieldNames: Record<keyof OneGalleryEach, string> = {
     id: "",
@@ -25,8 +28,22 @@ function GalleryDetail() {
     setLoading(false); // Data has been fetched, set loading to false
   };
 
+  const handleAccept = async () => {
+    try {
+      setAuthorizationHeader();
+      if (galleryData !== null) {
+        const response = await AcceptGallery(galleryData.id);
+        console.log(response);
+        setisModalActive(true);
+      }
+    } catch (error) {
+      window.alert("갤러리 승인 실패");
+    }
+  };
+
   return (
     <>
+      <Modal sendActive={isModalActive} />
       {/* 뒤로가기버튼 */}
       <div className={Styles.BackBtn}>
         <BackBtn />
@@ -54,15 +71,21 @@ function GalleryDetail() {
                           <p key={key}>
                             {fieldNames[key]}:{" "}
                             {key === "accepted" ? (
-                              <button disabled={value as boolean}>승인</button>
+                              value ? (
+                                <span>✅ 승인되었습니다.</span>
+                              ) : (
+                                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                                <button onClick={handleAccept}>승인</button>
+                              )
                             ) : (
-                              <input
-                                type="text"
-                                name={key}
-                                value={value as string}
-                                disabled={true}
-                                className={Styles.profileInput}
-                              />
+                              <span>{value}</span>
+                              // <input
+                              //   type="text"
+                              //   name={key}
+                              //   value={value as string}
+                              //   disabled={true}
+                              //   className={Styles.profileInput}
+                              // />
                             )}
                           </p>
                         </div>
