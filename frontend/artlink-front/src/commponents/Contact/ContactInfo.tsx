@@ -1,5 +1,3 @@
-import Styles from "./ContactInfo.module.css";
-
 function ContactInfo() {
   return (
     <>
