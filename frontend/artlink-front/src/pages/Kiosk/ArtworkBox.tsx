@@ -25,7 +25,7 @@ function ArtworkBox({ artwork, onClickDelete }: Props) {
   const handleModalClose = async () => {
     setIsModalOpen(false);
     if (isDelete) {
-      await onClickDelete(artwork.drawingId);
+      await onClickDelete(artwork.artworkId);
     }
   };
 

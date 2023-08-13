@@ -19,7 +19,7 @@ const createUrl = (endpoint: string): string => {
 };
 
 export interface Paint {
-  drawingId: number;
+  artworkId: number;
   paintName: string;
   paintPath: string;
 }

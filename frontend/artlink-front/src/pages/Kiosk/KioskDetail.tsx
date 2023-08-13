@@ -43,9 +43,13 @@ function KioskDetail() {
   // Delete 버튼 클릭 시 요소 삭제
   const handleDelete = async (drawingId: number) => {
     setArtworks((prevData) =>
-      prevData.filter((item) => item.drawingId !== drawingId)
+      prevData.filter((item) => item.artworkId !== drawingId)
     );
-    await deleteArtwork(pk as string, drawingId);
+    try {
+      await deleteArtwork(pk as string, drawingId);
+    } catch (error) {
+      window.alert(error);
+    }
   };
 
   const chunkSize = 4; // 컨테이너 하나 당 들어가는 작품 개수
