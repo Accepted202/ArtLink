@@ -27,17 +27,19 @@
   display: block;
   height: 100%;
 }
-.AP_Container img {
-  width: 90%;
+.inner div img {
+  width: 80%;
   margin: auto;
 }
 .AP_box1 {
-  margin-top: 20%;
-  height: 80%;
+  margin: auto;
+  height: 90%;
+  display: flex;
 }
-.AP_box1 {
-  height: 20%;
+.AP_box1_inner{
+  margin: auto;
 }
+
 .AP1 {
   font-size: 18px;
   display: flex;

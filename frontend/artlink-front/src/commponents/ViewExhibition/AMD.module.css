@@ -37,10 +37,10 @@
   padding: 6%;
   padding-right: 0%;
   text-align: start;
-  font-size: 13.5px;
+  font-size: 13px;
 }
 .smallFontSize {
-  font-size: 13.5px;
+  font-size: 13px;
 }
 .largeFontSize {
   font-size: 15px;
@@ -97,11 +97,12 @@
   }
   .AMDtxtBox {
     padding-right: 6%;
+    font-size: 12px;
   }
   .AMDTitleTxt {
     font-size: 20px !important;
   }
   .smallFontSize {
-    font-size: 15px;
+    font-size: 12px;
   }
 }

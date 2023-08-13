@@ -9,7 +9,7 @@ function ExhibitionBoard() {
       <div className={Styles.Exhibition}>
         {/* 상단 메뉴 */}
         <div className={Styles.ExhibitionMenu}>
-          <div className={Styles.ExhibitionTitle}>Exhibition Board</div>
+          <div className={Styles.ExhibitionTitle}>전시회 목록</div>
           <AddBtn linkTo="/exhibition-board/create" />
         </div>
         <hr style={{ width: "80vw" }} />

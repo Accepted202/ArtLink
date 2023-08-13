@@ -84,7 +84,7 @@ function ArtMemory() {
         )}
         {/* API로 로드한 정보로 슬라이드 구성 */}
         {userRecords[0].userKey == "" && (
-          <Link to={`/art-memory`} className="linkbox">
+          <Link to={`/art-memory/1`} className="linkbox">
             <div className="keen-slider__slide number-slide">
               <div className="innerSlideBox">
                 <div className="innerTxt1">

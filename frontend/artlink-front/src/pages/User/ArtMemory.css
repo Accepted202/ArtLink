@@ -14,6 +14,8 @@
 .minwid {
   width: 95% !important;
   margin: auto;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 
 .innerSlideBox {
@@ -91,26 +93,30 @@
 @media (max-width: 1024px) {
   [class^="number-slide"],
   [class*="number-slide"] {
-    height: 100vw;
+    height: 60vh;
     max-height: 100vh;
   }
   .innerSlideBox {
     width: 60%;
-    /* width: auto; */
+    height: 70%;
   }
   .introBox {
     width: 60%;
   }
   .innerTxt1 {
-    font-size: 16px;
+    font-size: 13px;
   }
   .innerSlideBox:hover {
     box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
       -5px -5px 10px rgba(247, 250, 236, 0.7);
     width: 65%;
-    /* width: auto; */
+    height: 75%;
   }
   .innerSlideBox:hover .innerTxt1 {
-    font-size: 18px;
+    font-size: 15px;
+  }
+  .minwid {
+    margin-top: unset;
+    margin-bottom: unset;
   }
 }

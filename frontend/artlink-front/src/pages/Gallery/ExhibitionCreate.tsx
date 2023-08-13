@@ -10,7 +10,7 @@ function ExhibitionCreate() {
         {/* 상단 메뉴 */}
         <div className={Styles.CreateMenu}>
           <BackBtn />
-          <div className={Styles.CreateTitle}>Exhibition Create</div>
+          <div className={Styles.CreateTitle}>전시회 생성</div>
         </div>
         <hr style={{ width: "80vw" }} />
         {/* 메인 컨테이너 */}

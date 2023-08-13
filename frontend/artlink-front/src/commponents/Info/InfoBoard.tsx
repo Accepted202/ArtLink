@@ -61,7 +61,7 @@ function InfoBoard({
         <div className={styles.upperWrapper}>
           <div className={styles.leftWrapper}>
             <BackBtn />
-            <p style={{ marginLeft: "10px", fontSize: "24px" }}>{title}</p>
+            <p style={{ marginLeft: "15px", fontSize: "24px" }}>{title}</p>
           </div>
           <div className={styles.rightWrapper}>
             <input

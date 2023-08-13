@@ -14,6 +14,19 @@ body {
   scrollbar-width: thin; /* 스크롤바 굵기 */
   scrollbar-color: #888 #f1f1f1; /* 스크롤 바의 색*/
 }
+input{
+  font-family: inherit;
+}
+p{
+  font-family: inherit;
+}
+textarea{
+  font-family: inherit;
+  font-size: 12px;
+  padding: 5px 10px 5px 10px !important;
+  resize: none
+;
+}
 
 #root {
   min-height: 100%;

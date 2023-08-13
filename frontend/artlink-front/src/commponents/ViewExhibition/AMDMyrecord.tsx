@@ -20,13 +20,13 @@ function AMDMyrecord({
   return (
     <>
       {/* 나의 전시 여정을 보여줌 */}
-      <div className="MyrecordBody" style={{ flex: "1" }}>
-        <div>
-          <hr />
-        </div>
+      <div className="MyrecordBody">
         {/* 스크롤바 적용 div */}
-        <div className={scrollBoxClasses}>
+
           {/* 관람 기본 정보 */}
+          <div>
+            <hr />
+          </div>
           <div
             className="infoBox"
             style={{
@@ -66,28 +66,26 @@ function AMDMyrecord({
               기록 일자 : {userData.visitDate}
             </div>
           </div>
-          <hr />
-          {/* 기록 전시 */}
           <div>
-            <h3>본문</h3>
-            <img
-              src="/src/assets/artwork/artwork1.jpg"
-              alt="불러오기 실패"
-              className="recordWork"
-            />
-            <img
-              src="/src/assets/artwork/artwork1.jpg"
-              alt="불러오기 실패"
-              className="recordWork"
-            />
-            <img
-              src="/src/assets/artwork/artwork1.jpg"
-              alt="불러오기 실패"
-              className="recordWork"
-            />
+            <hr />
+          </div>
+          {/* 기록 전시 */}
+          <div className={scrollBoxClasses} >
+          {userData.workList.map((work, index) => (
+            <div className={`recordWork ${
+              isLeftVisible && window.innerWidth > 767 ? "workScroll" : ""
+            }`} key={index}>
+              <img
+                src={work.paintPath}
+                alt={work.paintName}
+                className="recordImg"
+                style={isLeftVisible ? {}:{width:"60%"}}
+              />
+              <div className="recordImgTitle">{work.paintName}</div>
+            </div>
+            ))}
           </div>
         </div>
-      </div>
     </>
   );
 }

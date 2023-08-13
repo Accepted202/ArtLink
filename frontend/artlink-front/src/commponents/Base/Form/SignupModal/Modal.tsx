@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import ModalBase from "./ModalBase";
-import CardModal from "./CardModal";
+import ModalBase from "../ModalBase";
+import CardModal from "../CardModal";
 import { useNavigate } from "react-router-dom";
 
 interface ModalProps {

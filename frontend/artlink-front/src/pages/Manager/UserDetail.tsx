@@ -50,9 +50,9 @@ function UserDetail() {
             {/* 오른쪽 박스 (프로필 데이터) */}
             {userData && (
               <div className={Styles.infoOuterBoxRight}>
-                <div className={Styles.infoInnerBoxRight}>
-                  <p style={{ fontSize: "25px", fontWeight: "600" }}>
-                    User Information
+                <div className={Styles.infoInnerBoxRight} style={{fontSize:"12px"}}>
+                  <p style={{ fontSize: "21px", fontWeight: "600", marginBottom:"20px" }}>
+                    유저 정보
                   </p>
                   {Object.entries(userData).map(([key, value]) => (
                     <p key={key}>

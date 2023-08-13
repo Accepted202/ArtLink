@@ -3,6 +3,7 @@ import Styles from "./CreateExhibition.module.css";
 import TextBtn from "../Base/TextBtn";
 import ExhibitionProfile from "./ExhibitionProfile";
 import { ExhibitionCreateReq } from "../../api/GalleryApi";
+import TextareaAutosize from 'react-textarea-autosize';
 
 function CreateExhibition() {
   const [exhibitionInfo, setExhibitionInfo] = useState<ExhibitionCreateReq>({
@@ -16,7 +17,7 @@ function CreateExhibition() {
     { name: "exhibitionExplanation", placeholder: "전시회 설명" },
   ];
   // 인풋필드 변경시 저장
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setExhibitionInfo((prevInfo) => ({
       ...prevInfo,
@@ -25,7 +26,17 @@ function CreateExhibition() {
   };
   // 생성 버튼 클릭시
   const handleCreateExhibition = () => {
-    setisChange(true);
+    if (exhibitionInfo.exhibitionName == "") {
+      window.alert("Please fill exhibitionName")
+    } else if (exhibitionInfo.exhibitionExplanation == "") {
+      window.alert("Please fill exhibitionExplanation")
+    } else {
+      setisChange(true);
+    }
+  };
+  // 조건에 맞지 않을시 다시 세팅
+  const handleSetisChange = () => {
+    setisChange(false);
   };
   return (
     <>
@@ -37,6 +48,7 @@ function CreateExhibition() {
             <ExhibitionProfile
               isChanged={isChange}
               exhibitionInfo={exhibitionInfo}
+              handleSetisChange = {handleSetisChange}
             />
           </div>
           {/* 텍스트 박스 */}
@@ -46,9 +58,8 @@ function CreateExhibition() {
                   className={Styles.ExhibitionInputContainer}
                   key={field.name}
                 >
-                  <p>{field.placeholder} : </p>
-                  <input
-                    type="text"
+                  <p>{field.placeholder}</p>
+                  <TextareaAutosize
                     name={field.name}
                     value={exhibitionInfo[field.name]}
                     onChange={handleInputChange}
@@ -59,7 +70,7 @@ function CreateExhibition() {
           </div>
         </div>
         {/* 생성 전송 */}
-        <div onClick={handleCreateExhibition}>
+        <div onClick={handleCreateExhibition} style={{ display: "inline-block", textAlign: "center" }}>
           <TextBtn inner={"CREATE"} wid={200} hei={50} />
         </div>
       </div>

@@ -53,7 +53,7 @@ function LoginForm() {
     <>
       <p className="loginTitle">{loginTitle}</p>
       <div className="box">
-        <label>ID</label>
+        <label>아이디</label>
         <br />
         <input
           type="text"
@@ -66,7 +66,7 @@ function LoginForm() {
         />
         <br />
         <br />
-        <label>Password</label>
+        <label>비밀번호</label>
         <br />
         <input
           type="password"
@@ -93,19 +93,19 @@ function LoginForm() {
           {!isLoginAdmin ? (
             <>
               <Link to={signUpLink} className="btn smallbutton">
-                <p>Sign Up</p>
+                <p>회원가입</p>
               </Link>
               <button
                 type="submit"
                 className="btn smallbutton"
                 onClick={handlereqLogIn}
               >
-                <p>Log In</p>
+                <p>로그인</p>
               </button>
             </>
           ) : (
             <button type="submit" className="btn" onClick={handlereqLogIn}>
-              <p>Log In</p>
+              <p>로그인</p>
             </button>
           )}
         </div>
@@ -117,6 +117,7 @@ function LoginForm() {
             margin: "0px",
             marginBottom: "100px",
             textDecorationLine: "underline",
+            fontSize:"13px"
           }}
           className="anotherLogin"
         >

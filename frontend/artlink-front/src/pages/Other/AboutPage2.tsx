@@ -4,9 +4,9 @@ import "./AboutUs.css";
 function AboutPage2() {
   return (
     <>
-      <div className="AP_Container">
-        <img src="src/assets/About2.png" alt="" />
-      </div>
+    <div>
+      <img src="src/assets/About2.png" alt="" />
+    </div>
     </>
   );
 }

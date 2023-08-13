@@ -4,6 +4,7 @@
   padding: 5vh;
   border-radius: 50px;
   width: 80%;
+  max-width: 800px;
   margin-top: 50px;
   box-shadow: 10px 10px 10px rgba(37, 37, 37, 0.2),
     -10px -10px 10px rgba(255, 255, 255, 0.7);
@@ -12,29 +13,39 @@
 .ExhibitionInner {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around;
 }
 
 .ExhibitionProfile {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
+  width: 40%;
+}
+.ExhibitionProfile img {
+  border: 10px solid white;
+  box-shadow: 5px 5px 5px rgba(37, 37, 37, 0.2),
+    -10px -10px 10px rgba(255, 255, 255, 0.7);
 }
 .ExhibitionTxt {
   /* border: 1px solid black; */
-  padding: 20px;
+  /* padding: 20px; */
+  font-size: 12px;
+  width: 60%;
+  margin-top: auto;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 .ExhibitionInputContainer {
   display: block;
-  align-items: baseline;
-  width: 35vw;
+  text-align: left;
 }
 .ExhibitionInput {
   border: none !important;
   border-radius: 10px;
   padding: 10px;
   margin-left: 10px;
-  width: 70%;
+  width: 80%;
 }
 
 @media (max-width: 767px) {
@@ -42,6 +53,7 @@
     display: block;
   }
   .ExhibitionTxt {
+    margin: auto;
     margin-top: 30px;
   }
 
@@ -50,5 +62,6 @@
     display: flex;
     align-items: baseline;
     width: unset;
+    margin: 15px;
   }
 }

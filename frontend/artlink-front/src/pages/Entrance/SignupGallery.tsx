@@ -1,6 +1,7 @@
 import SignUp from "../../commponents/Entrance/Form/SignUpForm";
 import MainLogo from "../../commponents/Base/MainLogo";
 import MarginTop100 from "../../commponents/EditCss/MarginTop100";
+import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 
 function SignupGallery() {
   return (
@@ -8,6 +9,7 @@ function SignupGallery() {
       <MarginTop100 />
       <MainLogo />
       <SignUp />
+      <MarginTopInput value={150}/>
     </>
   );
 }

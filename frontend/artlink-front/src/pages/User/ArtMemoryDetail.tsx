@@ -17,8 +17,12 @@ const defaultMemory = {
   galleryName: "양평군립미술관",
   visitDate: "2023-08-02",
   workList: [
-    { paintName: "작품1", paintPath: "src/assets/모나리자" },
-    { paintName: "작품2", paintPath: "src/assets/고흐" },
+    { paintName: "작품1", paintPath: "/src/assets/artwork/artwork1.jpg" },
+    { paintName: "작품2", paintPath: "/src/assets/artwork/artwork2.jpg" },
+    { paintName: "작품3", paintPath: "/src/assets/artwork/artwork3.jpg" },
+    { paintName: "작품4", paintPath: "/src/assets/artwork/artwork4.png" },
+    { paintName: "작품5", paintPath: "/src/assets/artwork/artwork5.png" },
+    { paintName: "작품6", paintPath: "/src/assets/artwork/artwork6.png" },
   ],
 };
 function ArtMemoryDetail() {
@@ -78,7 +82,6 @@ function ArtMemoryDetail() {
           }}
         >
           <div style={{ fontFamily: "SUITE-Regular" }}>
-            {/* <button onClick={toggleVisibility}>좌버튼</button> */}
             <AMDExhibition
               onButtonClick={toggleVisibility}
               galleryData={memoryData}

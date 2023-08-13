@@ -32,7 +32,9 @@
     "react-paginate": "^8.2.0",
     "react-router-dom": "^6.14.2",
     "react-styled-carousel": "^0.5.1",
+    "react-textarea-autosize": "^8.5.2",
     "styled-components": "^6.0.5",
+    "sweetalert2": "^8.19.1",
     "three": "^0.154.0"
   },
   "devDependencies": {

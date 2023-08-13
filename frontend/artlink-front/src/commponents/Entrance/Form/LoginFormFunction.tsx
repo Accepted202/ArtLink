@@ -21,11 +21,10 @@ export function useLogIn() {
       const refreshToken = response.refreshToken;
       localStorage.setItem("access_token", accessToken);
       localStorage.setItem("refresh_token", refreshToken);
-
       window.location.reload();
     } catch (error) {
       console.error("Error Log in:", error);
-      window.alert(error);
+      window.alert("아이디 비밀번호를 확인하세요");
     }
   };
 

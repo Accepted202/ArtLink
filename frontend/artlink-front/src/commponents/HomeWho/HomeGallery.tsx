@@ -1,8 +1,7 @@
 // import React from "react";
 import { Link } from "react-router-dom";
-import BigButton from "../../commponents/Base/BigButton";
 import MainLogo from "../../commponents/Base/MainLogo";
-import LinkStyle from "./Link.module.css";
+import Styles from "./../../commponents/Base/BigButton.module.css"
 
 function HomeGallery() {
   return (
@@ -10,13 +9,23 @@ function HomeGallery() {
       <MainLogo />
       <div className="BigBtnBox2">
         {/* Menu : Artwork Manage */}
-        <Link to="/exhibition-board" className={LinkStyle.LinkNone}>
-          <BigButton tabName={"Artwork Manager"} mini={"Register your work"} />
-        </Link>
+        <div className={Styles.startbtnBody}>
+          <Link to="/exhibition-board" style={{ textDecoration: "none"}} className={Styles.startbtn}>
+            <div style={{margin:"auto"}}>
+              <p className={Styles.innerIcon}>{"Artwork Manager"}</p>
+              <p className={Styles.innerIcon2}>{"Register your work"}</p>
+            </div>
+          </Link>
+        </div>
         {/* Menu : My page */}
-        <Link to="/mypage/gallery" className={LinkStyle.LinkNone}>
-          <BigButton tabName={"My Page"} mini={"Manage your gallery info"} />
-        </Link>
+        <div className={Styles.startbtnBody}>
+          <Link to="/mypage/gallery" style={{ textDecoration: "none"}} className={Styles.startbtn}>
+            <div style={{margin:"auto"}}>
+              <p className={Styles.innerIcon}>{"My Page"}</p>
+              <p className={Styles.innerIcon2}>{"Manage your gallery info"}</p>
+            </div>
+          </Link>
+        </div>
       </div>
     </>
   );

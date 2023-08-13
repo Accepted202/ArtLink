@@ -33,13 +33,16 @@ function WorksCreate() {
   // 생성 요청시
   const handleAdd = () => {
     console.log("creating");
-    for (const [key, value] of Object.entries(formData)) {
-      if (key != "drawingPath" && key != "id") {
-        formDataRef.current.append(key, value as string);
-      }
-    }
+
     if (formDataRef.current.has("imageFile")) {
+      for (const [key, value] of Object.entries(formData)) {
+        if (key != "drawingPath" && key != "id") {
+          formDataRef.current.append(key, value as string);
+        }
+      }
       void callCreateWork();
+    } else {
+      window.alert("Please Upload a Work image")
     }
   };
   // 생성 API

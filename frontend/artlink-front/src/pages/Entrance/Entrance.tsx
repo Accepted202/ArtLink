@@ -9,13 +9,13 @@ function Entrance() {
     <>
       <div className={Styles.entranceContainer}>
         <MainLogo />
-          <div className={Styles.startbtnBody}>
-        <Link to="/login" style={{ textDecoration: "none" }}>
-            <div className={Styles.startbtn}>
-              <p className={Styles.innerIcon}>{"start"}</p>
-            </div>
-        </Link>
-          </div>
+        <div className={Styles.startbtnBody}>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+              <div className={Styles.startbtn}>
+                <p className={Styles.innerIcon}>{"start"}</p>
+              </div>
+          </Link>
+        </div>
         <MarginTopInput value={100} />
       </div>
     </>

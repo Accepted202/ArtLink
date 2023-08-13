@@ -14,13 +14,13 @@ export function LoginFormVar(): {
     ? "/login"
     : "/login-gallery";
   const anotherLogintxt = location.pathname.includes("login-gallery")
-    ? "Go to User Login"
-    : "Go to Gallery Login";
+    ? "사용자 로그인으로 가기"
+    : "갤러리 로그인으로 가기";
   const loginTitle = location.pathname.includes("login-admin")
-    ? "Admin Login"
+    ? "관리자 로그인"
     : location.pathname.includes("login-gallery")
-    ? "Gallery Login"
-    : "User Login";
+    ? "갤러리 로그인"
+    : "로그인";
 
   const isLoginAdmin = location.pathname.includes("login-admin");
 

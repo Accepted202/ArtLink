@@ -3,6 +3,7 @@ import ProfileGalleryApi from "./ProfileGalleryApi";
 import { GalleryInfoRes, GalleryInfoEdit } from "../../api/GalleryApi";
 import Styles from "./Profile.module.css";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
+import TextareaAutosize from 'react-textarea-autosize';
 
 function ProfileUser() {
   const [isModalActive, setisModalActive] = useState(false);
@@ -13,6 +14,13 @@ function ProfileUser() {
     description: "",
   });
   const [loading, setLoading] = useState<boolean>(true);
+  // 화면에 보일 라벨링
+  const labelMapping: Record<string, string> = {
+    username: "아이디",
+    galleryName: "갤러리명",
+    accepted: "관리자 승인",
+    description: "갤러리 소개",
+  };
 
   // 자식 컴포넌트에서 받아온 데이터를 상태에 저장하는 콜백 함수
   const handleGalleryInfoData = (data: GalleryInfoRes) => {
@@ -56,15 +64,15 @@ function ProfileUser() {
           {galleryData && (
             <div className={Styles.infoOuterBoxRightGal}>
               <div className={Styles.infoInnerBoxRightGal}>
-                <p style={{ fontSize: "25px", fontWeight: "600" }}>
-                  Gallery Information
+                <p style={{ fontSize: "21px", fontWeight: "600" }}>
+                  갤러리 정보
                 </p>
                 {Object.entries(galleryData).map(([key, value]) => (
-                  <div key={key}>
+                  <div key={key} className={Styles.eachField}>
                     {key === "description" ? ( // Check if the key is "description"
                       <>
-                        <p>{key}:</p>
-                        <textarea
+                        {labelMapping[key]}:{" "}
+                        <TextareaAutosize
                           name={key}
                           value={galleryData[key]}
                           onChange={handleInputChange}
@@ -72,8 +80,8 @@ function ProfileUser() {
                         />
                       </>
                     ) : (
-                      <p key={key}>
-                        {key}:{" "}
+                        <>
+                        {labelMapping[key]}:{" "}
                         <input
                           type="text"
                           name={key}
@@ -82,7 +90,7 @@ function ProfileUser() {
                           readOnly={key !== "description"}
                           className={Styles.profileInput}
                         />
-                      </p>
+                        </>
                     )}
                   </div>
                 ))}

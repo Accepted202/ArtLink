@@ -1,23 +1,27 @@
 .MypageinnerBox {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 5%;
+  /* width: 100%; */
 }
 
 .infoOuterBoxLeft {
   margin: auto;
   margin-right: 5%;
-  margin-left: 5%;
+  margin-left: 10%;
 }
 .infoOuterBoxRight {
   width: 80%;
   font-family: SUITE-Regular;
+  margin-top: auto;
+}
+.infoOuterBoxRight p {
+  margin: 10px;
 }
 .infoOuterBoxRightGal {
-  /* width: 80%; */
   font-family: SUITE-Regular;
   display: flex;
-  justify-content: center;
+  width: 80%;
 }
 .infoInnerBoxLeft {
   margin: auto;
@@ -34,37 +38,44 @@
   /* min-width: 400px; */
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .profileInput {
-  border: none;
+  border: 1px solid rgb(163, 163, 163);
   border-radius: 10px;
   padding: 5px;
+  font-size: 11px;
   padding-left: 10px;
   font-family: SUITE-Regular;
 }
 .profileTextArea {
-  border: none;
+  border: 1px solid rgb(163, 163, 163);
   border-radius: 10px;
   padding: 5px;
   padding-left: 10px;
   font-family: SUITE-Regular;
-  width: 50vw;
-  max-width: 50vw;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
 }
-
+.eachField{
+  font-size: 12px;
+  margin: 5px;
+}
 .changeBtn {
   border: none;
   background-color: transparent;
   box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2),
     -3px -3px 3px rgba(255, 255, 255, 0.7);
-  width: 160px;
+  width: 100px;
   height: 50px;
   border-radius: 25px;
   margin-bottom: 10px;
   margin-top: 30px;
   color: rgb(138, 138, 138);
-  font-size: 18px;
+  font-size: 14px;
   transition: color 0.5s ease, box-shadow 0.5s ease;
   font-family: SUITE-Regular;
 }
@@ -80,12 +91,19 @@
     2px 2px 1px rgba(163, 162, 162, 0.2);
 }
 
+.profileImg{
+  border: 5px ridge rgb(204, 204, 204);
+  filter: contrast(100%) saturate(100%) sepia(10%);
+}
+
 @media (max-width: 767px) {
   .MypageinnerBox {
     display: block;
   }
   .infoOuterBoxLeft {
     display: flex;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
   .infoOuterBoxRight {
     margin: auto;
@@ -111,5 +129,8 @@
   }
   .description {
     width: 80%;
+  }
+  .profileTextArea {
+    width: 60%;
   }
 }

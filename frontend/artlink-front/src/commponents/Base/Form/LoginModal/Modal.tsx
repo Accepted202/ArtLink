@@ -13,10 +13,8 @@ export const Modal = ({ sendActive }: ModalProps) => {
   useEffect(() => {
     setIsActive(sendActive);
   }, [sendActive]);
-
   const onClickModalOff = () => {
     setIsActive(false);
-    window.location.reload();
   };
 
   const onClickCardRemove = () => {
@@ -25,15 +23,14 @@ export const Modal = ({ sendActive }: ModalProps) => {
 
   return (
     <>
-      {/* <button onClick={onClickModalOn}>모달창 띄우기 버튼</button> */}
       <ModalBase active={isActive} closeEvent={onClickModalOff}>
         <CardModal
           closeEvent={onClickModalOff}
-          title="업데이트"
+          title="로그인 오류"
           actionMsg="삭제"
           actionEvent={onClickCardRemove}
         >
-          정보 업데이트에 성공했습니다.
+          아이디 비밀번호를 확인하세요.
           <br />
           <br />
           <br />

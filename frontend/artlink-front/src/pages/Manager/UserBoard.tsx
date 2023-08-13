@@ -33,7 +33,7 @@ function UserBoard() {
     <>
       <div className="container">
         <InfoBoard
-          title="User Manager"
+          title="유저 관리"
           data={userData}
           dataKeys={keys}
           columnWidths={widths}

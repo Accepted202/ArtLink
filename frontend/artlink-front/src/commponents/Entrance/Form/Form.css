@@ -37,14 +37,14 @@
 }
 .forget .fg a {
   text-decoration: none;
-  font-size: 13px;
+  font-size: 11px;
   color: #8f8c8c;
   line-height: 24px;
 }
 .forget .fg {
   display: inline-block;
   margin-left: 58%;
-  font-size: 12px;
+  font-size: 10px;
 }
 .forget .fg:hover {
   text-decoration: underline;
@@ -197,4 +197,9 @@
 .anotherLogin:hover {
   text-decoration: underline;
   color: rgb(0, 0, 0);
+}
+
+.passwordCheck{
+  font-size: 12px;
+  margin-top: 10px;
 }

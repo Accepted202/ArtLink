@@ -37,7 +37,7 @@ function GalleryBoard() {
     <>
       <div className="container">
         <InfoBoard
-          title="Gallery Manager"
+          title="갤러리 관리"
           data={galleryData}
           dataKeys={keys}
           columnWidths={widths}

@@ -5,11 +5,19 @@ import Styles from "../../commponents/Mypage/Profile.module.css";
 import Styles2 from "../../pages/Common/Mypage.module.css";
 import BackBtn from "../../commponents/Base/BackBtn";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
+import TextareaAutosize from 'react-textarea-autosize';
 
 function GalleryDetail() {
   const [galleryData, setgalleryData] = useState<OneGalleryEach | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-
+  // 화면에 보일 라벨링
+  const labelMapping: Record<string, string> = {
+    id:"PK",
+    username: "아이디",
+    galleryName: "갤러리명",
+    accepted: "관리자 승인",
+    description: "갤러리 소개",
+  };
   // 자식 컴포넌트에서 받아온 데이터를 상태에 저장하는 콜백 함수
   const handleGalleryInfoData = (data: OneGalleryEach) => {
     console.log(data);
@@ -36,15 +44,15 @@ function GalleryDetail() {
             {galleryData && (
               <div className={Styles.infoOuterBoxRightGal}>
                 <div className={Styles.infoInnerBoxRightGal}>
-                  <p style={{ fontSize: "25px", fontWeight: "600" }}>
-                    Gallery Information
+                  <p style={{ fontSize: "21px", fontWeight: "600" }}>
+                    갤러리 정보
                   </p>
                   {Object.entries(galleryData).map(([key, value]) => (
-                    <div key={key}>
+                    <div key={key} style={{fontSize:"12px"}}>
                       {key === "description" ? ( // Check if the key is "description"
                         <>
-                          <p>{key}:</p>
-                          <textarea
+                          <p>{labelMapping[key]}:{" "}</p>
+                          <TextareaAutosize
                             name={key}
                             value={galleryData[key]}
                             className={Styles.profileTextArea}
@@ -52,7 +60,7 @@ function GalleryDetail() {
                         </>
                       ) : (
                         <p key={key}>
-                          {key}:{" "}
+                          {labelMapping[key]}:{" "}
                           <input
                             type="text"
                             name={key}

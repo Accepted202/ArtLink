@@ -2,6 +2,7 @@ import { useState, ChangeEvent, useEffect, useRef } from "react";
 import EmptyProfile from "../../assets/EmptyProfile2.svg";
 import { UserImageChange, UserImage } from "../../api/UserApi";
 import { setAuthorizationHeader } from "../Base/BaseFun";
+import Styles from "./Profile.module.css"
 
 // 프로필 박스의 부모노드에서 변경요청 변수
 interface PBprops {
@@ -29,18 +30,19 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
       formDataRef.current.append("file", file);
     }
   };
-
+  // 이미지 로드
+  useEffect(() => {
+      void loadUserimage();
+  }, []);
   // 부모노드에서 변경요청 감지
   useEffect(() => {
     if (isChanged) {
       changeImage();
     }
-    void loadUserimage();
   }, [isChanged]);
 
   // 변경 요청 감지시 실행할 함수들
   const changeImage = () => {
-    console.log("changeImage");
     void updateUserimage();
   };
 
@@ -50,7 +52,7 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
       const data = await UserImageChange(formDataRef.current);
       console.log(data);
     } catch (error) {
-      console.error("Error UserInfoEdit:", error);
+      console.error("Error UserImageChange:", error);
     }
   };
 
@@ -59,9 +61,10 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
     try {
       setAuthorizationHeader();
       const data = await UserImage();
-      setImage(data.profilePicture);
+      console.log(data);
+      void setImage(data.profilePicture);
     } catch (error) {
-      console.error("Error UserInfoEdit:", error);
+      console.error("Error loadUserimage:", error);
     }
   };
 
@@ -72,10 +75,11 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
           <img
             src={image}
             alt="Profile"
-            style={{ width: "200px", height: "200px" }}
+            style={{ width: "200px"}}
+            className={Styles.profileImg}
           />
         ) : (
-          <img src={EmptyProfile} alt="빈 프로필" />
+          <img src={EmptyProfile} style={{ width: "100px"}} alt="빈 프로필" />
         )}
       </div>
       <input
@@ -83,9 +87,9 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
         accept="image/*"
         id="file"
         onChange={handleImageChange}
-        style={{ display: "none" }}
+        style={{ display: "none"}}
       />
-      <label htmlFor="file">파일 업로드</label>
+      <label htmlFor="file" style={{ fontSize:"12px"}}>파일 업로드</label>
     </>
   );
 };

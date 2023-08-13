@@ -60,7 +60,10 @@ function SignupForm() {
         setisActive(true);
       } else if (!showGalleryNameField) {
         console.log("유저 회원가입 요청");
-        const response = await signUpUserApi(formData);
+        const numericPhoneNumber = String(formData.phoneNumber);
+        const formattedPhoneNumber = "82" + numericPhoneNumber.slice(1,11);
+        const updatedFormData = { ...formData, phoneNumber: Number(formattedPhoneNumber) };
+        const response = await signUpUserApi(updatedFormData);
         console.log(response);
         setisActive(true); // 성공 모달창
       }
@@ -80,9 +83,9 @@ function SignupForm() {
     <>
       <BackBtn />
       <MarginTopInput value={20} />
-      <p className="loginTitle">{"Sign Up"}</p>
+      <p className="loginTitle">{"회원가입"}</p>
       <div className="box">
-        <label>ID</label>
+        <label>아이디</label>
         <input
           type="text"
           name="username"
@@ -95,7 +98,7 @@ function SignupForm() {
         {/* 아이디 중복체크 */}
         <div className="idCheck">{}</div>
         <br />
-        <label>Password</label>
+        <label>비밀번호</label>
         <br />
         <input
           type="password"
@@ -120,7 +123,7 @@ function SignupForm() {
         {/* 닉네임 */}
         {!showGalleryNameField && (
           <>
-            <label>Nickname</label>
+            <label>닉네임</label>
             <br />
             <input
               type="nickname"
@@ -131,18 +134,32 @@ function SignupForm() {
               onChange={handleChange}
               onKeyPress={handleKeyPress}
             />
+            <br />
+            <br />
+            <label>전화 번호</label>
+            <br />
+            <input
+              type="phoneNumber"
+              name="phoneNumber"
+              id="phoneNumber"
+              maxLength={11}
+              placeholder="Enter phone number"
+              className="input-box"
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}
+            />
           </>
         )}
         {/* 갤러리 이름 */}
         {showGalleryNameField && (
           <>
-            <label>Galleryname</label>
+            <label>갤러리 이름</label>
             <br />
             <input
               type="galleryName"
               name="galleryName"
               id="galleryName"
-              placeholder="Enter galleryName"
+              placeholder="Enter gallery name"
               className="input-box"
               onChange={handleChange}
               onKeyPress={handleKeyPress}
@@ -151,41 +168,13 @@ function SignupForm() {
         )}
         {/* 에러메세지 띄우기 */}
         <div className="errorMsg">{}</div>
+      <MarginTopInput value={50} />
         <button type="submit" className="btn" onClick={reqSignup}>
-          <p>Sign Up</p>
+          <p>회원가입</p>
         </button>
         <Modal sendActive={isActive} />
 
-        <span className="option">or sign in with</span>
-        <div className="social">
-          <div className="box-radius">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="2.2em"
-              viewBox="0 0 488 512"
-            >
-              <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
-            </svg>
-          </div>
-          <div className="box-radius">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="2.2em"
-              viewBox="0 0 384 512"
-            >
-              <path d="M21.1 33.9c12.7-4.6 26.9-.7 35.5 9.6L320 359.6V64c0-17.7 14.3-32 32-32s32 14.3 32 32V448c0 13.5-8.4 25.5-21.1 30.1s-26.9 .7-35.5-9.6L64 152.4V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 50.5 8.4 38.5 21.1 33.9z" />
-            </svg>
-          </div>
-          <div className="box-radius">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="2.2em"
-              viewBox="0 0 320 512"
-            >
-              <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
-            </svg>
-          </div>
-        </div>
+        
       </div>
       <MarginTopInput value={40} />
     </>
