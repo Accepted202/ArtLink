@@ -36,7 +36,7 @@ public class UserService {
             throw new UserAlreadyExistsException("User with nickname " + user.getNickname() + " already exists.");
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setProfilePictureUrl(String.format("http://43.201.84.42:%d/static/default_profile.png", PORT));
+        user.setProfilePictureUrl(String.format("http://i9a202.p.ssafy.io:%d/static/default_profile.png", PORT));
         userRepository.save(user);
     }
 

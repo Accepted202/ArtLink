@@ -29,7 +29,7 @@ public class AdminController {
     private ResponseEntity<Map<String, List<UserDetailResponseDto>>> findAllUsers() {
         List<UserDetailResponseDto> usersDto = new ArrayList<>();
         userService.findAll().forEach( u -> usersDto.add(
-                new UserDetailResponseDto(u.getId(), u.getUsername(), u.getPhoneNumber(), u.getNickname())));
+                new UserDetailResponseDto(u.getId(), u.getUsername(), u.getPhoneNumber(), u.getNickname(), u.getProfilePictureUrl())));
         return ResponseEntity.ok(Map.of("users", usersDto));
     }
 
@@ -38,7 +38,7 @@ public class AdminController {
         User user = userService.findById(id);
         UserDetailResponseDto responseDto = new UserDetailResponseDto(
                 user.getId(), user.getUsername(),
-                user.getPhoneNumber(), user.getNickname());
+                user.getPhoneNumber(), user.getNickname(), user.getProfilePictureUrl());
         return ResponseEntity.ok(responseDto);
     }
 

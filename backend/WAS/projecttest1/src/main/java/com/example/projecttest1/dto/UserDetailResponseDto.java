@@ -10,4 +10,5 @@ public class UserDetailResponseDto {
     private final String username;
     private final Long phoneNumber;
     private final String nickname;
+    private final String userImageUrl;
 }
