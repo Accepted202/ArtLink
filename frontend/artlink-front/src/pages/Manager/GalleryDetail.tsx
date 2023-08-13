@@ -5,7 +5,7 @@ import Styles from "../../commponents/Mypage/Profile.module.css";
 import Styles2 from "../../pages/Common/Mypage.module.css";
 import BackBtn from "../../commponents/Base/BackBtn";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
-import TextareaAutosize from 'react-textarea-autosize';
+
 import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 
@@ -14,12 +14,13 @@ function GalleryDetail() {
   const [loading, setLoading] = useState<boolean>(true);
   // 화면에 보일 라벨링
   const labelMapping: Record<string, string> = {
-    id:"PK",
+    id: "PK",
     username: "아이디",
     galleryName: "갤러리명",
     accepted: "관리자 승인",
     description: "갤러리 소개",
   };
+  labelMapping;
   const [isModalActive, setisModalActive] = useState<boolean>(false); // 모달 활성 boolean
 
   const fieldNames: Record<keyof OneGalleryEach, string> = {

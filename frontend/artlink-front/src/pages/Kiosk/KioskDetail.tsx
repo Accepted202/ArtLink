@@ -23,6 +23,7 @@ import {
 function KioskDetail() {
   const { pk } = useParams();
   const [postData, setPostData] = useState<PostData>(); // 서버로부터 가져온 작품 정보
+  postData;
   const [artworks, setArtworks] = useState<Paint[]>([]);
 
   useEffect(() => {
