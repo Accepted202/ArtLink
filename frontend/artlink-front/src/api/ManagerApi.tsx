@@ -82,6 +82,7 @@ export interface OneGalleryEach {
   galleryName: string;
   accepted: boolean;
   description: string;
+  [key: string]: string | number | boolean;
 }
 export const OneGalleryGet = async (): Promise<OneGalleryEach> => {
   try {

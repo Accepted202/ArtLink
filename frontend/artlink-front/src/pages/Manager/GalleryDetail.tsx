@@ -10,6 +10,14 @@ function GalleryDetail() {
   const [galleryData, setgalleryData] = useState<OneGalleryEach | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const fieldNames: Record<keyof OneGalleryEach, string> = {
+    id: "",
+    username: "ID",
+    galleryName: "갤러리명",
+    accepted: "승인 여부",
+    description: "설명",
+  };
+
   // 자식 컴포넌트에서 받아온 데이터를 상태에 저장하는 콜백 함수
   const handleGalleryInfoData = (data: OneGalleryEach) => {
     console.log(data);
@@ -39,31 +47,27 @@ function GalleryDetail() {
                   <p style={{ fontSize: "25px", fontWeight: "600" }}>
                     Gallery Information
                   </p>
-                  {Object.entries(galleryData).map(([key, value]) => (
-                    <div key={key}>
-                      {key === "description" ? ( // Check if the key is "description"
-                        <>
-                          <p>{key}:</p>
-                          <textarea
-                            name={key}
-                            value={galleryData[key]}
-                            className={Styles.profileTextArea}
-                          />
-                        </>
-                      ) : (
-                        <p key={key}>
-                          {key}:{" "}
-                          <input
-                            type="text"
-                            name={key}
-                            value={value as string}
-                            disabled={true}
-                            className={Styles.profileInput}
-                          />
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                  {Object.entries(galleryData).map(
+                    ([key, value]) =>
+                      key !== "id" && (
+                        <div key={key}>
+                          <p key={key}>
+                            {fieldNames[key]}:{" "}
+                            {key === "accepted" ? (
+                              <button disabled={value as boolean}>승인</button>
+                            ) : (
+                              <input
+                                type="text"
+                                name={key}
+                                value={value as string}
+                                disabled={true}
+                                className={Styles.profileInput}
+                              />
+                            )}
+                          </p>
+                        </div>
+                      )
+                  )}
                 </div>
               </div>
             )}
