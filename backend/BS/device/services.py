@@ -5,12 +5,11 @@ from helper.helper import *
 
 def find_by_Id(id):
     return Anchor.objects.filter(anchorid = id).first()
-def create_anchor_by_input(inputList):
-    for Input in inputList:
-        Anchor.objects.create(anchorid = Input.anchorid,
-                              coorx = Input.coorx,
-                              coory = Input.coory,
-                              exhibition = exhibition.services.find_by_Id(Input.exhibitionId))
+def create_anchor_by_input(Input):
+    Anchor.objects.create(anchorid = Input.get('anchorid'),
+                          coorx = Input.get('coorx'),
+                          coory = Input.get('coory'),
+                          exhibition = exhibition.services.find_by_Id(Input.get('exhibition')))
 def create_output_by_anchorList(anchorList):
     stdout = []
     for anchor in anchorList:
