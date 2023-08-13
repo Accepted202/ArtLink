@@ -1,11 +1,13 @@
 import { useState } from "react";
 import GDApi from "./GDApi";
-import { OneGalleryEach } from "../../api/ManagerApi";
+import { OneGalleryEach, AcceptGallery } from "../../api/ManagerApi";
 import Styles from "../../commponents/Mypage/Profile.module.css";
 import Styles2 from "../../pages/Common/Mypage.module.css";
 import BackBtn from "../../commponents/Base/BackBtn";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 import TextareaAutosize from 'react-textarea-autosize';
+import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
+import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 
 function GalleryDetail() {
   const [galleryData, setgalleryData] = useState<OneGalleryEach | null>(null);
@@ -18,6 +20,16 @@ function GalleryDetail() {
     accepted: "관리자 승인",
     description: "갤러리 소개",
   };
+  const [isModalActive, setisModalActive] = useState<boolean>(false); // 모달 활성 boolean
+
+  const fieldNames: Record<keyof OneGalleryEach, string> = {
+    id: "",
+    username: "ID",
+    galleryName: "갤러리명",
+    accepted: "승인 여부",
+    description: "설명",
+  };
+
   // 자식 컴포넌트에서 받아온 데이터를 상태에 저장하는 콜백 함수
   const handleGalleryInfoData = (data: OneGalleryEach) => {
     console.log(data);
@@ -25,8 +37,22 @@ function GalleryDetail() {
     setLoading(false); // Data has been fetched, set loading to false
   };
 
+  const handleAccept = async () => {
+    try {
+      setAuthorizationHeader();
+      if (galleryData !== null) {
+        const response = await AcceptGallery(galleryData.id);
+        console.log(response);
+        setisModalActive(true);
+      }
+    } catch (error) {
+      window.alert("갤러리 승인 실패");
+    }
+  };
+
   return (
     <>
+      <Modal sendActive={isModalActive} />
       {/* 뒤로가기버튼 */}
       <div className={Styles.BackBtn}>
         <BackBtn />
@@ -47,31 +73,33 @@ function GalleryDetail() {
                   <p style={{ fontSize: "21px", fontWeight: "600" }}>
                     갤러리 정보
                   </p>
-                  {Object.entries(galleryData).map(([key, value]) => (
-                    <div key={key} style={{fontSize:"12px"}}>
-                      {key === "description" ? ( // Check if the key is "description"
-                        <>
-                          <p>{labelMapping[key]}:{" "}</p>
-                          <TextareaAutosize
-                            name={key}
-                            value={galleryData[key]}
-                            className={Styles.profileTextArea}
-                          />
-                        </>
-                      ) : (
-                        <p key={key}>
-                          {labelMapping[key]}:{" "}
-                          <input
-                            type="text"
-                            name={key}
-                            value={value as string}
-                            disabled={true}
-                            className={Styles.profileInput}
-                          />
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                  {Object.entries(galleryData).map(
+                    ([key, value]) =>
+                      key !== "id" && (
+                        <div key={key}>
+                          <p key={key}>
+                            {fieldNames[key]}:{" "}
+                            {key === "accepted" ? (
+                              value ? (
+                                <span>✅ 승인되었습니다.</span>
+                              ) : (
+                                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                                <button onClick={handleAccept}>승인</button>
+                              )
+                            ) : (
+                              <span>{value}</span>
+                              // <input
+                              //   type="text"
+                              //   name={key}
+                              //   value={value as string}
+                              //   disabled={true}
+                              //   className={Styles.profileInput}
+                              // />
+                            )}
+                          </p>
+                        </div>
+                      )
+                  )}
                 </div>
               </div>
             )}
