@@ -1,9 +1,16 @@
-FROM node:18-alpine
+FROM node:18-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
 COPY . .
+RUN npm install
 RUN npm run build
-EXPOSE 3000
 
+FROM nginx:stable-alpine
+
+WORKDIR /app
+RUN mkdir ./dist
+COPY --from=builder /app/dist /app/dist
+COPY ./nginx/default.conf /etc/nginx/conf.d
+EXPOSE 5173
+
+CMD ["nginx", "-g", "daemon off;"]
 
