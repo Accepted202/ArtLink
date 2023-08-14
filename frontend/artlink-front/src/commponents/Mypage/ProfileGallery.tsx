@@ -3,7 +3,7 @@ import ProfileGalleryApi from "./ProfileGalleryApi";
 import { GalleryInfoRes, GalleryInfoEdit } from "../../api/GalleryApi";
 import Styles from "./Profile.module.css";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 
 function ProfileUser() {
   const [isModalActive, setisModalActive] = useState(false);
@@ -80,17 +80,17 @@ function ProfileUser() {
                         />
                       </>
                     ) : (
-                        <>
+                      <>
                         {labelMapping[key]}:{" "}
                         <input
                           type="text"
                           name={key}
                           value={value as string}
                           onChange={handleInputChange}
-                          readOnly={key !== "description"}
+                          disabled={key !== "description"}
                           className={Styles.profileInput}
                         />
-                        </>
+                      </>
                     )}
                   </div>
                 ))}
