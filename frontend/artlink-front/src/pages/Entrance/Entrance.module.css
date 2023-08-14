@@ -14,6 +14,7 @@
     -10px -10px 22px #fff, inset 0px 0px 4px rgba(255, 255, 255, 0.2);
   transition: 0.4s cubic-bezier(0, 0.57, 0.49, 1.51);
   cursor: pointer;
+  border: 0px;
 }
 
 .innerIcon {
@@ -44,6 +45,22 @@
 .entranceContainer {
   margin-top: 200px;
 }
+
+.animateContainer {
+  margin-top: 100px;
+  transition: margin-top 1s ease-in-out;
+}
+
+.animateStartbtnBody {
+  margin-top: 200px;
+  transition: margin-top 1s ease-in-out;
+}
+
+.animateStartbtn {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
 @media (max-width: 767px) {
   .entranceContainer {
     margin-top: 100px;

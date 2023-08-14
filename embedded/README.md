@@ -2,29 +2,22 @@
 
 여정 프로젝트의 IoT 시스템 문서입니다. UWB(ultra wideband) 초광대역 통신모듈을 활용하여 미술관 내의 정밀 위치를 서버에 송신하는 역할을 담당합니다.
 
-IoT 부문은 크게 3가지로 구분이 됩니다.
+IoT 부문은 크게 2가지로 구분이 됩니다.
 
 | 구분 | 설명 |
 | --- | --- |
 | 사용자 Tag | 사용자가 보유하고 있는 미술품을 등록하는 beacon 형 IoT 기기 |
 | 거리측정용 Anchor | 사용자의 Tag로부터 거리를 측정하는 beacon |
-| Gateway | Anchor에서의 거리정보로부터 맵내 x, y 좌표를 추출하여 서버에 송신 |
+
 
 | 구분 | 상세 기능 |
 | --- | --- |
-| 사용자 Tag | RFID 태깅을 통한 기기 등록 및 인식<br>16*2 LCD 화면을 통한 상태 출력<br>UWB 모듈을 ToF(Time of Flight) 기반 통신 거리 측정<br>button을 탑재하여 이벤트 입력 |
-| 거리 측정 Anchor | MQTT 기반으로 gateway와 통신<br>UWB 모듈을 ToF(Time of Flight) 기반 통신 거리 측정 |
-| Gateway | Anchor로부터 받은 distance, Tag 입력 상태, tagID 종합하여 server에 송신  |
+| 사용자 Tag |3-color LED를 통한 상태 출력<br>UWB 모듈을 ToF(Time of Flight) 기반 통신 거리 측정<br>MQTT 기반으로 Bridge와 통신<br>button을 탑재하여 이벤트 입력 |
+| 거리측정용 Anchor | UWB 모듈을 ToF(Time of Flight) 기반 통신 거리 측정 |
 
-### System Diagram
+## System Diagram
 
-UWB based indoor positioning system
-
-![iot_diagram](docs/iot_diagram.png)
-
-KIOSK
-
-![kiosk_diagram](docs/kiosk_diagram.png)
+![iot_diagram](./docs/iot_diagram.png)
 
 ## 기술스택 및 라이브러리
 
@@ -32,33 +25,83 @@ KIOSK
 
 | Project | Version | Description |
 | --- | --- | --- |
-| RaspberryPi OS | 1.7.5 | gateway or kiosk(todo) |
-| Arduino-IDE | 2.1.1 | 사용자 tag base board |
+| Arduino-IDE | 2.1.1 | 사용자 Tag base board |
 
 ### Libraries
 
 | Project | Version | Description |
 | --- | --- | --- |
-| DW1000 | 0.9.0 | Library for UWB sensor control  |
-| MFRC522 | 1.4.10 | RFID Library |
-| mosquitto | 2.0.15 | Anchor - 중계기 간 MQTT 통신 |
-| jsoncpp | 1.y.z | 중계기 - 서버 간 통신 |
+| DW1000 | 0.9.0 | Library for UWB sensor control |
+| arduino-dw1000 | 0.9.0 | Library for DW1000 modules with Arduino|
+| pubsubclient | 2.8.0 | Tag(ESP32) - Bridge 간 MQTT 통신 |
 
 ## 개발 환경 구성(기기 셋업)
 
-### RaspberryPi ( KIOSK )
+### 1. Arduino IDE 설치
+[Arduino IDE](https://www.arduino.cc/en/software)를 설치합니다.
 
-여기에 RaspberryPi OS 설치 방법 설명 TODO
+해당 사이트에서 자신의 운영체제와 맞는 프로그램을 다운로드합니다.
 
-### Arduino ( UserIoT )
+이 때, Arduino 파일 경로가 생성되는 경로를 기억해야 합니다.
 
-여기에 Arduino-IDE 설치 방법 설명 TODO
+일반적으로, `C:\Users\{사용자명}\Documents\Arduino` 에 경로가 생성됩니다.
+### 2. ESP32 board 설정
+사용하는 보드는 ESP32 보드입니다. Arduino-IDE 환경에서 이 보드를 다루기 위해서는 추가 설정이 필요합니다.
 
-ESP32 / DW1000 / MQTT(혹은 소켓)
+Arduino-IDE 에서 `File -> Preference` (한국어 버전이면 `파일 -> 환경설정`)을 클릭합니다.
+
+![arduino_setup_01](./docs/arduino_setup_01.PNG)
+
+해당 부분을 클릭하고, 다음 Url을 입력합니다.
+
+`https://dl.espressif.com/dl/package_esp32_index.json`
+
+![arduino_setup_02](./docs/arduino_setup_02.PNG)
+
+`Tools -> Board -> Board manager` 로 이동합니다.
+
+![arduino_setup_03](./docs/arduino_setup_03.PNG)
+
+이동 후, `esp32` 를 검색하고, 아래 그림에 나온 매니저 파일을 다운로드 합니다.<br>
+(README 작성 환경에서는 이미 설치가 되어있었습니다.)
+
+![arduino_setup_04](./docs/arduino_setup_04.PNG)
+
+이 과정이 완료되면, `Tools -> Board` 에 `ESP32 Dev Tools` 가 보입니다. 선택해 줍니다.
+
+![arduino_setup_05](./docs/arduino_setup_05.PNG)
+
+### 3. PC - Board 연결
+PC와 ESP32 보드를 연결합니다. 보드가 연결된 USB Port 를 확인하고, IDE에서도 인식이 되었는지 확인합니다.
+
+Port 연결이 정상적으로 나올 경우, 다음과 같은 이미지가 나와야 합니다.
+
+![port_OK](./docs/arduino_setup_06.PNG)
+
+만약 인식이 안 될 경우, 디바이스 드라이버를 추가로 설치해야 합니다.
+
+[해당 링크](https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip)의 zip 파일 안의 실행 파일을 실행 후, 3 과정을 다시 수행합니다.
+
+### 4. 사용 라이브러리 다운로드
+`C:\Users\{사용자명}\Documents\Arduino\libraries` 폴더 내에 사용할 라이브러리를 저장합니다.
+해당 프로젝트에서는 다음 라이브러리들의 폴더를 저장합니다.
+- Arduino-DW1000
+- pubsubclient
+### 5. 회로 구성
+다음 이미지와 같이 회로를 구성합니다.
+(회로 구성 이미지 첨부)
+### 6. 스케치 파일 생성
+새 스케치 파일을 생성합니다.
+
+파일을 생성할 때, `Anchor` 혹은 `Tag` 용도에 따라 파일 이름을 설정합니다.
+
+해당 이름으로 생성된 폴더에 `.ino` 파일 및 의존 라이브러리 파일들을 저장합니다.
+
+이 후 board에 스케치 업로드를 진행합니다.
 
 ### 연산 프로그램(C/C++ Base)
-
-MQTT libraray(혹은 소켓) / RestAPI TODO
+MQTT libraray / RestAPI TODO
+(bridge 디렉토리의 README.md 에 상세 설명)
 
 # 기반 기술
 
