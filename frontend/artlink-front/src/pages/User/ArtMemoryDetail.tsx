@@ -54,7 +54,7 @@ function ArtMemoryDetail() {
   }, []);
   // 모바일 확인여부
   const handleResize = () => {
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth < 767) {
       setIsMobile(true);
     } else {
       setIsMobile(false);

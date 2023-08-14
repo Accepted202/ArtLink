@@ -48,6 +48,7 @@
   font-size: 11px;
   padding-left: 10px;
   font-family: SUITE-Regular;
+  margin-top: 10px;
 }
 .profileTextArea {
   border: 1px solid rgb(163, 163, 163);
@@ -59,8 +60,9 @@
   max-width: 100%;
   height: auto;
   overflow: visible;
+  margin-top: 10px;
 }
-.eachField{
+.eachField {
   font-size: 12px;
   margin: 5px;
 }
@@ -91,7 +93,7 @@
     2px 2px 1px rgba(163, 162, 162, 0.2);
 }
 
-.profileImg{
+.profileImg {
   border: 5px ridge rgb(204, 204, 204);
   filter: contrast(100%) saturate(100%) sepia(10%);
 }

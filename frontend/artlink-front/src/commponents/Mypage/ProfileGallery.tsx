@@ -71,6 +71,7 @@ function ProfileUser() {
                   <div key={key} className={Styles.eachField}>
                     {key === "description" ? ( // Check if the key is "description"
                       <>
+                        <div style={{ marginTop: "10px" }}></div>
                         {labelMapping[key]}:{" "}
                         <TextareaAutosize
                           name={key}
