@@ -13,7 +13,7 @@ interface MemberInfo {
 const memberInfo: MemberInfo = {
   1: {
     name: "김수현",
-    role: "<장고, 스프링 서버 개발 / Docker 관리>",
+    role: "<장고, 스프링 서버 개발>",
     comment: "납작 복숭아 아이스티 킬러",
   },
   2: {
@@ -33,12 +33,12 @@ const memberInfo: MemberInfo = {
   },
   5: {
     name: "조재웅",
-    role: "<기획 총괄 및 임베디드 Iot 개발>",
+    role: "<기획 총괄 및 임베디드 Iot 개발/ Docker 관리>",
     comment: "역삼 is my Home",
   },
   6: {
     name: "조준하",
-    role: "<웹 프론트 개발>",
+    role: "<웹 프론트 개발 및 디자인 담당>",
     comment: "반갑습니다",
   },
 };

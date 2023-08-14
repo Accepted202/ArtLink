@@ -89,7 +89,7 @@ function ProfileUser() {
                           name={key}
                           value={value as string}
                           onChange={handleInputChange}
-                          readOnly={key !== "description"}
+                          disabled={key !== "description"}
                           className={Styles.profileInput}
                         />
                       </>
