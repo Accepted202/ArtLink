@@ -1,29 +1,38 @@
-.container-wrapper {
+.containerWrapper {
   display: flex;
   width: 100%;
   overflow-x: scroll;
   transition: transform 0.3s ease;
 }
 
-.button-wrapper {
-  display: flex;
-  justify-content: end;
-  margin-right: 10vw;
-  margin-top: 5vw;
+.infoBox {
+  text-align: start;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 60px;
 }
 
-.next-button {
+.bottomWrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5vw;
+  padding: auto;
+}
+
+.nextButton {
   width: 200px;
   height: 50px;
   border: none;
   border-radius: 10%;
+  /* position: absolute;
+  right: 10vw; */
   background: var(--main-color);
   font-family: SUITE-Regular;
   box-shadow: 10px 10px 20px rgba(37, 37, 37, 0.2),
     -10px -10px 20px rgba(255, 255, 255, 0.7);
 }
 
-.next-button:active {
+.nextButton:active {
   box-shadow: inset 7px 7px 15px var(--shadow-color), inset 0px 0px 40px #54f88b,
     0px 0px 4px rgba(255, 255, 255, 0.2);
   transform: scale(0.9);
