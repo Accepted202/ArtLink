@@ -6,7 +6,7 @@ function MainLogo() {
   return (
     <>
       <Link to="/home" className={Styles.MainLogo}>
-        <p className={Styles.MainLogotxt}>ArtLink</p>
+        <div className={Styles.MainLogotxt}>ArtLink</div>
       </Link>
     </>
   );

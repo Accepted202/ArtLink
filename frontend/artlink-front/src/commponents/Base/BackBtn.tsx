@@ -7,10 +7,10 @@ function BackBtn() {
     <>
       <button className={Styles.cta} onClick={() => navigate(-1)}>
         <svg
-          width="40px"
-          height="40px"
+          width="30px"
+          height="30px"
           viewBox="0 0 24 24"
-          fill="none"
+          fill="#747474"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path

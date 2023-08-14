@@ -15,7 +15,8 @@
   width: 95% !important;
   margin: auto;
   margin-top: 10vh;
-  margin-bottom: 10vh;
+  margin-bottom: 20vh;
+  /* border: 1px solid black; */
 }
 
 .innerSlideBox {

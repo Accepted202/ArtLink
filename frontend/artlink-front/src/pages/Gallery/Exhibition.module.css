@@ -9,8 +9,8 @@
 }
 .ExhibitionTitle {
   margin-right: auto;
-  font-size: 30px;
-  font-weight: 900;
+  margin-top: 5%;
+  font-size: 22px;
 }
 
 .ExhibitionContainer {
@@ -26,7 +26,7 @@
     display: block;
   }
   .ExhibitionTitle {
-    margin-top: 30px;
+    margin-top: 5%;
     margin-bottom: 30px;
   }
 }
@@ -34,15 +34,15 @@
 /* ExhibitionCreate.tsx */
 .CreateMenu {
   display: flex;
-  text-align: center;
-  align-items: end;
+  align-items: center;
   width: 80vw;
   margin: auto;
+  margin-top: 5%;
 }
 .CreateTitle {
   margin-left: 20px;
   margin-right: auto;
-  font-size: 30px;
+  font-size: 22px;
 }
 .CreateContainer {
   margin: auto;
