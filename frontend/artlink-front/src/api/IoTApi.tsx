@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { createUrl } from "../commponents/Base/BaseFun";
 
 /*
 기기 등록(POST): /devices/{deviceId}
@@ -7,11 +8,11 @@ import axios, { AxiosResponse } from "axios";
 galleries/devices
 */
 
-const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
-// URL을 디폴트 백엔드 URL과 합치는 함수
-const createUrl = (endpoint: string): string => {
-  return `${defaultBackendUrl}${endpoint}`;
-};
+// const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+// // URL을 디폴트 백엔드 URL과 합치는 함수
+// const createUrl = (endpoint: string): string => {
+//   return `${defaultBackendUrl}${endpoint}`;
+// };
 
 export interface Data {
   [key: string]: string | number;

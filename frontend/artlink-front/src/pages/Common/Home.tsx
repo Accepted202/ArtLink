@@ -45,7 +45,8 @@ function Homepage() {
 
   return (
     <>
-      <div style={{ marginTop: "100px" }}>{render_component}</div>
+      <div style={{ marginTop: "10vh" }}></div>
+      {render_component}
     </>
   );
 }

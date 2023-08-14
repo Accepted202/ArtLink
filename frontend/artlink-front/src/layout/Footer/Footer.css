@@ -1,10 +1,10 @@
 .footBody {
   font-family: SUITE-Regular;
-  margin-top: 20px;
+  margin-top: auto !important;
 }
 
 .footer {
-  padding: 40px 0;
+  padding-top: 2vh;
   background-color: #e0e0e0;
 }
 .footer .social {
@@ -51,6 +51,7 @@
 }
 .footer .copyright {
   margin-top: 15px;
+  margin-bottom: 0 !important;
   text-align: center;
   font-size: 13px;
   color: #aaa;
