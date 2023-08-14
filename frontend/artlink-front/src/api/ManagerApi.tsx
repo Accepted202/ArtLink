@@ -1,12 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import { getPk } from "../commponents/Base/BaseFun";
+import { createUrl } from "../commponents/Base/BaseFun";
 
-// 디폴트 백엔드 URL
-const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
-// URL을 디폴트 백엔드 URL과 합치는 함수
-const createUrl = (endpoint: string): string => {
-  return `${defaultBackendUrl}${endpoint}`;
-};
+// // 디폴트 백엔드 URL
+// const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+// // URL을 디폴트 백엔드 URL과 합치는 함수
+// const createUrl = (endpoint: string): string => {
+//   return `${defaultBackendUrl}${endpoint}`;
+// };
 
 // 전체 유저 정보 조회
 export interface UserGetRes {

@@ -10,7 +10,7 @@
   margin-top: 50px;
   box-shadow: 10px 10px 10px rgba(37, 37, 37, 0.2),
     -10px -10px 10px rgba(255, 255, 255, 0.7);
-    background-color: rgb(224, 224, 224);
+  background-color: rgb(224, 224, 224);
 }
 
 .MypageinnerBox {
@@ -21,7 +21,7 @@
 }
 .BackBtn {
   display: flex;
-  margin-left: 7%;
+  justify-content: center;
   margin-top: 20px;
 }
 

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   width: 100vw;
-  margin-bottom: 5vh;
+  /* margin-bottom: 5vh; */
 }
 
 @media (max-width: 1024px) {

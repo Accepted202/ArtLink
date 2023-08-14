@@ -34,3 +34,16 @@ export const getPk3 = () => {
   const workPK = Number(parts[parts.length - 2]);
   return [exhiPK, workPK];
 };
+
+// URL을 디폴트 백엔드 URL과 합치는 함수
+export const createUrl = (endpoint: string): string => {
+  const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+  if (defaultBackendUrl) {
+    return `${defaultBackendUrl}${endpoint}`;
+  } else if (process.env.VITE_APP_BACKEND_URL) {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    return `${process.env.VITE_APP_BACKEND_URL}${endpoint}`;
+  } else {
+    return `${"/front_config_api"}${endpoint}`;
+  }
+};

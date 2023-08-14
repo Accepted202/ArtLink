@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { createUrl } from "../commponents/Base/BaseFun";
 
 /*
 사후 데이터 삭제(DELETE): selections/devices/{deviceId}
@@ -12,11 +13,11 @@ import axios, { AxiosResponse } from "axios";
 -> 입력 후 제출 버튼 누를 시 해당 키가 다음 페이지로 넘겨지며 해당 페이지로 넘어감
 */
 
-const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
-// URL을 디폴트 백엔드 URL과 합치는 함수
-const createUrl = (endpoint: string): string => {
-  return `${defaultBackendUrl}${endpoint}`;
-};
+// const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+// // URL을 디폴트 백엔드 URL과 합치는 함수
+// const createUrl = (endpoint: string): string => {
+//   return `${defaultBackendUrl}${endpoint}`;
+// };
 
 export interface Paint {
   artworkId: number;

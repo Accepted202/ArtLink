@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from "axios";
+import { createUrl } from "../commponents/Base/BaseFun";
 // 아래의 API들은 로그인 요청&반환 값에 대한 타입지정, Api함수 로직으로 구성되어있습니다.
 
-// 디폴트 백엔드 URL
-const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+// // 디폴트 백엔드 URL
+// const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
 
-// URL을 디폴트 백엔드 URL과 합치는 함수
-const createUrl = (endpoint: string): string => {
-  return `${defaultBackendUrl}${endpoint}`;
-};
+// // URL을 디폴트 백엔드 URL과 합치는 함수
+// const createUrl = (endpoint: string): string => {
+//   return `${defaultBackendUrl}${endpoint}`;
+// };
 
 // 로그인 API
 export interface LogInRes {
@@ -24,7 +25,6 @@ export interface LogInReq {
 
 export const logInApi = async (dataToSend: LogInReq): Promise<LogInRes> => {
   try {
-    console.log(defaultBackendUrl, "sdsd");
     const response: AxiosResponse<LogInRes> = await axios.post(
       createUrl("/auth/login"),
       dataToSend
@@ -45,9 +45,7 @@ export interface LogoutReq {
   Sample: string;
 }
 
-export const logOutApi = async (
-  dataToSend: LogoutReq
-): Promise<LogOutRes> => {
+export const logOutApi = async (dataToSend: LogoutReq): Promise<LogOutRes> => {
   try {
     const response: AxiosResponse<LogOutRes> = await axios.post(
       createUrl("/auth/logout"),
@@ -106,7 +104,6 @@ export interface SignUpReq {
   galleryName?: string;
 }
 
-
 export const signUpUserApi = async (
   dataToSend: SignUpReq
 ): Promise<SignUpUserRes> => {
@@ -133,7 +130,6 @@ export interface SignUpGalleryRes {
     };
   };
 }
-
 
 export const signUpGalleryApi = async (
   dataToSend: SignUpReq

@@ -66,6 +66,7 @@ function ProfileUser() {
               <div className={Styles.infoInnerBoxRightGal}>
                 <p style={{ fontSize: "21px", fontWeight: "600" }}>
                   갤러리 정보
+                  <hr />
                 </p>
                 {Object.entries(galleryData).map(([key, value]) => (
                   <div key={key} className={Styles.eachField}>
