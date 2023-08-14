@@ -23,7 +23,6 @@ import {
 function KioskDetail() {
   const { pk } = useParams();
   const [postData, setPostData] = useState<PostData>(); // 서버로부터 가져온 작품 정보
-  postData;
   const [artworks, setArtworks] = useState<Paint[]>([]);
 
   useEffect(() => {
@@ -64,7 +63,12 @@ function KioskDetail() {
   return (
     <>
       <KioskMainLogo />
-      <div className={styles["container-wrapper"]}>
+      <div className={styles.infoBox}>
+        <div>전시회명: {postData?.exhibitionName}</div>
+        <div>갤러리명: {postData?.galleryName}</div>
+        <div>방문 날짜: {postData?.visitDate}</div>
+      </div>
+      <div className={styles.containerWrapper}>
         {chunkedData.map((chunk, index) => (
           <BoxContainer
             key={index}
@@ -74,9 +78,9 @@ function KioskDetail() {
           />
         ))}
       </div>
-      <div className={styles["button-wrapper"]}>
+      <div className={styles.bottomWrapper}>
         <Link to="/kiosk/print">
-          <button className={styles["next-button"]}>Print</button>
+          <button className={styles.nextButton}>Print</button>
         </Link>
       </div>
     </>
