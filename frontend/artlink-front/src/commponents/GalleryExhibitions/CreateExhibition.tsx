@@ -3,7 +3,7 @@ import Styles from "./CreateExhibition.module.css";
 import TextBtn from "../Base/TextBtn";
 import ExhibitionProfile from "./ExhibitionProfile";
 import { ExhibitionCreateReq } from "../../api/GalleryApi";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 
 function CreateExhibition() {
   const [exhibitionInfo, setExhibitionInfo] = useState<ExhibitionCreateReq>({
@@ -27,9 +27,9 @@ function CreateExhibition() {
   // 생성 버튼 클릭시
   const handleCreateExhibition = () => {
     if (exhibitionInfo.exhibitionName == "") {
-      window.alert("Please fill exhibitionName")
+      window.alert("Please fill exhibitionName");
     } else if (exhibitionInfo.exhibitionExplanation == "") {
-      window.alert("Please fill exhibitionExplanation")
+      window.alert("Please fill exhibitionExplanation");
     } else {
       setisChange(true);
     }
@@ -48,29 +48,29 @@ function CreateExhibition() {
             <ExhibitionProfile
               isChanged={isChange}
               exhibitionInfo={exhibitionInfo}
-              handleSetisChange = {handleSetisChange}
+              handleSetisChange={handleSetisChange}
             />
           </div>
           {/* 텍스트 박스 */}
           <div className={Styles.ExhibitionTxt}>
             {initialFields.map((field) => (
-                <div
-                  className={Styles.ExhibitionInputContainer}
-                  key={field.name}
-                >
-                  <p>{field.placeholder}</p>
-                  <TextareaAutosize
-                    name={field.name}
-                    value={exhibitionInfo[field.name]}
-                    onChange={handleInputChange}
-                    className={Styles.ExhibitionInput}
-                  />
-                </div>
+              <div className={Styles.ExhibitionInputContainer} key={field.name}>
+                <p>{field.placeholder}</p>
+                <TextareaAutosize
+                  name={field.name}
+                  value={exhibitionInfo[field.name]}
+                  onChange={handleInputChange}
+                  className={Styles.ExhibitionInput}
+                />
+              </div>
             ))}
           </div>
         </div>
         {/* 생성 전송 */}
-        <div onClick={handleCreateExhibition} style={{ display: "inline-block", textAlign: "center" }}>
+        <div
+          onClick={handleCreateExhibition}
+          style={{ display: "inline-block", textAlign: "center" }}
+        >
           <TextBtn inner={"CREATE"} wid={200} hei={50} />
         </div>
       </div>

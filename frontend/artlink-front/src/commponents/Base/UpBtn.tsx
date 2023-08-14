@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import Styles from "./UpBtn.module.css";
 
-function UpBtn() {
+interface TextBtnProps {
+  howscroll: number;
+}
+const UpBtn: React.FC<TextBtnProps> = ({ howscroll }) => {
   const [isButtonVisible, setIsButtonVisible] = useState(false);
 
   useEffect(() => {
     // Function to handle scrolling and show/hide the button
     const handleScroll = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > howscroll) {
         setIsButtonVisible(true);
       } else {
         setIsButtonVisible(false);
@@ -47,6 +50,6 @@ function UpBtn() {
       )}
     </>
   );
-}
+};
 
 export default UpBtn;

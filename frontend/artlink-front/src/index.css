@@ -14,18 +14,25 @@ body {
   scrollbar-width: thin; /* 스크롤바 굵기 */
   scrollbar-color: #888 #f1f1f1; /* 스크롤 바의 색*/
 }
-input{
+input {
+  font-family: inherit;
+  box-shadow: inset 1px 1px 2px rgb(114, 114, 114),
+    inset -1px -1px 3px rgb(255, 255, 255);
+  font-size: 12px;
+  border: none !important;
+}
+p {
   font-family: inherit;
 }
-p{
-  font-family: inherit;
-}
-textarea{
+textarea {
   font-family: inherit;
   font-size: 12px;
-  padding: 5px 10px 5px 10px !important;
-  resize: none
-;
+  padding: 10px 10px 10px 15px !important;
+  resize: none;
+  border-radius: 15px !important;
+  overflow: hidden !important;
+  box-shadow: inset 1px 1px 2px rgb(114, 114, 114),
+    inset -1px -1px 3px rgb(255, 255, 255);
 }
 
 #root {

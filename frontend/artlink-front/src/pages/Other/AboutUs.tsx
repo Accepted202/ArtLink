@@ -116,7 +116,7 @@ function AboutUs() {
           <AboutPage3 />
         </div>
       </div>
-      <UpBtn />
+      <UpBtn howscroll={100} />
     </>
   );
 }

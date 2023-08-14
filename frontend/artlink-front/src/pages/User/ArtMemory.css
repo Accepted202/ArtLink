@@ -93,12 +93,13 @@
 @media (max-width: 1024px) {
   [class^="number-slide"],
   [class*="number-slide"] {
-    height: 60vh;
+    height: 90vh;
+    width: 50vh !important;
     max-height: 100vh;
   }
   .innerSlideBox {
     width: 60%;
-    height: 70%;
+    height: 80%;
   }
   .introBox {
     width: 60%;
@@ -110,7 +111,7 @@
     box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
       -5px -5px 10px rgba(247, 250, 236, 0.7);
     width: 65%;
-    height: 75%;
+    height: 85%;
   }
   .innerSlideBox:hover .innerTxt1 {
     font-size: 15px;
