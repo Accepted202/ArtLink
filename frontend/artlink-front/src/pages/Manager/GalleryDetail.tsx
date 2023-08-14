@@ -5,9 +5,9 @@ import Styles from "../../commponents/Mypage/Profile.module.css";
 import Styles2 from "../../pages/Common/Mypage.module.css";
 import BackBtn from "../../commponents/Base/BackBtn";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
-
 import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
+import TextareaAutosize from "react-textarea-autosize";
 
 function GalleryDetail() {
   const [galleryData, setgalleryData] = useState<OneGalleryEach | null>(null);
@@ -87,6 +87,13 @@ function GalleryDetail() {
                                 // eslint-disable-next-line @typescript-eslint/no-misused-promises
                                 <button onClick={handleAccept}>승인</button>
                               )
+                            ) : key === "description" ? (
+                              <TextareaAutosize
+                                name={key}
+                                value={galleryData[key]}
+                                className={Styles.profileTextArea}
+                                disabled
+                              />
                             ) : (
                               <span>{value}</span>
                               // <input
