@@ -69,11 +69,17 @@ function ProfileUser() {
           {userData && (
             <div className={Styles.infoOuterBoxRight}>
               <div className={Styles.infoInnerBoxRight}>
-                <p style={{ fontSize: "21px", fontWeight: "600", marginBottom:"10px" }}>
+                <p
+                  style={{
+                    fontSize: "21px",
+                    fontWeight: "600",
+                    marginBottom: "10px",
+                  }}
+                >
                   회원 정보
                 </p>
                 {Object.keys(userData).map((key) => (
-                  <p key={key} style={{fontSize:"11px"}}>
+                  <p key={key} style={{ fontSize: "11px" }}>
                     {labelMapping[key]}:{" "}
                     <input
                       type="text"
