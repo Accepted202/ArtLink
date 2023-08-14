@@ -2,7 +2,7 @@ import { useState, ChangeEvent, useEffect, useRef } from "react";
 import EmptyProfile from "../../assets/EmptyProfile2.svg";
 import { UserImageChange, UserImage } from "../../api/UserApi";
 import { setAuthorizationHeader } from "../Base/BaseFun";
-import Styles from "./Profile.module.css"
+import Styles from "./Profile.module.css";
 
 // 프로필 박스의 부모노드에서 변경요청 변수
 interface PBprops {
@@ -32,7 +32,7 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
   };
   // 이미지 로드
   useEffect(() => {
-      void loadUserimage();
+    void loadUserimage();
   }, []);
   // 부모노드에서 변경요청 감지
   useEffect(() => {
@@ -62,7 +62,12 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
       setAuthorizationHeader();
       const data = await UserImage();
       console.log(data);
-      void setImage(data.profilePicture);
+      if (
+        data.profilePicture !==
+        "http://i9a202.p.ssafy.io:8080/static/default_profile.png"
+      ) {
+        void setImage(data.profilePicture);
+      }
     } catch (error) {
       console.error("Error loadUserimage:", error);
     }
@@ -75,11 +80,11 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
           <img
             src={image}
             alt="Profile"
-            style={{ width: "200px"}}
+            style={{ width: "200px" }}
             className={Styles.profileImg}
           />
         ) : (
-          <img src={EmptyProfile} style={{ width: "100px"}} alt="빈 프로필" />
+          <img src={EmptyProfile} style={{ width: "100px" }} alt="빈 프로필" />
         )}
       </div>
       <input
@@ -87,9 +92,11 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
         accept="image/*"
         id="file"
         onChange={handleImageChange}
-        style={{ display: "none"}}
+        style={{ display: "none" }}
       />
-      <label htmlFor="file" style={{ fontSize:"12px"}}>파일 업로드</label>
+      <label htmlFor="file" style={{ fontSize: "12px" }}>
+        파일 업로드
+      </label>
     </>
   );
 };

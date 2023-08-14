@@ -7,6 +7,24 @@ import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 import AMIntro from "../../commponents/ViewExhibition/AMIntro";
 import { UserRecords, UserRecordsRes } from "../../api/UserApi";
 
+const sampleData = [
+  {
+    id: 1,
+    userKey: "a23dsd",
+    exhibitionName: "거장의 시선",
+    posterUrl: "src/assets/exhibition/exhibition1.png",
+    galleryName: "대영미술관",
+    visitDate: "2023-08-09",
+  },
+  {
+    id: 2,
+    userKey: "b324sd",
+    exhibitionName: "함스부르크 전시",
+    posterUrl: "src/assets/exhibition/exhibition2.png",
+    galleryName: "루브르박물관",
+    visitDate: "2023-08-10",
+  },
+];
 const defaultRecord = {
   id: 1,
   userKey: "",
@@ -19,10 +37,11 @@ const defaultRecord = {
 function ArtMemory() {
   // 슬라이더 세팅
   const isMobile = window.innerWidth <= 1024;
-  const [userRecords, setUserRecords] = useState<[UserRecordsRes]>([
+  const [userRecords, setUserRecords] = useState<UserRecordsRes[]>([
     defaultRecord,
   ]); // 유저 전시 관람 정보 전체
   const [perView, setPerView] = useState(isMobile ? 1 : 3);
+
   useEffect(() => {
     // Function to update the perView value based on window size
     const updatePerView = () => {
@@ -38,12 +57,24 @@ function ArtMemory() {
     };
     window.addEventListener("resize", updatePerView);
     updatePerView();
-  }, []);
+  }, [userRecords.length]);
 
   //  전시 기록 전체 조회
   useEffect(() => {
     void loadUserRecord();
   }, []);
+
+  // 유저 전시정보 조회 API
+  const loadUserRecord = async () => {
+    try {
+      const response: [UserRecordsRes] = await UserRecords();
+      console.log("User Records:", response);
+      setUserRecords(sampleData);
+    } catch (error) {
+      console.error("Error UserRecords:", error);
+      window.alert(error);
+    }
+  };
   const [sliderRef] = useKeenSlider({
     loop: true,
     slides: {
@@ -51,17 +82,7 @@ function ArtMemory() {
       spacing: 1,
     },
   });
-  // 유저 전시정보 조회 API
-  const loadUserRecord = async () => {
-    try {
-      const response: [UserRecordsRes] = await UserRecords();
-      console.log("User Records:", response);
-      setUserRecords(response);
-    } catch (error) {
-      console.error("Error UserRecords:", error);
-      window.alert(error);
-    }
-  };
+
   return (
     <>
       <MarginTopInput value={50} />
@@ -88,7 +109,8 @@ function ArtMemory() {
             <div className="keen-slider__slide number-slide">
               <div className="innerSlideBox">
                 <div className="innerTxt1">
-                  {`< 서비스를 이용하고 전시회를 기록해보세요 >`}{" "}
+                  {`< 서비스를 이용하고 전시회를 기록해보세요 >`}
+                  <p>{"샘플 확인하기"}</p>
                 </div>
               </div>
             </div>
@@ -99,7 +121,8 @@ function ArtMemory() {
           userRecords.map((slide, index) => (
             <Link
               to={{
-                pathname: `/art-memory/${slide.id}?userKey=${slide.userKey}`,
+                pathname: `/art-memory/${slide.id}`,
+                search: `${slide.userKey}`,
               }}
               className="linkbox"
               key={index}

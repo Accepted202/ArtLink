@@ -1,10 +1,11 @@
 import { useState, ChangeEvent, useRef } from "react";
 import "./Detail.css";
-import EmptyProfile from "../../assets/EmptyProfile2.svg";
+import EmptyProfile from "../../assets/EmptyGallery.png";
 import BackBtn from "../../commponents/Base/BackBtn.tsx";
 import TextBtn from "../../commponents/Base/TextBtn.tsx";
 import { Drawing, WorkCreate } from "../../api/GalleryApi.tsx";
 import Modal2 from "../../commponents/Base/Form/ExhibitionModal/Modal2.tsx";
+import TextareaAutosize from "react-textarea-autosize";
 
 function WorksCreate() {
   // 전송할 폼데이터
@@ -42,7 +43,7 @@ function WorksCreate() {
       }
       void callCreateWork();
     } else {
-      window.alert("Please Upload a Work image")
+      window.alert("Please Upload a Work image");
     }
   };
   // 생성 API
@@ -87,13 +88,13 @@ function WorksCreate() {
         // 이미지 필드는 제외
         return (
           <div key={index} className="input-field">
-            <label htmlFor={field}>{fieldNames[field]} : </label>
-            <input
-              type="text"
+            <label htmlFor={field}>{fieldNames[field]}</label>
+            <TextareaAutosize
               id={field}
               name={field}
               placeholder={`${fieldNames[field]}을 입력하세요`}
               onChange={handleInputChange}
+              className="textArea"
             />
           </div>
         );
@@ -114,17 +115,17 @@ function WorksCreate() {
       <div className="detail-container">
         {/* 이미지 */}
         <div className="image-box">
-          <div style={{ width: "200px" }}>
-            {image ? (
-              <img
-                src={image}
-                alt="Profile"
-                style={{ width: "200px", height: "200px" }}
-              />
-            ) : (
-              <img src={EmptyProfile} alt="빈 프로필" />
-            )}
-          </div>
+          {image ? (
+            <img
+              src={image}
+              alt="Profile"
+              style={{ width: "100%" }}
+              className="image-border"
+            />
+          ) : (
+            <img src={EmptyProfile} style={{ width: "100%" }} alt="빈 프로필" />
+          )}
+
           <input
             type="file"
             accept="image/*"
@@ -132,14 +133,20 @@ function WorksCreate() {
             onChange={handleImageChange}
             style={{ display: "none" }}
           />
-          <label htmlFor="file">파일 업로드</label>
+          <label htmlFor="file" style={{ fontSize: "12px" }}>
+            파일 업로드
+          </label>
         </div>
         {/* 텍스트 */}
-        <div className="txt-box">{renderFields()}</div>
+        <div className="txt-box" style={{ fontSize: "12px" }}>
+          {renderFields()}
+        </div>
       </div>
       {/* 작품 생성 버튼 */}
-      <div onClick={handleAdd}>
-        <TextBtn inner="CREATE" wid={200} hei={50} />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div onClick={handleAdd}>
+          <TextBtn inner="CREATE" wid={200} hei={50} />
+        </div>
       </div>
     </>
   );

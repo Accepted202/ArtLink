@@ -10,7 +10,7 @@ function ExhibitionUpdate() {
         {/* 상단 메뉴 */}
         <div className={Styles.CreateMenu}>
           <BackBtn />
-          <div className={Styles.CreateTitle}>Exhibition Update</div>
+          <div className={Styles.CreateTitle}>전시회 정보</div>
         </div>
         <hr style={{ width: "80vw" }} />
         {/* 메인 컨테이너 */}

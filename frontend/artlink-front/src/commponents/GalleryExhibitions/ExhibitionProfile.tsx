@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, useEffect, useRef } from "react";
-import EmptyProfile from "../../assets/EmptyProfile2.svg";
+import EmptyProfile from "../../assets/EmptyGallery.png";
 import {
   ExhibitionPosterAdd,
   ExhibitionCreateReq,
@@ -14,7 +14,11 @@ interface PBprops {
   handleSetisChange: () => void;
 }
 
-const ProfileBox: React.FC<PBprops> = ({ isChanged, exhibitionInfo, handleSetisChange }) => {
+const ProfileBox: React.FC<PBprops> = ({
+  isChanged,
+  exhibitionInfo,
+  handleSetisChange,
+}) => {
   const [image, setImage] = useState<string | null>(null);
   const formDataRef = useRef<FormData>(new FormData());
   const [isModalActive, setisModalActive] = useState<boolean>(false); // 모달 활성 boolean
@@ -46,16 +50,16 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged, exhibitionInfo, handleSetisC
   // 변경 요청 감지시 실행할 함수들
   const changeImage = async () => {
     try {
-      if (formDataRef.current.has("posterFile")){
+      if (formDataRef.current.has("posterFile")) {
         console.log("Poster Add & Exhibition Create");
         const createData = await createExhibition();
         const pk = createData.id;
         await updateExhibitionPoster(pk);
         setisModalActive(true);
-        return
-      } else{
-        handleSetisChange()
-        window.alert("Please Add Poster Image")
+        return;
+      } else {
+        handleSetisChange();
+        window.alert("Please Add Poster Image");
       }
     } catch (error) {
       console.error("Poster Add & Exhibition Create:", error);
@@ -86,15 +90,15 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged, exhibitionInfo, handleSetisC
   return (
     <>
       <Modal sendActive={isModalActive} />
-      <div >
+      <div>
         {image ? (
-          <img
-            src={image}
-            alt="Profile"
-            style={{ width: "200px"}}
-          />
+          <img src={image} alt="Profile" style={{ width: "200px" }} />
         ) : (
-          <img src={EmptyProfile} alt="빈 프로필" />
+          <img
+            src={EmptyProfile}
+            style={{ width: "200px", boxShadow: "none", border: "none" }}
+            alt="빈 프로필"
+          />
         )}
       </div>
       <input
@@ -104,7 +108,9 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged, exhibitionInfo, handleSetisC
         onChange={handleImageChange}
         style={{ display: "none" }}
       />
-      <label htmlFor="file" style={{fontSize:"12px"}}>파일 업로드</label>
+      <label htmlFor="file" style={{ fontSize: "12px" }}>
+        파일 업로드
+      </label>
     </>
   );
 };

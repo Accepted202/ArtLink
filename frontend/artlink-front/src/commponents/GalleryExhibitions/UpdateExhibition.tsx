@@ -1,9 +1,15 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { ExhibitionOneInfo, ExhibitionOneInfoRes, ExhibitionUpdate, ExhibitionPosterUpdate } from "../../api/GalleryApi";
+import {
+  ExhibitionOneInfo,
+  ExhibitionOneInfoRes,
+  ExhibitionUpdate,
+  ExhibitionPosterUpdate,
+} from "../../api/GalleryApi";
 import TextBtn from "../Base/TextBtn";
 import Styles from "./UpdateExhibition.module.css";
 import ModalUpdate from "../Base/Form/ExhibitionModal/ModalUpdate";
 Styles;
+import TextareaAutosize from "react-textarea-autosize";
 
 function UpdateExhibition() {
   const [image, setImage] = useState<string>(""); // 이미지 관련
@@ -32,7 +38,7 @@ function UpdateExhibition() {
     void fetchExhibitions();
   }, []);
   // 인풋필드 변경시 저장
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setExhibitionInfo((prevInfo) => ({
       ...prevInfo,
@@ -59,9 +65,9 @@ function UpdateExhibition() {
   const updateExhibition = async () => {
     try {
       const sendData = {
-        exhibitionName : exhibitionInfo.exhibitionName,
-        exhibitionExplanation : exhibitionInfo.exhibitionExplanation
-      }
+        exhibitionName: exhibitionInfo.exhibitionName,
+        exhibitionExplanation: exhibitionInfo.exhibitionExplanation,
+      };
       const data = await ExhibitionUpdate(sendData);
       console.log("Update Exhibition :", data);
       return data;
@@ -80,8 +86,8 @@ function UpdateExhibition() {
     }
   };
   // 업데이트 버튼 누를시
-  const handelUpdate= () => {
-    try{
+  const handelUpdate = () => {
+    try {
       void updateExhibition();
       void updateExhibitionPoster();
       setisModalActive(true);
@@ -91,49 +97,50 @@ function UpdateExhibition() {
   };
   return (
     <>
-    <ModalUpdate sendActive={isModalActive} />
+      <ModalUpdate sendActive={isModalActive} />
       {/* 전시회 생성 */}
       <div className={Styles.ExhibitionInfo}>
-          {/* 이미지 박스 */}
-          <div>
-              <div className={Styles.imagebox}>
-                <div className={Styles.imageInnerBox}>
-                  {image ? (
-                    <img src={image} alt="Profile" className={Styles.workImage}/>
-                  ) : (
-                    <img src={image} alt="빈 프로필" className={Styles.workImage} />
-                  )}
-                </div>
-              </div>
-              <input
-                type="file"
-                accept="image/*"
-                id="file"
-                onChange={handleImageChange}
-                style={{ display: "none" }}
-              />
-              <label htmlFor="file">파일 업로드</label>
+        {/* 이미지 박스 */}
+        <div>
+          <div className={Styles.imagebox}>
+            <div className={Styles.imageInnerBox}>
+              {image ? (
+                <img src={image} alt="Profile" className={Styles.workImage} />
+              ) : (
+                <img src={image} alt="빈 프로필" className={Styles.workImage} />
+              )}
+            </div>
           </div>
-          {/* 텍스트 박스 */}
-          <div className={Styles.ExhibitionTxt}>
-            {initialFields.map((field) => (
-              <div className={Styles.ExhibitionInputContainer} key={field.name}>
-                <p>{field.placeholder} </p>
-                <input
-                  type="text"
-                  name={field.name}
-                  value={exhibitionInfo[field.name] as string}
-                  onChange={handleInputChange}
-                  className={Styles.ExhibitionInput}
-                />
-              </div>
-            ))}
+          <input
+            type="file"
+            accept="image/*"
+            id="file"
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+          />
+          <label htmlFor="file" style={{ fontSize: "12px" }}>
+            파일 업로드
+          </label>
+        </div>
+        {/* 텍스트 박스 */}
+        <div className={Styles.ExhibitionTxt}>
+          {initialFields.map((field) => (
+            <div className={Styles.ExhibitionInputContainer} key={field.name}>
+              <p>{field.placeholder} </p>
+              <TextareaAutosize
+                name={field.name}
+                value={exhibitionInfo[field.name] as string}
+                onChange={handleInputChange}
+                className={Styles.ExhibitionInput}
+              />
+            </div>
+          ))}
         </div>
       </div>
-        {/* 생성 전송 */}
-        <div onClick={handelUpdate}>
-          <TextBtn inner={"UPDATE"} wid={200} hei={50} />
-        </div>
+      {/* 생성 전송 */}
+      <div onClick={handelUpdate}>
+        <TextBtn inner={"UPDATE"} wid={200} hei={50} />
+      </div>
     </>
   );
 }
