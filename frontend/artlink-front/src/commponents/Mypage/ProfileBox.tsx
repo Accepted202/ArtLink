@@ -75,16 +75,15 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
 
   return (
     <>
-      <div style={{ width: "200px" }}>
+      <div style={{ width: "100%" }}>
         {image ? (
           <img
             src={image}
             alt="Profile"
-            style={{ width: "200px" }}
             className={Styles.profileImg}
           />
         ) : (
-          <img src={EmptyProfile} style={{ width: "100px" }} alt="빈 프로필" />
+          <img src={EmptyProfile} style={{ width: "80%"}} alt="빈 프로필" />
         )}
       </div>
       <input

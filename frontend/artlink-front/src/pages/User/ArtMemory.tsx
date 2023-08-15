@@ -11,7 +11,7 @@ const sampleData = [
   {
     id: 1,
     userKey: "a23dsd",
-    exhibitionName: "거장의 시선",
+    exhibitionName: "거장의 시선, 사람을 향하다",
     posterUrl: "src/assets/exhibition/exhibition1.png",
     galleryName: "대영미술관",
     visitDate: "2023-08-09",
@@ -19,7 +19,7 @@ const sampleData = [
   {
     id: 2,
     userKey: "b324sd",
-    exhibitionName: "함스부르크 전시",
+    exhibitionName: "함스부르크 600년, 매혹의 걸작들",
     posterUrl: "src/assets/exhibition/exhibition2.png",
     galleryName: "루브르박물관",
     visitDate: "2023-08-10",
@@ -27,7 +27,7 @@ const sampleData = [
 ];
 const defaultRecord = {
   id: 1,
-  userKey: "",
+  userKey: "nothing",
   exhibitionName: "",
   posterUrl: "",
   galleryName: "",
@@ -42,27 +42,44 @@ function ArtMemory() {
   ]); // 유저 전시 관람 정보 전체
   const [perView, setPerView] = useState(isMobile ? 1 : 3);
 
-  useEffect(() => {
-    // Function to update the perView value based on window size
-    const updatePerView = () => {
-      if (window.innerWidth <= 1024) {
-        setPerView(1);
-      } else {
-        if (userRecords.length == 1) {
-          setPerView(2);
-        } else {
-          setPerView(3);
-        }
-      }
-    };
-    window.addEventListener("resize", updatePerView);
-    updatePerView();
-  }, [userRecords.length]);
 
+  const [sliderRef] = useKeenSlider({
+    loop: true,
+    slides: {
+      perView: perView,
+      spacing: 1,
+    },
+  });
   //  전시 기록 전체 조회
   useEffect(() => {
     void loadUserRecord();
   }, []);
+  
+  useEffect(() => {
+    // Function to update the perView value based on window size
+    const updatePerView = () => {
+        
+
+        if (userRecords.length == 1) {
+          setPerView(2);
+          if (window.innerWidth <= 1024) {
+            setPerView(1);
+            // setPerView(1);
+          }
+        } else {
+          setPerView(3);
+          if (window.innerWidth <= 1024) {
+            setPerView(1);
+          }
+        }
+      
+      
+    };
+    window.addEventListener("resize", updatePerView);
+    updatePerView();
+    
+  }, [userRecords]);
+
 
   // 유저 전시정보 조회 API
   const loadUserRecord = async () => {
@@ -75,25 +92,18 @@ function ArtMemory() {
       window.alert(error);
     }
   };
-  const [sliderRef] = useKeenSlider({
-    loop: true,
-    slides: {
-      perView: perView,
-      spacing: 1,
-    },
-  });
 
   return (
     <>
-      <MarginTopInput value={50} />
-      <div></div>
       {/* 모바일용 인트로 박스 */}
       {isMobile && (
-        <div className="introBox mobileView" style={{ margin: "auto" }}>
+        <div className="introBox" style={{ margin: "auto" }}>
           <AMIntro />
         </div>
       )}
       {/* 슬라이드 박스 */}
+      <div className="slideContainer" >
+
       <div ref={sliderRef} className="keen-slider sliderbox minwid">
         {/* 비모바일용 인트로 박스 */}
         {!isMobile && (
@@ -104,13 +114,29 @@ function ArtMemory() {
           </div>
         )}
         {/* API로 로드한 정보로 슬라이드 구성 */}
-        {userRecords[0].userKey == "" && (
+        {userRecords[0].userKey == "nothing" &&  (
           <Link to={`/art-memory/1`} className="linkbox">
             <div className="keen-slider__slide number-slide">
-              <div className="innerSlideBox">
-                <div className="innerTxt1">
-                  {`< 서비스를 이용하고 전시회를 기록해보세요 >`}
-                  <p>{"샘플 확인하기"}</p>
+              <div className="innerSlideBox_outter">
+                <div className="innerSlideBox">
+                  <div className="innerTxt1">
+                    {`< 서비스를 이용하고 전시회를 기록해보세요 >`}
+                    <p>{"샘플 확인하기"}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+        )}
+        {userRecords[0].userKey == "" &&  (
+          <Link to={`/art-memory/1`} className="linkbox" style={{margin:"auto"}}>
+            <div className="number-slide" style={{width:"40vw"}}>
+              <div className="innerSlideBox_outter">
+                <div className="innerSlideBox">
+                  <div className="innerTxt1">
+                    {`< 서비스를 이용하고 전시회를 기록해보세요 >`}
+                    <p>{"샘플 확인하기"}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -128,19 +154,22 @@ function ArtMemory() {
               key={index}
             >
               <div className="keen-slider__slide number-slide">
-                <div className="innerSlideBox">
-                  <div className="innerTxt1">
-                    {`< ${slide.exhibitionName} >`}{" "}
+                <div className="innerSlideBox_outter">
+                  <div className="innerSlideBox">
+                    <img src={slide.posterUrl} alt="" />
                   </div>
-                  <img src={slide.posterUrl} alt="" />
-                  <div className="innerTxt2">
-                    <div>{slide.galleryName} </div>
-                    <div>{slide.visitDate}</div>
-                  </div>
+                </div>
+                <div className="innerTxt1">
+                  {`< ${slide.exhibitionName} >`}{" "}
+                </div>
+                <div className="innerTxt2">
+                  <div>{slide.galleryName} </div>
+                  <div>{slide.visitDate}</div>
                 </div>
               </div>
             </Link>
           ))}
+      </div>
       </div>
       <MarginTopInput value={40} />
     </>

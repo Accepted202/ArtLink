@@ -138,8 +138,10 @@ function UpdateExhibition() {
         </div>
       </div>
       {/* 생성 전송 */}
-      <div onClick={handelUpdate}>
-        <TextBtn inner={"UPDATE"} wid={200} hei={50} />
+      <div onClick={handelUpdate} style={{display:"flex", justifyContent:"center"}}>
+        <div>
+          <TextBtn inner={"Update"} wid={200} hei={50} />
+        </div>
       </div>
     </>
   );

@@ -5,45 +5,69 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   font-size: 50px;
   color: #ffffff;
   font-weight: 500;
-  height: 450px;
-  max-height: 100vh;
+  height: 35vw;
+  /* max-height: 100vh; */
+  min-height: 400px !important;
+}
+.slideContainer{
+  width:80%;
+  margin:auto; 
+  margin-top:5vh;
+  /* box-shadow:-20vw 0px black, 20vw 0px black */
 }
 .minwid {
-  width: 95% !important;
+  width: 100% !important;
   margin: auto;
-  margin-top: 10vh;
-  margin-bottom: 20vh;
+  margin-top: 7vh;
+  margin-bottom: 10vh;
+  
   /* border: 1px solid black; */
 }
-
+.innerSlideBox_outter{
+  background-color: #e0e0e0;
+  width: 75%;
+  height: 80%;
+  display: flex;
+  box-shadow: 8px 8px 15px rgba(37, 37, 37, 0.2),
+    -8px -8px 15px rgba(255, 255, 255, 0.7);
+  transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
+  padding: 2%;
+  margin-top: 20px;
+}
+.innerSlideBox_outter:hover{
+  box-shadow: 4px 4px 5px rgba(37, 37, 37, 0.2),
+  -4px -4px 5px rgba(255, 255, 255, 0.7);
+}
 .innerSlideBox {
   background-color: #e0e0e0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90%;
-  height: 90%;
-  box-shadow: 8px 8px 15px rgba(37, 37, 37, 0.2),
-    -8px -8px 15px rgba(255, 255, 255, 0.7);
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  box-shadow: inset 5px 5px 5px rgba(37, 37, 37, 0.2),
+    inset -8px -8px 8px rgba(255, 255, 255, 0.7);
   transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 .innerSlideBox img {
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  height: 87%;
   object-fit: cover;
-  border: 4px ridge rgb(157, 157, 157);
-  /* box-shadow: 4px 4px 4px black; */
+  /* border: 6px solid rgb(255, 255, 255); */
+  box-shadow: 2px 2px 5px rgb(44, 44, 44), -2px -2px 5px rgb(225, 225, 225);
 }
 
 .innerSlideBox:hover {
-  box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
-    -5px -5px 10px rgba(255, 255, 255, 0.7);
-  width: 95%;
-  height: 95%;
+  box-shadow: inset 3px 3px 2px rgba(19, 19, 19, 0.2),
+    inset -4px -4px 4px rgba(255, 255, 255, 0.7);
+  width: 100%;
+  height: 100%;
   font-size: 40px;
 }
 .innerTxt1 {
@@ -54,6 +78,7 @@
   text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
     1px 1px 1px rgba(0, 0, 0, 0.7);
   transition: font-size 0.3s ease;
+  margin-top: 10px;
 }
 .innerSlideBox:hover .innerTxt1 {
   font-size: 16px;
@@ -74,19 +99,21 @@
   align-items: center;
   justify-content: center;
   width: 80%;
-  height: 90%;
+  /* height: 90%; */
   color: black;
   text-align: left;
+  margin-top: auto;
+  margin-bottom: 20%;
 }
 .introtxt {
-  font-size: 60px;
+  font-size: 45px;
   font-weight: 500;
   margin: 0;
   text-shadow: 1px 2px 1px rgba(255, 255, 255, 0.2),
     2px 1px 4px rgba(0, 0, 0, 0.7);
 }
 .introtxt2 {
-  font-size: 17px;
+  font-size: 14px;
   text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
     1px 1px 8px rgba(93, 93, 93, 0.7);
 }
@@ -94,25 +121,16 @@
 @media (max-width: 1024px) {
   [class^="number-slide"],
   [class*="number-slide"] {
-    height: 90vh;
-    width: 50vh !important;
+    height: 90vw !important;
+    width: 50vw !important;
     max-height: 100vh;
   }
-  .innerSlideBox {
-    width: 60%;
-    height: 80%;
-  }
   .introBox {
-    width: 60%;
+    width: 50%;
+    margin-top: 40px !important;
   }
   .innerTxt1 {
     font-size: 13px;
-  }
-  .innerSlideBox:hover {
-    box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
-      -5px -5px 10px rgba(247, 250, 236, 0.7);
-    width: 65%;
-    height: 85%;
   }
   .innerSlideBox:hover .innerTxt1 {
     font-size: 15px;
@@ -120,5 +138,12 @@
   .minwid {
     margin-top: unset;
     margin-bottom: unset;
+  }
+  .innerSlideBox_outter{
+    width: 65%;
+    height: 75%;
+  }
+  .slideContainer{
+    margin-top: 0;
   }
 }

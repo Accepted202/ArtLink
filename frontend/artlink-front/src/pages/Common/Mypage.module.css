@@ -1,20 +1,48 @@
+.MypagecontainerOutter {
+  /* display: flex; */
+  margin: auto;
+  padding: 2px;
+  border-radius: 50px;
+  width: 60vw;
+  max-width: 800px;
+  margin-top: 20px;
+  box-shadow: 15px 15px 30px rgba(37, 37, 37, 0.2),
+    -15px -15px 30px rgba(255, 255, 255, 0.7);
+  background-color: rgb(224, 224, 224);
+}
 .Mypagecontainer {
   /* display: flex; */
   justify-content: space-around;
   margin: auto;
-  padding: 5vh;
+  padding: 100px;
   border-radius: 50px;
-
-  width: 80vw;
+  box-shadow: inset 4px 4px 5px rgba(37, 37, 37, 0.2),
+    inset -4px -4px 5px rgba(255, 255, 255, 0.7);
+}
+.MypagecontainerUserOutter {
+  /* display: flex; */
+  margin: auto;
+  padding: 2px;
+  border-radius: 50px;
+  width: 70vw;
   max-width: 800px;
   margin-top: 20px;
-  box-shadow: 10px 10px 10px rgba(37, 37, 37, 0.2),
-    -10px -10px 10px rgba(255, 255, 255, 0.7);
+  box-shadow: 15px 15px 30px rgba(37, 37, 37, 0.2),
+    -15px -15px 30px rgba(255, 255, 255, 0.7);
   background-color: rgb(224, 224, 224);
+}
+.MypagecontainerUser {
+  /* display: flex; */
+  justify-content: space-around;
+  margin: auto;
+  padding: 50px;
+  border-radius: 50px;
+  box-shadow: inset 4px 4px 5px rgba(37, 37, 37, 0.2),
+    inset -4px -4px 5px rgba(255, 255, 255, 0.7);
 }
 
 .MypageinnerBox {
-  width: 100vw;
+  width: 50%;
   display: flex;
   justify-content: space-around;
   margin: auto;
@@ -24,13 +52,32 @@
   justify-content: center;
   margin-top: 20px;
 }
+.changeBtn {
+  border: none;
+  background-color: transparent;
+  box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2),
+    -3px -3px 3px rgba(255, 255, 255, 0.7);
+  width: 100px;
+  height: 50px;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  color: rgb(138, 138, 138);
+  font-size: 14px;
+  transition: color 0.5s ease, box-shadow 0.5s ease;
+  font-family: SUITE-Regular;
+}
 
 @media (max-width: 767px) {
   .Mypagecontainer {
-    width: 60vw;
+    /* width: 60vw; */
+    padding: 40px;
   }
   .BackBtn {
     margin-left: auto !important;
     display: block;
+  }
+  .MypagecontainerUserOutter {
+    width: 60vw;
   }
 }

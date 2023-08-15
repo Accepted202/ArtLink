@@ -9,9 +9,9 @@ function Contact() {
       <hr />
       <div className={Styles.container}>
         <Team />
-        <hr />
         <ContactInfo />
       </div>
+      <hr />
     </>
   );
 }

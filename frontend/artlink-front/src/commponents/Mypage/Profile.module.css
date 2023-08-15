@@ -1,19 +1,18 @@
 .MypageinnerBox {
   display: flex;
-  justify-content: center;
-  margin-top: 5%;
-  /* width: 100%; */
+  width: 100%;
+  margin: auto;
 }
 
 .infoOuterBoxLeft {
   margin: auto;
-  margin-right: 5%;
-  margin-left: 10%;
+  width: 50%;
 }
 .infoOuterBoxRight {
-  width: 80%;
+  width: 50%;
   font-family: SUITE-Regular;
   margin-top: auto;
+  margin-bottom: 20px;
 }
 .infoOuterBoxRight p {
   margin: 10px;
@@ -21,24 +20,27 @@
 .infoOuterBoxRightGal {
   font-family: SUITE-Regular;
   display: flex;
-  width: 80%;
+  width: 100%;
+
 }
 .infoInnerBoxLeft {
   margin: auto;
 }
+.inputOrder{
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
 
 .infoInnerBoxRight {
-  margin: auto;
   text-align: left;
-  min-width: 400px;
 }
 .infoInnerBoxRightGal {
-  margin: auto;
   text-align: left;
-  /* min-width: 400px; */
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin: auto;
 }
 
 .profileInput {
@@ -49,16 +51,18 @@
   padding-left: 10px;
   font-family: SUITE-Regular;
   margin-top: 10px;
+  width: 80%;
 }
 .profileTextArea {
   border: 1px solid rgb(163, 163, 163);
   border-radius: 10px;
   padding: 10px 10px 10px 15px ;
   font-family: SUITE-Regular;
-  width: 100%;
+  width: 95%;
   max-width: 100%;
   height: auto;
   overflow: visible;
+  margin: auto;
   margin-top: 10px;
 }
 .eachField {
@@ -93,8 +97,10 @@
 }
 
 .profileImg {
-  border: 5px ridge rgb(204, 204, 204);
+  box-shadow: 1px 1px 3px black, -1px -1px 3px rgb(255, 255, 255);
   filter: contrast(100%) saturate(100%) sepia(10%);
+  width: 80%;
+  max-width: 200px;
 }
 
 @media (max-width: 767px) {
@@ -103,8 +109,7 @@
   }
   .infoOuterBoxLeft {
     display: flex;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    flex-direction: column;
   }
   .infoOuterBoxRight {
     margin: auto;
@@ -133,5 +138,14 @@
   }
   .profileTextArea {
     width: 60%;
+  }
+  .profileInput {
+    margin: auto;
+    margin-top: 10px;
+    width: 60%;
+  }
+  .profileImg {
+    width: 100%;
+    max-width: 200px;
   }
 }

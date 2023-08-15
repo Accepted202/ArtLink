@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProfileGalleryApi from "./ProfileGalleryApi";
 import { GalleryInfoRes, GalleryInfoEdit } from "../../api/GalleryApi";
 import Styles from "./Profile.module.css";
+import Styles2 from "../../pages/Common/Mypage.module.css";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -53,6 +54,8 @@ function ProfileUser() {
   return (
     <>
       <Modal sendActive={isModalActive} />
+      <div className={Styles2.MypagecontainerOutter}>
+      <div className={Styles2.Mypagecontainer}>
       {loading ? ( // Show loading message if data is being fetched
         <>
           <h3>Loading...</h3>
@@ -64,26 +67,25 @@ function ProfileUser() {
           {galleryData && (
             <div className={Styles.infoOuterBoxRightGal}>
               <div className={Styles.infoInnerBoxRightGal}>
-                <p style={{ fontSize: "21px", fontWeight: "600" }}>
-                  갤러리 정보
-                  <hr />
-                </p>
                 {Object.entries(galleryData).map(([key, value]) => (
                   <div key={key} className={Styles.eachField}>
                     {key === "description" ? ( // Check if the key is "description"
                       <>
-                        <div style={{ marginTop: "10px" }}></div>
-                        {labelMapping[key]}:{" "}
-                        <TextareaAutosize
-                          name={key}
-                          value={galleryData[key]}
-                          onChange={handleInputChange}
-                          className={Styles.profileTextArea}
-                        />
+                        <div style={{ marginTop: "10px" }}/>
+                        <div className={Styles.inputOrder}>
+                          {labelMapping[key]}
+                          <TextareaAutosize
+                            name={key}
+                            value={galleryData[key]}
+                            onChange={handleInputChange}
+                            className={Styles.profileTextArea}
+                          />
+                        </div>
                       </>
                     ) : (
                       <>
-                        {labelMapping[key]}:{" "}
+                      <div className={Styles.inputOrder}>
+                        {labelMapping[key]}
                         <input
                           type="text"
                           name={key}
@@ -92,6 +94,7 @@ function ProfileUser() {
                           disabled={key !== "description"}
                           className={Styles.profileInput}
                         />
+                      </div>
                       </>
                     )}
                   </div>
@@ -101,10 +104,12 @@ function ProfileUser() {
           )}
         </div>
       )}
+      </div>
+      </div>
       {/* 갤러리 정보 로딩 컴포넌트 */}
       <ProfileGalleryApi onGalleryDataChange={handleGalleryInfoData} />
       {/* 데이터 변경요청 버튼 */}
-      {loading ? null : (
+      {loading ? <div style={{padding:"20px"}}></div> : (
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         <button className={Styles.changeBtn} onClick={updateGalleryinfo}>
           change

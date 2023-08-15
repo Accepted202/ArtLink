@@ -16,6 +16,8 @@ function Footer() {
   return (
     <>
       {!isKiosk && !is3D && (
+        <>
+        {/* <div className="footerHr"></div> */}
         <div className="footBody">
           <section className="footer">
             <div className="social">
@@ -70,6 +72,8 @@ function Footer() {
             </p>
           </section>
         </div>
+        <div style={{padding:"2vh"}}></div>
+        </>
       )}
     </>
   );

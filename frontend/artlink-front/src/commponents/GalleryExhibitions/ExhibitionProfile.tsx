@@ -6,6 +6,7 @@ import {
   ExhibitionCreate,
 } from "../../api/GalleryApi";
 import Modal from "../Base/Form/ExhibitionModal/Modal";
+import Styles from "../GalleryExhibitions/UpdateExhibition.module.css"
 
 // 프로필 박스의 부모노드에서 변경요청 변수
 interface PBprops {
@@ -90,13 +91,13 @@ const ProfileBox: React.FC<PBprops> = ({
   return (
     <>
       <Modal sendActive={isModalActive} />
-      <div>
+      <div className={Styles.imageInnerBox}>
         {image ? (
-          <img src={image} alt="Profile" style={{ width: "200px" }} />
+          <img src={image} alt="Profile" className={Styles.workImage} />
         ) : (
           <img
             src={EmptyProfile}
-            style={{ width: "200px", boxShadow: "none", border: "none" }}
+            style={{ width: "100%", maxWidth: "200px", boxShadow: "none", border: "none" }}
             alt="빈 프로필"
           />
         )}

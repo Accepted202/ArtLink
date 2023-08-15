@@ -6,7 +6,7 @@ function NotFound() {
     <>
       <div
         style={{
-          height: "40vh",
+          height: "60vh",
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
@@ -14,7 +14,7 @@ function NotFound() {
       >
         <div
           style={{
-            marginTop: "auto",
+            // marginTop: "auto",
             fontSize: "70px",
             fontWeight: "700",
           }}
