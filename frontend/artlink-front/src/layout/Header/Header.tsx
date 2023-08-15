@@ -29,6 +29,8 @@ function Header(): JSX.Element {
   return (
     <>
       {!isExcludedHeaderPath && (
+        <>
+        <div style={{height:"10vh"}}></div>
         <div ref={headerRef} className={headercss.header}>
           <div className={headercss.headerMainLogo}>
             <MainLogo />
@@ -37,6 +39,7 @@ function Header(): JSX.Element {
             {!isExcludedPath && <Menu />}
           </div>
         </div>
+        </>
       )}
     </>
   );

@@ -85,15 +85,15 @@ function ArtMemory() {
 
   return (
     <>
-      <MarginTopInput value={50} />
-      <div></div>
       {/* 모바일용 인트로 박스 */}
       {isMobile && (
-        <div className="introBox mobileView" style={{ margin: "auto" }}>
+        <div className="introBox" style={{ margin: "auto" }}>
           <AMIntro />
         </div>
       )}
       {/* 슬라이드 박스 */}
+      <div style={{width:"80%", margin:"auto",  marginTop:"5vh", boxShadow:"-20px 0px black, 20px 0px black"}}>
+
       <div ref={sliderRef} className="keen-slider sliderbox minwid">
         {/* 비모바일용 인트로 박스 */}
         {!isMobile && (
@@ -128,19 +128,22 @@ function ArtMemory() {
               key={index}
             >
               <div className="keen-slider__slide number-slide">
-                <div className="innerSlideBox">
-                  <div className="innerTxt1">
-                    {`< ${slide.exhibitionName} >`}{" "}
+                <div className="innerSlideBox_outter">
+                  <div className="innerSlideBox">
+                    <img src={slide.posterUrl} alt="" />
                   </div>
-                  <img src={slide.posterUrl} alt="" />
-                  <div className="innerTxt2">
-                    <div>{slide.galleryName} </div>
-                    <div>{slide.visitDate}</div>
-                  </div>
+                </div>
+                <div className="innerTxt1">
+                  {`< ${slide.exhibitionName} >`}{" "}
+                </div>
+                <div className="innerTxt2">
+                  <div>{slide.galleryName} </div>
+                  <div>{slide.visitDate}</div>
                 </div>
               </div>
             </Link>
           ))}
+      </div>
       </div>
       <MarginTopInput value={40} />
     </>

@@ -39,7 +39,7 @@ export const getPk3 = () => {
 export const createUrl = (endpoint: string): string => {
   const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
   if (defaultBackendUrl) {
-    console.log("vite 환경변수 존재", defaultBackendUrl)
+    console.log("vite 환경변수 존재", defaultBackendUrl, import.meta.env)
     return `${defaultBackendUrl}${endpoint}`;
     // } else if (process.env.VITE_APP_BACKEND_URL) {
       //   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions

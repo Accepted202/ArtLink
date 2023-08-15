@@ -87,3 +87,14 @@ td {
   white-space: nowrap;
   overflow: hidden;
 }
+
+/* 푸터 hr */
+.footerHr{
+  background-color:#bebebe;
+  height: 2.4px;
+  box-shadow: 2px 2px 1px rgb(115, 114, 114), 
+  -2px -2px 2px rgb(255, 255, 255);
+  /* width: 90%; */
+  margin: auto;
+  margin-top:5vh;
+}
