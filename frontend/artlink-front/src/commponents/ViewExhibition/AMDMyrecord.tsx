@@ -32,7 +32,7 @@ function AMDMyrecord({
         <div
           className="infoBox"
           style={{
-            fontSize: isLeftVisible ? "11.5px" : "14px",
+            fontSize: isLeftVisible ? "12px" : "12px",
           }}
         >
           <div

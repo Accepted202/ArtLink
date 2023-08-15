@@ -47,7 +47,7 @@ function ArtMemory() {
     loop: true,
     slides: {
       perView: perView,
-      spacing: 1,
+      spacing: 2,
     },
   });
   //  전시 기록 전체 조회
@@ -64,7 +64,7 @@ function ArtMemory() {
           setPerView(2);
           if (window.innerWidth <= 1024) {
             setPerView(1);
-            // setPerView(1);
+            setPerView(2);
           }
         } else {
           setPerView(3);

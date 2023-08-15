@@ -237,8 +237,10 @@ export interface Drawing {
 export const AllWorks = async (): Promise<AllWorksRes> => {
   try {
     setAuthorizationHeader();
-    const pk = getPk();
+    const params = new URLSearchParams(location.search);
+    const pk = params.get("pk");
     const response: AxiosResponse<AllWorksRes> = await axios.get(
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       createUrl(`/galleries/me/exhibitions/${pk}/artworks`)
     );
     return response.data;

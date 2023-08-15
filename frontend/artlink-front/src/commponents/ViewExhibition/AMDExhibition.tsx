@@ -2,6 +2,7 @@ import { useState } from "react";
 import Styles from "./AMD.module.css";
 import poster from "../../assets/전시회.jpg";
 import { UserOneRecordRes } from "../../api/UserApi";
+import TextBtnFontsize from "../Base/TextBtnFontsize";
 
 interface AMDExhibitionProps {
   onButtonClick: () => void;
@@ -43,13 +44,12 @@ function AMDExhibition({
             {galleryData.exhibitionExplanation}
           </div>
           <div className={`${Styles.AMDbtnBox}`}>
-            <button className={`${Styles.AMDLinkBtn}`}>About Page</button>
-            <button
-              className={`${Styles.AMDMyrecordBtn}`}
-              onClick={handleButtonClick}
-            >
-              Your Record &nbsp; &nbsp; {isFrameEnabled ? "▶" : "◀"}
-            </button>
+            <div style={{width:"35%"}}>
+              <TextBtnFontsize hei={"40px"} wid={"100%"} fontSize={12} inner="About Page"/>
+            </div>
+            <div style={{width:"50%"}} onClick={handleButtonClick} >
+              <TextBtnFontsize hei={"40px"} wid={"100%"} fontSize={12} inner={`Your Record ${isFrameEnabled ? "▶" : "◀"}`}/>
+            </div>
           </div>
         </div>
       </div>

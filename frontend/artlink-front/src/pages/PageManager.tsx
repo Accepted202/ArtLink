@@ -125,17 +125,18 @@ function PageManager() {
         <div className="workOther">
           <h3>{`<기능수정>`}</h3>
           <div style={{ fontSize: "12px" }}>
-            <p>작품 수정 성공시 모달창</p>
-            <p>새로고침 버튼 만들기</p>
             <p>
               작품생성에서 이미지 없을시 경고문 띄우기 (한번 없을시 state
               초기화-이건 버그임)
             </p>
             <p>user 매니저에서 이미지 안뜸</p>
+            <p>이미지 두번이상 고르면 처음 이미지로 로드됌</p>
           </div>
           <h3>{`<디자인수정>`}</h3>
           <div style={{ fontSize: "12px" }}>
             <p>키오스크 홈 app.height 값 변경</p>
+            <p>갤러리 전시회 보드 디자인 작업</p>
+            <p>유저 기록 디테일 디자인 작업</p>
           </div>
           <h3>{`<ETC>`}</h3>
           <div style={{ fontSize: "12px" }}>

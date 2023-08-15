@@ -20,24 +20,41 @@
 }
 
 /* TextBtn.tsx */
-.textbutton {
-  border: none;
+.textbuttonOutter {
   background-color: transparent;
   box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2),
     -3px -3px 3px rgba(255, 255, 255, 0.7);
-  width: 200px;
-  height: 50px;
   border-radius: 25px;
+  color: rgb(138, 138, 138);
+  font-size: 15px;
+  margin: auto;
   margin-bottom: 10px;
   margin-top: 30px;
-  color: rgb(138, 138, 138);
-  font-size: 14px;
-  transition: color 0.5s ease, box-shadow 0.5s ease;
+  padding: 2px;
+  transition: box-shadow 0.5s ease
 }
+.textbutton {
+  border: none;
+  background-color: transparent;
+  box-shadow: 2px 2px 1px rgba(37, 37, 37, 0.2),
+  -1px -1px 2px rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+  color: rgb(138, 138, 138);
+  font-size: 16px;
+  font-family: MYYeongnamnu;
+  font-weight: 300;
+  transition: box-shadow 0.5s ease, font-size 0.1s ease;
+}
+
 .textbutton:hover {
   color: rgb(58, 58, 58);
-  box-shadow: 2px 2px 1px rgba(37, 37, 37, 0.2),
-    -1px -1px 2px rgba(255, 255, 255, 0.7);
+  box-shadow: inset 2px 2px 3px rgba(37, 37, 37, 0.2),
+  inset -1px -1px 3px rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+.textbuttonOutter:hover  {
+  box-shadow: 1px 1px 1px rgba(37, 37, 37, 0.2),
+    -1px -1px 1px rgba(255, 255, 255, 0.7);
 }
 .textbutton:active {
   box-shadow: inset 2px 2px 1px rgba(37, 37, 37, 0.2),
