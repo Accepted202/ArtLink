@@ -99,9 +99,9 @@ function UpdateExhibition() {
     <>
       <ModalUpdate sendActive={isModalActive} />
       {/* 전시회 생성 */}
-      <div className={Styles.ExhibitionInfo}>
-        {/* 이미지 박스 */}
-        <div>
+      <div className={Styles.ExhibitionInfooutter}>
+        <div className={Styles.ExhibitionInfo}>
+          {/* 이미지 박스 */}
           <div className={Styles.imagebox}>
             <div className={Styles.imageInnerBox}>
               {image ? (
@@ -110,7 +110,6 @@ function UpdateExhibition() {
                 <img src={image} alt="빈 프로필" className={Styles.workImage} />
               )}
             </div>
-          </div>
           <input
             type="file"
             accept="image/*"
@@ -121,20 +120,21 @@ function UpdateExhibition() {
           <label htmlFor="file" style={{ fontSize: "12px" }}>
             파일 업로드
           </label>
-        </div>
-        {/* 텍스트 박스 */}
-        <div className={Styles.ExhibitionTxt}>
-          {initialFields.map((field) => (
-            <div className={Styles.ExhibitionInputContainer} key={field.name}>
-              <p>{field.placeholder} </p>
-              <TextareaAutosize
-                name={field.name}
-                value={exhibitionInfo[field.name] as string}
-                onChange={handleInputChange}
-                className={Styles.ExhibitionInput}
-              />
-            </div>
-          ))}
+          </div>
+          {/* 텍스트 박스 */}
+          <div className={Styles.ExhibitionTxt}>
+            {initialFields.map((field) => (
+              <div className={Styles.ExhibitionInputContainer} key={field.name}>
+                <p>{field.placeholder} </p>
+                <TextareaAutosize
+                  name={field.name}
+                  value={exhibitionInfo[field.name] as string}
+                  onChange={handleInputChange}
+                  className={Styles.ExhibitionInput}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       {/* 생성 전송 */}

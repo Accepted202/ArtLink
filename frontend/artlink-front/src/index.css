@@ -19,7 +19,7 @@ input {
   font-family: inherit;
   box-shadow: inset 1px 1px 2px rgb(114, 114, 114),
     inset -1px -1px 3px rgb(255, 255, 255);
-  font-size: 12px;
+  font-size: 10px;
   border: none !important;
 }
 p {
@@ -27,8 +27,7 @@ p {
 }
 textarea {
   font-family: inherit;
-  font-size: 12px;
-  padding: 10px 10px 10px 15px !important;
+  font-size: 10px;
   resize: none;
   border-radius: 15px !important;
   overflow: hidden !important;

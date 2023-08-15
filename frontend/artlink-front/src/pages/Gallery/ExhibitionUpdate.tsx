@@ -8,11 +8,11 @@ function ExhibitionUpdate() {
       {/* 전시회 박스 */}
       <div className={Styles.Create}>
         {/* 상단 메뉴 */}
-        <div className={Styles.CreateMenu}>
-          <BackBtn />
-          <div className={Styles.CreateTitle}>전시회 정보</div>
-        </div>
-        <hr style={{ width: "80vw" }} />
+        <div className="worksBackBtn">
+        <BackBtn />
+        <div className="workTitle">전시회 정보</div>
+      </div>
+        {/* <hr style={{ width: "80vw" }} /> */}
         {/* 메인 컨테이너 */}
         <div className={Styles.CreateContainer}>
           <UpdateExhibition />

@@ -39,11 +39,13 @@ export const getPk3 = () => {
 export const createUrl = (endpoint: string): string => {
   const defaultBackendUrl = import.meta.env.VITE_APP_BACKEND_URL;
   if (defaultBackendUrl) {
+    console.log("vite 환경변수 존재", defaultBackendUrl)
     return `${defaultBackendUrl}${endpoint}`;
-  } else if (process.env.VITE_APP_BACKEND_URL) {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    return `${process.env.VITE_APP_BACKEND_URL}${endpoint}`;
-  } else {
+    // } else if (process.env.VITE_APP_BACKEND_URL) {
+      //   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      //   return `${process.env.VITE_APP_BACKEND_URL}${endpoint}`;
+    } else {
+    console.log("vite 환경변수 없음")
     return `${"/front_config_api"}${endpoint}`;
   }
 };

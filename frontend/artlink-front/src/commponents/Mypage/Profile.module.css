@@ -53,8 +53,7 @@
 .profileTextArea {
   border: 1px solid rgb(163, 163, 163);
   border-radius: 10px;
-  padding: 5px;
-  padding-left: 10px;
+  padding: 10px 10px 10px 15px ;
   font-family: SUITE-Regular;
   width: 100%;
   max-width: 100%;

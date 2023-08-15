@@ -94,7 +94,7 @@ function WorksCreate() {
               name={field}
               placeholder={`${fieldNames[field]}을 입력하세요`}
               onChange={handleInputChange}
-              className="textArea"
+              className="textArea2"
             />
           </div>
         );
@@ -109,37 +109,42 @@ function WorksCreate() {
       {/* 뒤로가기 & 페이지 설명 */}
       <div className="worksBackBtn">
         <BackBtn />
-        <h2>작품 생성</h2>
+        <div className="workTitle">작품 생성</div>
       </div>
       {/* 작품 생성 바디 */}
-      <div className="detail-container">
-        {/* 이미지 */}
-        <div className="image-box">
-          {image ? (
-            <img
-              src={image}
-              alt="Profile"
-              style={{ width: "100%" }}
-              className="image-border"
-            />
-          ) : (
-            <img src={EmptyProfile} style={{ width: "100%" }} alt="빈 프로필" />
-          )}
+      <div className="detail-container-outter">
+        <div className="detail-container">
+          {/* 이미지 */}
+          <div className="image-box">
+            <div>
 
-          <input
-            type="file"
-            accept="image/*"
-            id="file"
-            onChange={handleImageChange}
-            style={{ display: "none" }}
-          />
-          <label htmlFor="file" style={{ fontSize: "12px" }}>
-            파일 업로드
-          </label>
-        </div>
-        {/* 텍스트 */}
-        <div className="txt-box" style={{ fontSize: "12px" }}>
-          {renderFields()}
+            {image ? (
+              <img
+                src={image}
+                alt="Profile"
+                style={{ width: "100%" }}
+                className="work-image2"
+              />
+            ) : (
+              <img src={EmptyProfile} style={{ width: "100%" }} alt="빈 프로필" />
+            )}
+            </div>
+
+            <input
+              type="file"
+              accept="image/*"
+              id="file"
+              onChange={handleImageChange}
+              style={{ display: "none" }}
+            />
+            <label htmlFor="file" style={{ fontSize: "12px" }}>
+              파일 업로드
+            </label>
+          </div>
+          {/* 텍스트 */}
+          <div className="txt-box" style={{ fontSize: "12px" }}>
+            {renderFields()}
+          </div>
         </div>
       </div>
       {/* 작품 생성 버튼 */}

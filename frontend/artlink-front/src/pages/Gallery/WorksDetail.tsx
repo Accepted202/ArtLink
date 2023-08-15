@@ -1,7 +1,9 @@
 import { useState, ChangeEvent, useRef, useEffect } from "react";
 import "./Detail.css";
+import defaultImg from "../../assets/EmptyGallery.png"
 import BackBtn from "../../commponents/Base/BackBtn.tsx";
 import { Drawing, OneWork, WorkUpdate } from "../../api/GalleryApi.tsx";
+import TextareaAutosize from "react-textarea-autosize";
 
 function WorksDetail() {
   const [image, setImage] = useState<string>(""); // 이미지 관련
@@ -69,13 +71,13 @@ function WorksDetail() {
         // 이미지 필드는 제외
         return (
           <div key={index} className="input-field">
-            <label htmlFor={field}>{fieldNames[field]} : </label>
-            <input
-              type="text"
+            <label htmlFor={field}>{fieldNames[field]} </label>
+            <TextareaAutosize
               id={field}
               name={field}
               onChange={handleInputChange}
               value={workData[field]}
+              className="textArea2"
             />
           </div>
         );
@@ -109,32 +111,33 @@ function WorksDetail() {
       {/* 작품 정보 타이틀 */}
       <div className="worksBackBtn">
         <BackBtn />
-        <h2>작품 정보</h2>
+        <div className="workTitle">작품 정보</div>
       </div>
       {/* 작품 정보 박스 */}
-      <div className="detail-container">
-        {/* 이미지 */}
-        <div>
-          <div className="image-box">
-            <div className="imageInner-box">
+      <div className="detail-container-outter">
+        <div className="detail-container">
+          
+        <div className="image-box">
+          <div >
               {image ? (
-                <img src={image} alt="Profile" className="work-image" />
+                <img src={image} alt="Profile" className="work-image2" />
               ) : (
-                <img src={image} alt="빈 프로필" className="work-image" />
+                <img src={defaultImg} alt="빈 프로필"/>
               )}
-            </div>
           </div>
           <input
             type="file"
             accept="image/*"
             id="file"
             onChange={handleImageChange}
-            style={{ display: "none" }}
+            style={{ display: "none"}}
           />
-          <label htmlFor="file">파일 업로드</label>
+          <label htmlFor="file" style={{fontSize:"12px" }}>파일 업로드</label>
         </div>
-        {/* 텍스트 */}
         <div className="txt-box">{renderFields()}</div>
+        </div>
+        {/* 이미지 */}
+        {/* 텍스트 */}
       </div>
       {/* 작품 정보 업데이트 버튼 */}
       <div>
