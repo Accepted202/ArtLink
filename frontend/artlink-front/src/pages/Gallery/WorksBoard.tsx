@@ -18,7 +18,7 @@ function WorksBoard() {
         setWorks(response.DrawingList);
       } catch (error) {
         console.error("전체 작품 목록을 가져오는 데 실패했습니다.", error);
-        window.alert(error);
+        window.alert("작품 목록을 가져오는 데 실패했습니다");
       }
     };
     void fetchAllworks();
@@ -27,17 +27,20 @@ function WorksBoard() {
   const keys = ["id", "제목", "아티스트", "설명"];
   const widths = ["3%", "25%", "20%", "45%", "7%"];
   const keyToExclude = ["drawingPath", "locationX", "locationY"];
+  const params = new URLSearchParams(location.search);
+  const exhibitionName = params.get("exhibitionName");
 
   return (
     <>
-      <InfoBoard
-        title="Exhibition Title"
+    {exhibitionName && <InfoBoard
+        title={exhibitionName}
         data={works}
         dataKeys={keys}
         columnWidths={widths}
         keyToExclude={keyToExclude}
         exhibition={true}
-      />
+      />}
+      
     </>
   );
 }

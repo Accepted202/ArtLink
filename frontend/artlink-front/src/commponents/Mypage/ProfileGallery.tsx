@@ -5,6 +5,7 @@ import Styles from "./Profile.module.css";
 import Styles2 from "../../pages/Common/Mypage.module.css";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 import TextareaAutosize from "react-textarea-autosize";
+import TextBtn from "../Base/TextBtn";
 
 function ProfileUser() {
   const [isModalActive, setisModalActive] = useState(false);
@@ -110,10 +111,14 @@ function ProfileUser() {
       <ProfileGalleryApi onGalleryDataChange={handleGalleryInfoData} />
       {/* 데이터 변경요청 버튼 */}
       {loading ? <div style={{padding:"20px"}}></div> : (
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        <button className={Styles.changeBtn} onClick={updateGalleryinfo}>
-          change
-        </button>
+        <>
+        <div style={{display:"flex", justifyContent:"center"}}>
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+          <div onClick={updateGalleryinfo}>
+            <TextBtn hei={45} wid={150} inner="Change" />
+          </div>
+        </div>
+        </>
       )}
     </>
   );

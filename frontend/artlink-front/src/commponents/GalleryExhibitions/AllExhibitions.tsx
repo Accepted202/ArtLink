@@ -19,17 +19,24 @@ function AllExhibitions() {
 
   return (
     <>
-      {exhibitions?.exhibitions?.map((exhibition) => (
+      {exhibitions?.exhibitions?.map((exhibition, index) => (
+        <>
         <Link
-          to={`${exhibition.id}`}
-          key={`${exhibition.id}`}
+          to={{
+            pathname: `${exhibition.id}`,
+            search: `exhibitionName=${exhibition.exhibitionName}&pk=${exhibition.id}`,
+          }}
+          key={`${index}`}
           className="ExhibitionLink"
         >
           <div className="ExhibitionBox">
-            <div className="ExhibitionTitle">{exhibition.exhibitionName}</div>
+            <div style={{marginTop:"4vh"}}></div>
             <img src={exhibition.posterUrl} alt="전시회 이미지가 없습니다" />
+            <div style={{marginTop:"4vh"}}></div>
           </div>
+        <div className="ExhibitionTitle">{exhibition.exhibitionName}</div>
         </Link>
+        </>
       ))}
     </>
   );

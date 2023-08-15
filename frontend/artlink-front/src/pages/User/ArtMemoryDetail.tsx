@@ -7,6 +7,7 @@ import AMDMyrecord from "../../commponents/ViewExhibition/AMDMyrecord";
 import BackBtn from "../../commponents/Base/BackBtn";
 import { useLocation } from "react-router-dom";
 import { UserOneRecord, UserOneRecordRes } from "../../api/UserApi";
+import TextBtnFontsize from "../../commponents/Base/TextBtnFontsize";
 
 const defaultMemory = {
   exhibitionID: 0,
@@ -70,18 +71,34 @@ function ArtMemoryDetail() {
   }, []);
   return (
     <>
-      <BackBtn />
+      <div className="worksBackBtn">
+        <BackBtn />
+        <div className="workTitle">
+          전시 기록 실펴보기
+        </div>
+      </div>
       <MarginTopInput value={10} />
-      <div className={Styles["artmemory-container"]}>
+      <div className={Styles["artmemory-container-outter"]}
+          style={{
+            width: isRightVisible ? isLeftVisible? "80vw" : "40vw" : "40vw",
+            minWidth : isRightVisible ? "400px" : "400px",
+            maxWidth : isRightVisible ? isLeftVisible? "900px": "600px": "600px",
+          }}
+          >
+      <div className={Styles["artmemory-container"]} 
+          style={{
+            width: isRightVisible ? "80vw" : "40vw",
+            minWidth : isRightVisible ? "400px" : "400px",
+          }}>
         {/* Left div with the button */}
         <div
           className={`${Styles.artdetailLeft}`}
           style={{
             width: isLeftVisible ? "100%" : "100%",
-            display: isLeftVisible ? "block" : "none",
+            display: isLeftVisible ? "flex" : "none",
           }}
         >
-          <div style={{ fontFamily: "SUITE-Regular" }}>
+          <div style={{ fontFamily: "SUITE-Regular", height:"100%", display:"flex", flexDirection:"column", justifyContent:"center"}}>
             <AMDExhibition
               onButtonClick={toggleVisibility}
               galleryData={memoryData}
@@ -91,6 +108,20 @@ function ArtMemoryDetail() {
         </div>
 
         {/* Right div */}
+        <div
+          className={`${
+            isLeftVisible ? Styles.artdetailRight3 : Styles.artdetailRight2
+          }`}
+          style={{
+            display: isRightVisible
+              ? isLeftVisible
+                ? isMobile
+                  ? "block"
+                  : "flex"
+                : "block"
+              : "none",
+          }}
+        >
         <div
           className={`${
             isLeftVisible ? Styles.artdetailRight : Styles.artdetailRight2
@@ -103,7 +134,20 @@ function ArtMemoryDetail() {
                   : "flex"
                 : "block"
               : "none",
-            width: isLeftVisible ? "80%" : "100%",
+          }}
+        >
+        <div
+          className={`${
+            isLeftVisible ? Styles.artdetailRight : Styles.artdetailRight2
+          }`}
+          style={{
+            display: isRightVisible
+              ? isLeftVisible
+                ? isMobile
+                  ? "block"
+                  : "flex"
+                : "block"
+              : "none",
           }}
         >
           {/* 상단바 */}
@@ -112,19 +156,18 @@ function ArtMemoryDetail() {
             <p
               className={`${Styles2.AMDTitleTxt}`}
               style={{
-                fontSize: isLeftVisible ? "16px" : "25px",
+                fontSize: isLeftVisible ? "13px" : "16px",
                 justifyContent: isLeftVisible ? "center" : "center",
                 border: "none",
               }}
             >
               당신의 전시여정
             </p>
-            <button
-              onClick={toggleVisibilityR}
-              className={`${Styles.AMDRightBtn}`}
-            >
-              {isLeftVisible ? "크게보기" : "전시회 정보와 함께보기"}
-            </button>
+            <div style={{ display: "flex", justifyContent: "space-around", width:"100%"}}>
+              <div style={{width:"35%"}} onClick={toggleVisibilityR}>
+                <TextBtnFontsize fontSize={12} hei={"30px"} wid={"100%"} inner="확대/축소"/>
+              </div>
+            </div>
           </div>
           {/* 본내용 */}
           <AMDMyrecord
@@ -134,6 +177,10 @@ function ArtMemoryDetail() {
           />
         </div>
       </div>
+      </div>
+      </div>
+      </div>
+      <MarginTopInput value={100} />
     </>
   );
 }

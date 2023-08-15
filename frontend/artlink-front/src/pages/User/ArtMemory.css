@@ -34,13 +34,14 @@
   display: flex;
   box-shadow: 8px 8px 15px rgba(37, 37, 37, 0.2),
     -8px -8px 15px rgba(255, 255, 255, 0.7);
-  transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
-  padding: 2%;
+  transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, padding 0.3s ease;
+  padding: 1.4%;
   margin-top: 20px;
 }
 .innerSlideBox_outter:hover{
   box-shadow: 4px 4px 5px rgba(37, 37, 37, 0.2),
   -4px -4px 5px rgba(255, 255, 255, 0.7);
+  padding: 2%;
 }
 .innerSlideBox {
   background-color: #e0e0e0;
@@ -140,8 +141,8 @@
     margin-bottom: unset;
   }
   .innerSlideBox_outter{
-    width: 65%;
-    height: 75%;
+    width: 60%;
+    height: 70%;
   }
   .slideContainer{
     margin-top: 0;

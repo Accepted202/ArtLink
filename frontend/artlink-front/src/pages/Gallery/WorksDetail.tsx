@@ -4,9 +4,12 @@ import defaultImg from "../../assets/EmptyGallery.png"
 import BackBtn from "../../commponents/Base/BackBtn.tsx";
 import { Drawing, OneWork, WorkUpdate } from "../../api/GalleryApi.tsx";
 import TextareaAutosize from "react-textarea-autosize";
+import TextBtn from "../../commponents/Base/TextBtn.tsx";
+import ModalUpdate2 from "../../commponents/Base/Form/ExhibitionModal/ModalUpdate2";
 
 function WorksDetail() {
   const [image, setImage] = useState<string>(""); // 이미지 관련
+  const [isModalActive, setisModalActive] = useState<boolean>(false); // 모달 활성 boolean
   const [workData, setWorkData] = useState<Drawing>({
     name: "test",
     id: 0,
@@ -101,13 +104,14 @@ function WorksDetail() {
     try {
       const response = await WorkUpdate(formDataRef.current);
       console.log("Work updated:", response);
-      // setisModalActive(true);
+      setisModalActive(true);
     } catch (error) {
       console.error("Error updating exhibition:", error);
     }
   };
   return (
     <>
+    <ModalUpdate2 sendActive={isModalActive}/>
       {/* 작품 정보 타이틀 */}
       <div className="worksBackBtn">
         <BackBtn />
@@ -140,10 +144,10 @@ function WorksDetail() {
         {/* 텍스트 */}
       </div>
       {/* 작품 정보 업데이트 버튼 */}
-      <div>
-        <button className="detail-updateBtn" onClick={handleWorkUpdate}>
-          UPDATE
-        </button>
+      <div style={{display:"flex", justifyContent:"center"}}>
+        <div onClick={handleWorkUpdate}>
+          <TextBtn inner={"Update"} wid={200} hei={50} />
+        </div>
       </div>
     </>
   );

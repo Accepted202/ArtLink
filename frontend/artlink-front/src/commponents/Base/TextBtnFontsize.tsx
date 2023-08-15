@@ -2,13 +2,15 @@ import Styles from "./Btn.module.css";
 
 interface TextBtnProps {
   inner: string;
-  wid: number;
-  hei: number;
+  wid: string|number;
+  hei: string|number;
+  fontSize : number;
 }
-const TextBtn: React.FC<TextBtnProps> = ({ inner, wid, hei }) => {
+const TextBtn: React.FC<TextBtnProps> = ({ inner, wid, hei, fontSize }) => {
   const buttonStyle = {
-    width: `${wid}px`,
-    height: `${hei}px`,
+    width: `${wid}`,
+    height: `${hei}`,
+    fontSize: `${fontSize}px`,
   };
   return (
     <>

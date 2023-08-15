@@ -129,4 +129,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SPRING_SERVER_PATH = 'http://springboot:8080'
+SPRING_SERVER_PATH = 'https://i9a202.p.ssafy.io/api'

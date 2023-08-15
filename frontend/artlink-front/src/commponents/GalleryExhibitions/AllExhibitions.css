@@ -1,48 +1,76 @@
-.ExhibitionBox {
-  /* border: 1px solid black; */
-  padding: 10px;
-  margin: 10px;
-  box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
-    -5px -5px 10px rgba(255, 255, 255, 0.7);
-}
-
 .ExhibitionLink {
   text-decoration: none;
   color: black;
-  width: 25vw;
+  width: 16vw;
+  box-shadow: 15px 15px 30px rgba(37, 37, 37, 0.2),
+    -15px -15px 30px rgba(255, 255, 255, 0.7);
+  padding: 3px;
+  margin: 10px;
+  margin-top: 6vh;
+  min-height: 300px;
+  transition: box-shadow 0.5s ease, padding 0.5s ease;
+}
+.ExhibitionBox {
+  /* padding: 10px; */
+  box-shadow: inset 10px 10px 8px rgba(37, 37, 37, 0.2),
+    inset -10px -10px 8px rgba(255, 255, 255, 0.7);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: box-shadow 0.5s ease, background-color 0.5s ease;
+}
+.ExhibitionLink:hover {
+  box-shadow: 4px 4px 8px rgba(37, 37, 37, 0.2),
+    -4px -4px 8px rgba(255, 255, 255, 0.7);
+  padding: 2px;
+}
+.ExhibitionBox:hover {
+  box-shadow: inset 2px 2px 4px rgba(37, 37, 37, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.7);
 }
 
+
 .ExhibitionBox img {
-  width: 80%;
-  height: 40vh;
+  width: 60%;
   object-fit: contain;
   display: block; /* Add this line */
   margin: auto;
-  background-color: rgb(236, 236, 236);
-  box-shadow: 2px 2px 5px rgb(80, 80, 80), -2px -2px 3px white;
-  padding: 5px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 1),
+  -2px -2px 6px rgba(255, 255, 255, 1);
+  transition: box-shadow 0.5s ease, width 0.5s ease;
 }
+.ExhibitionLink:hover img {
+  width: 58%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 1),
+  -2px -2px 2px rgba(255, 255, 255, 1);
+}
+
 .ExhibitionTitle {
   font-size: 13px;
-  text-shadow: 1px 1px 2px rgb(80, 80, 80), -1px -1px 2px white;
+  /* text-shadow: 1px 1px 2px rgb(80, 80, 80), -1px -1px 2px white; */
   text-transform: capitalize;
   font-weight: 500;
-  margin-top: 10px;
+  margin: 10px 10px 10px 10px;
+  color: rgb(83, 83, 83);
+  transition: color 0.5s ease;
+}
+
+.ExhibitionLink:hover .ExhibitionTitle{
+  color: rgb(0, 0, 0);
 }
 
 @media (max-width: 767px) {
   .ExhibitionLink {
-    width: 80vw;
+    width: 50vw;
   }
   .ExhibitionTitle {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   .ExhibitionLink {
-    width: 40vw;
+    width: 24vw;
   }
 }

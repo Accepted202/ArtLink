@@ -2,6 +2,8 @@
   display: flex;
   padding: 20px;
   flex-direction: column;
+  margin: auto;
+
 }
 .AMBRightBox {
   width: 100%;
@@ -9,7 +11,7 @@
 }
 .AMDTitleTxt {
   margin-top: 5%;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 600;
   border-bottom: 1px groove black;
   display: flex;
@@ -26,24 +28,24 @@
 }
 .AMDimage {
   width: 90%;
-  padding: 6%;
+  /* padding: 6%; */
   background-color: rgb(236, 236, 236);
-  box-shadow: 3px 3px 5px rgb(80, 80, 80), -2px -2px 3px white;
+  box-shadow: 3px 3px 3px rgb(43, 43, 43, 1), -2px -2px 3px white;
 }
 .AMDtxtBox {
   /* border: 1px solid rgb(104, 200, 125); */
-  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
-    0.5px 0.5px 2px rgba(77, 77, 77, 0.7) !important;
+  /* text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
+    0.5px 0.5px 2px rgba(77, 77, 77, 0.7) !important; */
   padding: 6%;
-  padding-right: 0%;
+  /* padding-right: 0%; */
   text-align: start;
-  font-size: 13px;
+  font-size: 12px;
 }
 .smallFontSize {
-  font-size: 13px;
+  font-size: 12px;
 }
 .largeFontSize {
-  font-size: 15px;
+  font-size: 12px;
 }
 .AMDbtnBox {
   /* border: 1px solid rgb(136, 104, 200); */
@@ -100,7 +102,7 @@
     font-size: 12px;
   }
   .AMDTitleTxt {
-    font-size: 20px !important;
+    font-size: 16px !important;
   }
   .smallFontSize {
     font-size: 12px;

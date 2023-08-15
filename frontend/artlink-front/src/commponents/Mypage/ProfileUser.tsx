@@ -5,6 +5,7 @@ import ProfileBox from "./ProfileBox";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 import Styles from "./Profile.module.css";
 import Styles2 from "../../pages/Common/Mypage.module.css";
+import TextBtn from './../Base/TextBtn';
 
 // 화면에 보일 라벨링 이름
 const labelMapping: Record<string, string> = {
@@ -97,9 +98,13 @@ function ProfileUser() {
       <ProfileUserApi onUserDataChange={handleUserInfoData} />
       {/* 데이터 변경요청 */}
       {loading ? <div style={{padding:"30px"}}></div> : (
-        <button className={Styles.changeBtn} onClick={clickChnageBtn}>
-          change
-        </button>
+        <>
+        <div style={{display:"flex", justifyContent:"center"}}>
+          <div onClick={clickChnageBtn} >
+            <TextBtn hei={45} wid={150} inner="Change" />
+          </div>
+        </div>
+        </>
       )}
     </>
   );
