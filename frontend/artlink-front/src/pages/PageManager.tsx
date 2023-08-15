@@ -132,13 +132,10 @@ function PageManager() {
               초기화-이건 버그임)
             </p>
             <p>user 매니저에서 이미지 안뜸</p>
-            <p>매니저 + 버튼 삭제</p>
           </div>
           <h3>{`<디자인수정>`}</h3>
           <div style={{ fontSize: "12px" }}>
-            <p>전시회 생성에서 이미지 비율</p>
-            <p>전시회 설명 필드 text area변경</p>
-            <p>작품 생성 디폴트 이미지 변경</p>
+            <p>키오스크 홈 app.height 값 변경</p>
           </div>
           <h3>{`<ETC>`}</h3>
           <div style={{ fontSize: "12px" }}>
