@@ -3,9 +3,9 @@ import BackBtn from "../../commponents/Base/BackBtn";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 import UDApi from "./UDApi";
 import { OneUserEach } from "../../api/ManagerApi";
-import ProfileBox from "../../commponents/Mypage/ProfileBox";
 import Styles from "../../commponents/Mypage/Profile.module.css";
 import Styles2 from "../../pages/Common/Mypage.module.css";
+import EmptyProfile from "../../assets/EmptyProfile2.svg";
 
 // 화면에 보일 라벨링 이름
 const labelMapping: Record<string, string> = {
@@ -16,7 +16,7 @@ const labelMapping: Record<string, string> = {
 };
 
 function UserDetail() {
-  const [isChange] = useState<boolean>(false); // 변경요청 boolean
+  const [image, setImage] = useState<string | null>(null);
   const [userData, setUserData] = useState<OneUserEach | null>(null);
   const [loading, setLoading] = useState<boolean>(true); // 유저정보 수신 boolean
 
@@ -24,6 +24,7 @@ function UserDetail() {
   const handleUserInfoData = (data: OneUserEach) => {
     setUserData(data);
     setLoading(false); // Data has been fetched, set loading to false
+    setImage(data.userImageUrl);
   };
 
   return (
@@ -44,28 +45,55 @@ function UserDetail() {
             {/* 왼쪽 박스 (프로필 이미지) */}
             <div className={Styles.infoOuterBoxLeft}>
               <div className={Styles.infoInnerBoxLeft}>
-                <ProfileBox isChanged={isChange} />
+                <div style={{ width: "200px" }}>
+                  {image ? (
+                    <img
+                      src={image}
+                      alt="Profile"
+                      style={{ width: "200px" }}
+                      className={Styles.profileImg}
+                    />
+                  ) : (
+                    <img
+                      src={EmptyProfile}
+                      style={{ width: "100px" }}
+                      alt="빈 프로필"
+                    />
+                  )}
+                </div>
               </div>
             </div>
             {/* 오른쪽 박스 (프로필 데이터) */}
             {userData && (
               <div className={Styles.infoOuterBoxRight}>
-                <div className={Styles.infoInnerBoxRight} style={{fontSize:"12px"}}>
-                  <p style={{ fontSize: "21px", fontWeight: "600", marginBottom:"20px" }}>
+                <div
+                  className={Styles.infoInnerBoxRight}
+                  style={{ fontSize: "12px" }}
+                >
+                  <p
+                    style={{
+                      fontSize: "21px",
+                      fontWeight: "600",
+                      marginBottom: "20px",
+                    }}
+                  >
                     유저 정보
                   </p>
-                  {Object.entries(userData).map(([key, value]) => (
-                    <p key={key}>
-                      {labelMapping[key]}:{" "}
-                      <input
-                        type="text"
-                        name={key}
-                        value={value as string}
-                        disabled={true}
-                        className={Styles.profileInput}
-                      />
-                    </p>
-                  ))}
+                  {Object.entries(userData).map(
+                    ([key, value]) =>
+                      key !== "userImageUrl" && (
+                        <p key={key}>
+                          {labelMapping[key]}:{" "}
+                          <input
+                            type="text"
+                            name={key}
+                            value={value as string}
+                            disabled={true}
+                            className={Styles.profileInput}
+                          />
+                        </p>
+                      )
+                  )}
                 </div>
               </div>
             )}
