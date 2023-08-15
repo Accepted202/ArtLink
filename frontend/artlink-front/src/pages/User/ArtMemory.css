@@ -13,8 +13,14 @@
   /* max-height: 100vh; */
   min-height: 400px !important;
 }
+.slideContainer{
+  width:80%;
+  margin:auto; 
+  margin-top:5vh;
+  /* box-shadow:-20vw 0px black, 20vw 0px black */
+}
 .minwid {
-  width: 95% !important;
+  width: 100% !important;
   margin: auto;
   margin-top: 7vh;
   margin-bottom: 10vh;
@@ -119,12 +125,6 @@
     width: 50vw !important;
     max-height: 100vh;
   }
-  .innerSlideBox_outter{
-    /* width: 60%; */
-  }
-  .innerSlideBox {
-
-  }
   .introBox {
     width: 50%;
     margin-top: 40px !important;
@@ -138,5 +138,12 @@
   .minwid {
     margin-top: unset;
     margin-bottom: unset;
+  }
+  .innerSlideBox_outter{
+    width: 65%;
+    height: 75%;
+  }
+  .slideContainer{
+    margin-top: 0;
   }
 }

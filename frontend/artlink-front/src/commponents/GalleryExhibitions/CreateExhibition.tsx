@@ -41,10 +41,10 @@ function CreateExhibition() {
   return (
     <>
       {/* 전시회 생성 */}
-      <div className={Styles.ExhibitionInfo}>
-        <div className={Styles.ExhibitionInner}>
+      <div className={Styles.ExhibitionInfooutter}>
+        <div className={Styles.ExhibitionInfo}>
           {/* 이미지 박스 */}
-          <div className={Styles.ExhibitionProfile}>
+          <div className={Styles.imagebox}>
             <ExhibitionProfile
               isChanged={isChange}
               exhibitionInfo={exhibitionInfo}
@@ -66,12 +66,11 @@ function CreateExhibition() {
             ))}
           </div>
         </div>
-        {/* 생성 전송 */}
-        <div
-          onClick={handleCreateExhibition}
-          style={{ display: "inline-block", textAlign: "center" }}
-        >
-          <TextBtn inner={"CREATE"} wid={200} hei={50} />
+      </div>
+      {/* 생성 전송 */}
+      <div style={{display:"flex", justifyContent:"center"}}>
+        <div onClick={handleCreateExhibition}>
+          <TextBtn inner={"Create"} wid={200} hei={50} />
         </div>
       </div>
     </>

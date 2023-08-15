@@ -4,6 +4,7 @@ import { UserInfo, UserInfoEdit } from "../../api/UserApi";
 import ProfileBox from "./ProfileBox";
 import Modal from "../../commponents/Base/Form/MypageEditModal/Modal";
 import Styles from "./Profile.module.css";
+import Styles2 from "../../pages/Common/Mypage.module.css";
 
 // 화면에 보일 라벨링 이름
 const labelMapping: Record<string, string> = {
@@ -52,35 +53,28 @@ function ProfileUser() {
   return (
     <>
       <Modal sendActive={isModalActive} />
+      <div className={Styles2.MypagecontainerUserOutter}>
+      <div className={Styles2.MypagecontainerUser}>
       {loading ? ( // Show loading message if data is being fetched
         <>
           <h3>Loading...</h3>
           <p>The server is under maintenance. Please try again later.</p>
         </>
       ) : (
+        
         <div className={Styles.MypageinnerBox}>
           {/* 왼쪽 박스 (프로필 이미지) */}
           <div className={Styles.infoOuterBoxLeft}>
-            <div className={Styles.infoInnerBoxLeft}>
               <ProfileBox isChanged={isChange} />
-            </div>
           </div>
           {/* 오른쪽 박스 (프로필 데이터) */}
           {userData && (
             <div className={Styles.infoOuterBoxRight}>
               <div className={Styles.infoInnerBoxRight}>
-                <p
-                  style={{
-                    fontSize: "21px",
-                    fontWeight: "600",
-                    marginBottom: "10px",
-                  }}
-                >
-                  회원 정보
-                </p>
-                {Object.keys(userData).map((key) => (
-                  <p key={key} style={{ fontSize: "11px" }}>
-                    {labelMapping[key]}:{" "}
+                {Object.keys(userData).map((key, index) => (
+                  <div key={key} className={Styles.eachField}>
+                  <div className={Styles.inputOrder} key={index}>
+                    {labelMapping[key]}
                     <input
                       type="text"
                       name={key}
@@ -89,7 +83,8 @@ function ProfileUser() {
                       disabled={key === "username" || key === "phoneNumber"} // 읽기 전용 설정
                       className={Styles.profileInput}
                     />
-                  </p>
+                  </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -97,9 +92,11 @@ function ProfileUser() {
         </div>
       )}
       {/* 데이터조회 및 변경 api : 리턴값없음 */}
+      </div>
+      </div>
       <ProfileUserApi onUserDataChange={handleUserInfoData} />
       {/* 데이터 변경요청 */}
-      {loading ? null : (
+      {loading ? <div style={{padding:"30px"}}></div> : (
         <button className={Styles.changeBtn} onClick={clickChnageBtn}>
           change
         </button>
