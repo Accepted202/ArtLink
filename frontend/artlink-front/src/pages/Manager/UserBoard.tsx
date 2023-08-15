@@ -38,6 +38,7 @@ function UserBoard() {
           dataKeys={keys}
           columnWidths={widths}
           userManager={true}
+          keyToExclude={["userImageUrl"]}
         />
       </div>
     </>

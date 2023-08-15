@@ -37,6 +37,7 @@ export interface OneUserEach {
   username: string;
   nickname: string;
   phoneNumber: number;
+  userImageUrl: string;
 }
 export const OneUserGet = async (): Promise<OneUserEach> => {
   try {
