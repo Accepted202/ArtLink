@@ -46,6 +46,6 @@ export const createUrl = (endpoint: string): string => {
       //   return `${process.env.VITE_APP_BACKEND_URL}${endpoint}`;
     } else {
     console.log("vite 환경변수 없음")
-    return `${"front_config_api"}${endpoint}`;
+    return `${"api"}${endpoint}`;
   }
 };
