@@ -81,14 +81,15 @@ public class GalleryController {
         String username = (String) request.getAttribute("username");
         Exhibition exhibition = exhibitionService.registerExhibition(requestDto, username);
 
-//        Map<String, Object> sendMsg = new HashMap<String, Object>();
-//        String path = "http://localhost:6000/exhibition/";
-//        sendMsg.put("id", exhibition.getId());
-//
-//        int statuscode = helper.postSendMsg(path, sendMsg);
-//        if(statuscode != 201){
-//            throw new DjangoFailedException("Django failed");
-//        }
+        Map<String, Object> sendMsg = new HashMap<String, Object>();
+        String path = "https://i9a202.p.ssafy.io/bridge/exhibition/";
+        sendMsg.put("id", exhibition.getId());
+
+
+        int statuscode = helper.postSendMsg(path, sendMsg);
+        if(statuscode != 201){
+            throw new DjangoFailedException("Django failed");
+        }
 
         ExhibitionDetailResponseDto responseDto = new ExhibitionDetailResponseDto(exhibition.getId(),
                 exhibition.getCreatedAt(), exhibition.getExhibitionName(),
@@ -188,7 +189,7 @@ public class GalleryController {
             );
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
-            String path = "http://localhost:6000/artwork/";
+            String path = "https://i9a202.p.ssafy.io/bridge/artwork/";
 
             sendMsg.put("exhibitionid", exhibition.getId());
             sendMsg.put("artworkid", artWork.getId());
@@ -251,7 +252,7 @@ public class GalleryController {
             );
             //Send the data to Django server.
             Map<String, Object> sendMsg = new HashMap<String, Object>();
-            String path = "http://localhost:6000/artwork/";
+            String path = "https://i9a202.p.ssafy.io/bridge/artwork/";
 
             sendMsg.put("exhibitionid", exhibition.getId());
             sendMsg.put("artworkid", artWork.getId());

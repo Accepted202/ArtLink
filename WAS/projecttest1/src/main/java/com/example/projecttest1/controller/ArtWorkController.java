@@ -46,8 +46,7 @@ public class ArtWorkController {
     public ResponseEntity<?> getNearByArtWork(@PathVariable Long drawingId) throws Exception{
         try {
             //장고 요청 서버
-            String djangoPath = "http://localhost:8000/artwork/getnearby/artwork/" + drawingId.toString() + "/";
-            //        String djangoPath = "http://localhost:8000/test/";
+            String djangoPath = "https://i9a202.p.ssafy.io/bridge/artwork/getnearby/artwork/" + drawingId.toString() + "/";
             System.out.println(djangoPath);
             Map<String, Object> msg = helper.getSendMsg(djangoPath);
             List<Long> artWorkIndexList = (List<Long>) msg.get("msg");

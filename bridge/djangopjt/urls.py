@@ -19,10 +19,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('/admin/', admin.site.urls),
-    path('/device/', include('device.urls')),
-    path('/exhibition/', include('exhibition.urls')),
-    path('/artwork/', include('artwork.urls')),
-    path('/test/', include('apitest.urls'))
+    path('admin/', admin.site.urls),
+    path('device/', include('device.urls')),
+    path('exhibition/', include('exhibition.urls')),
+    path('artwork/', include('artwork.urls')),
+    path('test/', include('apitest.urls'))
 
 ]

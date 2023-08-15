@@ -13,11 +13,13 @@ class ExhibitionView(View):
     @method_decorator(csrf_exempt)
     def post(self, request):
         data = json.loads(request.body)
+        print(data)
         id = data.get('id')
         try:
             create_by_Id(id)
             return HttpResponse(status=201, content = 'Exhibition created successfully')
-        except:
+        except Exception as e:
+            print(e)
             return HttpResponse(status=404, content='It is already created.')
 
     def get(self, request):
