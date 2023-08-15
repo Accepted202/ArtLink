@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 driver = None
 startStatus = True
-defaultUrl = "http://i9a202.p.ssafy.io:4000/kiosk/home"
+defaultUrl = "http://i9a202.p.ssafy.io/kiosk/home"
 BUZZER_PIN = 36
 
 def setup():
