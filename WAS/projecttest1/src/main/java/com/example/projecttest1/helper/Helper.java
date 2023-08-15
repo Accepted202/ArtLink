@@ -29,6 +29,7 @@ public class Helper {
 
         conn.setRequestMethod("POST");
         String postData = getJsonStringFromMap(msg);
+        System.out.println(postData);
         byte[] postDataBytes = postData.getBytes(StandardCharsets.UTF_8);
 
 
@@ -43,7 +44,7 @@ public class Helper {
 
         conn.connect();
         int responseCode = conn.getResponseCode();
-
+        System.out.println(responseCode);
         conn.disconnect();
         return responseCode;
     }

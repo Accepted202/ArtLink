@@ -22,6 +22,7 @@ class ArtworkView(View):
     def post(self, request):
         # 미술품의 좌표, 번호, 전시회 id만 받아 DB 추가
         data = json.loads(request.body)
+        print(data)
         try:
             #미술품 저장.
             Artwork.objects.create(artworkid = data['artworkid'],
@@ -38,7 +39,6 @@ class ArtworkView(View):
                 return JsonResponse({'msg':'ok'}, status = 201)
         except Exception as e:
             print(e)
-            Artwork.objects.all().delete()
             return JsonResponse({'msg': 'fail'}, status = 404)
 
     def get(self, request):
