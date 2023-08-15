@@ -45,7 +45,8 @@ function Homepage() {
 
   return (
     <>
-      <div style={{ paddingTop: "10vh" }}></div>
+      {/* <div style={{ paddingTop: "10vh" }}></div> */}
+      <div style={{ marginTop: "100px" }}></div>
       <div className="HomeInnerFrame">{render_component}</div>
     </>
   );

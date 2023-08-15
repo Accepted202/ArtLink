@@ -51,81 +51,83 @@ function LoginForm() {
 
   return (
     <>
-      <p className="loginTitle">{loginTitle}</p>
-      <div className="box">
-        <label>아이디</label>
-        <br />
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Enter ID"
-          className="input-box"
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        />
-        <br />
-        <br />
-        <label>비밀번호</label>
-        <br />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Enter Password"
-          className="input-box"
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        />
-        <br />
-        <div className="forget">
-          <label className="checkbox-label">
-            <input type="checkbox" />
-            <span className="checkbox-custom "></span>
-            <span className="label-text">Remember me</span>
-          </label>
-          <span className="fg">
-            <a href="#"> Forget password?</a>
-          </span>
-        </div>
-        <div className="errorMsg">{}</div>
-        <div className="btnBox">
-          {!isLoginAdmin ? (
-            <>
-              <Link to={signUpLink} className="btn smallbutton">
-                <p>회원가입</p>
-              </Link>
-              <button
-                type="submit"
-                className="btn smallbutton"
-                onClick={handlereqLogIn}
-              >
+      <div className="formContainer">
+        <p className="loginTitle">{loginTitle}</p>
+        <div className="box">
+          <label>아이디</label>
+          <br />
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Enter ID"
+            className="input-box"
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
+          <br />
+          <br />
+          <label>비밀번호</label>
+          <br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter Password"
+            className="input-box"
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
+          <br />
+          <div className="forget">
+            <label className="checkbox-label">
+              <input type="checkbox" />
+              <span className="checkbox-custom "></span>
+              <span className="label-text">Remember me</span>
+            </label>
+            <span className="fg">
+              <a href="#"> Forget password?</a>
+            </span>
+          </div>
+          <div className="errorMsg">{}</div>
+          <div className="btnBox">
+            {!isLoginAdmin ? (
+              <>
+                <Link to={signUpLink} className="btn smallbutton">
+                  <p>회원가입</p>
+                </Link>
+                <button
+                  type="submit"
+                  className="btn smallbutton"
+                  onClick={handlereqLogIn}
+                >
+                  <p>로그인</p>
+                </button>
+              </>
+            ) : (
+              <button type="submit" className="btn" onClick={handlereqLogIn}>
                 <p>로그인</p>
               </button>
-            </>
-          ) : (
-            <button type="submit" className="btn" onClick={handlereqLogIn}>
-              <p>로그인</p>
-            </button>
-          )}
+            )}
+          </div>
         </div>
+        {!isLoginAdmin && (
+          <Link
+            to={anotherLoginLink}
+            style={{
+              margin: "0px",
+              marginBottom: "100px",
+              textDecorationLine: "underline",
+              fontSize: "13px",
+            }}
+            className="anotherLogin"
+          >
+            <p>
+              {">"} {anotherLogintxt}
+            </p>
+          </Link>
+        )}
       </div>
-      {!isLoginAdmin && (
-        <Link
-          to={anotherLoginLink}
-          style={{
-            margin: "0px",
-            marginBottom: "100px",
-            textDecorationLine: "underline",
-            fontSize:"13px"
-          }}
-          className="anotherLogin"
-        >
-          <p>
-            {">"} {anotherLogintxt}
-          </p>
-        </Link>
-      )}
     </>
   );
 }
