@@ -19,9 +19,11 @@ public class Exhibition {
     private Integer id;
 
     @Setter
+    @Column(length = 100)
     private String exhibitionName;
 
     @Setter
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String exhibitionExplanation;
 
     @Setter
