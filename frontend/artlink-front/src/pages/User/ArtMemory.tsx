@@ -7,24 +7,24 @@ import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 import AMIntro from "../../commponents/ViewExhibition/AMIntro";
 import { UserRecords, UserRecordsRes } from "../../api/UserApi";
 
-const sampleData = [
-  {
-    id: 1,
-    userKey: "a23dsd",
-    exhibitionName: "거장의 시선, 사람을 향하다",
-    posterUrl: "src/assets/exhibition/exhibition1.png",
-    galleryName: "대영미술관",
-    visitDate: "2023-08-09",
-  },
-  {
-    id: 2,
-    userKey: "b324sd",
-    exhibitionName: "함스부르크 600년, 매혹의 걸작들",
-    posterUrl: "src/assets/exhibition/exhibition2.png",
-    galleryName: "루브르박물관",
-    visitDate: "2023-08-10",
-  },
-];
+// const sampleData = [
+//   {
+//     id: 1,
+//     userKey: "a23dsd",
+//     exhibitionName: "거장의 시선, 사람을 향하다",
+//     posterUrl: "src/assets/exhibition/exhibition1.png",
+//     galleryName: "대영미술관",
+//     visitDate: "2023-08-09",
+//   },
+//   {
+//     id: 2,
+//     userKey: "b324sd",
+//     exhibitionName: "함스부르크 600년, 매혹의 걸작들",
+//     posterUrl: "src/assets/exhibition/exhibition2.png",
+//     galleryName: "루브르박물관",
+//     visitDate: "2023-08-10",
+//   },
+// ];
 const defaultRecord = {
   id: 1,
   userKey: "nothing",

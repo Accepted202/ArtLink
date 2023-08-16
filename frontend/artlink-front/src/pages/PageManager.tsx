@@ -93,7 +93,7 @@ function PageManager() {
         <BackBtn />
         <div className="workTitle">{"PageManager"}</div>
       </div>
-      <p>기능별 페이지에 클릭으로 접근하세요</p>
+      <p>사용자별 권한 얻기</p>
       {/* 로그인 구현 */}
       <div>
         <button className="PMBtn">Login to User1</button>
@@ -134,7 +134,7 @@ function PageManager() {
           </div>
           <h3>{`<디자인수정>`}</h3>
           <div style={{ fontSize: "12px" }}>
-            <p>매니저 유저 보드 디자인</p>
+            <p>보드 디자인 (갤러리 작품,)</p>
             <p>매니저 갤러리 보드 디자인</p>
             <p>키오스크 전반 디자인</p>
           </div>

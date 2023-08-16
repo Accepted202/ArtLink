@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import {
   setAuthorizationHeader,
-  getPk,
   getPk2,
   getPk3,
 } from "../commponents/Base/BaseFun";
