@@ -65,7 +65,12 @@ function HomeBase({
                 {firstQuote}
               </p>
               {!accepted && (
-                <p style={{ color: "red" }} className={styles.innerIcon}>
+                <p
+                  style={{ color: "red" }}
+                  className={`${styles.innerIcon} ${
+                    showAnimation ? styles.animateText : ""
+                  }`}
+                >
                   {"Authorization required!"}
                 </p>
               )}

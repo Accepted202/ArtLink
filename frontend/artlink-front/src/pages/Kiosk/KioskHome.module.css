@@ -1,11 +1,10 @@
 .notice-container {
   display: flex;
   align-items: center;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   justify-content: center;
-
-  margin-top: 40vh;
 }
 
 .notice-box {
@@ -28,4 +27,5 @@
 
 .inputWrapper {
   /* display: none; */
+  width: 100%;
 }
