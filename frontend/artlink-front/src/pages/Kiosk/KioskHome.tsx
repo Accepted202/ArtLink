@@ -30,23 +30,23 @@ function KioskHome() {
         <div className={styles["notice-box"]}>
           <div className={styles["notice-text"]}>{"Please Tag"}</div>
         </div>
-      </div>
-      <div className={styles.inputWrapper}>
-        <input
-          type="text"
-          id="tag"
-          onChange={(e) => {
-            setDeviceId(Number(e.target.value));
-          }}
-        />
-        <button
-          type="submit"
-          id="submit"
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          onClick={getUserKey}
-        >
-          제출
-        </button>
+        <div className={styles.inputWrapper}>
+          <input
+            type="text"
+            id="tag"
+            onChange={(e) => {
+              setDeviceId(Number(e.target.value));
+            }}
+          />
+          <button
+            type="submit"
+            id="submit"
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            onClick={getUserKey}
+          >
+            제출
+          </button>
+        </div>
       </div>
     </>
   );
