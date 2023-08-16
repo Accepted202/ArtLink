@@ -139,6 +139,7 @@ export interface UserOneRecordRes {
   exhibitionID: number;
   exhibitionName: string;
   exhibitionDescription: string;
+  exhibitionUrl: string;
   galleryID: number;
   galleryName: string;
   visitDate: string;

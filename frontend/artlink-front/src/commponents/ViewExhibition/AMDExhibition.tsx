@@ -3,6 +3,7 @@ import Styles from "./AMD.module.css";
 import poster from "../../assets/전시회.jpg";
 import { UserOneRecordRes } from "../../api/UserApi";
 import TextBtnFontsize from "../Base/TextBtnFontsize";
+import { Link } from "react-router-dom";
 
 interface AMDExhibitionProps {
   onButtonClick: () => void;
@@ -62,14 +63,24 @@ function AMDExhibition({
             </div>
           </div>
           <div className={`${Styles.AMDbtnBox}`}>
-            <div style={{ width: "35%" }}>
-              <TextBtnFontsize
-                hei={"40px"}
-                wid={"100%"}
-                fontSize={12}
-                inner="About Page"
-              />
-            </div>
+            <Link
+              style={{ width: "35%" }}
+              to={
+                galleryData.exhibitionUrl
+                  ? galleryData.exhibitionUrl
+                  : "/nothing"
+              }
+              target="_blank"
+            >
+              <div>
+                <TextBtnFontsize
+                  hei={"40px"}
+                  wid={"100%"}
+                  fontSize={12}
+                  inner="About Page"
+                />
+              </div>
+            </Link>
             <div style={{ width: "50%" }} onClick={handleButtonClick}>
               <TextBtnFontsize
                 hei={"40px"}

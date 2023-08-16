@@ -142,7 +142,7 @@ function WorksDetail() {
               파일 업로드
             </label>
           </div>
-          <div className="txt-box">{renderFields()}</div>
+          <div className="txt-box2">{renderFields()}</div>
         </div>
         {/* 이미지 */}
         {/* 텍스트 */}

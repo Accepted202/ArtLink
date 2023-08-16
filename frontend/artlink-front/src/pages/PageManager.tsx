@@ -131,6 +131,8 @@ function PageManager() {
           <div style={{ fontSize: "12px" }}>
             <p>마이페이지 전화번호 폼</p>
             <p>승인되지않은 갤러리 처리</p>
+            <p>갤러리 생성 빈 상태로 가능한것 고치기</p>
+            <p>배포간 디폴트 이미지 누락되는것 확인</p>
           </div>
           <h3>{`<디자인수정>`}</h3>
           <div style={{ fontSize: "12px" }}>

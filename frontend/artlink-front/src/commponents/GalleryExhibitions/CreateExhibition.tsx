@@ -27,9 +27,9 @@ function CreateExhibition() {
   // 생성 버튼 클릭시
   const handleCreateExhibition = () => {
     if (exhibitionInfo.exhibitionName == "") {
-      window.alert("Please fill exhibitionName");
+      window.alert("전시명을 작성해주세요");
     } else if (exhibitionInfo.exhibitionExplanation == "") {
-      window.alert("Please fill exhibitionExplanation");
+      window.alert("전시회 설명을 작성해주세요");
     } else {
       setisChange(true);
     }
@@ -68,7 +68,7 @@ function CreateExhibition() {
         </div>
       </div>
       {/* 생성 전송 */}
-      <div style={{display:"flex", justifyContent:"center"}}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div onClick={handleCreateExhibition}>
           <TextBtn inner={"Create"} wid={200} hei={50} />
         </div>

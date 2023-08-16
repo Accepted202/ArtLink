@@ -18,6 +18,10 @@
 
 .leftWrapper {
   display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 40%;
+  word-break: keep-all;
 }
 
 .rightWrapper {
@@ -95,6 +99,9 @@
   }
   .leftWrapper {
     justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
   }
   .rightWrapper {
     justify-content: center;

@@ -1,4 +1,4 @@
-.detail-container-outter{
+.detail-container-outter {
   display: flex;
   min-width: 600px;
   max-width: 800px;
@@ -10,7 +10,7 @@
   padding: 4px;
   transition: box-shadow 0.3s ease;
 }
-.detail-container-outter:hover{
+.detail-container-outter:hover {
   box-shadow: 30px 30px 40px rgba(37, 37, 37, 0.2),
     -30px -30px 40px rgba(255, 255, 255, 0.7);
 }
@@ -59,7 +59,7 @@
   align-items: center;
   margin-top: 30px;
 }
-.workTitle{
+.workTitle {
   font-size: 21px;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -67,6 +67,12 @@
 
 .image-box {
   width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.image-box2 {
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -105,10 +111,17 @@
   margin-top: auto;
   font-size: 12px;
 }
+.txt-box2 {
+  width: 40%;
+  text-align: left;
+  margin-top: auto;
+  font-size: 12px;
+}
 .input-field {
   margin: auto;
   margin-bottom: 20px;
   display: flex;
+  flex-direction: column;
   align-items: baseline;
 }
 .input-field label {
@@ -134,11 +147,12 @@
   padding-left: 10px;
   width: 80%;
 }
-
-
+.input-field label {
+  margin-bottom: 10px;
+}
 
 @media (max-width: 767px) {
-  .detail-container-outter{
+  .detail-container-outter {
     width: 70%;
     min-width: unset;
   }
@@ -153,7 +167,8 @@
     display: unset;
     flex-direction: unset;
   }
-  .image-box {
+  .image-box,
+  .image-box2 {
     margin: auto;
     width: 60%;
     align-content: center;
@@ -162,8 +177,10 @@
   .work-image {
     width: 60vw !important;
   }
-
-  .txt-box {
+  .detail-container {
+  }
+  .txt-box,
+  .txt-box2 {
     text-align: center;
     margin: auto;
     margin-top: 50px;
@@ -172,7 +189,7 @@
   .input-field {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 60%;
   }
   .input-field input {
     padding: 10px;
@@ -181,12 +198,12 @@
     text-align: center;
   }
   .textArea {
-    margin: auto;
+    /* margin: auto; */
     margin-top: 10px;
-    width: 90%;
+    width: 95%;
   }
   .textArea2 {
-    margin: auto;
-    width: 90%;
+    /* margin: auto; */
+    width: 95%;
   }
 }
