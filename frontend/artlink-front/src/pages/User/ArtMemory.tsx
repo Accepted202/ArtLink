@@ -6,6 +6,7 @@ import "keen-slider/keen-slider.min.css";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 import AMIntro from "../../commponents/ViewExhibition/AMIntro";
 import { UserRecords, UserRecordsRes } from "../../api/UserApi";
+import AMIntroOne from "../../commponents/ViewExhibition/AMIntroOne";
 
 // const sampleData = [
 //   {
@@ -99,21 +100,78 @@ function ArtMemory() {
       {/* 모바일용 인트로 박스 */}
       {isMobile && (
         <div className="introBox" style={{ margin: "auto" }}>
-          <AMIntro />
+          <AMIntroOne />
         </div>
       )}
       {/* 데이터로딩 실패했을시 */}
-      {userRecords[0].userKey == "nothing" && (
+      {userRecords[0].userKey == "" && (
         <>
-          <h1></h1>
-          <h1></h1>
+          <div style={{display:"flex", justifyContent:"center", marginTop:"20px",}}>
+          {!isMobile && (
+                    <div className="" style={{width:"25%", textAlign:"left", marginTop:"auto", marginBottom:"auto"}}>
+                      <AMIntroOne />
+                    </div>
+                )}
+            <Link
+                      to={{
+                        pathname: `/art-memory/${userRecords[0].id}`,
+                        search: `?userKey=${userRecords[0].userKey}&posterUrl=${userRecords[0].posterUrl}`,
+                      }}
+                      className="oneview"
+                    >
+                      <div className="keen-slider__slide number-slide onemobile">
+                        <div className="innerSlideBox_outter" style={{margin:"auto"}}>
+                          <div className="innerSlideBox">
+                            <div className="innerSlideBoxTxt">
+                              <p>
+                              서비스를 이용하고
+                              </p>
+                              <p>
+                              나만의 기록을 남겨보세요
+                              </p>
+                              <span>
+                                샘플 데이터 보기 ⇀
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+        </div>
         </>
       )}
       {/* 슬라이드 박스 1개 일시 */}
-      {userRecords[0].userKey != "nothing" && userRecords.length == 1 && (
+      {userRecords[0].userKey != "" && userRecords.length == 1 && (
         <>
-          <h1></h1>
-          <h1></h1>
+        <div style={{display:"flex", justifyContent:"center", marginTop:"20px",}}>
+          {!isMobile && (
+                    <div className="" style={{width:"25%", textAlign:"left", marginTop:"auto", marginBottom:"auto"}}>
+                      <AMIntroOne />
+                    </div>
+                )}
+            <Link
+                      to={{
+                        pathname: `/art-memory/${userRecords[0].id}`,
+                        search: `?userKey=${userRecords[0].userKey}&posterUrl=${userRecords[0].posterUrl}`,
+                      }}
+                      className="oneview"
+                    >
+                      <div className="keen-slider__slide number-slide onemobile">
+                        <div className="innerSlideBox_outter" style={{margin:"auto"}}>
+                          <div className="innerSlideBox">
+                            <img src={userRecords[0].posterUrl} alt="" />
+                          </div>
+                        </div>
+                        <div className="innerTxt1 onemobile">
+                          {`< ${userRecords[0].exhibitionName} >`}{" "}
+                        </div>
+                        <div className="innerTxt2">
+                          <div>{userRecords[0].galleryName} </div>
+                          <div>{userRecords[0].visitDate}</div>
+                        </div>
+                      </div>
+                    </Link>
+        </div>
         </>
       )}
       {/* 슬라이드 박스 2개이상일시 */}

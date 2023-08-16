@@ -57,6 +57,17 @@
     inset -8px -8px 8px rgba(255, 255, 255, 0.7);
   transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
+.innerSlideBoxTxt{
+  font-size: 14px;
+  font-family: inherit;
+  color: rgb(71, 71, 71);
+}
+.innerSlideBoxTxt span{
+  font-size: 11px;
+  font-family: inherit;
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+}
 .innerSlideBox img {
   width: 80%;
   height: 87%;
@@ -93,6 +104,10 @@
 }
 
 .linkbox {
+  text-decoration: none;
+}
+.oneview{
+  width: 30%;
   text-decoration: none;
 }
 
@@ -156,5 +171,15 @@
   }
   .slideContainer {
     margin-top: 0;
+  }
+  .onemobile{
+    display: inline-block !important;
+    justify-content: center;
+    margin: auto;
+    /* max-height: 700px; */
+    width: 80% !important;
+  }
+  .oneview{
+    width: 100% !important;
   }
 }
