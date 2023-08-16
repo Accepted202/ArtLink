@@ -17,7 +17,7 @@ const uint8_t PIN_IRQ = 34; // irq pin
 const uint8_t PIN_SS = 4;   // spi select pin
 
 // Btn pin config
-const uint8_t REG_BUTTON = 21;
+const uint8_t REG_BUTTON = 35;
 const uint8_t DEL_BUTTON = 22;
 
 // LED pin config
@@ -30,19 +30,34 @@ const boolean invert = true;
 // TAG antenna delay defaults to 16384
 // leftmost two bytes below will become the "short address"
 char tag_addr[] = "7D:00:22:EA:82:60:3B:9C";
-int tag_short = 0x7D; 
+//int tag_short = 0x7D;
+int tag_short = 5719;
 
+// for Testing - Suhyun's Hotspot+
+// const char* ssid = "AndroidHotspot9170";
+// const char* password = "23465230"
+
+// for Testing - Geonhee's Hotspot
+// const char* ssid = "AndroidHotspot4415";
+// const char* password = "53214415";
+
+// for testing - 
 const char* ssid = "A202";
 const char* password = "ssafy13579";
-const char* mqtt_server = "192.168.137.1";
+
+
+const char* mqtt_server = "i9a202.p.ssafy.io";
+// const char* mqtt_server = "172.26.9.218";
+const int mqtt_port = 8884;
 
 //WiFiClient client;
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 //declare topic for publish message
-const char* pub_topic = "test";
-std::string sub_topic = "test/" + std::to_string(tag_short);
+const char* pub_topic = "TEST";
+// const char* pub_topic = "DtoS";
+String sub_topic = "StoD/" + String(tag_short);
 
 struct MyLink *uwb_data;
 String all_json = "";
@@ -128,7 +143,7 @@ void setup()
   delay(1000);
   setup_wifi();
 
-  client.setServer(mqtt_server, 1883);
+  client.setServer(mqtt_server, mqtt_port);
   client.setCallback(callback);
 
 
@@ -180,7 +195,8 @@ void loop()
     delay(50);
     regBtnState = false; 
   } else if ((delBtnState == true) && ((millis() - runtime) > 1000)) {
-    std::string del_data = "{\"T\":\"" + std::to_string(tag_short) + "\",\"E\":\"D\"}";
+    // std::string del_data = "{\"T\":\"" + std::to_string(tag_short) + "\",\"E\":\"D\"}";
+    String del_data = "{\"T\":\"" + String(tag_short) + "\",\"E\":\"D\"}";
     client.publish(pub_topic, del_data.c_str());
     Serial.println(del_data.c_str());
     runtime = millis();
