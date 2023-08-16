@@ -4,14 +4,13 @@ import styles from "./DeleteModal.module.css";
 
 interface Props {
   isOpen: boolean;
-  onClose: () => void;
-  onDelete: () => void; // 값이 변경될 때 호출될 콜백 함수
+  onConfirm: () => void;
+  onCancel: () => void; // 값이 변경될 때 호출될 콜백 함수
 }
 
-function DeleteModal({ isOpen, onClose, onDelete }: Props) {
+function DeleteModal({ isOpen, onConfirm, onCancel }: Props) {
   const handleConfirm = () => {
-    onDelete();
-    onClose();
+    onConfirm();
   };
 
   if (!isOpen) {
@@ -26,7 +25,7 @@ function DeleteModal({ isOpen, onClose, onDelete }: Props) {
           <button className={styles["confirm-button"]} onClick={handleConfirm}>
             확인
           </button>
-          <button onClick={onClose}>취소</button>
+          <button onClick={onCancel}>취소</button>
         </div>
       </div>
     </div>
