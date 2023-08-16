@@ -6,7 +6,7 @@ import {
   ExhibitionCreate,
 } from "../../api/GalleryApi";
 import Modal from "../Base/Form/ExhibitionModal/Modal";
-import Styles from "../GalleryExhibitions/UpdateExhibition.module.css"
+import Styles from "../GalleryExhibitions/UpdateExhibition.module.css";
 
 // 프로필 박스의 부모노드에서 변경요청 변수
 interface PBprops {
@@ -36,6 +36,7 @@ const ProfileBox: React.FC<PBprops> = ({
     if (file) {
       reader.readAsDataURL(file);
       // 폼데이터에 파일 저장
+      formDataRef.current.delete("posterFile");
       formDataRef.current.append("posterFile", file);
       formDataRef.current.append("posterName", "poster");
     }
@@ -97,7 +98,12 @@ const ProfileBox: React.FC<PBprops> = ({
         ) : (
           <img
             src={EmptyProfile}
-            style={{ width: "100%", maxWidth: "200px", boxShadow: "none", border: "none" }}
+            style={{
+              width: "100%",
+              maxWidth: "200px",
+              boxShadow: "none",
+              border: "none",
+            }}
             alt="빈 프로필"
           />
         )}

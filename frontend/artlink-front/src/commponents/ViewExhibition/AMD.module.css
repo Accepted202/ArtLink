@@ -3,7 +3,6 @@
   padding: 20px;
   flex-direction: column;
   margin: auto;
-
 }
 .AMBRightBox {
   width: 100%;
@@ -40,6 +39,7 @@
   /* padding-right: 0%; */
   text-align: start;
   font-size: 12px;
+  word-wrap: break-word;
 }
 .smallFontSize {
   font-size: 12px;
@@ -85,6 +85,9 @@
 .AMDFrameOn {
   padding: 20px;
 }
+.descript {
+  word-break: break-all;
+}
 
 @media (max-width: 767px) {
   .AMDFrame {
@@ -106,5 +109,9 @@
   }
   .smallFontSize {
     font-size: 12px;
+  }
+  .descript {
+    width: 40vw;
+    margin: auto;
   }
 }

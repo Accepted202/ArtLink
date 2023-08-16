@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, useRef, useEffect } from "react";
 import "./Detail.css";
-import defaultImg from "../../assets/EmptyGallery.png"
+import defaultImg from "../../assets/EmptyGallery.png";
 import BackBtn from "../../commponents/Base/BackBtn.tsx";
 import { Drawing, OneWork, WorkUpdate } from "../../api/GalleryApi.tsx";
 import TextareaAutosize from "react-textarea-autosize";
@@ -54,6 +54,7 @@ function WorksDetail() {
     if (file) {
       reader.readAsDataURL(file);
       // 폼데이터에 파일 저장
+      formDataRef.current.delete("imageFile");
       formDataRef.current.append("imageFile", file);
     }
   };
@@ -107,11 +108,13 @@ function WorksDetail() {
       setisModalActive(true);
     } catch (error) {
       console.error("Error updating exhibition:", error);
+      window.alert("사용할 수 없는 입력값입니다. 다시 입력해주세요");
+      window.location.reload();
     }
   };
   return (
     <>
-    <ModalUpdate2 sendActive={isModalActive}/>
+      <ModalUpdate2 sendActive={isModalActive} />
       {/* 작품 정보 타이틀 */}
       <div className="worksBackBtn">
         <BackBtn />
@@ -120,31 +123,32 @@ function WorksDetail() {
       {/* 작품 정보 박스 */}
       <div className="detail-container-outter">
         <div className="detail-container">
-          
-        <div className="image-box">
-          <div >
+          <div className="image-box">
+            <div>
               {image ? (
                 <img src={image} alt="Profile" className="work-image2" />
               ) : (
-                <img src={defaultImg} alt="빈 프로필"/>
+                <img src={defaultImg} alt="빈 프로필" />
               )}
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              id="file"
+              onChange={handleImageChange}
+              style={{ display: "none" }}
+            />
+            <label htmlFor="file" style={{ fontSize: "12px" }}>
+              파일 업로드
+            </label>
           </div>
-          <input
-            type="file"
-            accept="image/*"
-            id="file"
-            onChange={handleImageChange}
-            style={{ display: "none"}}
-          />
-          <label htmlFor="file" style={{fontSize:"12px" }}>파일 업로드</label>
-        </div>
-        <div className="txt-box">{renderFields()}</div>
+          <div className="txt-box">{renderFields()}</div>
         </div>
         {/* 이미지 */}
         {/* 텍스트 */}
       </div>
       {/* 작품 정보 업데이트 버튼 */}
-      <div style={{display:"flex", justifyContent:"center"}}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div onClick={handleWorkUpdate}>
           <TextBtn inner={"Update"} wid={200} hei={50} />
         </div>

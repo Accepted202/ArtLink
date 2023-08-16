@@ -1,6 +1,7 @@
 // import React from "react";
 import { Link } from "react-router-dom";
 import "./PM.css";
+import BackBtn from "../commponents/Base/BackBtn";
 
 function PageManager() {
   const PM: Record<string, string> = {
@@ -88,7 +89,10 @@ function PageManager() {
   const needworkPages = ["Password", "PasswordGallery", "AboutUs", "Contact"];
   return (
     <>
-      <h1>PageManager</h1>
+      <div className="worksBackBtn">
+        <BackBtn />
+        <div className="workTitle">{"PageManager"}</div>
+      </div>
       <p>기능별 페이지에 클릭으로 접근하세요</p>
       {/* 로그인 구현 */}
       <div>
@@ -125,23 +129,18 @@ function PageManager() {
         <div className="workOther">
           <h3>{`<기능수정>`}</h3>
           <div style={{ fontSize: "12px" }}>
-            <p>
-              작품생성에서 이미지 없을시 경고문 띄우기 (한번 없을시 state
-              초기화-이건 버그임)
-            </p>
-            <p>user 매니저에서 이미지 안뜸</p>
-            <p>이미지 두번이상 고르면 처음 이미지로 로드됌</p>
+            <p>마이페이지 전화번호 폼</p>
+            <p>승인되지않은 갤러리 처리</p>
           </div>
           <h3>{`<디자인수정>`}</h3>
           <div style={{ fontSize: "12px" }}>
-            <p>키오스크 홈 app.height 값 변경</p>
-            <p>갤러리 전시회 보드 디자인 작업</p>
-            <p>유저 기록 디테일 디자인 작업</p>
+            <p>매니저 유저 보드 디자인</p>
+            <p>매니저 갤러리 보드 디자인</p>
+            <p>키오스크 전반 디자인</p>
           </div>
           <h3>{`<ETC>`}</h3>
           <div style={{ fontSize: "12px" }}>
             <p>API 에러발생 처리 전부</p>
-            <p>Search 기능 구현 여부(해결)</p>
           </div>
         </div>
       </div>

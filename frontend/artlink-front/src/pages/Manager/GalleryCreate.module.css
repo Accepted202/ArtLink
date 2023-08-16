@@ -1,114 +1,31 @@
-.detail-container {
-  display: flex;
-  justify-content: space-around;
-  width: 80vw !important;
-  margin-top: 10px !important;
-  margin: auto;
-  box-shadow: 5px 5px 10px rgba(37, 37, 37, 0.2),
-    -5px -5px 10px rgba(255, 255, 255, 0.7);
-  padding: 25px;
-  padding-top: 70px;
-  padding-bottom: 70px;
-  transition: box-shadow 0.3s ease;
-}
-.detail-updateBtn {
-  border: none;
-  background-color: transparent;
-  box-shadow: 2px 2px 3px rgba(37, 37, 37, 0.2),
-    -3px -3px 3px rgba(255, 255, 255, 0.7);
-  width: 200px;
-  height: 50px;
-  border-radius: 25px;
-  margin-bottom: 10px;
-  margin-top: 30px;
-  color: rgb(138, 138, 138);
-  font-size: 14px;
-  transition: color 0.5s ease, box-shadow 0.5s ease;
-}
-.detail-updateBtn:hover {
-  color: rgb(58, 58, 58);
-  box-shadow: 2px 2px 1px rgba(37, 37, 37, 0.2),
-    -1px -1px 2px rgba(255, 255, 255, 0.7);
-}
-.detail-updateBtn:active {
-  box-shadow: inset 2px 2px 1px rgba(37, 37, 37, 0.2),
-    inset -5px -5px 3px rgba(255, 254, 254, 0.2),
-    2px 2px 1px rgba(163, 162, 162, 0.2);
-}
-
-.worksBackBtn {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  margin-left: 10%;
-  margin-top: 30px;
-}
-
-.image-box {
-  display: flex;
-  flex-direction: column;
-}
-.imageInner-box {
-  margin: 20px;
-}
-.work-image {
-  width: 30vw;
-  background-color: rgb(236, 236, 236);
-  box-shadow: 3px 3px 5px rgb(80, 80, 80), -2px -2px 3px white;
-  padding: 10px;
-}
 .txt-box {
-  width: 50%;
+  width: 100%;
   text-align: left;
-  margin-top: auto; /* 위쪽 여백을 자동으로 조절하여 아래로 쏠립니다. */
 }
 .input-field {
   margin: auto;
   margin-bottom: 20px;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  justify-content: space-around;
 }
 .input-field input {
   border: none;
   border-radius: 20px;
   padding: 5px;
   padding-left: 10px;
-  width: 80%;
+  width: 70%;
 }
 
-@media (max-width: 1024px) {
-  .detail-container {
-    flex-direction: column;
-    margin-top: 50px !important;
-  }
-  .detail-updateBtn {
-    margin-bottom: 5%;
-  }
-  .worksBackBtn {
-    display: unset;
-    flex-direction: unset;
-    align-items: unset;
-    margin-left: unset;
-  }
-  .image-box {
-    margin: auto;
-  }
-  .work-image {
-    width: 60vw !important;
-  }
-
+@media (max-width: 767px) {
   .txt-box {
     text-align: center;
-    margin: auto;
-    margin-top: 50px;
+    margin-top: 30px;
+    padding-bottom: 30px;
   }
   .input-field {
     display: flex;
     flex-direction: column;
-  }
-  .input-field input {
-    width: 80%;
-    padding: 10px;
-    margin: auto;
-    margin-top: 10px;
-    text-align: center;
   }
 }

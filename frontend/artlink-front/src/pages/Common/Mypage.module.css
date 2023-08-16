@@ -9,6 +9,15 @@
   box-shadow: 15px 15px 30px rgba(37, 37, 37, 0.2),
     -15px -15px 30px rgba(255, 255, 255, 0.7);
   background-color: rgb(224, 224, 224);
+  transition: box-shadow 0.5s ease;
+}
+.MypagecontainerOutter:hover {
+  box-shadow: 25px 25px 30px rgba(37, 37, 37, 0.2),
+    -25px -25px 30px rgba(255, 255, 255, 0.7);
+}
+.MypagecontainerOutter:hover .Mypagecontainer {
+  box-shadow: inset 2px 2px 3px rgba(37, 37, 37, 0.2),
+    inset -2px -2px 3px rgba(255, 255, 255, 0.7);
 }
 .Mypagecontainer {
   /* display: flex; */
@@ -18,6 +27,7 @@
   border-radius: 50px;
   box-shadow: inset 4px 4px 5px rgba(37, 37, 37, 0.2),
     inset -4px -4px 5px rgba(255, 255, 255, 0.7);
+  transition: box-shadow 0.5s ease;
 }
 .MypagecontainerUserOutter {
   /* display: flex; */
@@ -30,6 +40,15 @@
   box-shadow: 15px 15px 30px rgba(37, 37, 37, 0.2),
     -15px -15px 30px rgba(255, 255, 255, 0.7);
   background-color: rgb(224, 224, 224);
+  transition: box-shadow 0.5s ease;
+}
+.MypagecontainerUserOutter:hover {
+  box-shadow: 25px 25px 30px rgba(37, 37, 37, 0.2),
+    -25px -25px 30px rgba(255, 255, 255, 0.7);
+}
+.MypagecontainerUserOutter:hover .MypagecontainerUser {
+  box-shadow: inset 2px 2px 3px rgba(37, 37, 37, 0.2),
+    inset -2px -2px 3px rgba(255, 255, 255, 0.7);
 }
 .MypagecontainerUser {
   /* display: flex; */
@@ -39,6 +58,7 @@
   border-radius: 50px;
   box-shadow: inset 4px 4px 5px rgba(37, 37, 37, 0.2),
     inset -4px -4px 5px rgba(255, 255, 255, 0.7);
+  transition: box-shadow 0.5s ease;
 }
 
 .MypageinnerBox {

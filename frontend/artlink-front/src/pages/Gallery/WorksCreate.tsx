@@ -68,6 +68,7 @@ function WorksCreate() {
     if (file) {
       reader.readAsDataURL(file);
       // 폼데이터에 파일 저장
+      formDataRef.current.delete("imageFile");
       formDataRef.current.append("imageFile", file);
     }
   };
@@ -117,17 +118,20 @@ function WorksCreate() {
           {/* 이미지 */}
           <div className="image-box">
             <div>
-
-            {image ? (
-              <img
-                src={image}
-                alt="Profile"
-                style={{ width: "100%" }}
-                className="work-image2"
-              />
-            ) : (
-              <img src={EmptyProfile} style={{ width: "100%" }} alt="빈 프로필" />
-            )}
+              {image ? (
+                <img
+                  src={image}
+                  alt="Profile"
+                  style={{ width: "100%" }}
+                  className="work-image2"
+                />
+              ) : (
+                <img
+                  src={EmptyProfile}
+                  style={{ width: "100%" }}
+                  alt="빈 프로필"
+                />
+              )}
             </div>
 
             <input

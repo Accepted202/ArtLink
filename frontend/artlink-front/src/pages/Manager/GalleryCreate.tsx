@@ -4,6 +4,7 @@ import TextBtn from "../../commponents/Base/TextBtn.tsx";
 import { GalleryCreateReq, AddGallery } from "../../api/ManagerApi.tsx";
 import Modal2 from "../../commponents/Base/Form/ExhibitionModal/Modal2.tsx";
 import styles from "./GalleryCreate.module.css";
+import Styles2 from "../../pages/Common/Mypage.module.css";
 import { setAuthorizationHeader } from "../../commponents/Base/BaseFun.tsx";
 
 function GalleryCreate() {
@@ -56,7 +57,7 @@ function GalleryCreate() {
     return Object.keys(galleryInfo).map((field, index) => {
       return (
         <div key={index} className={styles["input-field"]}>
-          <label htmlFor={field}>{fieldNames[field]} : </label>
+          <label htmlFor={field}>{fieldNames[field]} </label>
           <input
             type="text"
             id={field}
@@ -73,14 +74,16 @@ function GalleryCreate() {
     <>
       <Modal2 sendActive={isModalActive} />
       {/* 뒤로가기 & 페이지 설명 */}
-      <div className={styles["worksBackBtn"]}>
+      <div className="worksBackBtn">
         <BackBtn />
-        <h2>갤러리 계정 생성</h2>
+        <div className="workTitle">{"갤러리 계정 생성"}</div>
       </div>
       {/* 계정 생성 바디 */}
-      <div className={styles["detail-container"]}>
-        {/* 텍스트 */}
-        <div className={styles["txt-box"]}>{renderFields()}</div>
+      <div className={Styles2.MypagecontainerOutter}>
+        <div className={Styles2.Mypagecontainer}>
+          {/* 텍스트 */}
+          <div className={styles["txt-box"]}>{renderFields()}</div>
+        </div>
       </div>
       {/* 계정 생성 버튼 */}
       <div onClick={handleAdd}>

@@ -57,6 +57,7 @@ function UpdateExhibition() {
     if (file) {
       reader.readAsDataURL(file);
       // 폼데이터에 파일 저장
+      formDataRef.current.delete("posterFile");
       formDataRef.current.append("posterFile", file);
       formDataRef.current.append("posterName", "poster");
     }
@@ -86,13 +87,14 @@ function UpdateExhibition() {
     }
   };
   // 업데이트 버튼 누를시
-  const handelUpdate = () => {
+  const handelUpdate = async () => {
     try {
-      void updateExhibition();
-      void updateExhibitionPoster();
-      setisModalActive(true);
+      await updateExhibition(); // Exhibition 업데이트 함수 호출
+      await updateExhibitionPoster(); // Poster 업데이트 함수 호출
+      setisModalActive(true); // 모달 활성화
     } catch (error) {
-      console.error("Error in changeImage:", error);
+      console.error("Error in handelUpdate:", error);
+      window.alert("입력값이 잘못되었습니다. 확인해주세요");
     }
   };
   return (
@@ -110,16 +112,16 @@ function UpdateExhibition() {
                 <img src={image} alt="빈 프로필" className={Styles.workImage} />
               )}
             </div>
-          <input
-            type="file"
-            accept="image/*"
-            id="file"
-            onChange={handleImageChange}
-            style={{ display: "none" }}
-          />
-          <label htmlFor="file" style={{ fontSize: "12px" }}>
-            파일 업로드
-          </label>
+            <input
+              type="file"
+              accept="image/*"
+              id="file"
+              onChange={handleImageChange}
+              style={{ display: "none" }}
+            />
+            <label htmlFor="file" style={{ fontSize: "12px" }}>
+              파일 업로드
+            </label>
           </div>
           {/* 텍스트 박스 */}
           <div className={Styles.ExhibitionTxt}>
@@ -138,7 +140,8 @@ function UpdateExhibition() {
         </div>
       </div>
       {/* 생성 전송 */}
-      <div style={{display:"flex", justifyContent:"center"}}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <div onClick={handelUpdate}>
           <TextBtn inner={"Update"} wid={200} hei={50} />
         </div>

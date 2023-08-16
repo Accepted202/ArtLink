@@ -50,8 +50,9 @@ function Menu() {
       { label: "My Page", path: "/mypage/gallery" },
     ],
     admin: [
-      { label: "User Manage", path: "/user-board" },
-      { label: "Gallery Manage", path: "/gallery-board" },
+      { label: "Page", path: "/PM" },
+      { label: "User", path: "/user-board" },
+      { label: "Gallery", path: "/gallery-board" },
     ],
   };
 

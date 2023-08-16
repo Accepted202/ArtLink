@@ -15,11 +15,15 @@ function AMDExhibition({
   isRightVisible,
 }: AMDExhibitionProps) {
   const [isFrameEnabled, setIsFrameVisible] = useState(true);
-
+  const searchParams = new URLSearchParams(location.search);
+  const posterUrl = searchParams.get("posterUrl");
+  console.log(posterUrl);
   const handleButtonClick = () => {
     setIsFrameVisible(!isFrameEnabled);
     onButtonClick();
   };
+  const descript = galleryData.exhibitionName;
+  console.log(descript);
 
   return (
     <>
@@ -29,11 +33,23 @@ function AMDExhibition({
         className={`${isFrameEnabled ? Styles.AMDFrame : Styles.AMDFrameOn}`}
       >
         <div className={`${Styles.AMDimageBox}`}>
-          <img
-            src={poster}
-            alt="전시회를 준비중입니다."
-            className={`${Styles.AMDimage}`}
-          />
+          {posterUrl ? (
+            <>
+              <img
+                src={posterUrl}
+                alt="전시회를 준비중입니다."
+                className={`${Styles.AMDimage}`}
+              />
+            </>
+          ) : (
+            <>
+              <img
+                src={poster}
+                alt="전시회를 준비중입니다."
+                className={`${Styles.AMDimage}`}
+              />
+            </>
+          )}
         </div>
         <div className={`${Styles.AMBRightBox}`}>
           <div
@@ -41,14 +57,26 @@ function AMDExhibition({
               isRightVisible ? Styles.smallFontSize : Styles.largeFontSize
             }`}
           >
-            {galleryData.exhibitionExplanation}
+            <div className={Styles.descript}>
+              {galleryData.exhibitionDescription}
+            </div>
           </div>
           <div className={`${Styles.AMDbtnBox}`}>
-            <div style={{width:"35%"}}>
-              <TextBtnFontsize hei={"40px"} wid={"100%"} fontSize={12} inner="About Page"/>
+            <div style={{ width: "35%" }}>
+              <TextBtnFontsize
+                hei={"40px"}
+                wid={"100%"}
+                fontSize={12}
+                inner="About Page"
+              />
             </div>
-            <div style={{width:"50%"}} onClick={handleButtonClick} >
-              <TextBtnFontsize hei={"40px"} wid={"100%"} fontSize={12} inner={`Your Record ${isFrameEnabled ? "▶" : "◀"}`}/>
+            <div style={{ width: "50%" }} onClick={handleButtonClick}>
+              <TextBtnFontsize
+                hei={"40px"}
+                wid={"100%"}
+                fontSize={12}
+                inner={`Your Record ${isFrameEnabled ? "▶" : "◀"}`}
+              />
             </div>
           </div>
         </div>

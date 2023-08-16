@@ -14,7 +14,6 @@ const excludeHeaderPaths: string[] = [
   "/login-gallery",
   "/signup-gallery",
   "/login-admin",
-  "/PM",
 ];
 
 function Header(): JSX.Element {
@@ -30,15 +29,15 @@ function Header(): JSX.Element {
     <>
       {!isExcludedHeaderPath && (
         <>
-        <div style={{height:"10vh"}}></div>
-        <div ref={headerRef} className={headercss.header}>
-          <div className={headercss.headerMainLogo}>
-            <MainLogo />
+          <div style={{ height: "10vh" }}></div>
+          <div ref={headerRef} className={headercss.header}>
+            <div className={headercss.headerMainLogo}>
+              <MainLogo />
+            </div>
+            <div className={headercss.headerMenu}>
+              {!isExcludedPath && <Menu />}
+            </div>
           </div>
-          <div className={headercss.headerMenu}>
-            {!isExcludedPath && <Menu />}
-          </div>
-        </div>
         </>
       )}
     </>

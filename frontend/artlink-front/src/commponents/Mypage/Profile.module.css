@@ -21,12 +21,11 @@
   font-family: SUITE-Regular;
   display: flex;
   width: 100%;
-
 }
 .infoInnerBoxLeft {
   margin: auto;
 }
-.inputOrder{
+.inputOrder {
   display: flex;
   flex-direction: column;
   font-size: 12px;
@@ -56,7 +55,7 @@
 .profileTextArea {
   border: 1px solid rgb(163, 163, 163);
   border-radius: 10px;
-  padding: 10px 10px 10px 15px ;
+  padding: 10px 10px 10px 15px;
   font-family: SUITE-Regular;
   width: 95%;
   max-width: 100%;
@@ -101,6 +100,15 @@
   filter: contrast(100%) saturate(100%) sepia(10%);
   width: 80%;
   max-width: 200px;
+}
+.allowBox {
+  display: flex;
+}
+.allowBtn {
+  width: 30%;
+  margin: 0;
+  display: flex;
+  margin-top: 10px;
 }
 
 @media (max-width: 767px) {
@@ -147,5 +155,13 @@
   .profileImg {
     width: 100%;
     max-width: 200px;
+  }
+  .allowBox {
+    flex-direction: column;
+  }
+  .allowBtn {
+    margin: auto;
+    width: 30%;
+    margin-top: 10px;
   }
 }

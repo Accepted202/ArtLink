@@ -11,7 +11,6 @@ interface PBprops {
 
 const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
   const [image, setImage] = useState<string | null>(null);
-  const formData = new FormData();
   const formDataRef = useRef<FormData>(new FormData());
 
   // 이미지 변경시
@@ -26,7 +25,7 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
     if (file) {
       reader.readAsDataURL(file);
       // 폼데이터에 파일 저장
-      formData.append("file", file);
+      formDataRef.current.delete("file");
       formDataRef.current.append("file", file);
     }
   };
@@ -77,13 +76,13 @@ const ProfileBox: React.FC<PBprops> = ({ isChanged }) => {
     <>
       <div style={{ width: "100%" }}>
         {image ? (
-          <img
-            src={image}
-            alt="Profile"
-            className={Styles.profileImg}
-          />
+          <img src={image} alt="Profile" className={Styles.profileImg} />
         ) : (
-          <img src={EmptyProfile} style={{ width: "80%"}} alt="빈 프로필" />
+          <img
+            src={EmptyProfile}
+            style={{ width: "100%", maxWidth: "200px" }}
+            alt="빈 프로필"
+          />
         )}
       </div>
       <input

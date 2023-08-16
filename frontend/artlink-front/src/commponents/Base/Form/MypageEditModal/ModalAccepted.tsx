@@ -13,6 +13,7 @@ export const Modal = ({ sendActive }: ModalProps) => {
   useEffect(() => {
     setIsActive(sendActive);
   }, [sendActive]);
+
   const onClickModalOff = () => {
     setIsActive(false);
     window.location.reload();
@@ -28,11 +29,11 @@ export const Modal = ({ sendActive }: ModalProps) => {
       <ModalBase active={isActive} closeEvent={onClickModalOff}>
         <CardModal
           closeEvent={onClickModalOff}
-          title="업데이트"
+          title="승인"
           actionMsg="삭제"
           actionEvent={onClickCardRemove}
         >
-          작품 정보 수정에 성공했습니다.
+          갤러리 승인에 성공했습니다.
           <br />
           <br />
           <br />

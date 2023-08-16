@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { GalleryGet, GalleryGetRes } from "../../api/ManagerApi";
 import { setAuthorizationHeader } from "../../commponents/Base/BaseFun";
 import InfoBoard from "../../commponents/Info/InfoBoard";
+import MarginTop200 from "../../commponents/EditCss/MarginTop100";
 
 interface Data {
   [key: string]: string | number | boolean;
