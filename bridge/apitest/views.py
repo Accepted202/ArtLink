@@ -18,3 +18,10 @@ class TestView(View):
         except Exception as e:
             print(e)
             return HttpResponse(status = 400, content = "Wrong request")
+    def get(self, request):
+        try:
+            res = {"msg": "api test"}
+            return JsonResponse(res, status = 200)
+        except Exception as e:
+                print(e)
+                return JsonResponse({"msg": "Wrong request"}, status = 404)

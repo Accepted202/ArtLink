@@ -31,7 +31,6 @@ public class DeviceController {
     private final GalleryRepository galleryRepository;
     private final ExhibitionRepository exhibitionRepository;
 
-    //Remind: 프론트에게 AddVisitor에 GalleryId 추가해도 되는지 물어보기. 08/02
 
     @PostMapping("/{deviceId}")
     public ResponseEntity AddVisitor(@PathVariable Long deviceId, @RequestBody Map<String, Object> mp) throws Exception {
