@@ -13,8 +13,6 @@ interface Props {
 function ArtworkBox({ artwork, onClickDelete }: Props) {
   // 모달 창 오픈 여부 저장
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // 작품 삭제 여부 저장
-  const [isDelete, setIsDelete] = useState(false);
 
   // 모달창 열기
   const handleModalOpen = () => {
@@ -22,16 +20,13 @@ function ArtworkBox({ artwork, onClickDelete }: Props) {
   };
 
   // 모달 창 닫기
-  const handleModalClose = async () => {
+  const handleModalConfirm = async () => {
+    await onClickDelete(artwork.artworkId);
     setIsModalOpen(false);
-    if (isDelete) {
-      await onClickDelete(artwork.artworkId);
-    }
   };
 
-  // 삭제 결정
-  const handleDelete = () => {
-    setIsDelete(true);
+  const handleModalCancel = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -51,8 +46,8 @@ function ArtworkBox({ artwork, onClickDelete }: Props) {
         <DeleteModal
           isOpen={isModalOpen}
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          onClose={handleModalClose}
-          onDelete={handleDelete}
+          onConfirm={handleModalConfirm}
+          onCancel={handleModalCancel}
         />
       </div>
     </div>

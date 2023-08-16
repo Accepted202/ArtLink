@@ -16,7 +16,7 @@ import {
   [v] Artwork 배분
   [v] Artwork 삭제
   [v] 요소 삭제 시 모달 창 띄우기
-  [ ] postData에 있는 데이터들 표시하기
+  [v] postData에 있는 데이터들 표시하기
   [ ] 요소 삭제 시 삭제 애니메이션
 */
 
@@ -76,7 +76,6 @@ function KioskDetail() {
           <BoxContainer
             key={index}
             chunk={chunk}
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onClickDelete={handleDelete}
           />
         ))}

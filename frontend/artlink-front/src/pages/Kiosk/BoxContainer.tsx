@@ -16,7 +16,6 @@ function BoxContainer({ chunk, onClickDelete }: Props) {
         <ArtworkBox
           key={index}
           artwork={artwork}
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onClickDelete={onClickDelete}
         />
       ))}
