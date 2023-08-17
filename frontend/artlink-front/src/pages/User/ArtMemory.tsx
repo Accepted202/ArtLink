@@ -6,6 +6,7 @@ import "keen-slider/keen-slider.min.css";
 import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 import AMIntro from "../../commponents/ViewExhibition/AMIntro";
 import { UserRecords, UserRecordsRes } from "../../api/UserApi";
+import AMIntroOne from "../../commponents/ViewExhibition/AMIntroOne";
 
 // const sampleData = [
 //   {
@@ -49,6 +50,14 @@ function ArtMemory() {
       spacing: 2,
     },
   });
+  const [sliderRef2] = useKeenSlider({
+    loop: true,
+    slides: {
+      perView: 2,
+      spacing: 2,
+    },
+  });
+  sliderRef2;
   //  전시 기록 전체 조회
   useEffect(() => {
     void loadUserRecord();
@@ -58,9 +67,9 @@ function ArtMemory() {
     // Function to update the perView value based on window size
     const updatePerView = () => {
       if (userRecords.length == 1) {
-        setPerView(2);
+        setPerView(1);
         if (window.innerWidth <= 1024) {
-          setPerView(1);
+          // setPerView(1);
           setPerView(2);
         }
       } else {
@@ -91,82 +100,140 @@ function ArtMemory() {
       {/* 모바일용 인트로 박스 */}
       {isMobile && (
         <div className="introBox" style={{ margin: "auto" }}>
-          <AMIntro />
+          <AMIntroOne />
         </div>
       )}
-      {/* 슬라이드 박스 */}
-      <div className="slideContainer">
-        <div ref={sliderRef} className="keen-slider sliderbox minwid">
-          {/* 비모바일용 인트로 박스 */}
+      {/* 데이터로딩 실패했을시 */}
+      {userRecords[0].userKey == "" && (
+        <>
+          <div style={{display:"flex", justifyContent:"center", marginTop:"20px",}}>
           {!isMobile && (
-            <div className="keen-slider__slide number-slide">
-              <div className="introBox webView">
-                <AMIntro />
-              </div>
-            </div>
-          )}
-          {/* API로 로드한 정보로 슬라이드 구성 */}
-          {userRecords[0].userKey == "nothing" && (
-            <Link to={`/art-memory/1`} className="linkbox">
-              <div className="keen-slider__slide number-slide">
-                <div className="innerSlideBox_outter">
-                  <div className="innerSlideBox">
-                    <div className="innerTxt1">
-                      {`< 서비스를 이용하고 전시회를 기록해보세요 >`}
-                      <p>{"샘플 확인하기"}</p>
+                    <div className="" style={{width:"25%", textAlign:"left", marginTop:"auto", marginBottom:"auto"}}>
+                      <AMIntroOne />
                     </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          )}
-          {userRecords[0].userKey == "" && (
+                )}
             <Link
-              to={`/art-memory/1`}
-              className="linkbox"
-              style={{ margin: "auto" }}
-            >
-              <div className="number-slide" style={{ width: "40vw" }}>
-                <div className="innerSlideBox_outter">
-                  <div className="innerSlideBox">
-                    <div className="innerTxt1">
-                      {`< 서비스를 이용하고 전시회를 기록해보세요 >`}
-                      <p>{"샘플 확인하기"}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          )}
-
-          {userRecords[0].userKey !== "" &&
-            userRecords.map((slide, index) => (
-              <Link
-                to={{
-                  pathname: `/art-memory/${slide.id}`,
-                  search: `?userKey=${slide.userKey}&posterUrl=${slide.posterUrl}`,
-                }}
-                className="linkbox"
-                key={index}
-              >
-                <div className="keen-slider__slide number-slide">
-                  <div className="innerSlideBox_outter">
-                    <div className="innerSlideBox">
-                      <img src={slide.posterUrl} alt="" />
-                    </div>
-                  </div>
-                  <div className="innerTxt1">
-                    {`< ${slide.exhibitionName} >`}{" "}
-                  </div>
-                  <div className="innerTxt2">
-                    <div>{slide.galleryName} </div>
-                    <div>{slide.visitDate}</div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                      to={{
+                        pathname: `/art-memory/${userRecords[0].id}`,
+                        search: `?userKey=${userRecords[0].userKey}&posterUrl=${userRecords[0].posterUrl}`,
+                      }}
+                      className="oneview"
+                    >
+                      <div className="keen-slider__slide number-slide onemobile">
+                        <div className="innerSlideBox_outter" style={{margin:"auto"}}>
+                          <div className="innerSlideBox">
+                            <div className="innerSlideBoxTxt">
+                              <p>
+                              서비스를 이용하고
+                              </p>
+                              <p>
+                              나만의 기록을 남겨보세요
+                              </p>
+                              <span>
+                                샘플 데이터 보기 ⇀
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
         </div>
-      </div>
+        </>
+      )}
+      {/* 슬라이드 박스 1개 일시 */}
+      {userRecords[0].userKey != "" && userRecords.length == 1 && (
+        <>
+        <div style={{display:"flex", justifyContent:"center", marginTop:"20px",}}>
+          {!isMobile && (
+                    <div className="" style={{width:"25%", textAlign:"left", marginTop:"auto", marginBottom:"auto"}}>
+                      <AMIntroOne />
+                    </div>
+                )}
+            <Link
+                      to={{
+                        pathname: `/art-memory/${userRecords[0].id}`,
+                        search: `?userKey=${userRecords[0].userKey}&posterUrl=${userRecords[0].posterUrl}`,
+                      }}
+                      className="oneview"
+                    >
+                      <div className="keen-slider__slide number-slide onemobile">
+                        <div className="innerSlideBox_outter" style={{margin:"auto"}}>
+                          <div className="innerSlideBox">
+                            <img src={userRecords[0].posterUrl} alt="" />
+                          </div>
+                        </div>
+                        <div className="innerTxt1 onemobile">
+                          {`< ${userRecords[0].exhibitionName} >`}{" "}
+                        </div>
+                        <div className="innerTxt2">
+                          <div>{userRecords[0].galleryName} </div>
+                          <div>{userRecords[0].visitDate}</div>
+                        </div>
+                      </div>
+                    </Link>
+        </div>
+        </>
+      )}
+      {/* 슬라이드 박스 2개이상일시 */}
+      {userRecords.length >= 2 && (
+        <>
+          <div className="slideContainer">
+            <div ref={sliderRef} className="keen-slider sliderbox minwid">
+              {/* 비모바일용 인트로 박스 */}
+              {!isMobile && (
+                <div className="keen-slider__slide number-slide">
+                  <div className="introBox webView">
+                    <AMIntro />
+                  </div>
+                </div>
+              )}
+              {/* API로 로드한 정보로 슬라이드 구성 */}
+              {userRecords[0].userKey == "nothing" && (
+                <Link to={`/art-memory/1`} className="linkbox">
+                  <div className="keen-slider__slide number-slide">
+                    <div className="innerSlideBox_outter">
+                      <div className="innerSlideBox">
+                        <div className="innerTxt1">
+                          {`< 서비스를 이용하고 전시회를 기록해보세요 >`}
+                          <p>{"샘플 확인하기"}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              )}
+
+              {userRecords[0].userKey !== "" &&
+                userRecords.map((slide, index) => (
+                  <Link
+                    to={{
+                      pathname: `/art-memory/${slide.id}`,
+                      search: `?userKey=${slide.userKey}&posterUrl=${slide.posterUrl}`,
+                    }}
+                    className="linkbox"
+                    key={index}
+                  >
+                    <div className="keen-slider__slide number-slide">
+                      <div className="innerSlideBox_outter">
+                        <div className="innerSlideBox">
+                          <img src={slide.posterUrl} alt="" />
+                        </div>
+                      </div>
+                      <div className="innerTxt1">
+                        {`< ${slide.exhibitionName} >`}{" "}
+                      </div>
+                      <div className="innerTxt2">
+                        <div>{slide.galleryName} </div>
+                        <div>{slide.visitDate}</div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+            </div>
+          </div>
+        </>
+      )}
+
       <MarginTopInput value={40} />
     </>
   );

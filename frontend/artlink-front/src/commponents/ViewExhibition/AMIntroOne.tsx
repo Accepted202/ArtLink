@@ -11,7 +11,7 @@ function AMIntro() {
           memories of artistic wonders. Enjoy the delightful journey of shared
           artistry.
         </p>
-        <p className="introtxt3">Click and Slide ⇀</p>
+        {/* <p className="introtxt3">Click and Slide ⇀</p> */}
       </div>
     </>
   );

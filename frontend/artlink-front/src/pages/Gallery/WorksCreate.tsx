@@ -116,7 +116,7 @@ function WorksCreate() {
       <div className="detail-container-outter">
         <div className="detail-container">
           {/* 이미지 */}
-          <div className="image-box">
+          <div className="image-box2">
             <div>
               {image ? (
                 <img
@@ -146,7 +146,7 @@ function WorksCreate() {
             </label>
           </div>
           {/* 텍스트 */}
-          <div className="txt-box" style={{ fontSize: "12px" }}>
+          <div className="txt-box2" style={{ fontSize: "12px" }}>
             {renderFields()}
           </div>
         </div>

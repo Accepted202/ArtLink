@@ -11,6 +11,7 @@ import TextBtnFontsize from "../../commponents/Base/TextBtnFontsize";
 
 const defaultMemory = {
   exhibitionID: 0,
+  exhibitionUrl: "http://www.naver.com",
   exhibitionName: "다빈치에서 마티스까지",
   exhibitionDescription:
     "섬세한 손놀림과 창의적인 아이디어가 어우러진 뛰어난 예술 작품들을 만나보실 수 있는 특별한 전시회를 소개합니다. 다양한 장르와 스타일의 작품들이 아름다운 공간을 가득 채우며 관람객들에게 시각적인 감동을 선사할 것입니다. 예술가들의 열정과 탐구정신이 그대로 묻어나는 이번 전시회에서 예술의 매력에 빠져보세요. 문화와 예술의 아름다움을 만끽할 수 있는 이 기회를 놓치지 마세요.",

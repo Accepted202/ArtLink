@@ -6,10 +6,11 @@ function NotFound() {
     <>
       <div
         style={{
-          height: "60vh",
+          height: "50vh",
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
+          minHeight: "300px",
         }}
       >
         <div

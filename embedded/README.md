@@ -67,7 +67,7 @@ Arduino-IDE 에서 `File -> Preference` (한국어 버전이면 `파일 -> 환�
 
 ![arduino_setup_04](./docs/arduino_setup_04.PNG)
 
-이 과정이 완료되면, `Tools -> Board` 에 `ESP32 Dev Tools` 가 보입니다. 선택해 줍니다.
+이 과정이 완료되면, `Tools -> Board` 에 `ESP32 Dev Module` 이 보입니다. 선택해 줍니다.
 
 ![arduino_setup_05](./docs/arduino_setup_05.PNG)
 
@@ -84,18 +84,19 @@ Port 연결이 정상적으로 나올 경우, 다음과 같은 이미지가 나�
 
 ### 4. 사용 라이브러리 다운로드
 `C:\Users\{사용자명}\Documents\Arduino\libraries` 폴더 내에 사용할 라이브러리를 저장합니다.
-해당 프로젝트에서는 다음 라이브러리들의 폴더를 저장합니다.
+해당 프로젝트에서는 다음 라이브러리들을 import합니다.
 - Arduino-DW1000
 - pubsubclient
+- EspMQTTClient
 ### 5. 회로 구성
 다음 이미지와 같이 회로를 구성합니다.
-(회로 구성 이미지 첨부)
+![IoT_circuit](docs/esp32_UWB_circuit.jpg)
 ### 6. 스케치 파일 생성
 새 스케치 파일을 생성합니다.
 
 파일을 생성할 때, `Anchor` 혹은 `Tag` 용도에 따라 파일 이름을 설정합니다.
 
-해당 이름으로 생성된 폴더에 `.ino` 파일 및 의존 라이브러리 파일들을 저장합니다.
+해당 이름으로 생성된 폴더에 `.ino` 파일을 작성하거나 저장합니다. 또한 의존 라이브러리 파일이 있다면 같은 경로에 저장합니다.
 
 이 후 board에 스케치 업로드를 진행합니다.
 

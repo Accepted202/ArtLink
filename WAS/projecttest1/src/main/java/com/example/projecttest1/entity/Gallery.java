@@ -21,12 +21,14 @@ public class Gallery implements Principal {
     private String username; // gallery_id
 
     @Setter
+    @Column(length = 100)
     private String galleryName;
 
     @Setter
     private String password;
 
     @Setter
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
     @Setter

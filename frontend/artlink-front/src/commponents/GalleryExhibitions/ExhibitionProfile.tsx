@@ -65,6 +65,7 @@ const ProfileBox: React.FC<PBprops> = ({
       }
     } catch (error) {
       console.error("Poster Add & Exhibition Create:", error);
+      window.alert("전시회 생성에 실패했습니다. 관리자에게 문의하세요");
     }
   };
 

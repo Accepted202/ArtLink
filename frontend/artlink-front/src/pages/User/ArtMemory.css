@@ -13,10 +13,10 @@
   /* max-height: 100vh; */
   min-height: 400px !important;
 }
-.slideContainer{
-  width:80%;
-  margin:auto; 
-  margin-top:5vh;
+.slideContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 5vh;
   /* box-shadow:-20vw 0px black, 20vw 0px black */
 }
 .minwid {
@@ -24,23 +24,24 @@
   margin: auto;
   margin-top: 7vh;
   margin-bottom: 10vh;
-  
+
   /* border: 1px solid black; */
 }
-.innerSlideBox_outter{
+.innerSlideBox_outter {
   background-color: #e0e0e0;
   width: 75%;
   height: 80%;
   display: flex;
   box-shadow: 8px 8px 15px rgba(37, 37, 37, 0.2),
     -8px -8px 15px rgba(255, 255, 255, 0.7);
-  transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, padding 0.3s ease;
+  transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease,
+    padding 0.3s ease;
   padding: 1.4%;
   margin-top: 20px;
 }
-.innerSlideBox_outter:hover{
+.innerSlideBox_outter:hover {
   box-shadow: 4px 4px 5px rgba(37, 37, 37, 0.2),
-  -4px -4px 5px rgba(255, 255, 255, 0.7);
+    -4px -4px 5px rgba(255, 255, 255, 0.7);
   padding: 2%;
 }
 .innerSlideBox {
@@ -55,6 +56,17 @@
   box-shadow: inset 5px 5px 5px rgba(37, 37, 37, 0.2),
     inset -8px -8px 8px rgba(255, 255, 255, 0.7);
   transition: box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+.innerSlideBoxTxt{
+  font-size: 14px;
+  font-family: inherit;
+  color: rgb(71, 71, 71);
+}
+.innerSlideBoxTxt span{
+  font-size: 11px;
+  font-family: inherit;
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
 }
 .innerSlideBox img {
   width: 80%;
@@ -94,6 +106,10 @@
 .linkbox {
   text-decoration: none;
 }
+.oneview{
+  width: 30%;
+  text-decoration: none;
+}
 
 .introBox {
   display: flex;
@@ -118,6 +134,15 @@
   text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
     1px 1px 8px rgba(93, 93, 93, 0.7);
 }
+.introtxt3 {
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
+    1px 1px 2px rgba(93, 93, 93, 0.7);
+  border-bottom: 1px solid black;
+  margin-top: 10px;
+}
 
 @media (max-width: 1024px) {
   [class^="number-slide"],
@@ -140,11 +165,21 @@
     margin-top: unset;
     margin-bottom: unset;
   }
-  .innerSlideBox_outter{
+  .innerSlideBox_outter {
     width: 60%;
     height: 70%;
   }
-  .slideContainer{
+  .slideContainer {
     margin-top: 0;
+  }
+  .onemobile{
+    display: inline-block !important;
+    justify-content: center;
+    margin: auto;
+    /* max-height: 700px; */
+    width: 80% !important;
+  }
+  .oneview{
+    width: 100% !important;
   }
 }

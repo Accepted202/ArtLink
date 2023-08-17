@@ -18,7 +18,7 @@
 
 ## 프로젝트 소개
 
-- 프로젝트명:
+- 프로젝트명 : ArtLink
 - 서비스 특징: 웹 IoT 프로젝트
 - 주요 기능
   - 관람자가 인상적이었던 작품 기록 및 조회
@@ -40,7 +40,7 @@
 - 박건희: 팀장, 임베디드 시스템 개발
 - 김수현: 백엔드 개발, DB 설계
 - 배정원: 프론트엔드 개발
-- 김진현: 백엔드 개발, Swagger API 문서 관리
+- 김진현: 백엔드 개발, API 문서 관리
 - 조재웅: 기획 담당 및 임베디드 시스템 개발
 - 조준하: 프론트엔드 개발 및 디자인 담당
 
@@ -49,6 +49,8 @@
 ## 프로젝트 상세 설명
 
 ### 개발 환경
+
+**AWS EC2 Ubuntu 20.04 LTS**
 
 ### 기술 스택
 
@@ -60,9 +62,9 @@
 
 #### BackEnd
 
-|                                        Java                                        |                                      SpringBoot                                      |                                        Swagger                                        |                                        Docker                                        |
+|                                        Java                                        |                                      SpringBoot                                      |                                        Nginx                                        |                                        Docker                                        |
 | :--------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
-| <img src="https://icons.terrastruct.com/dev%2Fjava.svg" width="100" height="100"/> | <img src="https://spring.io/img/projects/spring-boot.svg" width="100" height="100"/> | <img src="https://www.svgrepo.com/show/374111/swagger.svg" width="100" height="100"/> | <img src="https://icons.terrastruct.com/dev%2Fdocker.svg" width="100" height="100"/> |
+| <img src="https://icons.terrastruct.com/dev%2Fjava.svg" width="100" height="100"/> | <img src="https://spring.io/img/projects/spring-boot.svg" width="100" height="100"/> | <img src="https://icons.terrastruct.com/dev%2Fnginx.svg" width="100" height="100"/> | <img src="https://icons.terrastruct.com/dev%2Fdocker.svg" width="100" height="100"/> |
 
 #### Embedded
 
@@ -83,7 +85,7 @@
 | <img src="https://icons.terrastruct.com/dev%2Fgit.svg" width="100" height="100"/> | <img src="https://icons.terrastruct.com/dev%2Fgitlab.svg" width="100" height="100"/> | <img src="https://www.vectorlogo.zone/logos/atlassian_jira/atlassian_jira-icon.svg" width="100" height="100"/> |
 
 ### 시스템 구성도
-
+![system](./docs/system.png)
 ### ERD
-
+![ERD](./docs/ERD.PNG)
 ### 기능 상세 설명
