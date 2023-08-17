@@ -18,6 +18,7 @@ interface Props {
   columnWidths: string[]; // 표의 각 열의 너비
   keyToExclude?: string[]; // 표에서 나타나지 않게 하고 싶은 키
   detail?: boolean; // detail 화면으로 이동하는 링크 열 포함 여부
+  detailLink?: string; // detail 화면으로 이동하는 링크 위치 지정
   exhibition?: boolean; // 전시회 업데이트 버튼 포함 여부
   userManager?: boolean; // 유저 매니저 페이지 여부
 }
@@ -31,6 +32,7 @@ function InfoBoard({
   columnWidths,
   keyToExclude = [],
   detail = true,
+  detailLink,
   exhibition = false,
   userManager = false,
 }: Props) {
@@ -98,6 +100,7 @@ function InfoBoard({
             columnWidths={columnWidths}
             keyToExclude={keyToExclude}
             detail={detail}
+            detailLink={detailLink}
           />
         </div>
       </div>
