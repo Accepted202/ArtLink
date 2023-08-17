@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./ArtworkBox.module.css";
 import DeleteModal from "./DeleteModal";
+import InfoModal from "./InfoModal";
 import { Paint } from "../../api/KioskApi";
 
 // 작품의 정보를 띄울 박스, delete로 작품 삭제 가능
@@ -11,27 +12,43 @@ interface Props {
 }
 
 function ArtworkBox({ artwork, onClickDelete }: Props) {
-  // 모달 창 오픈 여부 저장
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // 정보 모달 창 오픈 여부 저장
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  // 삭제 모달 창 오픈 여부 저장
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  // 모달창 열기
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
+  // 정보 모달창 열기
+  const handleInfoModalOpen = () => {
+    setIsInfoModalOpen(true);
   };
 
-  // 모달 창 닫기
-  const handleModalConfirm = async () => {
+  // 정보 모달 창 닫기
+  const handleInfoModalClose = () => {
+    setIsInfoModalOpen(false);
+  };
+
+  // 삭제 모달창 열기
+  const handleDeleteModalOpen = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  // 삭제 모달 창 확인
+  const handleDeleteModalConfirm = async () => {
     await onClickDelete(artwork.artworkId);
-    setIsModalOpen(false);
+    setIsDeleteModalOpen(false);
   };
 
-  const handleModalCancel = () => {
-    setIsModalOpen(false);
+  // 삭제 모달 창 취소
+  const handleDeleteModalCancel = () => {
+    setIsDeleteModalOpen(false);
   };
 
   return (
     <div className={styles["artwork-box"]}>
-      <div className={`${styles.artwork} ${styles.neu}`}>
+      <div
+        className={`${styles.artwork} ${styles.neu}`}
+        onClick={handleInfoModalOpen}
+      >
         {/*작품의 정보가 들어갈 곳*/}
         <div className={styles.title}>{artwork.paintName}</div>
         <img src={artwork.paintPath} alt="작품 이미지" />
@@ -39,15 +56,21 @@ function ArtworkBox({ artwork, onClickDelete }: Props) {
       <div className={styles["button-wrapper"]}>
         <button
           className={`${styles.neu} ${styles.delete}`}
-          onClick={handleModalOpen}
+          onClick={handleDeleteModalOpen}
         >
-          Delete
+          삭제
         </button>
         <DeleteModal
-          isOpen={isModalOpen}
+          isOpen={isDeleteModalOpen}
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          onConfirm={handleModalConfirm}
-          onCancel={handleModalCancel}
+          onConfirm={handleDeleteModalConfirm}
+          onCancel={handleDeleteModalCancel}
+        />
+        <InfoModal
+          isOpen={isInfoModalOpen}
+          title={artwork.paintName}
+          image={artwork.paintPath}
+          onClose={handleInfoModalClose}
         />
       </div>
     </div>
