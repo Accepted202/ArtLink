@@ -22,7 +22,7 @@ class DeviceConfig(AppConfig):
     def on_message(self, client, userdata, message):
         payload = message.payload.decode()
         data = json.loads(payload)
-
+        
         event = data["E"]
         device_id = data["T"]
         pub_topic = self.PUB_TOPIC + "/" + device_id
@@ -33,7 +33,7 @@ class DeviceConfig(AppConfig):
             pub_json["T"] = device_id
             cnt = pub_json["LC"] = int(data["LC"])
             if not cnt >= 3:
-                res = 2  # pending or error
+                res = 0  # redLED
                 publish.single(pub_topic, res, hostname=self.MQTT_BROKER_HOST, port=self.MQTT_BROKER_PORT)
                 return
             cnt = min(cnt, self.MAX_ANCHOR)

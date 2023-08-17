@@ -68,10 +68,16 @@ def post(sender, **kwargs):
         data = data['L']
         coor, exhibition = device.services.get_coordination_by_input(deviceid, data)
         count = artwork.services.get_artwork_count(exhibition)
+
+        pub_topic = f'StoD/{deviceid}'
+        MQTT_BROKER_HOST = "mosquitto"
+        MQTT_BROKER_PORT = 1883
+
         print('count', count)
         if count == 1:
-            return JsonResponse({'drawingId': Artwork.objects.filter(exhibition=exhibition).first().artworkid},
-                                status=200)
+            # return JsonResponse({'drawingId': Artwork.objects.filter(exhibition=exhibition).first().artworkid},
+            #                     status=200)
+            return publish.single(pub_topic, 0, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
 
         # 랜덤 기울기를 가진 직선
         slope = math.tan((random.random() - 0.5) * math.pi)
@@ -144,17 +150,21 @@ def post(sender, **kwargs):
             print(response.status_code)
             # Spring Server의 응답을 반환.
             if response.status_code != 200:
-                return HttpResponse(status=200, content=response.content)
+                return publish.single(pub_topic, 1, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
+                # return HttpResponse(status=200, content=response.content)
         except Exception as e:
             print(e)
             msg = {"msg": "No valid url"}
-            return JsonResponse(msg, status=400)
+            # return JsonResponse(msg, status=400)
+            return publish.single(pub_topic, 0, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
+            
             # return HttpResponse(status = 404, content = "No valid url")
     except Exception as e:
         print(e)
-        msg = {"msg": "Calculation failed"}
-        return JsonResponse(msg, status=404)
+        # msg = {"msg": "Calculation failed"}
+        # return JsonResponse(msg, status=404)
         # return HttpResponse(status = 404, content = "Calculation failed")
+        return publish.single(pub_topic, 0, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
 
 
 @receiver(mtos_delete)
@@ -163,12 +173,24 @@ def delete(sender, **kwargs):
         deviceid = kwargs.get('device')
         spring_server_path = getattr(settings, 'SPRING_SERVER_PATH', 'None')
         target = f'/selections/devices/{deviceid}'
+
+        pub_topic = f'StoD/{deviceid}'
+        MQTT_BROKER_HOST = "mosquitto"
+        MQTT_BROKER_PORT = 1883
+
         response = requests.delete(spring_server_path + target)
         if response.status_code != 200:
-            return HttpResponse(status=200, content=response.content)
+
+            # return HttpResponse(status=200, content=response.content)
+            return publish.single(pub_topic, 2, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
+            
         else:
-            return HttpResponse(status=404, content="Calculation failed")
+            return publish.single(pub_topic, 0, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
+            # return HttpResponse(status=404, content="Calculation failed")
     except Exception as e:
         print(e)
-        msg = {"msg": "Deletion failed"}
-        return JsonResponse(msg, status=400)
+        # msg = {"msg": "Deletion failed"}
+        # return JsonResponse(msg, status=400)
+        return publish.single(pub_topic, 0, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
+        
+            
