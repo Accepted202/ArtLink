@@ -3,7 +3,7 @@ import introVideo from "../../assets/video/video1.mp4";
 function AboutPage3() {
   return (
     <>
-      <div style={{ height: "80vh", display: "flex", justifyContent: "auto" }}>
+      <div style={{ display: "flex", justifyContent: "auto" }} className="videoOuter"> 
         <video
           controls
           height="100%"

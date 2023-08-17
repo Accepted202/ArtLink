@@ -90,14 +90,17 @@
 
 @media (max-width: 767px) {
   .Mypagecontainer {
-    /* width: 60vw; */
-    padding: 40px;
+    /* width: 80vw; */
+    padding: 20px;
+  }
+  .MypagecontainerOutter {
+    width: 80vw;
   }
   .BackBtn {
     margin-left: auto !important;
     display: block;
   }
   .MypagecontainerUserOutter {
-    width: 60vw;
+    width: 80vw;
   }
 }

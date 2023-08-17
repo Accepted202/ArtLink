@@ -46,7 +46,7 @@ function Menu() {
       { label: "My Page", path: "/mypage/user" },
     ],
     gallery: [
-      { label: "Artwork Manager", path: "/exhibition-board" },
+      { label: "Exhibitions", path: "/exhibition-board" },
       { label: "My Page", path: "/mypage/gallery" },
     ],
     admin: [

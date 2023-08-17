@@ -82,7 +82,7 @@ function ArtMemoryDetail() {
         className={Styles["artmemory-container-outter"]}
         style={{
           width: isRightVisible ? (isLeftVisible ? "80vw" : "40vw") : "40vw",
-          minWidth: isRightVisible ? "400px" : "400px",
+          minWidth: isRightVisible ? isMobile ? "500px" : "500px" : "500px",
           maxWidth: isRightVisible
             ? isLeftVisible
               ? "900px"
@@ -94,7 +94,7 @@ function ArtMemoryDetail() {
           className={Styles["artmemory-container"]}
           style={{
             width: isRightVisible ? "80vw" : "40vw",
-            minWidth: isRightVisible ? "400px" : "400px",
+            minWidth: isRightVisible ? isMobile ? "500px" : "500px" : "500px",
           }}
         >
           {/* Left div with the button */}

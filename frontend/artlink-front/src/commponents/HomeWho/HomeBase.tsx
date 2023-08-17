@@ -36,15 +36,18 @@ function HomeBase({
 
   return (
     <>
-      <div className={`${showAnimation ? styles.animateText : ""}`}>
+      <div >
         <MainLogo />
       </div>
       <div className="BigBtnBox2">
         {/* Menu : Your Memory */}
         <div className={styles.startbtnBody}>
+          <div className={`${styles.startbtnOuter} ${
+              showAnimation ? styles.animateBtn : ""
+            }`}>
           <div
             className={`${styles.startbtn} ${
-              showAnimation ? styles.animateBtn : ""
+              showAnimation ? styles.animateBtn2 : ""
             }`}
             style={{ textDecoration: "none" }}
             onClick={accepted ? () => handleClick(firstLink) : undefined}
@@ -52,14 +55,14 @@ function HomeBase({
             <div style={{ margin: "auto" }}>
               <p
                 className={`${styles.innerIcon} ${
-                  showAnimation ? styles.animateText : ""
+                  showAnimation ? styles.animateText2 : ""
                 }`}
               >
                 {firstTitle}
               </p>
               <p
                 className={`${styles.innerIcon2} ${
-                  showAnimation ? styles.animateText : ""
+                  showAnimation ? styles.animateText2 : ""
                 }`}
               >
                 {firstQuote}
@@ -68,7 +71,7 @@ function HomeBase({
                 <p
                   style={{ color: "red" }}
                   className={`${styles.innerIcon} ${
-                    showAnimation ? styles.animateText : ""
+                    showAnimation ? styles.animateText2 : ""
                   }`}
                 >
                   {"Authorization required!"}
@@ -76,12 +79,16 @@ function HomeBase({
               )}
             </div>
           </div>
+          </div>
         </div>
         {/* Menu : My Page */}
         <div className={styles.startbtnBody}>
+        <div className={`${styles.startbtnOuter} ${
+              showAnimation ? styles.animateBtn : ""
+            }`}>
           <div
             className={`${styles.startbtn} ${
-              showAnimation ? styles.animateBtn : ""
+              showAnimation ? styles.animateBtn2 : ""
             }`}
             style={{ textDecoration: "none" }}
             onClick={() => handleClick(secondLink)}
@@ -89,20 +96,21 @@ function HomeBase({
             <div style={{ margin: "auto" }}>
               <p
                 className={`${styles.innerIcon} ${
-                  showAnimation ? styles.animateText : ""
+                  showAnimation ? styles.animateText2 : ""
                 }`}
               >
                 {secondTitle}
               </p>
               <p
                 className={`${styles.innerIcon2} ${
-                  showAnimation ? styles.animateText : ""
+                  showAnimation ? styles.animateText2 : ""
                 }`}
               >
                 {secondQuote}
               </p>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </>

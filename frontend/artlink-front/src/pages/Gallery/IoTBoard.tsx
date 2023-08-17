@@ -27,7 +27,6 @@ function IoTBoard() {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.wrapper}>
           <InfoBoard
             title="IoT Manager"
             data={deviceData}
@@ -36,7 +35,6 @@ function IoTBoard() {
             columnWidths={widths}
             detail={false}
           />
-        </div>
       </div>
     </>
   );

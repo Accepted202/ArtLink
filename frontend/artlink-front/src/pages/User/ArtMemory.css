@@ -150,10 +150,12 @@
     height: 90vw !important;
     width: 50vw !important;
     max-height: 100vh;
+    display: inherit;
   }
   .introBox {
-    width: 50%;
+    width: 60%;
     margin-top: 40px !important;
+    text-align: center;
   }
   .innerTxt1 {
     font-size: 13px;
@@ -166,8 +168,11 @@
     margin-bottom: unset;
   }
   .innerSlideBox_outter {
-    width: 60%;
-    height: 70%;
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    max-width: 300px;
+    max-height: 450px;
   }
   .slideContainer {
     margin-top: 0;

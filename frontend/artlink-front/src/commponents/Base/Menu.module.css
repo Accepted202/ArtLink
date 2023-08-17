@@ -51,7 +51,16 @@ nav ul li:hover {
 
 @media (max-width: 767px) {
   nav ul li {
-    font-size: 16x;
-    margin: 0px 4px 0px 4px;
+    font-size: 14px;
+    margin: 0px 1vw 0px 1vw;
+    padding: 0 3px;
+  }
+  nav{
+    width: 100%;
+    padding: 0;
+  }
+  nav ul {
+    width: 100%;
+    padding: 0;
   }
 }

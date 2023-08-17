@@ -100,7 +100,7 @@ function ArtMemory() {
       {/* 모바일용 인트로 박스 */}
       {isMobile && (
         <div className="introBox" style={{ margin: "auto" }}>
-          <AMIntroOne />
+          {userRecords.length == 1 ? <><AMIntroOne /></> : <><AMIntro /></>}
         </div>
       )}
       {/* 데이터로딩 실패했을시 */}

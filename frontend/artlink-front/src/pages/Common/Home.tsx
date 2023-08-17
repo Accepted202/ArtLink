@@ -26,6 +26,7 @@ function Homepage() {
 
     if (!accessToken) {
       navigate("/");
+      // setUserRole("ROLE_ADMIN"); // 사용자 역할을 상태에 저장
     } else {
       // 엑세스 토큰을 디코딩하여 사용자 역할을 추출합니다.
       const decodedToken = jwt_decode<DecodedToken>(accessToken);
