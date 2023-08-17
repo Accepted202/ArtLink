@@ -8,7 +8,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
-import artwork.services
+import artwork.services as ArtworkService
 import device.services
 from artwork.models import Voronoipoint, Voronoiresult, Artwork
 from device.models import Anchor
@@ -64,22 +64,32 @@ def post(sender, **kwargs):
     try:
         # MQTT단에서 보내준 데이터를 통한 좌표 추출
         data = json.loads(kwargs.get('data'))
+        print(data, flush = True)
         deviceid = data["T"]
         data = data['L']
-        coor, exhibition = device.services.get_coordination_by_input(deviceid, data)
-        count = artwork.services.get_artwork_count(exhibition)
+        R = device.services.get_coordination_by_input(deviceid, data)
 
-        pub_topic = f'StoD/{deviceid}'
-        MQTT_BROKER_HOST = "mosquitto"
-        MQTT_BROKER_PORT = 1883
-
-        print('count', count)
+        coor, exhibition = R[0], R[1]
+        print(coor, exhibition, flush = True)
+        count = ArtworkService.get_artwork_count(exhibition)
+        print('count', count, flush = True)
         if count == 1:
-            # return JsonResponse({'drawingId': Artwork.objects.filter(exhibition=exhibition).first().artworkid},
-            #                     status=200)
-            return publish.single(pub_topic, 0, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
+            return JsonResponse({'drawingId': Artwork.objects.filter(exhibition=exhibition).first().artworkid},
+                                status=200)
 
         # 랜덤 기울기를 가진 직선
+
+#         artworks = Artwork.objects.filter(exhibition = exhibition)
+#         id = -1
+#         D = 10**8
+#         x, y = coor[0], coor[1]
+#         for artwork in artworks:
+#             DD = (artwork.coorx - x) ** 2. + (artwork.coory - y) ** 2.
+#             if DD < D:
+#                 D = DD
+#                 id = artwork.artworkid
+#         print(id, flush = True)
+
         slope = math.tan((random.random() - 0.5) * math.pi)
         intersections, edges = device.services.get_intersection_with_edge_by_exhibition(exhibition)
 
@@ -102,13 +112,19 @@ def post(sender, **kwargs):
         for edge in edges:
             point1, point2 = edge.point1id, edge.point2id
             area1, area2 = edge.cwartworkid, edge.ccwartworkid
-            print("ID", area1, area2)
-            artwork1, artwork2 = artwork.services.find_artwork_by_Id(area1), artwork.services.find_artwork_by_Id(area2)
+            print("ID", area1, area2 , flush = True)
+            artwork1, artwork2 = ArtworkService.find_artwork_by_Id(area1), ArtworkService.find_artwork_by_Id(area2)
             midpoint_x, midpoint_y = (artwork1.coorx + artwork2.coorx)/2. , (artwork1.coory + artwork2.coory)/2.
             if point1 != -1: x1, y1 = points[point1][0], points[point1][1]
             else: x1, y1 = midpoint_x, midpoint_y
             if point2 != -1: x2, y2 = points[point2][0], points[point2][1]
             else: x2, y2 = midpoint_x, midpoint_y
+            print(x1, y1, x2, y2, flush = True)
+            x1 -= coor[0]
+            y1 -= coor[1]
+            x2 -= coor[0]
+            y2 -= coor[1]
+            print(x1, y1, x2, y2, flush = True)
             if (y1 * y2 > 0):
                 continue
             xx = 0
@@ -122,23 +138,24 @@ def post(sender, **kwargs):
             res.append([xx, area1, area2])
 
         res.sort()  # 적어도 하나는 만나기 때문에 res[0]가 있음은 보장되어야 한다. => 만일 미술품이 오로지 한개 뿐이라면 에러.
+        print(res , flush = True)
         rres = res[0]
         p1, p2 = rres[1], rres[2]
         print(p1, p2)
         print(points)
-        print('Total # of points', len(points))
-        artwork1, artwork2 = artwork.services.find_artwork_by_Id(p1), artwork.services.find_artwork_by_Id(p2)
+        print('Total # of points', len(points) , flush = True)
+        artwork1, artwork2 = ArtworkService.find_artwork_by_Id(p1), ArtworkService.find_artwork_by_Id(p2)
         ans = p1 if dist([artwork1.coorx, artwork1.coory], coor) < dist([artwork2.coorx, artwork2.coory], coor) else p2  # 더 가까운 것의 인덱스가 ans에 저장.
 
         # Response 예상 : {"drawingId" : 2}
         JSON = {}
         try:
             JSON['drawingId'] = ans
-            print('JSON', JSON)
+            print('JSON', JSON , flush = True)
             # Spring Server에 요청을 보냄.
             spring_server_path = getattr(settings, 'SPRING_SERVER_PATH', 'None')
             target = f'/selections/devices/{deviceid}'
-            print(target)
+            print(target, flush = True)
 
             try:
                 print(spring_server_path + target)
@@ -157,7 +174,7 @@ def post(sender, **kwargs):
             msg = {"msg": "No valid url"}
             # return JsonResponse(msg, status=400)
             return publish.single(pub_topic, 0, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
-            
+
             # return HttpResponse(status = 404, content = "No valid url")
     except Exception as e:
         print(e)
@@ -192,5 +209,4 @@ def delete(sender, **kwargs):
         # msg = {"msg": "Deletion failed"}
         # return JsonResponse(msg, status=400)
         return publish.single(pub_topic, 0, hostname=MQTT_BROKER_HOST, port=MQTT_BROKER_PORT)
-        
-            
+
