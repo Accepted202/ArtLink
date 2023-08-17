@@ -4,7 +4,7 @@ import styles from "./KioskExit.module.css";
 import KioskMainLogo from "./KioskMainLogo";
 
 function KioskExit() {
-  const [countdown, setCountdown] = useState<number>(50000000);
+  const [countdown, setCountdown] = useState<number>(5);
   const navigate = useNavigate();
 
   useEffect(() => {

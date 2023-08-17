@@ -46,19 +46,24 @@ function ArtworkBox({ artwork, onClickDelete }: Props) {
   return (
     <div className={styles["artwork-box"]}>
       <div
-        className={`${styles.artwork} ${styles.neu}`}
+        className={`${styles.artworkOuter} ${styles.neu}`}
+        onClick={handleInfoModalOpen}
+      >
+      <div
+        className={`${styles.artwork} ${styles.neuInset}`}
         onClick={handleInfoModalOpen}
       >
         {/*작품의 정보가 들어갈 곳*/}
         <div className={styles.title}>{artwork.paintName}</div>
         <img src={artwork.paintPath} alt="작품 이미지" />
       </div>
+        </div>
       <div className={styles["button-wrapper"]}>
         <button
-          className={`${styles.neu} ${styles.delete}`}
+          className={`${styles.neubtn} ${styles.delete}`}
           onClick={handleDeleteModalOpen}
         >
-          삭제
+          Delete
         </button>
         <DeleteModal
           isOpen={isDeleteModalOpen}

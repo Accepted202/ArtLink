@@ -20,7 +20,7 @@ function DeleteModal({ isOpen, onConfirm, onCancel }: Props) {
   return (
     <div className={styles["modal-back"]}>
       <div className={styles["modal-window"]}>
-        <h2>{`해당 작품을 목록에서 삭제하시겠습니까?`}</h2>
+        <h4>{`해당 작품을 목록에서 삭제하시겠습니까?`}</h4>
         <div className={styles["button-wrapper"]}>
           <button className={styles["confirm-button"]} onClick={handleConfirm}>
             확인

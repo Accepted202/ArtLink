@@ -3,9 +3,19 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  justify-content: space-between;
+  height: 60%;
   width: 100%;
-  justify-content: center;
+  justify-content: end;
+}
+.notice-intro div{
+  font-size: 20px;
+  margin: 5px;
+}
+.notice-intro p{
+  font-size: 27px;
+  font-weight: 700;
+  margin-bottom: 40px;
 }
 .notice-box-outer {
   display: flex;
@@ -16,6 +26,7 @@
   position: relative;
   z-index: 1;
   padding: 3px;
+  margin-top: 60px;
 }
 
 .notice-box {
@@ -45,4 +56,10 @@
   width: 10%;
   position: absolute;
   z-index: 0;
+}
+.inputWrapper input, .inputWrapper button{
+  border: none !important;
+  box-shadow: none;
+  background-color: #e0e0e0;
+  color: #e0e0e0;
 }

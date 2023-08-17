@@ -1,7 +1,16 @@
 .artwork-box {
-  margin: 10vw;
+  /* margin: 10vw; */
 }
 
+.artworkOuter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30vw;
+  width: 30vw;
+  border-radius: 10%;
+  padding: 4px;
+}
 .artwork {
   display: flex;
   flex-direction: column;
@@ -13,11 +22,17 @@
 }
 
 .title {
-  font-size: 15px;
+  font-size: 11px;
   text-shadow: 1px 1px 2px rgb(80, 80, 80), -1px -1px 2px white;
   text-transform: capitalize;
   font-weight: 500;
-  margin-top: 10px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 0;
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .artwork > img {
@@ -33,17 +48,18 @@
 
 .button-wrapper {
   display: flex;
-  justify-content: end;
+  justify-content: center;
   margin-top: 20px;
 }
 
 .button-wrapper > button {
-  width: 30%;
+  width: 40%;
   height: 5vw;
   border: none;
-  border-radius: 10%;
+  border-radius: 10px;
   background: var(--main-color);
   font-family: SUITE-Regular;
+  text-shadow: 1px 1px 2px rgb(70, 70, 70), -1px -1px 3px white;
 }
 
 .button-wrapper > button:active {
@@ -53,6 +69,16 @@
 }
 
 .neu {
-  box-shadow: 10px 10px 20px rgba(37, 37, 37, 0.2),
+  box-shadow: 10px 10px 20px rgba(37, 37, 37, 0.4),
     -10px -10px 20px rgba(255, 255, 255, 0.7);
 }
+.neubtn {
+  box-shadow: 3px 3px 6px rgba(37, 37, 37, 0.4),
+    -5px -5px 10px rgba(255, 255, 255, 0.7);
+}
+
+.neuInset {
+  box-shadow: inset 4px 4px 6px rgba(37, 37, 37, 0.4),
+    inset -4px -4px 6px rgba(255, 255, 255, 0.7);
+}
+

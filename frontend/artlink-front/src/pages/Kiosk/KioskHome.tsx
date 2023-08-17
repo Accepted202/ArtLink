@@ -27,6 +27,11 @@ function KioskHome() {
     <>
       <KioskMainLogo />
       <div className={styles["notice-container"]}>
+        <div className={styles["notice-intro"]}>
+          <p>{" 전시 여정 기록하기 "}</p>
+          <div>기기를 태그해주세요</div>
+          {/* <div>태그를 할 시 삐- 소리가 납니다</div> */}
+        </div>
         <div className={styles["notice-box-outer"]}>
           <div className={styles["notice-box"]}>
             <div className={styles["notice-text"]}>{"Please Tag"}</div>

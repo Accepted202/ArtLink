@@ -5,13 +5,12 @@ function AboutPage3() {
     <>
       <div style={{ display: "flex", justifyContent: "auto" }} className="videoOuter"> 
         <video
-          controls
-          height="100%"
+          // controls
+          // height="100%"
           autoPlay
           loop
           muted
           playsInline
-          style={{ margin: "auto" }}
         >
           <source src={introVideo} type="video/mp4" />
           Your browser does not support the video tag.
