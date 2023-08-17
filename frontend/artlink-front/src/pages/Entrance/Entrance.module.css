@@ -3,6 +3,26 @@
   --shadow-color: rgba(37, 37, 37, 0.2);
 }
 
+.entranceContainer {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 15vh;
+}
+
+.startbtnBody {
+  display: flex;
+  /* flex: 1; */
+  align-items: center;
+  height: auto;
+  width: 100%;
+  justify-content: center;
+  min-height: 200px;
+  /* margin: auto; */
+  margin-top: 20vh;
+}
+
 .startbtn {
   display: flex;
   width: 40vh;
@@ -33,32 +53,13 @@
   transform: scale(0.9);
 }
 
-.startbtnBody {
-  background: var(--main-color);
-  display: flex;
-  /* flex: 1; */
-  align-items: center;
-  height: auto;
-  width: 100%;
-  justify-content: center;
-  min-height: 200px;
-  margin: auto;
-  /* margin-top: 10vh; */
-}
-
-.entranceContainer {
-  height: 75vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .animateContainer {
-  margin-top: -10vh;
+  margin-top: 10vh;
   transition: margin-top 1s ease-in-out;
 }
 
 .animateStartbtnBody {
+  margin-top: 30vh;
   transition: margin-top 1s ease-in-out;
 }
 

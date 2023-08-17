@@ -19,7 +19,6 @@ function Entrance() {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ height: "20vh" }}></div>
         <div
           className={`${Styles.entranceContainer} ${
             showAnimation ? Styles.animateContainer : ""
