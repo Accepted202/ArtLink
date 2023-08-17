@@ -25,11 +25,15 @@ function KioskExit() {
     <>
       <KioskMainLogo />
       <div className={styles["notice-container"]}>
-        <div className={styles["notice-box"]}>
-          <div className={styles["notice-text"]}>{"Good Bye"}</div>
+        <div className={styles["notice-box-outer"]}>
+          <div className={styles["notice-box"]}>
+            <div className={styles["notice-text"]}>{"Good Bye"}</div>
+          </div>
+        </div>
+        <div className={styles["notice-counter"]}>
+          {countdown}초 후 홈으로 돌아갑니다.
         </div>
       </div>
-      <h1>{countdown}초 후 홈으로 돌아갑니다.</h1>
     </>
   );
 }
