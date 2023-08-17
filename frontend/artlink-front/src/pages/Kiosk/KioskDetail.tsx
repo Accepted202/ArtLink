@@ -82,7 +82,7 @@ function KioskDetail() {
       </div>
       <div className={styles.bottomWrapper}>
         <Link to="/kiosk/print">
-          <button className={styles.nextButton}>Print</button>
+          <button className={styles.nextButton}>프린트</button>
         </Link>
       </div>
     </>

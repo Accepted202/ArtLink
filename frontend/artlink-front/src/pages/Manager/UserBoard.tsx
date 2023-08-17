@@ -26,8 +26,8 @@ function UserBoard() {
 
   // 테이블 데이터
   const userData = AllUserData;
-  const keys = ["PK", "아이디", "전화번호", "닉네임"]; // 데이터가 존재하지 않을 경우 오류가 발생하기 때문에 이 부분은 페이지 별로 하드코딩해야 함
-  const widths = ["8%", "20%", "20%", "20%", "8%"];
+  const keys = ["아이디", "전화번호", "닉네임"]; // 데이터가 존재하지 않을 경우 오류가 발생하기 때문에 이 부분은 페이지 별로 하드코딩해야 함
+  const widths = ["20%", "20%", "60%"];
 
   return (
     <>
@@ -38,7 +38,8 @@ function UserBoard() {
           dataKeys={keys}
           columnWidths={widths}
           userManager={true}
-          keyToExclude={["userImageUrl"]}
+          keyToExclude={["id", "userImageUrl"]}
+          detailLink="nickname"
         />
       </div>
     </>

@@ -24,23 +24,25 @@ function WorksBoard() {
     void fetchAllworks();
   }, []);
 
-  const keys = ["id", "제목", "아티스트", "설명"];
-  const widths = ["3%", "25%", "20%", "45%", "7%"];
-  const keyToExclude = ["drawingPath", "locationX", "locationY"];
+  const keys = ["제목", "아티스트", "설명"];
+  const widths = ["30%", "25%", "30%"];
+  const keyToExclude = ["id", "drawingPath", "locationX", "locationY"];
   const params = new URLSearchParams(location.search);
   const exhibitionName = params.get("exhibitionName");
 
   return (
     <>
-    {exhibitionName && <InfoBoard
-        title={exhibitionName}
-        data={works}
-        dataKeys={keys}
-        columnWidths={widths}
-        keyToExclude={keyToExclude}
-        exhibition={true}
-      />}
-      
+      {exhibitionName && (
+        <InfoBoard
+          title={exhibitionName}
+          data={works}
+          dataKeys={keys}
+          columnWidths={widths}
+          keyToExclude={keyToExclude}
+          exhibition={true}
+          detailLink="name"
+        />
+      )}
     </>
   );
 }

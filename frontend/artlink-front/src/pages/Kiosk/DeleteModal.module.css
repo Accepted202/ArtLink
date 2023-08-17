@@ -7,6 +7,7 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+  animation: fadeEffect 0.5s ease-in-out forwards;
 }
 
 .modal-window {
@@ -34,8 +35,32 @@
   margin-top: 10%;
 }
 
+.button-wrapper > button {
+  width: 30%;
+  height: 5vw;
+  border: none;
+  border-radius: 10%;
+  background: var(--main-color);
+  font-family: SUITE-Regular;
+}
+
+.button-wrapper > button:active {
+  box-shadow: inset 7px 7px 15px var(--shadow-color),
+    inset -7px -7px 40px #ff0000, 0px 0px 4px rgba(255, 255, 255, 0.2);
+  transform: scale(0.9);
+}
+
 .button-wrapper > .confirm-button:active {
   box-shadow: inset 7px 7px 15px var(--shadow-color), inset 0px 0px 40px #54f88b,
     0px 0px 4px rgba(255, 255, 255, 0.2);
   transform: scale(0.9);
+}
+
+@keyframes fadeEffect {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

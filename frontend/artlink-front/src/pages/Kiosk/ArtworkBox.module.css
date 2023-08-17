@@ -13,14 +13,14 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 15px;
   text-shadow: 1px 1px 2px rgb(80, 80, 80), -1px -1px 2px white;
   text-transform: capitalize;
   font-weight: 500;
   margin-top: 10px;
 }
 
-.artwork img {
+.artwork > img {
   width: 80%;
   height: 60%;
   object-fit: contain;
@@ -29,8 +29,6 @@
   background-color: rgb(236, 236, 236);
   box-shadow: 2px 2px 5px rgb(80, 80, 80), -2px -2px 3px white;
   padding: 5px;
-  /* margin-top: 20px;
-  margin-bottom: 20px; */
 }
 
 .button-wrapper {
@@ -39,7 +37,7 @@
   margin-top: 20px;
 }
 
-.button-wrapper button {
+.button-wrapper > button {
   width: 30%;
   height: 5vw;
   border: none;
@@ -48,7 +46,7 @@
   font-family: SUITE-Regular;
 }
 
-.button-wrapper button:active {
+.button-wrapper > button:active {
   box-shadow: inset 7px 7px 15px var(--shadow-color),
     inset -7px -7px 40px #ff0000, 0px 0px 4px rgba(255, 255, 255, 0.2);
   transform: scale(0.9);

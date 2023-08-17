@@ -30,8 +30,8 @@ function GalleryBoard() {
     ...data,
     accepted: data.accepted ? "O" : "X",
   }));
-  const keys = ["PK", "아이디", "갤러리 이름", "허용여부", "설명문"]; // 데이터가 존재하지 않을 경우 오류가 발생하기 때문에 이 부분은 페이지 별로 하드코딩해야 함
-  const widths = ["6%", "13%", "16%", "12%", "28%", "15%"];
+  const keys = ["아이디", "갤러리 이름", "허용여부", "설명문"]; // 데이터가 존재하지 않을 경우 오류가 발생하기 때문에 이 부분은 페이지 별로 하드코딩해야 함
+  const widths = ["10%", "20%", "10%", "60%"];
 
   return (
     <>
@@ -41,6 +41,8 @@ function GalleryBoard() {
           data={galleryData}
           dataKeys={keys}
           columnWidths={widths}
+          keyToExclude={["id"]}
+          detailLink="galleryName"
         />
       </div>
     </>

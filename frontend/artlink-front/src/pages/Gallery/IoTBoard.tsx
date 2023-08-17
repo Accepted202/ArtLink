@@ -27,14 +27,16 @@ function IoTBoard() {
   return (
     <>
       <div className={styles.container}>
-        <InfoBoard
-          title="IoT Manager"
-          data={deviceData}
-          addLink={"/gallery/add-iot"}
-          dataKeys={keys}
-          columnWidths={widths}
-          detail={false}
-        />
+        <div className={styles.wrapper}>
+          <InfoBoard
+            title="IoT Manager"
+            data={deviceData}
+            addLink={"/gallery/add-iot"}
+            dataKeys={keys}
+            columnWidths={widths}
+            detail={false}
+          />
+        </div>
       </div>
     </>
   );
