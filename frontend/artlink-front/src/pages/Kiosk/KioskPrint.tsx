@@ -4,7 +4,7 @@ import styles from "./KioskPrint.module.css";
 import { useNavigate } from "react-router-dom";
 
 function KioskPrint() {
-  const [countdown, setCountdown] = useState<number>(3);
+  const [countdown, setCountdown] = useState<number>(30000000000);
   const navigate = useNavigate();
 
   useEffect(() => {

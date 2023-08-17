@@ -27,8 +27,10 @@ function KioskHome() {
     <>
       <KioskMainLogo />
       <div className={styles["notice-container"]}>
-        <div className={styles["notice-box"]}>
-          <div className={styles["notice-text"]}>{"Please Tag"}</div>
+        <div className={styles["notice-box-outer"]}>
+          <div className={styles["notice-box"]}>
+            <div className={styles["notice-text"]}>{"Please Tag"}</div>
+          </div>
         </div>
         <div className={styles.inputWrapper}>
           <input

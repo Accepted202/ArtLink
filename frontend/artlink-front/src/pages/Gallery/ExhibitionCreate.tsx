@@ -12,8 +12,6 @@ function ExhibitionCreate() {
           <BackBtn />
           <div className="workTitle">전시회 생성</div>
         </div>
-        {/* <hr style={{ width: "80vw" }} /> */}
-        {/* 메인 컨테이너 */}
         <div className={Styles.CreateContainer}>
           <CreateExhibition />
         </div>

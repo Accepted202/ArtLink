@@ -86,7 +86,7 @@ function PageManager() {
     Kiosk: ["Kiosk", "KioskDetail", "KioskPrint", "KioskExit", "ComponentTest"],
     Other: ["Contact", "AboutUs", "NotFound", "ThreeTestPage"],
   };
-  const needworkPages = ["Password", "PasswordGallery", "AboutUs", "Contact"];
+  const needworkPages = ["Password", "PasswordGallery"];
   return (
     <>
       <div className="worksBackBtn">
@@ -132,12 +132,15 @@ function PageManager() {
             <p>마이페이지 전화번호 폼</p>
             <p>승인되지않은 갤러리 처리</p>
             <p>갤러리 생성 빈 상태로 가능한것 고치기</p>
-            <p>배포간 디폴트 이미지 누락되는것 확인</p>
+            <p>UCC Aboutpage3에 심기</p>
+            <p>리프레시 토큰 설정</p>
+            <p>글자수 제한 관련 </p>
+            <p>홈화면에 진입시 최상단으로 이동하게</p>
+            <p>전시회 url 설정 필드 생성</p>
           </div>
           <h3>{`<디자인수정>`}</h3>
           <div style={{ fontSize: "12px" }}>
-            <p>보드 디자인 (갤러리 작품,)</p>
-            <p>매니저 갤러리 보드 디자인</p>
+            <p>보드 디자인</p>
             <p>키오스크 전반 디자인</p>
           </div>
           <h3>{`<ETC>`}</h3>

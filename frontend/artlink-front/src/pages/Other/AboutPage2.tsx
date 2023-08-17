@@ -4,7 +4,7 @@ import aboutImg from "../../assets/About2.png";
 function AboutPage2() {
   return (
     <>
-      <div>
+      <div style={{ margin: "auto" }}>
         <img src={aboutImg} alt="" />
       </div>
     </>

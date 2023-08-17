@@ -1,6 +1,7 @@
 .aboutBody {
   margin: 0;
   overflow-y: hidden;
+  height: 80vh;
 }
 .aboutBodyMobile {
   display: none;
@@ -24,11 +25,11 @@
   font-size: 100px;
 }
 .AP_Container {
-  display: block;
+  display: flex;
   height: 100%;
 }
 .inner div img {
-  width: 80%;
+  height: 70vh;
   margin: auto;
 }
 .AP_box1 {
@@ -36,7 +37,7 @@
   height: 90%;
   display: flex;
 }
-.AP_box1_inner{
+.AP_box1_inner {
   margin: auto;
 }
 
