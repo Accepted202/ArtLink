@@ -55,8 +55,10 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 //declare topic for publish message
-const char* pub_topic = "TEST";
+// DtoS : Device to Server
+const char* pub_topic = "DtoS";
 // const char* pub_topic = "DtoS";
+// StoD : Server to Device
 String sub_topic = "StoD/" + String(tag_short);
 
 struct MyLink *uwb_data;
