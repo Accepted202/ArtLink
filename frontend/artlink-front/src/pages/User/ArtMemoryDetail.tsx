@@ -11,12 +11,12 @@ import TextBtnFontsize from "../../commponents/Base/TextBtnFontsize";
 
 const defaultMemory = {
   exhibitionID: 0,
-  exhibitionUrl: "http://www.naver.com",
-  exhibitionName: "다빈치에서 마티스까지",
+  exhibitionUrl: "https://www.mmca.go.kr/exhibitions/progressList.do",
+  exhibitionName: "릴레이 퍼포먼스",
   exhibitionDescription:
-    "섬세한 손놀림과 창의적인 아이디어가 어우러진 뛰어난 예술 작품들을 만나보실 수 있는 특별한 전시회를 소개합니다. 다양한 장르와 스타일의 작품들이 아름다운 공간을 가득 채우며 관람객들에게 시각적인 감동을 선사할 것입니다. 예술가들의 열정과 탐구정신이 그대로 묻어나는 이번 전시회에서 예술의 매력에 빠져보세요. 문화와 예술의 아름다움을 만끽할 수 있는 이 기회를 놓치지 마세요.",
+    "«국립현대미술관 청주 다원예술 2023 릴레이 퍼포먼스»는 개관 5주년을 맞이하는 국립현대미술관 청주에서 처음으로 시도하는 퍼포먼스 프로그램이다. ‘전문가와 비전문가’, ‘주류예술과 비주류예술’, ‘전시와 연계(부대) 교육’ 등은 모두 미술관 속 이분법적 구별과 위계 구조가 만들어낸 사회적 구분이다. 이는 다양성을 인정하고 소수의 공동체까지 포용해야 할 동시대 미술관의 순기능에 오작동을 일으키는 주요한 원인이기도 하다. 특히, 국립현대미술관 청주는 소장품의 수장과 관리, 보존의 기능을 특화한 미술관으로, 대중에게는 노출되지 않는 비공개 영역과 비가시적 활동을 관람객과 지속해서 공유하는 것을 목표로 한다. 따라서 본 프로그램은 열린 가치와 소통 능력, 유연함과 지속가능성을 품는 퍼포먼스 예술의 속성에 주목하는 동시에 국립현대미술관 청주, 나아가 오늘날 미술관의 공공적 역할을 비판적으로 관찰하고 성찰하려는 노력을 담고자 했다.",
   galleryID: 0,
-  galleryName: "양평군립미술관",
+  galleryName: "국립현대미술관",
   visitDate: "2023-08-02",
   workList: [
     { paintName: "작품1", paintPath: "/src/assets/artwork/artwork1.jpg" },

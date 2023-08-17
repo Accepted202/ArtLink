@@ -2,7 +2,6 @@ import { useState } from "react";
 import MainLogo from "../../commponents/Base/MainLogo";
 import { useNavigate } from "react-router-dom";
 import Styles from "./Entrance.module.css";
-import MarginTopInput from "../../commponents/EditCss/MaginTopInput";
 
 function Entrance() {
   const navigate = useNavigate();
@@ -18,28 +17,32 @@ function Entrance() {
   };
 
   return (
-    <div
-      className={`${Styles.entranceContainer} ${
-        showAnimation ? Styles.animateContainer : ""
-      }`}
-    >
-      <MainLogo />
-      <div
-        className={`${Styles.startbtnBody} ${
-          showAnimation ? Styles.animateStartbtnBody : ""
-        }`}
-      >
-        <button
-          className={`${Styles.startbtn}  ${
-            showAnimation ? Styles.animateStartbtn : ""
+    <>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ height: "20vh" }}></div>
+        <div
+          className={`${Styles.entranceContainer} ${
+            showAnimation ? Styles.animateContainer : ""
           }`}
-          onClick={handleStartButtonClick}
         >
-          <p className={Styles.innerIcon}>{"start"}</p>
-        </button>
+          <MainLogo />
+          <div
+            className={`${Styles.startbtnBody} ${
+              showAnimation ? Styles.animateStartbtnBody : ""
+            }`}
+          >
+            <button
+              className={`${Styles.startbtn}  ${
+                showAnimation ? Styles.animateStartbtn : ""
+              }`}
+              onClick={handleStartButtonClick}
+            >
+              <p className={Styles.innerIcon}>{"Start"}</p>
+            </button>
+          </div>
+        </div>
       </div>
-      <MarginTopInput value={100} />
-    </div>
+    </>
   );
 }
 

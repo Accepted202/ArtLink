@@ -1,6 +1,12 @@
 import { UserOneRecordRes } from "../../api/UserApi";
 import "./AMDMyrecord.css";
 import UpBtn from "../Base/UpBtn";
+import artwork1 from "../../assets/artwork/artwork1.jpg";
+import artwork2 from "../../assets/artwork/artwork2.jpg";
+import artwork3 from "../../assets/artwork/artwork3.jpg";
+import artwork4 from "../../assets/artwork/artwork4.png";
+import artwork5 from "../../assets/artwork/artwork5.png";
+import artwork6 from "../../assets/artwork/artwork6.png";
 
 // import React from 'react';
 interface AMDMyrecordProps {
@@ -18,6 +24,15 @@ function AMDMyrecord({
       ? "scrollBox"
       : ""
   }`;
+  const sampleWorks = [
+    artwork1,
+    artwork2,
+    artwork3,
+    artwork4,
+    artwork5,
+    artwork6,
+  ];
+  sampleWorks;
   return (
     <>
       <UpBtn howscroll={450} />
@@ -80,12 +95,25 @@ function AMDMyrecord({
               }`}
               key={index}
             >
-              <img
-                src={work.paintPath}
-                alt={work.paintName}
-                className="recordImg"
-                style={isLeftVisible ? {} : { width: "60%" }}
-              />
+              {userData.exhibitionID == 0 ? (
+                <>
+                  <img
+                    src={sampleWorks[index]}
+                    alt={work.paintName}
+                    className="recordImg"
+                    style={isLeftVisible ? {} : { width: "60%" }}
+                  />
+                </>
+              ) : (
+                <>
+                  <img
+                    src={work.paintPath}
+                    alt={work.paintName}
+                    className="recordImg"
+                    style={isLeftVisible ? {} : { width: "60%" }}
+                  />
+                </>
+              )}
               <div className="recordImgTitle">{work.paintName}</div>
             </div>
           ))}

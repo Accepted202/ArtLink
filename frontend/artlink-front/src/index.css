@@ -34,11 +34,11 @@ textarea {
   overflow: hidden !important;
   box-shadow: inset 1px 1px 2px rgb(114, 114, 114),
     inset -1px -1px 3px rgb(255, 255, 255);
-    color: #555;
+  color: #555;
 }
 
 #root {
-  min-height: 650px;
+  /* min-height: 650px; */
   height: 100vh;
 }
 
@@ -91,12 +91,11 @@ td {
 }
 
 /* 푸터 hr */
-.footerHr{
-  background-color:#bebebe;
+.footerHr {
+  background-color: #bebebe;
   height: 2.4px;
-  box-shadow: 2px 2px 1px rgb(115, 114, 114), 
-  -2px -2px 2px rgb(255, 255, 255);
+  box-shadow: 2px 2px 1px rgb(115, 114, 114), -2px -2px 2px rgb(255, 255, 255);
   /* width: 90%; */
   margin: auto;
-  margin-top:5vh;
+  margin-top: 5vh;
 }

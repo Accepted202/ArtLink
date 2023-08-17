@@ -79,7 +79,7 @@ function LoginForm() {
             onKeyPress={handleKeyPress}
           />
           <br />
-          <div className="forget">
+          {/* <div className="forget">
             <label className="checkbox-label">
               <input type="checkbox" />
               <span className="checkbox-custom "></span>
@@ -88,7 +88,7 @@ function LoginForm() {
             <span className="fg">
               <a href="#"> Forget password?</a>
             </span>
-          </div>
+          </div> */}
           <div className="errorMsg">{}</div>
           <div className="btnBox">
             {!isLoginAdmin ? (

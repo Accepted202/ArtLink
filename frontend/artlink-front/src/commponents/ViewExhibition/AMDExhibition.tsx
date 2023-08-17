@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Styles from "./AMD.module.css";
-import poster from "../../assets/전시회.jpg";
+import poster from "../../assets/poster3.png";
 import { UserOneRecordRes } from "../../api/UserApi";
 import TextBtnFontsize from "../Base/TextBtnFontsize";
 import { Link } from "react-router-dom";
@@ -18,7 +18,6 @@ function AMDExhibition({
   const [isFrameEnabled, setIsFrameVisible] = useState(true);
   const searchParams = new URLSearchParams(location.search);
   const posterUrl = searchParams.get("posterUrl");
-  console.log(posterUrl);
   const handleButtonClick = () => {
     setIsFrameVisible(!isFrameEnabled);
     onButtonClick();

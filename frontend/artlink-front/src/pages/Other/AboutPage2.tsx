@@ -1,12 +1,12 @@
-// import React from 'react';
 import "./AboutUs.css";
+import aboutImg from "../../assets/About2.png";
 
 function AboutPage2() {
   return (
     <>
-    <div>
-      <img src="src/assets/About2.png" alt="" />
-    </div>
+      <div>
+        <img src={aboutImg} alt="" />
+      </div>
     </>
   );
 }

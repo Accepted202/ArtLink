@@ -5,8 +5,8 @@
 
 .startbtn {
   display: flex;
-  width: 200px;
-  height: 200px;
+  width: 40vh;
+  height: 40vh;
   background: var(--main-color);
   border-radius: 200px;
   box-shadow: inset 0 0 15px rgba(55, 84, 170, 0),
@@ -15,6 +15,7 @@
   transition: 0.4s cubic-bezier(0, 0.57, 0.49, 1.51);
   cursor: pointer;
   border: 0px;
+  font-family: SUITE-REGULAR;
 }
 
 .innerIcon {
@@ -23,6 +24,7 @@
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   color: rgb(83, 83, 83);
+  font-size: 4vh;
 }
 
 .startbtn:hover {
@@ -34,35 +36,33 @@
 .startbtnBody {
   background: var(--main-color);
   display: flex;
+  /* flex: 1; */
   align-items: center;
-  height: 100%;
+  height: auto;
   width: 100%;
   justify-content: center;
-
-  margin-top: 100px;
+  min-height: 200px;
+  margin: auto;
+  /* margin-top: 10vh; */
 }
 
 .entranceContainer {
-  margin-top: 200px;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .animateContainer {
-  margin-top: 100px;
+  margin-top: -26px;
   transition: margin-top 1s ease-in-out;
 }
 
 .animateStartbtnBody {
-  margin-top: 200px;
   transition: margin-top 1s ease-in-out;
 }
 
 .animateStartbtn {
   opacity: 0;
   transition: opacity 1s ease-in-out;
-}
-
-@media (max-width: 767px) {
-  .entranceContainer {
-    margin-top: 100px;
-  }
 }

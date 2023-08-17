@@ -60,11 +60,11 @@
   margin-top: auto;
 }
 
-.animateBtn{
+.animateBtn {
   animation: fadeOut 0.5s ease-in-out;
 }
 
-.animateText{
+.animateText {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
@@ -98,11 +98,11 @@
   } */
 }
 
-@keyframes textFadeIn{
-  0%{
+@keyframes textFadeIn {
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
@@ -116,9 +116,9 @@
   }
   .startbtn {
     /* width: 70%; */
-    min-width: 200px;
+    /* min-width: 200px; */
     padding: 10px;
-    min-width: 300px !important;
+    /* min-width: 300px !important; */
     /* height: 30vh; */
   }
   .startbtnBody {

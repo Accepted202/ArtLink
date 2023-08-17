@@ -51,6 +51,8 @@ import TestLogin from "./api/testLogin";
 import NotFound from "./pages/Common/NotFound";
 import ExhibitionCreate from "./pages/Gallery/ExhibitionCreate";
 import ExhibitionUpdate from "./pages/Gallery/ExhibitionUpdate";
+import Team from "./commponents/Contact/Team";
+import Policy from "./pages/Other/Policy";
 
 function App() {
   // 로그인 여부 판단
@@ -230,7 +232,9 @@ function App() {
 
         {/* Other Routes */}
         <Route path="/contact" element={<Contact />} />
+        <Route path="/contact/team" element={<Team />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/policy" element={<Policy />} />
 
         {/* Only Developer */}
         <Route path="/3d" element={<ThreeTest />} />
