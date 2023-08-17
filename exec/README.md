@@ -5,14 +5,72 @@
 ## b. 포팅 메뉴얼
 
 ### EC2 Setup
-SSL 을 위한 키 설치
-CERTBOT 설치를 진행해줍니다.
-- docker image로 제공되는 certbot은 nginx과 관련해서 제공하지 않기 때문에 실행되는 도메인에 pem 키를 설치해서 진행하였습니다.
- 
+1. SSL 설정
+    SSL 을 위한 키 설치를 진행합니다.
+    - docker image로 제공되는 certbot은 nginx과 관련해서 제공하지 않기 때문에 실행되는 도메인에 pem 키를 설치해서 진행합니다.
+    ```bash
+    sudo apt-get update
+    sudo apt-get install python # python이 설치가 되어 있지 않다면 설치해야합니다.
+    sudo apt-get install certbot
+    sudo apt-get install python3-certbot-nginx
+    sudo certbot --nginx -d {도메인이름} # A202의 경우 i9a202.p.ssafy.io 
+    ```
 
-cp ./exec/application.properties ./WAS/projecttest1/src/main/resources
-<br>
-cp ./exec/docker-compose.yml ./
+2. Docker 설치
+    Docker를 설치합니다. GOAT 김종섭 코치님 CI/CD 자동배포 개론 감사합니다. 
+    ```bash
+    sudo apt-get update
+    sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+    sudo mkdir -m 0755 -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo chmod 777 /var/run/docker.sock
+    ```
+
+3. root directory에서 빌드에 필요한 application.properties를 backend WAS에 넣어줍니다. 
+    ```bash
+    cp ./exec/application.properties /WAS/projecttest1/src/main/resources/
+    ```
+
+4. ./etc/nginx/nginx.conf 내부의 설정을 수정합니다.
+    ```conf
+    server_name i9a202.p.ssafy.io;
+    proxy_pass http://i9a202.p.ssafy.io:8080/;
+    client_max_body_size 30M;
+    ```
+    ```conf
+    server_name {도메인이름};
+    proxy_pass http://{도메인이름}:{포트}/
+    client_max_body_size {프록시 패스의 최대 request 크기}; 
+    ```
+
+5. 필요시 각 디렉토리 내부에 존재하는 도메인 이름을 변경합니다.
+
+6. root directory에서 frontend, database, web-app-server, bridge-server 도커 이미지를 생성합니다.
+    ```bash
+    docker build -t frontend ./frontend/artlink-front/
+    docker build -t mydatabase ./database/
+    docker build -t mydjango ./bridge/
+    docker build -t myspring ./WAS/projecttest1/
+    ```
+
+7. root-directory에서 docker compose를 통해 container를 실행해줍니다.
+    ```bash
+    cp ./exec/docker-compose.yml ./
+    docker compose up -d
+    ```
+
+8. 더미데이터를 주입합니다.
+    ```
+    ```
 
 ### Embedded Setup - User Device
 
