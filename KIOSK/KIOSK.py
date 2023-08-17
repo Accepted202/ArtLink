@@ -49,11 +49,12 @@ def handle_rfid_tag(tag_id):
         # selenium ver 3.x
         # driver.find_element_by_id("tag").send_keys(tag_id)
         # selenium ver 4.x
-
+        # driver.find_element(By.ID, "tag").send_keys(tag_id)
         try:
-            #driver.find_element(By.ID, "tag").send_keys(tag_id)
-            driver.find_element(By.ID, "tag").send_keys("1")
-            driver.find_element(By.ID, "submit").click()
+            submit_id = str(tag_id)[:4]
+            driver.find_element(By.ID, "tag").send_keys(submit_id)
+            element = driver.find_element(By.ID, "submit")
+            driver.execute_script("arguments[0].click();", element)
         except Exception as e:
             print(e)
 
