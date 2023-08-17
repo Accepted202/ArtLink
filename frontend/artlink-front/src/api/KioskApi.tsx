@@ -62,3 +62,16 @@ export const getPostevents = async (userKey: string): Promise<PostData> => {
     throw error;
   }
 };
+
+// 모의 프린트 요청(GET)
+export const fakePrint = async (): Promise<string> => {
+  try {
+    const response: AxiosResponse<string> = await axios.get(
+      `https://i9a202.p.ssafy.io/bridge/test/`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("프린트 실패했습니다.", error);
+    throw error;
+  }
+};

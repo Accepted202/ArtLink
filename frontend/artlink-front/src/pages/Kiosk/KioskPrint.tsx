@@ -2,24 +2,32 @@ import { useEffect, useState } from "react";
 import KioskMainLogo from "./KioskMainLogo";
 import styles from "./KioskPrint.module.css";
 import { useNavigate } from "react-router-dom";
+import { fakePrint } from "../../api/KioskApi";
 
 function KioskPrint() {
-  const [countdown, setCountdown] = useState<number>(30000000000);
+  const [recieved, setRecieved] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
-    }, 1000);
+  const print = async () => {
+    try {
+      const response = await fakePrint();
+      setRecieved(true);
+      console.log(response);
+    } catch (error) {
+      window.alert("프린트 실패");
+      navigate("/kiosk/exit");
+    }
+  };
 
-    return () => clearInterval(timer);
+  useEffect(() => {
+    void print();
   }, []);
 
   useEffect(() => {
-    if (countdown === 0) {
-      navigate("/kiosk/exit");
+    if (recieved) {
+      setTimeout(() => navigate("/kiosk/exit"), 3);
     }
-  }, [countdown, navigate]);
+  }, [recieved, navigate]);
 
   return (
     <>
