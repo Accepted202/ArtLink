@@ -109,6 +109,9 @@
     파일을 생성할 때, `Anchor` 혹은 `Tag` 용도에 따라 파일 이름을 설정합니다.<br>
     해당 이름으로 생성된 폴더에 `.ino` 파일 및 의존 라이브러리 파일들을 저장합니다.<br>
     이 후 board에 스케치 업로드를 진행합니다.
+7. link 라이브러리를 추가합니다.
+    - 아두이노 라이브러리 저장 디렉토리(default : 문서 > arduino > libraries)에 link 폴더를 생성합니다.
+    - `embedded/tag/` 깃 리포지토리의 `link.h`및 `link.cpp`를 문서/arduino/libraries/link/ 에 붙여넣어 줍니다. 
 
 ### Embedded Setup - Kiosk
 
