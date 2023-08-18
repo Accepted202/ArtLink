@@ -68,9 +68,7 @@
     docker compose up -d
     ```
 
-8. 더미데이터를 주입합니다.
-    ```
-    ```
+> mysql 초기 데이터는 /database/init/에 설정이 되어 있습니다. 초기 데이터에 수정이 발생할 경우 injection.sql 파일을 교체해주시면 됩니다.
 
 ### Embedded Setup - User Device
 
